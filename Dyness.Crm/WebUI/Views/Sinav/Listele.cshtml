@@ -1,0 +1,38 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model SinavListeleViewModel
+
+@{
+    var title = Resources.LangResources.Sinavlar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Sinavlar;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Baslik)', '@Model.Model.GetColumnName(x=>x.Baslik)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.KurumAd)', '@Model.Model.GetColumnName(x=>x.KurumAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SinavTurAd)', '@Model.Model.GetColumnName(x=>x.SinavTurAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SinavTarihiFormatted)', '@Model.Model.GetColumnName(x=> x.SinavTarihiFormatted)', false, 0));
+
+        var otherItems = new Array();
+        otherItems.push(new OtherItem('/Sinav/Detay/', '', 'SinavId', '', '_blank', 'icon-search4', 'Detay', ''));
+
+        SetDataTable(false, 'tblListele', '/Sinav/Listele', 0, 'asc', columns, '/Sinav/Duzenle/', 'SinavId', otherItems);
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "YENİ SINAV", "/Sinav/Duzenle/")

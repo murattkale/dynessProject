@@ -1,0 +1,38 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model  BankaDuzenleViewModel
+
+@{
+    var title = Model.Model.BankaId == 0
+        ? Resources.LangResources.BankaEkle
+        : $"{Resources.LangResources.BankaGuncelle} ({Model.Model.BankaAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Muhasebe;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "Banka", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.BankaId, Model.BankaSelectList, Model.BankaSelectList.Any(), Resources.LangResources.Bankalar, "/Banka/Duzenle/")
+    @Html.FormTextBoxFor(x => x.Model.BankaAd)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.BankaId, "", false)
+    @Html.FormCardDivEnd()
+}

@@ -1,0 +1,86 @@
+﻿@using Core.CrossCuttingConcerns.Security
+@using WebUI.Models
+@using WebUI.Helpers
+
+@model SinavDuzenleViewModel
+
+@{
+    var title = Model.Model.SinavId == 0
+        ? Resources.LangResources.SinavEkle
+        : $"{Resources.LangResources.SinavGuncelle} ({Model.Model.Baslik})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Sinavlar;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "Sinav", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListFor(x => x.Model.SezonId, Model.SezonSelectList, optionLabel: Resources.LangResources.Sezonlar)
+    @Html.FormDropDownListFor(x => x.Model.SinavTurId, Model.SinavTurSelectList, optionLabel: Resources.LangResources.SinavTurler)
+    @Html.FormDropDownListFor(x => x.Model.OptikFormId, Model.OptikFormSelectList, optionLabel: Resources.LangResources.OptikFormlar)
+
+    if (Identity.KurumId == -1)
+    {
+        @Html.FormDropDownListFor(x => x.Model.KurumId, Model.KurumSelectList, optionLabel: Resources.LangResources.Kurumlar)
+    }
+    else
+    {
+        Model.Model.KurumId = Identity.KurumId;
+        <div style="display:none;">
+            @Html.FormDropDownListFor(x => x.Model.KurumId, Model.KurumSelectList, optionLabel: Resources.LangResources.Kurumlar, disabled: true)
+        </div>
+    }
+
+    @Html.FormDropDownListFor(x => x.SelectedYetkiliSubeler, Model.YetkiSubeSelectList, true)
+    @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.TumSubeSecimiBilgi)
+    @Html.FormTextBoxFor(x => x.Model.Baslik)
+    @Html.FormTextBoxFor(x => x.Model.SinavTarihi, textBoxType: HtmlHelpers.TextBoxType.Date);
+
+    for (int i = 0; i < Model.Model.SinavKitapciklar.Count; i++)
+    {
+        @Html.FormTextBoxFor(x => x.Model.SinavKitapciklar[i].Baslik)
+        @Html.HiddenFor(x => x.Model.SinavKitapciklar[i].SinavId)
+        @Html.HiddenFor(x => x.Model.SinavKitapciklar[i].SinavKitapcikId)
+    }
+}
+
+@Html.HiddenFor(x => x.Model.SinavId)
+@Html.HiddenFor(x => x.Model.KurumId)
+
+@if (Identity.KurumId == -1)
+{
+    @Html.FormButtons(Model.Model.SinavId, "divModalDelete", true)
+}
+else
+{
+    @Html.FormButtons(Model.Model.SinavId, "", false)
+}
+
+@Html.FormCardDivEnd()
+
+@if (Identity.KurumId == -1)
+{
+
+    using (Html.BeginForm("Sil", "Sinav", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("id", Model.Model.SinavId)
+        @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+    }
+}

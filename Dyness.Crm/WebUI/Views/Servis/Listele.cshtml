@@ -1,0 +1,48 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model ServisListeleViewModel
+
+@{
+    var title = Resources.LangResources.Servisler;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+         var htmlColumn1 = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.SubeAd)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SubeAd)', '@Model.Model.GetColumnName(x=> x.SubeAd)', false, 0, null, null, htmlColumn1));
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.ServisAd)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.ServisAd)', '@Model.Model.GetColumnName(x=> x.ServisAd)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.ServisPlaka)', '@Model.Model.GetColumnName(x=> x.ServisPlaka)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Guzergah)', '@Model.Model.GetColumnName(x=> x.Guzergah)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Kapasite)', '@Model.Model.GetColumnName(x=> x.Kapasite)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.YolcuAdet)', '@Model.Model.GetColumnName(x=> x.YolcuAdet)', false, 0, AlignEnum.Center, AlignEnum.Center));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.KapasiteDurumu)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.KapasiteDurumu)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.KapasiteDurumu)', '@Model.Model.GetColumnName(x=> x.KapasiteDurumu)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.EtkinMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.Durum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinMi)', '@Model.Model.GetColumnName(x=> x.EtkinMi)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        SetDataTable(false, 'tblListele', '/Servis/Listele', 0, 'asc', columns, '/Servis/Duzenle/', 'ServisId', null);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "YENİ SERVİS", "/Servis/Duzenle/")

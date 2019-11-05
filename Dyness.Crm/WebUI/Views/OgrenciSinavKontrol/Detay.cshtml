@@ -1,0 +1,250 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model OgrenciSinavKontrolViewModel
+
+@{
+    var title = Model.Model.SinavKitapcik.Sinav.Baslik;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Sinavlar;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <link href="~/assets/css/OgrenciSinavKontrol.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-md-4">
+        @Html.FormCardDivBegin(title)
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <td width="40%;"><b>@Resources.LangResources.Sinav:</b></td>
+                        <td width="60%;"><a href="/Sinav/Detay/@Model.Model.SinavKitapcik.SinavId">@Model.Model.SinavKitapcik.Sinav.Baslik</a></td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Sube.SubeAd):</b></td>
+                        <td>@Model.Model.Sube.SubeAd</td>
+                    </tr>
+                    @if (Model.Model.OgrenciId != null)
+                    {
+                        <tr>
+                            <td><b>@Model.Model.GetDisplayName(x => x.AdSoyadSon):</b></td>
+                            <td> <a href="/Ogrenci/Detay/@Model.Model.OgrenciId">@Model.Model.AdSoyadSon</a></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td><b>@Model.Model.GetDisplayName(x => x.AdSoyadSon):</b></td>
+                            <td> <a href="/OnKayit/Detay/@Model.Model.OnKayitId">@Model.Model.AdSoyadSon</a></td>
+                        </tr>
+                    }
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.TcKimlikNo):</b></td>
+                        <td>@Model.Model.TcKimlikNo</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.OgrenciNo):</b></td>
+                        <td>@Model.Model.OgrenciNo</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Sinif):</b></td>
+                        <td>@Model.Model.Sinif</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Core.Properties.FieldNameResources.Kayit:</b></td>
+                        <td>
+                            <span class="badge badge-@(Model.Model.OgrenciId != null ? "success" : "danger")"> @Model.Model.Durum</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.SinavKitapcik.Baslik):</b></td>
+                        <td>@Model.Model.SinavKitapcik.Baslik</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <a href="/OgrenciSinavKontrol/SinavSonuc/@Model.Model.OgrenciSinavKontrolId" target="_blank">@Resources.LangResources.SonucBelgesiYazdir</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        @Html.FormCardDivEnd()
+
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+                <li class="nav-item"><a href="#tabGenel" class="nav-link active show" data-toggle="tab"><h5 class="card-title">@Resources.LangResources.Genel</h5></a></li>
+                <li class="nav-item"><a href="#tabDersler" class="nav-link" data-toggle="tab"><h5 class="card-title">@Resources.LangResources.Dersler</h5></a></li>
+                <li class="nav-item"><a href="#tabSorular" class="nav-link" data-toggle="tab"><h5 class="card-title">@Resources.LangResources.Sorular</h5></a></li>
+                <li class="nav-item"><a href="#tabSonucBelgesi" class="nav-link" data-toggle="tab"><h5 class="card-title">@Resources.LangResources.SonucBelgesi</h5></a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="tabGenel">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center"><b>@Core.Properties.FieldNameResources.DogruCevapAdet</b></td>
+                                                <td class="text-center"><b>@Core.Properties.FieldNameResources.YanlisCevapAdet</b></td>
+                                                <td class="text-center"><b>@Core.Properties.FieldNameResources.BosCevapAdet</b></td>
+                                                <td class="text-center"><b>@Core.Properties.FieldNameResources.Net</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">@Model.Model.DogruCevapAdet</td>
+                                                <td class="text-center">@Model.Model.YanlisCevapAdet</td>
+                                                <td class="text-center">@Model.Model.BosCevapAdet</td>
+                                                <td class="text-center">@Model.Model.NetFormatted</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                @foreach (var ogrenciSinavKontrolPuanTurPuan in Model.Model.OgrenciSinavKontrolPuanTurPuanlar)
+                                                {
+                                                    <td class="text-center"><b>@ogrenciSinavKontrolPuanTurPuan.PuanTur.PuanTurAd</b></td>
+                                                }
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Resources.LangResources.Puan</b></td>
+                                                @foreach (var ogrenciSinavKontrolPuanTurPuan in Model.Model.OgrenciSinavKontrolPuanTurPuanlar)
+                                                {
+                                                    <td class="text-center"><b>@ogrenciSinavKontrolPuanTurPuan.Puan</b></td>
+                                                }
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Resources.LangResources.ToplamPuan</b></td>
+                                                @foreach (var ogrenciSinavKontrolPuanTurPuan in Model.Model.OgrenciSinavKontrolPuanTurPuanlar)
+                                                {
+                                                    <td class="text-center"><b>@ogrenciSinavKontrolPuanTurPuan.ToplamPuan</b></td>
+                                                }
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Resources.LangResources.SinifSira</b></td>
+                                                @foreach (var ogrenciSinavKontrolPuanTurPuan in Model.Model.OgrenciSinavKontrolPuanTurPuanlar)
+                                                {
+                                                    <td class="text-center"><b>@ogrenciSinavKontrolPuanTurPuan.SinifSira</b></td>
+                                                }
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Resources.LangResources.SubeSira</b></td>
+                                                @foreach (var ogrenciSinavKontrolPuanTurPuan in Model.Model.OgrenciSinavKontrolPuanTurPuanlar)
+                                                {
+                                                    <td class="text-center"><b>@ogrenciSinavKontrolPuanTurPuan.SubeSira</b></td>
+                                                }
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Resources.LangResources.GenelSira</b></td>
+                                                @foreach (var ogrenciSinavKontrolPuanTurPuan in Model.Model.OgrenciSinavKontrolPuanTurPuanlar)
+                                                {
+                                                    <td class="text-center"><b>@ogrenciSinavKontrolPuanTurPuan.GenelSira</b></td>
+                                                }
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade " id="tabDersler">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td><b>@Core.Properties.FieldNameResources.Ders</b></td>
+                                                <td class="text-center"><b>@Core.Properties.FieldNameResources.DogruCevapAdet</b></td>
+                                                <td class="text-center"><b>@Core.Properties.FieldNameResources.YanlisCevapAdet</b></td>
+                                                <td class="text-center"><b>@Core.Properties.FieldNameResources.BosCevapAdet</b></td>
+                                                <td class="text-center"><b>@Core.Properties.FieldNameResources.Net</b></td>
+                                            </tr>
+                                            @foreach (var ogrenciSinavKontrolDersBilgi in Model.Model.OgrenciSinavKontrolDersBilgiler)
+                                            {
+                                                <tr>
+                                                    <td><b>@ogrenciSinavKontrolDersBilgi.Ders.DersAd</b></td>
+                                                    <td class="text-center">@ogrenciSinavKontrolDersBilgi.DogruCevapAdet</td>
+                                                    <td class="text-center">@ogrenciSinavKontrolDersBilgi.YanlisCevapAdet</td>
+                                                    <td class="text-center">@ogrenciSinavKontrolDersBilgi.BosCevapAdet</td>
+                                                    <td class="text-center">@ogrenciSinavKontrolDersBilgi.NetFormatted</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade " id="tabSorular">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center" width="5%;"><b>@Core.Properties.FieldNameResources.Soru</b></td>
+                                                <td><b>@Core.Properties.FieldNameResources.DersGrup</b></td>
+                                                <td><b>@Core.Properties.FieldNameResources.Ders</b></td>
+                                                <td><b>@Core.Properties.FieldNameResources.Konu</b></td>
+                                                <td class="text-center" width="5%;"><b>@Core.Properties.FieldNameResources.OgrenciCevap</b></td>
+                                                <td class="text-center" width="5%;"><b>@Core.Properties.FieldNameResources.DogruCevap</b></td>
+                                                <td class="text-center" width="5%;"><b>@Core.Properties.FieldNameResources.Durum</b></td>
+                                            </tr>
+                                            @foreach (var soru in Model.Model.Sorular)
+                                            {
+                                                <tr style="color:white; background-color:@(soru.Renk)">
+                                                    <td class="text-center">@soru.Soru</td>
+                                                    <td>@soru.DersGrupAd</td>
+                                                    <td>@soru.DersAd</td>
+                                                    <td>@soru.KonuBaslik</td>
+                                                    <td class="text-center">@soru.OgrenciCevap</td>
+                                                    <td class="text-center">@soru.DogruCevap</td>
+                                                    <td class="text-center">@soru.DurumAd</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade " id="tabSonucBelgesi">
+                    @{Html.RenderPartial("~/Views/Shared/_SinavSonucView.cshtml", Model);}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model EtkinlikDuzenleViewModel
+
+@{
+    var title = Model.Model.EtkinlikId == 0
+        ? Resources.LangResources.EtkinlikEkle
+        : $"{Resources.LangResources.EtkinlikGuncelle} ({Model.Model.EtkinlikAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "Etkinlik", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormTextBoxFor(x => x.Model.EtkinlikAd)
+    @Html.FormDropDownListFor(x => x.Model.SorumluPersonelId, Model.PersonelSelectList)
+    @Html.FormTextBoxFor(x => x.Model.EtkinlikBaslangicTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+    @Html.FormTextBoxFor(x => x.Model.EtkinlikBitisTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+    @Html.FormTextBoxFor(x => x.Model.EtkinlikSonBasvuruTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+    @Html.FormTextBoxFor(x => x.Model.Kontenjan)
+    @Html.FormCheckBoxFor(x => x.Model.KontenjanKontrolEdilsinMi)
+    @Html.HiddenFor(x => x.Model.EtkinlikId)
+    @Html.FormButtons(Model.Model.EtkinlikId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Etkinlik", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.EtkinlikId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

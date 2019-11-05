@@ -1,0 +1,379 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+@using System.Linq
+
+@model PersonelPuantajDuzenleViewModel
+
+@{
+    var title = Resources.LangResources.PuantajOlustur;
+    var title1 = Resources.LangResources.PuantajDuzenle;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Personeller;
+}
+
+@section Menu{ @menu}
+
+@section Page{
+    @title
+
+}
+
+@section Head{
+
+    <link href="~/assets/css/Puantaj.css" rel="stylesheet" />
+    <script src="~/assets/js/arrow-table.js"></script>
+    <script>
+
+        var pageInitialized = false;
+
+        var personelCount = @(Model.PersonelSelectList.Count);
+
+        function ToplamGunHesapla()
+        {
+            for (var i = 0; i < personelCount; i++) {
+
+                var toplamGun = 0;
+                var hakedis = 0;
+
+                $(".selectRow" + (i + 1)).each(function (index) {
+                    var val = $(this).val();
+
+                    if (val == "ÇA") { toplamGun++; }
+
+                    if (val != "RA" && val != "İS") { hakedis++; }
+
+
+                });
+
+                $("#Model_" + i + "__ToplamGun").val(toplamGun);
+                $("#Model_" + i + "__Hakedis").val(hakedis);
+
+                var maas = $("#Model_" + i + "__Maas").val();
+                var gunluk = 0;
+
+                $("#Model_" + i + "__Gun").val(30);
+
+                if (maas > 0) {
+                    gunluk = (maas / 30).toFixed(2);
+
+                    $("#Model_" + i + "__Gunluk").val(gunluk.replace(".", ","));
+                }
+
+                var hesaplananMaas = (gunluk * hakedis).toFixed(2);
+
+                $("#Model_" + i + "__HesaplananMaas").val(hesaplananMaas.replace(".", ","));
+            }
+        }
+
+        function SistemHesapla() {
+
+            var toplamElden = 0.0;
+            var toplamIcra = 0.0;
+            var toplamBes = 0.0;
+            var toplamBanka = 0.0;
+            var genelToplam = 0.0;
+            var toplamHesaplanan = 0.0;
+
+            for (var i = 0; i < personelCount; i++) {
+
+                var hesaplanan = $("#Model_" + i + "__HesaplananMaas").length > 0 ? parseFloat($("#Model_" + i + "__HesaplananMaas").val()) : 0;
+                toplamHesaplanan += hesaplanan;
+
+                var elden = $("#Model_" + i + "__Elden").length > 0 ?  parseFloat($("#Model_" + i + "__Elden").val()) : 0
+                toplamElden += elden;
+
+                var icra = $("#Model_" + i + "__Icra").length > 0 ? parseFloat($("#Model_" + i + "__Icra").val()) : 0;
+                toplamIcra += icra;
+
+                var bes = $("#Model_" + i + "__Bes").length > 0 ? parseFloat($("#Model_" + i + "__Bes").val()) : 0;
+                toplamBes += bes;
+
+                var banka = $("#Model_" + i + "__Banka").length > 0 ?parseFloat($("#Model_" + i + "__Banka").val()) : 0 ;
+                toplamBanka += banka;
+
+                var toplam = elden + icra + bes + banka;
+                genelToplam += toplam;
+
+                $("#Model_" + i + "__Sistem").val(toplam);
+            }
+
+            $("#ToplamElden").val(toplamElden.toFixed(2).replace(".",","));
+            $("#ToplamIcra").val(toplamIcra.toFixed(2).replace(".", ","));
+            $("#ToplamBes").val(toplamBes.toFixed(2).replace(".", ","));
+            $("#ToplamBanka").val(toplamBanka.toFixed(2).replace(".", ","));
+            $("#ToplamSistem").val(genelToplam.toFixed(2).replace(".", ","));
+            $("#ToplamHesaplanan").val(toplamHesaplanan.toFixed(2).replace(".", ","));
+        }
+
+        $(function () {
+            if (pageInitialized) return;
+
+            pageInitialized = true;
+
+            $('[class^="selectChangeColumn"]').on('click', function () {
+
+                var className = "selectColumn" + $(this).attr("class").replace("selectChangeColumn", "").replace("colorfulSelect", "").replace("valid", "");
+
+                $('.' + className).val(this.value).change();
+
+                $(".colorfulSelect").each(function (index) {
+                    var color = $(this).children("option:selected").attr("style");
+                    $(this).attr("style", color);
+                });
+
+                ToplamGunHesapla();
+            });
+
+            $('[class^="selectChangeRow"]').on('click', function () {
+
+                var className = "selectRow" + $(this).attr("class").replace("selectChangeRow", "").replace("colorfulSelect", "").replace("valid", "");
+
+                $('.' + className).val(this.value).change();
+
+                $(".colorfulSelect").each(function (index) {
+                    var color = $(this).children("option:selected").attr("style");
+                    $(this).attr("style", color);
+                });
+
+                ToplamGunHesapla();
+            });
+
+            $("select").on('change', function () {
+                var color = $(this).children("option:selected").attr("style");
+                $(this).attr("style", color);
+            });
+
+            $(".colorfulSelect").on('change', function () {
+                ToplamGunHesapla();
+            });
+
+            $(".colorfulSelect").each(function (index) {
+                var color = $(this).children("option:selected").attr("style");
+                $(this).attr("style", color);
+            });
+
+            $('#tblPuantaj').arrowTable({
+                listenTarget: 'input',
+                focusTarget: 'input'
+            });
+
+            $("[id$='__Maas']").on('input', function (e) {
+                ToplamGunHesapla();
+                SistemHesapla();
+            });
+
+            $("[id$='__Elden']").on('input', function (e) {
+                SistemHesapla();
+            });
+
+            $("[id$='__Icra']").on('input', function (e) {
+                SistemHesapla();
+            });
+
+            $("[id$='__Bes']").on('input', function (e) {
+                SistemHesapla();
+            });
+
+            $("[id$='__Banka']").on('input', function (e) {
+                SistemHesapla();
+            });
+
+            $("[id$='__PersonelPuantajGunlukDurum_PersonelPuantajGunlukDurumKisatlma']").on('change', function (e) {
+
+                var id = $(this).attr("id");
+
+                var value = $(this).children(":selected").attr("value");
+
+                $("#" + id).val(value);
+            });
+
+            //ToplamGunHesapla();
+            SistemHesapla();
+        });
+    </script>
+}
+
+@using (Html.BeginForm("Duzenle", "Puantaj", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    @Html.FormDropDownListSelectableFor(x => x.SubeId, Model.SubeSelectList, true, Resources.LangResources.Subeler, "")
+    @Html.FormDropDownListSelectableFor(x => x.PersonelGrupId, Model.PersonelSelectList, true, Resources.LangResources.PersonelGruplar, "")
+    @Html.FormTextBoxFor(x => x.Yil, setRequired: true)
+    @Html.FormTextBoxFor(x => x.Ay, setRequired: true)
+    @Html.FormButtons(0, "", command: "Olustur")
+    @Html.FormCardDivEnd()
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    if (Model.TabloyuGoster)
+    {
+        @Html.FormCardDivBegin(title1)
+        <div class="form-group row">
+            <div class="col-lg-12">
+                <table class="table datatable-show-all dtr-inline dataTable no-footer table-bordered text-center" id="tblPuantaj">
+                    <tbody>
+                        <tr role="row" class="odd">
+                            <td></td>
+                            <td></td>
+                            @foreach (var gunDto in Model.GunDtolar)
+                            {
+                                <th><strong style="font-size:15px;">@gunDto.Id</strong></th>
+                            }
+                            <td width="90px;"></td>
+                            <td width="90px;"></td>
+                            <td width="90px;"></td>
+                            <td width="90px;"></td>
+                            <td width="90px;"></td>
+                            <td width="90px;"></td>
+                            <td width="90px;"></td>
+                            <td width="90px;"></td>
+                            <td width="90px;"></td>
+                            <td width="90px;"></td>
+                            <td width="90px;"></td>
+                        </tr>
+                        <tr role="row" class="even" style="border-bottom:2px solid #89a3b2;">
+                            <td><strong>@Resources.LangResources.PERSONELB</strong></td>
+                            <td style="width:5px;"></td>
+                            @for (int i = 0; i < Model.GunDtolar.Count; i++)
+                            {
+                                var gunDto = Model.GunDtolar[i];
+
+                                <td style="width:5px;">
+                                    <select style="width:30px;" class="selectChangeColumn@(i+1) colorfulSelect">
+                                        @for (int j = 0; j < Model.PersonelPuantajGunlukDurumlar.Count; j++)
+                                        {
+                                            var durum = Model.PersonelPuantajGunlukDurumlar[j];
+
+                                            var selected = gunDto.TatilMi && durum.PersonelPuantajGunlukDurumId == 2 ? "selected='selected'" : "";
+
+                                            <option style="background-color:@durum.PersonelPuantajGunlukDurumRenk !important;" value="@durum.PersonelPuantajGunlukDurumKisatlma" @selected>
+                                                @durum.PersonelPuantajGunlukDurumKisatlma
+                                            </option>
+                                        }
+                                    </select>
+                                </td>
+                            }
+
+                            <td><strong>@Resources.LangResources.TOPLAMB</strong></td>
+                            <td><strong>@Resources.LangResources.GUNB</strong></td>
+                            <td><strong>@Resources.LangResources.HAKEDISB</strong></td>
+                            <td><strong>@Resources.LangResources.MAASB</strong></td>
+                            <td><strong>@Resources.LangResources.GUNLUKB</strong></td>
+                            <td><strong>@Resources.LangResources.MAASB</strong></td>
+                            <td><strong>@Resources.LangResources.ELDENB</strong></td>
+                            <td><strong>@Resources.LangResources.ICRAB</strong></td>
+                            <td><strong>@Resources.LangResources.BESB</strong></td>
+                            <td><strong>@Resources.LangResources.BANKAB</strong></td>
+                            <td><strong>@Resources.LangResources.SISTEMB</strong></td>
+                        </tr>
+                        @for (int i = 0; i < Model.Model.Count; i++)
+                        {
+                            var model = Model.Model[i];
+                            <div>
+                                @Html.HiddenFor(x => x.Model[i].PersonelPuantajId)
+                                @Html.HiddenFor(x => x.Model[i].PersonelId)
+                                @Html.HiddenFor(x => x.Model[i].PuantajYil)
+                                @Html.HiddenFor(x => x.Model[i].PuantajAy)
+                            </div>
+                            <tr role="row" class="odd">
+                                <td>@(model.Personel.AdSoyad)</td>
+                                <td style="border-right:2px solid #89a3b2;">
+                                    <select class="selectChangeRow@(i + 1) colorfulSelect">
+                                        @for (int j = 0; j < Model.PersonelPuantajGunlukDurumlar.Count; j++)
+                                        {
+                                            var durum = Model.PersonelPuantajGunlukDurumlar[j];
+                                            <option style="background-color:@durum.PersonelPuantajGunlukDurumRenk !important;" value="@durum.PersonelPuantajGunlukDurumKisatlma">@durum.PersonelPuantajGunlukDurumKisatlma</option>
+                                        }
+                                    </select>
+                                </td>
+                                @for (int j = 0; j < model.PersonelPuantajGunlukler.Count; j++)
+                                {
+                                    var gunluk = model.PersonelPuantajGunlukler[j];
+                                    <div>
+                                        @Html.HiddenFor(x => x.Model[i].PersonelPuantajGunlukler[j].PersonelPuantajGunlukId)
+                                        @Html.HiddenFor(x => x.Model[i].PersonelPuantajGunlukler[j].PersonelPuantajId)
+                                        @Html.HiddenFor(x => x.Model[i].PersonelPuantajGunlukler[j].Ay)
+                                        @Html.HiddenFor(x => x.Model[i].PersonelPuantajGunlukler[j].Gun)
+                                        @Html.HiddenFor(x => x.Model[i].PersonelPuantajGunlukler[j].Yil)
+                                        @Html.HiddenFor(x => x.Model[i].PersonelPuantajGunlukler[j].PersonelPuantajGunlukDurum.PersonelPuantajGunlukDurumId)
+                                        @Html.HiddenFor(x => x.Model[i].PersonelPuantajGunlukler[j].PersonelPuantajGunlukDurum.PersonelPuantajGunlukDurumKisatlma)
+                                    </div>
+                                    <td>
+                                        <select class="sm selectRow@(i + 1) selectColumn@(gunluk.Gun) colorfulSelect" id="Model_@(i)__PersonelPuantajGunlukler_@(j)__PersonelPuantajGunlukDurum_PersonelPuantajGunlukDurumKisatlma">
+                                            @for (int z = 0; z < Model.PersonelPuantajGunlukDurumlar.Count; z++)
+                                            {
+                                                var durum = Model.PersonelPuantajGunlukDurumlar[z];
+
+                                                var selected = gunluk.PersonelPuantajGunlukDurumId == durum.PersonelPuantajGunlukDurumId ? "selected='selected'" : "";
+
+                                                <option style="background-color:@durum.PersonelPuantajGunlukDurumRenk !important;" value="@durum.PersonelPuantajGunlukDurumKisatlma" @selected>
+                                                    @durum.PersonelPuantajGunlukDurumKisatlma
+                                                </option>
+                                            }
+                                        </select>
+                                    </td>
+                                }
+                                @{var attributes = new { @class = "form-control", style = "text-align:center; height:27px; border: none;", autocomplete = "off" };
+                                }
+                                <td>@Html.TextBoxFor(x => Model.Model[i].ToplamGun, htmlAttributes: attributes)</td>
+                                <td>@Html.TextBoxFor(x => Model.Model[i].Gun, htmlAttributes: attributes)</td>
+                                <td>@Html.TextBoxFor(x => Model.Model[i].Hakedis, htmlAttributes: attributes)</td>
+                                <td>@Html.TextBoxFor(x => Model.Model[i].Maas, htmlAttributes: attributes)</td>
+                                <td>@Html.TextBoxFor(x => Model.Model[i].Gunluk, htmlAttributes: attributes)</td>
+                                <td>@Html.TextBoxFor(x => Model.Model[i].HesaplananMaas, htmlAttributes: attributes)</td>
+                                <td>@Html.TextBoxFor(x => Model.Model[i].Elden, htmlAttributes: attributes)</td>
+                                <td>@Html.TextBoxFor(x => Model.Model[i].Icra, htmlAttributes: attributes)</td>
+                                <td>@Html.TextBoxFor(x => Model.Model[i].Bes, htmlAttributes: attributes)</td>
+                                <td>@Html.TextBoxFor(x => Model.Model[i].Banka, htmlAttributes: attributes)</td>
+                                <td>@Html.TextBoxFor(x => Model.Model[i].Sistem, htmlAttributes: attributes)</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            @if (Model.Model.Count > 0)
+                            {
+                                for (int j = 0; j < Model.Model[0].PersonelPuantajGunlukler.Count; j++)
+                                {
+                                    <td></td>
+                                }
+                            }
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input autocomplete="off" class="form-control valid" id="ToplamHesaplanan" style="text-align:center; height:27px; border: none;" type="text" value="0,00" disabled="disabled"></td>
+                            <td><input autocomplete="off" class="form-control valid" id="ToplamElden" style="text-align:center; height:27px; border: none;" type="text" value="0,00" disabled="disabled"></td>
+                            <td><input autocomplete="off" class="form-control valid" id="ToplamIcra" style="text-align:center; height:27px; border: none;" type="text" value="0,00" disabled="disabled"></td>
+                            <td><input autocomplete="off" class="form-control valid" id="ToplamBes" style="text-align:center; height:27px; border: none;" type="text" value="0,00" disabled="disabled"></td>
+                            <td><input autocomplete="off" class="form-control valid" id="ToplamBanka" style="text-align:center; height:27px; border: none;" type="text" value="0,00" disabled="disabled"></td>
+                            <td><input autocomplete="off" class="form-control valid" id="ToplamSistem" style="text-align:center; height:27px; border: none;" type="text" value="0,00" disabled="disabled"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group row">
+            <div class="col-lg-10 offset-lg-2">
+                @foreach (var personelPuantajGunlukDurum in Model.PersonelPuantajGunlukDurumlar)
+                {
+                    <span style="padding:10px; font-weight:upper; background-color:@(personelPuantajGunlukDurum.PersonelPuantajGunlukDurumRenk); ">@(personelPuantajGunlukDurum.PersonelPuantajGunlukDurumAd) (@(personelPuantajGunlukDurum.PersonelPuantajGunlukDurumKisatlma))</span>
+                }
+            </div>
+        </div>
+        @Html.FormButtons(0, "", command: "Kaydet")
+        @Html.FormCardDivEnd()
+    }
+}

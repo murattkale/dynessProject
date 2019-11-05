@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{DCB84B73-53ED-4D5D-B9F9-D4BEA2B166B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9E9DDC26-044D-4C4A-841C-2D0C454A9561}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{F15D16BF-0C0C-41C4-A559-463403EC5E79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{AE783AEC-162E-449B-BDC3-0DE9C9919EEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{90F679F5-DBB3-48BF-B32D-213DC29F3D38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{D56407A5-486F-46D7-90F2-437A82C648F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCB84B73-53ED-4D5D-B9F9-D4BEA2B166B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB84B73-53ED-4D5D-B9F9-D4BEA2B166B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB84B73-53ED-4D5D-B9F9-D4BEA2B166B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB84B73-53ED-4D5D-B9F9-D4BEA2B166B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15D16BF-0C0C-41C4-A559-463403EC5E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15D16BF-0C0C-41C4-A559-463403EC5E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15D16BF-0C0C-41C4-A559-463403EC5E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15D16BF-0C0C-41C4-A559-463403EC5E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE783AEC-162E-449B-BDC3-0DE9C9919EEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE783AEC-162E-449B-BDC3-0DE9C9919EEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE783AEC-162E-449B-BDC3-0DE9C9919EEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE783AEC-162E-449B-BDC3-0DE9C9919EEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F679F5-DBB3-48BF-B32D-213DC29F3D38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F679F5-DBB3-48BF-B32D-213DC29F3D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F679F5-DBB3-48BF-B32D-213DC29F3D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F679F5-DBB3-48BF-B32D-213DC29F3D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D56407A5-486F-46D7-90F2-437A82C648F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D56407A5-486F-46D7-90F2-437A82C648F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D56407A5-486F-46D7-90F2-437A82C648F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D56407A5-486F-46D7-90F2-437A82C648F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F15D16BF-0C0C-41C4-A559-463403EC5E79} = {9E9DDC26-044D-4C4A-841C-2D0C454A9561}
+		{AE783AEC-162E-449B-BDC3-0DE9C9919EEB} = {9E9DDC26-044D-4C4A-841C-2D0C454A9561}
+		{90F679F5-DBB3-48BF-B32D-213DC29F3D38} = {9E9DDC26-044D-4C4A-841C-2D0C454A9561}
+		{D56407A5-486F-46D7-90F2-437A82C648F8} = {9E9DDC26-044D-4C4A-841C-2D0C454A9561}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_NeutralResourcesLanguage = tr-TR
+		SolutionGuid = {44E0F50C-5F63-4EE7-A67F-CFC161D13C13}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://195.142.106.84:8080/tfs/crm%20projeleri
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WebUI\\WebUI.csproj
+		SccProjectName1 = WebUI
+		SccLocalPath1 = WebUI
+		SccProjectUniqueName2 = Core\\Core.csproj
+		SccProjectTopLevelParentUniqueName2 = Dyness.Crm.sln
+		SccProjectName2 = Core
+		SccLocalPath2 = Core
+		SccProjectUniqueName3 = Data\\Data.csproj
+		SccProjectTopLevelParentUniqueName3 = Dyness.Crm.sln
+		SccProjectName3 = Data
+		SccLocalPath3 = Data
+		SccProjectUniqueName4 = Entities\\Entities.csproj
+		SccProjectTopLevelParentUniqueName4 = Dyness.Crm.sln
+		SccProjectName4 = Entities
+		SccLocalPath4 = Entities
+		SccProjectUniqueName5 = Services\\Services.csproj
+		SccProjectTopLevelParentUniqueName5 = Dyness.Crm.sln
+		SccProjectName5 = Services
+		SccLocalPath5 = Services
+	EndGlobalSection
+EndGlobal

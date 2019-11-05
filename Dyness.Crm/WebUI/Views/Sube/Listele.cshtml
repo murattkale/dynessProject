@@ -1,0 +1,47 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model SubeListeleViewModel
+
+@{
+    var title = Resources.LangResources.Subeler;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.SubeAd)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SubeAd)', '@Model.Model.GetColumnName(x=> x.SubeAd)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.KurumId)', '@Model.Model.GetColumnName(x=> x.KurumAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Kod)', '@Model.Model.GetColumnName(x=> x.Kod)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.ParaBirimId)', '@Model.Model.GetColumnName(x=> x.ParaBirimAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Yetkili)', '@Model.Model.GetColumnName(x=> x.Yetkili)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Telefon)', '@Model.Model.GetColumnName(x=> x.Telefon)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Eposta)', '@Model.Model.GetColumnName(x=> x.Eposta)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Adres)', '@Model.Model.GetColumnName(x=> x.Adres)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Not)', '@Model.Model.GetColumnName(x=> x.Not)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.UzaktanEgitimMi)', '@Model.Model.GetColumnName(x=> x.UzaktanEgitim)', false, 0, AlignEnum.Center, AlignEnum.Center));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.EtkinMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.Durum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinMi)', '@Model.Model.GetColumnName(x=> x.EtkinMi)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        SetDataTable(false, 'tblListele', '/Sube/Listele', 0, 'asc', columns, '/Sube/Duzenle/', 'SubeId', null);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "YENİ ŞUBE", "/Sube/Duzenle/")

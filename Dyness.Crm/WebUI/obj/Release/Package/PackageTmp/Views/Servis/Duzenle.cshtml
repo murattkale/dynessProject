@@ -1,0 +1,49 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model ServisDuzenleViewModel
+
+@{
+    var title = Model.Model.ServisId == 0
+        ? Resources.LangResources.ServisEkle
+        : $"{Resources.LangResources.ServisGuncelle} ({Model.Model.ServisAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "Servis", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+    @Html.FormTextBoxFor(x => x.Model.ServisAd, true)
+    @Html.FormDropDownListFor(x => x.Model.SubeId, Model.SubeSelectList)
+    @Html.FormTextBoxFor(x => x.Model.ServisPlaka)
+    @Html.FormTextBoxFor(x => x.Model.Guzergah)
+    @Html.FormTextBoxFor(x => x.Model.Kapasite)
+    @Html.FormCheckBoxFor(x => x.Model.KapasiteKontrolEdilsinMi)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.HiddenFor(x => x.Model.ServisId)
+    @Html.FormButtons(Model.Model.ServisId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Servis", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.ServisId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

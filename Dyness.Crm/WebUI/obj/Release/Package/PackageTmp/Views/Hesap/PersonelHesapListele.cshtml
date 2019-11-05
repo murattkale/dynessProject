@@ -1,0 +1,62 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+@using Core.General;
+
+@model  PersonelHesapListeleViewModel
+
+@{
+    var title = Resources.LangResources.PersonelHesaplar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Muhasebe;
+}
+
+@{
+    var ayarlar = AyarlarService.Get();
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.HesapBaslik)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.HesapBaslik)', '@Model.Model.GetColumnName(x=> x.HesapBaslik)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Donem)', '@Model.Model.GetColumnName(x=> x.Donem)', false, 0, "Right", "Right"));
+
+
+        columns.push(new DataColumn('@Resources.LangResources.Bakiye', '@Model.Model.GetColumnName(x=> x.BakiyeFormatted)', false, 0, AlignEnum.Right, AlignEnum.Right));
+
+        //columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.ToplamBorcFormatted)', '@Model.Model.GetColumnName(x=> x.ToplamBorcFormatted)', false, 0, AlignEnum.Right, AlignEnum.Right));
+        //columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.ToplamAlacakFormatted)', '@Model.Model.GetColumnName(x=> x.ToplamAlacakFormatted)', false, 0, AlignEnum.Right, AlignEnum.Right));
+        //columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.ToplamFormatted)', '@Model.Model.GetColumnName(x=> x.ToplamFormatted)', false, 0, AlignEnum.Right, AlignEnum.Right));
+
+        var otherItems = new Array();
+        otherItems.push(new OtherItem('/Personel/Detay/', '', 'HesapId', '', '_blank', 'icon-search4', 'Detay', ''));
+
+        SetDataTable(true, 'tblListele', '/Hesap/PersonelHesapListele', 0, 'asc', columns, '/Hesap/Detay/', 'HesapId', otherItems, true, true);
+    </script>
+}
+
+@{
+    var controls = new List<MvcHtmlString>();
+
+    controls.Add(Html.FormTextBoxFor(x => x.SearchText, addClass: "search-filter", label: "Filtrele", forFilter: true));
+    controls.Add(Html.FormDropDownListFor(x => x.Ay, Model.AySelectList, optionLabel: Resources.LangResources.Aylar, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormDropDownListFor(x => x.Yil, Model.YilSelectList, optionLabel: Resources.LangResources.Yillar, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormDropDownListFor(x => x.SubeId, Model.SubeSelectList, optionLabel: Resources.LangResources.Subeler, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormCheckBoxOnly(x => x.Borclu, Resources.LangResources.Borclu, addClass: "search-filter"));
+    controls.Add(Html.FormCheckBoxOnly(x => x.EtkinMi, Resources.LangResources.Durum, addClass: "search-filter"));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.primary, "btnFiltrele", Resources.LangResources.Listele));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.danger, "btnTemizle", Resources.LangResources.Temizle));
+}
+@Html.FormDataTablesFor(title, "YENİ PERSONEL", "/Personel/Duzenle/", controls)

@@ -1,0 +1,58 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model TopluOgrenciSozlesmeSinifGuncelleViewModel
+
+@{
+    var title = Resources.LangResources.TopluSinifGuncelle;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/TopluOgrenciSozlesmeSinifGuncelle.js"></script>
+}
+
+@using (Html.BeginForm("TopluOgrenciSozlesmeSinifGuncelle", "Sinif", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    @Html.FormDropDownListSelectableFor(x => x.SubeId, Model.SubeSelectList, Model.SubeSelectList.Any(), Resources.LangResources.Subeler, "/Sinif/TopluOgrenciSozlesmeSinifGuncelle/")
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    if (Model.OgrenciSozlesmeSiniflar != null && Model.OgrenciSozlesmeSiniflar.Count > 0)
+    {
+        for (var i = 0; i < Model.OgrenciSozlesmeSiniflar.Count; i++)
+        {
+            <div id="divSinif@(Model.OgrenciSozlesmeSiniflar[i].SinifId)">
+                @Html.FormDropDownListFor(x => Model.OgrenciSozlesmeSiniflar[i].OgrenciSozlesmeIdler, Model.OgrenciSozlesmeSiniflar[i].OgrenciSozlesmeSelectList, labelValue: Model.Siniflar[i].SinifAd, multiSelect: true)
+                @Html.HiddenFor(x => Model.OgrenciSozlesmeSiniflar[i].SinifId)
+                @Html.Hidden("index", i)
+                @if (Model.OgrenciSozlesmeSiniflar[i].OgrenciSozlesmeIdler != null && Model.OgrenciSozlesmeSiniflar[i].OgrenciSozlesmeIdler.Length > 0)
+                {
+                    for (int j = 0; j < Model.OgrenciSozlesmeSiniflar[i].OgrenciSozlesmeIdler.Length; j++)
+                    {
+                        @Html.HiddenFor(x => Model.OgrenciSozlesmeSiniflar[i].OgrenciSozlesmeIdler[j])
+                    }
+                }
+            </div>
+        }
+    }
+    @Html.FormButtons(Model.SubeId, "", false)
+    @Html.FormCardDivEnd()
+}

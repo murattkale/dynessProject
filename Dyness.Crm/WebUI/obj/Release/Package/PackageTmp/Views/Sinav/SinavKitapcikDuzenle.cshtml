@@ -1,0 +1,89 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model SinavKitapcikDuzenleViewModel
+
+@{
+    var title = Resources.LangResources.KitapcikDuzenle;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Dersler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("SinavKitapcikDuzenle", "Sinav", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    if (Model.Model.SinavSorular != null && Model.Model.SinavSorular.Count > 0)
+    {
+        <div class="form-group row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <tbody>
+                            <tr>
+                                <td width="40%;"><b>@Resources.LangResources.Kitapcik  </b></td>
+                                <td width="60%;">
+                                    @Model.Model.Baslik
+                                    @Html.HiddenFor(x => x.Model.Baslik)
+                                </td>
+                            </tr>
+                            @{
+                                var selectListHelper = new SelectListHelper(null);
+                            }
+
+                            @for (int j = 0; j < Model.Model.SinavSorular.Count; j++)
+                            {
+                                var konular = Model.Konular.Where(x => x.DersId == Model.Model.SinavSorular[j].DersId).ToList();
+
+                                var selected = new int[1] { Model.Model.SinavSorular[j].KonuId == null ? 0 : (int)Model.Model.SinavSorular[j].KonuId };
+
+                                var konuSelectList = selectListHelper.ToSelectList(konular, x => x.KonuId, x => x.Baslik, selectedItems: selected);
+
+                                <tr>
+                                    <td width="40%;"><b>@($"{Model.Model.SinavSorular[j].Ders.DersAd} - {Model.Model.SinavSorular[j].Soru}")  </b></td>
+                                    <td width="60%;">
+                                        @Html.TextBoxFor(x => Model.Model.SinavSorular[j].Dogru, new { @class = "form-control firstCapitalUpper", autocomplete = "off" })
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom:2px solid;">
+                                    <td><b>@Resources.LangResources.Konu</b></td>
+                                    <td>@Html.DropDownListFor(x => Model.Model.SinavSorular[j].KonuId, konuSelectList, Resources.LangResources.Seciniz, new { @class = "form-control select2" })</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                </tr>
+                                @Html.HiddenFor(x => Model.Model.SinavSorular[j].Ders.DersAd)
+                                @Html.HiddenFor(x => Model.Model.SinavSorular[j].Ders.DersId)
+                                @Html.HiddenFor(x => Model.Model.SinavSorular[j].SinavSoruId)
+                                @Html.HiddenFor(x => Model.Model.SinavSorular[j].SinavKitapcikId)
+                                @Html.HiddenFor(x => Model.Model.SinavSorular[j].DersId)
+                                @Html.HiddenFor(x => Model.Model.SinavSorular[j].Soru)
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+
+    @Html.HiddenFor(x => Model.Model.SinavId)
+    @Html.HiddenFor(x => Model.Model.SinavKitapcikId)
+    @Html.FormButtons(Model.Model.SinavKitapcikId, "", false)
+
+    @Html.FormCardDivEnd()
+}

@@ -1,0 +1,53 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model KurumDuzenleViewModel
+
+@{
+    var title = Model.Model.KurumId == 0
+        ? Resources.LangResources.KurumEkle
+        : $"{Resources.LangResources.KurumGuncelle} ({Model.Model.KurumAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "Kurum", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormTextBoxFor(x => x.Model.KurumAd)
+    @Html.FormTextAreaFor(x => x.Model.Adres, 2, 2)
+    @Html.FormTextBoxFor(x => x.Model.Telefon, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+    @Html.FormTextBoxFor(x => x.Model.Eposta)
+    @Html.FormFileInputFor(x => x.Model.LogoDosyaAd, "PostedFileLogoDosyaAd")
+    @Html.FormFileShowDeleteFor(x => x.Model.LogoDosyaAd, !string.IsNullOrEmpty(Model.Model.LogoDosyaAd), Model.Model.LogoYol, "Command", "LogoSil", "Logo Sil")
+    @Html.FormFileInputFor(x => x.Model.ArkaPlanDosyaAd, "PostedFileArkaPlanDosyaAd")
+    @Html.FormFileShowDeleteFor(x => x.Model.ArkaPlanDosyaAd, !string.IsNullOrEmpty(Model.Model.ArkaPlanDosyaAd), Model.Model.ArkaPlanYol, "Command", "ArkaPlanSil", "Arka Plan Sil")
+    @Html.FormCheckBoxFor(x => x.Model.SozlesmedeLogoKullanilsinMi)
+    @Html.FormCheckBoxFor(x => x.Model.SozlesmedeArkaPlanGorselKullanilsinMi)
+    @Html.HiddenFor(x => x.Model.KurumId)
+    @Html.FormButtons(Model.Model.KurumId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Kurum", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.KurumId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

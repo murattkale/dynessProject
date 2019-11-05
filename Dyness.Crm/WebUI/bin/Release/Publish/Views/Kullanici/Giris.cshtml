@@ -1,0 +1,116 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+@using Core.General;
+
+@model KullaniciGirisViewModel
+
+@{
+    var ayarlar = AyarlarService.Get();
+
+    var title = $"{ayarlar.KurumAd} - {Resources.LangResources.KullaniciGiris}";
+
+    ViewBag.Title = title;
+    Html.EnableClientValidation(true);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@title</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/assets/global/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap_limitless.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/layout.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/global/js/plugins/forms/inputs/icheck/skins/square/blue.css" rel="stylesheet" type="text/css" />
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script src="~/assets/global/js/main/jquery.min.js"></script>
+    <script src="~/assets/global/js/main/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/global/js/plugins/loaders/blockui.min.js"></script>
+    <script src="~/assets/global/js/plugins/forms/validation/validate.min.js"></script>
+    <script src="~/assets/global/js/plugins/forms/validation/localization/messages_tr.js"></script>
+    <script src="~/assets/global/js/plugins/forms/validation/jquery.validate.unobtrusive.min.js"></script>
+    <!-- /core JS files -->
+</head>
+<body>
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Content area -->
+            <div class="content d-flex justify-content-center align-items-center">
+                @using (Html.BeginForm("Giris", "Kullanici", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    if (Model.MessageExists)
+                    {
+                        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+                    }
+                    <!-- Login form -->
+                    <form class="login-form" action="index.html">
+                        <div class="card mb-0" style="width: 300px !important;">
+                            <div class="card-body">
+                                <div class="text-center mb-3">
+                                    <i class="icon-reading icon-2x text-slate-300 border-slate-300 border-3 rounded-round p-3 mb-3 mt-1"></i>
+                                    <h5 class="mb-0">@Resources.LangResources.GirisYapin</h5>
+                                    <span class="d-block text-muted">@Resources.LangResources.KullaniciBilgileriniziGirin</span>
+                                </div>
+                                <div class="form-group form-group-feedback form-group-feedback-left">
+                                    @Html.TextBoxFor(x => x.KullaniciAd, new { @class = "form-control", placeHolder = Model.GetDisplayName(x => x.KullaniciAd), @autocomplete = "off" })
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user text-muted"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(x => x.KullaniciAd, "", new { @class = "validation-invalid-label" })
+                                </div>
+                                <div class="form-group form-group-feedback form-group-feedback-left">
+                                    @Html.PasswordFor(x => x.Sifre, new { @class = "form-control", placeHolder = Model.GetDisplayName(x => x.Sifre), @autocomplete = "off" })
+                                    <div class="form-control-feedback">
+                                        <i class="icon-lock2 text-muted"></i>
+                                    </div>
+                                    @Html.ValidationMessageFor(x => x.Sifre, "", new { @class = "validation-invalid-label" })
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">@Resources.LangResources.Giris<i class="icon-circle-right2 ml-2"></i></button>
+                                </div>
+                                @*<div class="text-center">
+                                        <a href="login_password_recover.html">Forgot password?</a>
+                                    </div>*@
+                            </div>
+                        </div>
+                    </form>
+                    <!-- /login form -->
+                }
+            </div>
+            <!-- /content area -->
+            <!-- Footer -->
+            <div class="navbar navbar-expand-lg navbar-light">
+                <div class="text-center d-lg-none w-100">
+                    <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+                        <i class="icon-unfold mr-2"></i>
+                        Bidolu Eğitim
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-footer">
+                    <span class="navbar-text">
+                        © 2019-2020  <a href="#">dyness.com.tr</a> Tüm hakları saklıdır.
+                    </span>
+
+                </div>
+            </div>
+            <!-- /footer -->
+        </div>
+        <!-- /main content -->
+    </div>
+    <!-- /page content -->
+</body>
+</html>

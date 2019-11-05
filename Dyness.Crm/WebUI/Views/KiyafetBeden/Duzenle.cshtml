@@ -1,0 +1,45 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model KiyafetBedenDuzenleViewModel
+
+@{
+    var title = Model.Model.KiyafetBedenId == 0
+    ? Resources.LangResources.KiyafetBedenEkle
+    : $"{Resources.LangResources.KiyafetBedenGuncelle} ({Model.Model.KiyafetBedenId})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "KiyafetBeden", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.KiyafetBedenId, Model.KiyafetBedenSelectList, Model.KiyafetBedenSelectList.Any(), Resources.LangResources.KiyafetBedenler, "/KiyafetBeden/Duzenle/")
+    @Html.FormTextBoxFor(x => x.Model.KiyafetBedenAd)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.KiyafetBedenId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "KiyafetBeden", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.KiyafetBedenId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

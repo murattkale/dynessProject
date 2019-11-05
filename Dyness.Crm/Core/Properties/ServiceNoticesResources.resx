@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BasariylaEklendi" xml:space="preserve">
+    <value>Başarıyla Eklendi</value>
+  </data>
+  <data name="BasariylaGirisYapildi" xml:space="preserve">
+    <value>Başarıyla Giriş yapıldı</value>
+  </data>
+  <data name="BasariylaGuncellendi" xml:space="preserve">
+    <value>Başarıyla Güncellendi</value>
+  </data>
+  <data name="BasariylaSilindi" xml:space="preserve">
+    <value>Başarıyla Silindi</value>
+  </data>
+  <data name="BransiSilebilmekIcin" xml:space="preserve">
+    <value>Branşı silebilmek için, önce branşa bağlı sınıfları silmeniz gerekir.</value>
+  </data>
+  <data name="DersGrupSilebilmekIcin" xml:space="preserve">
+    <value>Ders Grubu silebilmek için, önce bağlı dersleri silmeniz gerekir.</value>
+  </data>
+  <data name="DersiSilebilmekIcinOgrenciOzelDersSecim" xml:space="preserve">
+    <value>Dersi silebilmek için, derse bağlı öğrenciyi silmeniz gerekir.</value>
+  </data>
+  <data name="DersiSilebilmekIcinPersonel" xml:space="preserve">
+    <value>Dersi silebilmek için, önce bağlı personeli silmeniz gerekir.</value>
+  </data>
+  <data name="DersiSilebilmekIcinYayin" xml:space="preserve">
+    <value>Dersi silebilmek için, önce bağlı yayını silmeniz gerekir.</value>
+  </data>
+  <data name="DersligiSilebilmekIcin" xml:space="preserve">
+    <value>Dersliği silebilmek için, önce dersliğe bağlı sınıfları silmeniz gerekir.</value>
+  </data>
+  <data name="EgitimUcretiAciklama" xml:space="preserve">
+    <value>Toplam Ödenecek Tutar</value>
+  </data>
+  <data name="EpostaIleKayitli" xml:space="preserve">
+    <value>Eposta ile kayıtlı personel bulunmaktadır. Eposta benzersiz olmalıdır.</value>
+  </data>
+  <data name="EtkinDegilseIstenAyrilmaTarihiDoluOlmali" xml:space="preserve">
+    <value>Personel Etkin değilse, İşten Ayrılma Tarihi boş olamaz.</value>
+  </data>
+  <data name="EtkinligiSilebilmekIcinBagliSozlesme" xml:space="preserve">
+    <value>Etkinliği silebilmek için, önce bağlı sözleşmeleri silmeniz gerekir.</value>
+  </data>
+  <data name="EtkinlikIcinDanismanPersonelZorunlu" xml:space="preserve">
+    <value>Etkinlik eklerken, Danışman Personel seçmelisiniz.</value>
+  </data>
+  <data name="EtkinlikIcinYeterliKontenjanYok" xml:space="preserve">
+    <value>Etkinlik için yeterli kontenjan yok.</value>
+  </data>
+  <data name="EtkinlikKapasiteYeterliDegil" xml:space="preserve">
+    <value>Etkinlik için yeterli kapasite yok</value>
+  </data>
+  <data name="EtkinlikSecmekZorunlu" xml:space="preserve">
+    <value>Etkinlik eklerken, Etkinlik seçmelisiniz.</value>
+  </data>
+  <data name="IletisimBilgilerindeAdSoyadBosOlamaz" xml:space="preserve">
+    <value>İletişim bilgilerinde, Ad veya Soyad boş olamaz. Boş olan :</value>
+  </data>
+  <data name="IletisimYakiniSeciliCepTelefonBosOlamaz" xml:space="preserve">
+    <value>İletişim Tercihi olarak belirlenmiş yakının, Cep Telefonu alanı boş olamaz. Hatalı Bilgi :</value>
+  </data>
+  <data name="KiyafetBedenSilebilmekIcin" xml:space="preserve">
+    <value>Kıyafet Beden silebilmek için, önce bağlı kıyafetleri silmeniz gerekir.</value>
+  </data>
+  <data name="KiyafetSilebilmekIcin" xml:space="preserve">
+    <value>Kıyafet silebilmek için, önce bağlı sözleşmeleri silmeniz gerekir.</value>
+  </data>
+  <data name="KiyafetTurSilebilmekIcin" xml:space="preserve">
+    <value>Kıyafet Tür silebilmek için, önce bağlı kıyafetleri silmeniz gerekir.</value>
+  </data>
+  <data name="KonuSilebilmekIcin" xml:space="preserve">
+    <value>Konu silebilmek için, önce bağlı sınav soruları silmeniz gerekir.</value>
+  </data>
+  <data name="KullanicBbulunamadi" xml:space="preserve">
+    <value>Kullanıcı Bulunamadı</value>
+  </data>
+  <data name="KullaniciAdiKullanilmis" xml:space="preserve">
+    <value>Kullanıcı adı ile kayıtlı personel bulunmaktadır. Kullanıcı adı benzersiz olmalıdır.</value>
+  </data>
+  <data name="KullaniciEklerkenYetkiliSubeSecilmelidir" xml:space="preserve">
+    <value>Kullanıcı eklerken, en az bir tane yetkili olduğu şube belirlenmelidir.</value>
+  </data>
+  <data name="KullaniciGrubuSilebilmekIcin" xml:space="preserve">
+    <value>Kullanıcı grubu silebilmek için, önce gruba bağlı kullanıcıları silmeniz gerekir.</value>
+  </data>
+  <data name="KullaniciPersonelGrupSecilmelidir" xml:space="preserve">
+    <value>Kullanıcı eklenirken, Yetki Grup seçimi zorunludur.</value>
+  </data>
+  <data name="KullanıcıEtkinDegil" xml:space="preserve">
+    <value>Kullanıcı etkin değil</value>
+  </data>
+  <data name="KurumuSilebilmekIcinSezonlar" xml:space="preserve">
+    <value>Kurumu silebilmek için, önce kuruma bağlı sezonları silmeniz gerekir.</value>
+  </data>
+  <data name="KurumuSilebilmekIcinSubeler" xml:space="preserve">
+    <value>Kurumu silebilmek için, önce kuruma bağlı şubeleri silmeniz gerekir.</value>
+  </data>
+  <data name="NeredenDuydunuzuSilebilmekIcin" xml:space="preserve">
+    <value>Nereden Duydunuz bilgisini silebilmek için, önce bağlı öğrencileri silmeniz gerekir.</value>
+  </data>
+  <data name="NoluTaksit" xml:space="preserve">
+    <value>Taksit</value>
+  </data>
+  <data name="OdemeHareketTarihi" xml:space="preserve">
+    <value>Ödeme için Hareket Tarihi girilmeli.</value>
+  </data>
+  <data name="OdemeHesapSecilmeli" xml:space="preserve">
+    <value>Ödenecek Hesap Seçilmeli!</value>
+  </data>
+  <data name="OdenecekHesapSeciliOlmali" xml:space="preserve">
+    <value>Ödenecek Hesap boş olamaz.</value>
+  </data>
+  <data name="OgrenciIletisimTercihEdlineCepTelefonBosOlamaz" xml:space="preserve">
+    <value>Öğrenci İletişim Tercihi olarak seçili. Cep Telefonu boş olamaz.</value>
+  </data>
+  <data name="OgrenciTcKimlikHatali" xml:space="preserve">
+    <value>Öğrencinin, T.C. Kimlik No veya kişisel bilgiler uyuşmuyor.</value>
+  </data>
+  <data name="OptikFormBasariyla" xml:space="preserve">
+    <value>Optik Form Bilgi başarıyla güncellendi.</value>
+  </data>
+  <data name="OptikFormBilgiDersTanimlamalarIcin" xml:space="preserve">
+    <value>Optik Form Bilgi ders tanımlamalar için önce Optik Form Bilgi kaydetmelisiniz.</value>
+  </data>
+  <data name="OptikFormDersTanimlamaBasariyla" xml:space="preserve">
+    <value>Optik Form Bilgi ders tanımlamalar başarıyla güncellendi.</value>
+  </data>
+  <data name="ParaBirimiSilebilmekIcin" xml:space="preserve">
+    <value>Para Birimi silebilmek için, önce birime bağlı şubeleri silmeniz gerekir.</value>
+  </data>
+  <data name="PersonelGrubuSilebilmekIcin" xml:space="preserve">
+    <value>Personel Grubu silebilmek için, önce gruba bağlı personelleri silmeniz gerekir.</value>
+  </data>
+  <data name="PersonelinSubelerdenAldigiToplamMaasindanCokOlamaz" xml:space="preserve">
+    <value>Personelin Şubelerden aldığı ücret, maaşından yüksek olamaz.</value>
+  </data>
+  <data name="PersoneliSilebilmekIcinHesap" xml:space="preserve">
+    <value>Personeli silebilmek için, Personele bağlı Hesabı silmeniz gerekir.</value>
+  </data>
+  <data name="PersoneliSilebilmekIcinKullanici" xml:space="preserve">
+    <value>Personeli silebilmek için, Personele bağlı Kullanıcıyı silmeniz gerekir.</value>
+  </data>
+  <data name="PersonelYetkiGrubuSilebilmekIcin" xml:space="preserve">
+    <value>Personel Yetki Grubu silebilmek için, önce gruba bağlı personelleri silmeniz gerekir.</value>
+  </data>
+  <data name="PesinatAciklama" xml:space="preserve">
+    <value>Ödenen Peşinat</value>
+  </data>
+  <data name="PesinatHesapSecmekZorunlu" xml:space="preserve">
+    <value>Peşinat Ödeme için hesap seçmek zorunlu.</value>
+  </data>
+  <data name="PesinatTutarYeterliDegil" xml:space="preserve">
+    <value>Peşinat Tutar minimum Peşinat oranın aldında. Peşinat Oran :</value>
+  </data>
+  <data name="SehriSilebilmekIcinIlceler" xml:space="preserve">
+    <value>Şehri silebilmek için, önce şehre bağlı ilçeleri silmeniz gerekir.</value>
+  </data>
+  <data name="SehriSilebilmekIcinSubeler" xml:space="preserve">
+    <value>Şehri silebilmek için, önce şehre bağlı şubeleri silmeniz gerekir.</value>
+  </data>
+  <data name="SenetiImzalayanAdBosOlamaz" xml:space="preserve">
+    <value>Seneti İmzalayan kişinin, Ad alanı boş olamaz.</value>
+  </data>
+  <data name="SenetiImzalayanDogumTarihiBosOlamaz" xml:space="preserve">
+    <value>Seneti İmzalayan kişinin, Doğum Tarihi alanı boş olamaz.</value>
+  </data>
+  <data name="SenetiImzalayanSoyadBosOlamaz" xml:space="preserve">
+    <value>Seneti İmzalayan kişinin, Soyad alanı boş olamaz.</value>
+  </data>
+  <data name="ServisIcinYeterliKapasiteYok" xml:space="preserve">
+    <value>Servis için yeterli Kapasite yok.</value>
+  </data>
+  <data name="ServisSilebilmekIcin" xml:space="preserve">
+    <value>Servisi silebilmek için, önce bağlı sözleşmeleri silmeniz gerekir.</value>
+  </data>
+  <data name="SezonuSilebilmekIcin" xml:space="preserve">
+    <value>Sezonu silebilmek için, önce sezona bağlı sınıfları silmeniz gerekir.</value>
+  </data>
+  <data name="SinavTurSilebilmekIcin" xml:space="preserve">
+    <value>Sınav Tür silebilmek için, önce sınav türe bağlı sınavları silmeninz gerekir.</value>
+  </data>
+  <data name="SinifSeansiSilebilmekIcin" xml:space="preserve">
+    <value>Sınıf Seansı silebilmek için, önce seansa bağlı sınıfları silmeniz gerekir.</value>
+  </data>
+  <data name="SinifSeviyeSilebilmekIcin" xml:space="preserve">
+    <value>Sınıf Seviyeyi silebilmek için, önce seviyeye bağlı sınıfları silmeniz gerekir.</value>
+  </data>
+  <data name="SinifTurSilebilmekIcin" xml:space="preserve">
+    <value>Sınıf Türü silebilmek için, önce türe bağlı sınıfları silmeniz gerekir.</value>
+  </data>
+  <data name="SozlesmeToplamTutar" xml:space="preserve">
+    <value>Sözleşme Toplam Tutar</value>
+  </data>
+  <data name="SubeSecmekZorunlu" xml:space="preserve">
+    <value>Şube seçimi yapmalısınız.</value>
+  </data>
+  <data name="SubeyiSilebilmekIcinPersoneller" xml:space="preserve">
+    <value>Şubeyi silebilmek için, önce şubeye bağlı personelleri silmeniz gerekir.</value>
+  </data>
+  <data name="SubeyiSilebilmekIcinSiniflar" xml:space="preserve">
+    <value>Şubeyi silebilmek için, önce şubeye bağlı sınıfları silmeniz gerekir.</value>
+  </data>
+  <data name="TcKimlikHatali" xml:space="preserve">
+    <value>T.C. Kimlik No veya kişisel bilgiler uyuşmuyor.</value>
+  </data>
+  <data name="TcKimlikIleKayitliPersonelMevcut" xml:space="preserve">
+    <value>T.C. Kimlik No ile kayıtlı personel bulunmaktadır. T.C. Kimlik No benzersiz olmalıdır.</value>
+  </data>
+  <data name="ToplamTutarDogruDegil" xml:space="preserve">
+    <value>Toplam Tutar, tutarların toplamına eşit olmalıdır.</value>
+  </data>
+  <data name="ToplamTutarIleTaksitliTutarEsitDegil" xml:space="preserve">
+    <value>Toplam Tutar ile Taksitli Tutar eşit değil.</value>
+  </data>
+  <data name="UlkeyiSilebilmekIcin" xml:space="preserve">
+    <value>Ülkeyi silebilmek için, önce ülkeye bağlı şehirleri silmeniz gerekir.</value>
+  </data>
+  <data name="VarolanKaydi" xml:space="preserve">
+    <value>Varolan kaydı, tekrar ekleyemezsiniz.</value>
+  </data>
+  <data name="YayinSilebilmekIcin" xml:space="preserve">
+    <value>Yayını silebilmek için, önce yayına bağlı öğrencileri silmeniz gerekir.</value>
+  </data>
+  <data name="YetkisizIslem" xml:space="preserve">
+    <value>Yetkisiz İşlem !</value>
+  </data>
+  <data name="OgrenciBulunamadi" xml:space="preserve">
+    <value>Öğrenci bulunamadı!</value>
+  </data>
+  <data name="OgrenciyiEkleyenPersonelSilebilir" xml:space="preserve">
+    <value>Öğrenciyi Ekleyen Personel silebilir.</value>
+  </data>
+  <data name="HesapSilinemezUyari" xml:space="preserve">
+    <value>Öğrenci, Personel ya da Şubeye ait hesap silinemez.</value>
+  </data>
+  <data name="HesapHareketOlanHesapSilinemez" xml:space="preserve">
+    <value>Hareketi olan Hesap silinemez.</value>
+  </data>
+  <data name="OptikFormSilebilmekIcin" xml:space="preserve">
+    <value>Optik Form silebilmek için, önce bağlı sınavları silmeniz gerekir.</value>
+  </data>
+  <data name="SinifSecmekZorunlu" xml:space="preserve">
+    <value>Sınıf seçmek zorunlu.</value>
+  </data>
+  <data name="SmsHesapBaslikDegistirilemez" xml:space="preserve">
+    <value>Hesap Başlık bu aşamada değiştirilemez.</value>
+  </data>
+  <data name="SubeyiSilebilmekIcinYetkiler" xml:space="preserve">
+    <value>Sınıfı silebilmek için, önce bağlı yetkilerden kaldırmanız gerekir.</value>
+  </data>
+  <data name="BasariylaGonderildi" xml:space="preserve">
+    <value>Başarıyla gönderildi.</value>
+  </data>
+</root>

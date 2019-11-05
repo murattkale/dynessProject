@@ -1,0 +1,718 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE783AEC-162E-449B-BDC3-0DE9C9919EEB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Data</RootNamespace>
+    <AssemblyName>Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <DontImportPostSharp>True</DontImportPostSharp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp, Version=4.2.17.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.4.2.17\lib\net35-client\PostSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\Dapper\IDpHesapData.cs" />
+    <Compile Include="Abstract\Dapper\IDpHesapHareketData.cs" />
+    <Compile Include="Abstract\Dapper\IDpOgrenciData.cs" />
+    <Compile Include="Abstract\Dapper\IDpOgrenciSinavKontrolData.cs" />
+    <Compile Include="Abstract\Dapper\IDpOgrenciSinavKontrolPuanTurPuanData.cs" />
+    <Compile Include="Abstract\Dapper\IDpOgrenciSozlesmeData.cs" />
+    <Compile Include="Abstract\Dapper\IDpOgrenciTelefonData.cs" />
+    <Compile Include="Abstract\Dapper\IDpPersonelData.cs" />
+    <Compile Include="Abstract\Dapper\IDpPersonelTelefonData.cs" />
+    <Compile Include="Abstract\Dapper\IDpSezonData.cs" />
+    <Compile Include="Abstract\Dapper\IDpSinavData.cs" />
+    <Compile Include="Abstract\Dapper\IDpSinifData.cs" />
+    <Compile Include="Abstract\Dapper\IDpSmsHesapHareketData.cs" />
+    <Compile Include="Abstract\Dapper\IDpOgrenciHesapData.cs" />
+    <Compile Include="Abstract\Dapper\IDpVideoData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfBankaData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfBankaHesapData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfBransData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfDersData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfDersGrupData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfDerslikData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfDuyuruData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfEhliyetTurData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfEskiKayitData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfFaturaBilgiData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfHesapBilgiData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfHesapData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfHesapHareketData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfPersonelSubeYetkiData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSmsData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSmsDurumData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSmsHesapDosyaData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfIlceData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfKiyafetTurData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfKonuData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfKullaniciData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfKurumOgrenciSozlesmeMetinData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOgrenciData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOgrenciSinavKontrolData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOgrenciSozlesmeData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOgrenciSozlesmeHesapHareketData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOgrenciSozlesmeOdemeBilgiData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOgrenciSozlesmeOdemeBilgiSenetImzalayanData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOgrenciSozlesmeKiyafetDurumData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOgrenciSozlesmeYayinData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOgrenciSozlesmeTurData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOkulTurData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOptikFormData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfPersonelPuantajData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfPersonelPuantajGunlukDurumData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfPersonelSubeDersData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfPersonelYetkiGrupData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfPersonelYetkiData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfKurumData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfParaBirimData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfPersonelData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfPersonelGrupData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfPuanTurData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSehirData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfServisData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSezonData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSinavData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSinavKitapcikData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSinavTurData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSinavTurDersKatSayiData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSinifData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSinifSeansData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSinifSeviyeData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSinifTurData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSmsHesapData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSmsHesapDurumData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSmsHesapHareketData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSmsMetinSablonData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSubeData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfTransferTipData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfUlkeData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfNeredenDuydunuzData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfVideoData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfVideoKategoriData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfVideoKonuData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfVideoKurumYetkiData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfVideoSinifYetkiData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfVideoSubeYetkiData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfVideoVideoKategoriData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfYayinData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfOgrenciSozlesmeDersSecimData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfEtkinlikData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfKiyafetBedenData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfKiyafetData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfHesapTurData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfHesapTurGrupData.cs" />
+    <Compile Include="Abstract\EntityFramework\IEfSinavSubeData.cs" />
+    <Compile Include="Concrete\Dapper\DpHesapData.cs" />
+    <Compile Include="Concrete\Dapper\DpHesapHareketData.cs" />
+    <Compile Include="Concrete\Dapper\DpOgrenciData.cs" />
+    <Compile Include="Concrete\Dapper\DpOgrenciHesapData.cs" />
+    <Compile Include="Concrete\Dapper\DpOgrenciSinavKontrolData.cs" />
+    <Compile Include="Concrete\Dapper\DpOgrenciSinavKontrolPuanTurPuanData.cs" />
+    <Compile Include="Concrete\Dapper\DpOgrenciSozlesmeData.cs" />
+    <Compile Include="Concrete\Dapper\DpOgrenciTelefonData.cs" />
+    <Compile Include="Concrete\Dapper\DpPersonelData.cs" />
+    <Compile Include="Concrete\Dapper\DpPersonelTelefonData.cs" />
+    <Compile Include="Concrete\Dapper\DpSezonData.cs" />
+    <Compile Include="Concrete\Dapper\DpSinavData.cs" />
+    <Compile Include="Concrete\Dapper\DpSinifData.cs" />
+    <Compile Include="Concrete\Dapper\DpSmsHesapHareketData.cs" />
+    <Compile Include="Concrete\Dapper\DpVideoData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfDersGrupData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfEskiKayitData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfFaturaBilgiData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfHesapBilgiData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfHesapTurGrupData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfBankaData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfBankaHesapData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfBransData.cs" />
+    <Compile Include="Concrete\EntityFramework\Context\EFContext.cs" />
+    <Compile Include="Concrete\EntityFramework\EfDersData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfDerslikData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfDuyuruData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfEhliyetTurData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfEtkinlikData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfHesapData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfHesapHareketData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfHesapTurData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfIlceData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfKiyafetBedenData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfKiyafetData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfKiyafetTurData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfKonuData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfKullaniciData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfKurumData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfKurumOgrenciSozlesmeMetin.cs" />
+    <Compile Include="Concrete\EntityFramework\EfNeredenDuydunuzData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOgrenciData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOgrenciSinavKontrolData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOgrenciSozlesmeData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOgrenciSozlesmeHesapHareketData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOgrenciSozlesmeOdemeBilgiData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOgrenciSozlesmeOdemeBilgiSenetImzalayanData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOgrenciSozlesmeKiyafetDurumData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOgrenciSozlesmeDersSecimData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOgrenciSozlesmeTurData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOgrenciSozlesmeYayinData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOkulTurData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfOptikFormData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfParaBirimData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfPersonelData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfPersonelGrupData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfPersonelPuantajData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfPersonelPuantajGunlukDurumData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfPersonelSubeDersData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfPersonelSubeYetkiData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfPersonelYetkiData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfPersonelYetkiGrupData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfPuanTurData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSehirData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfServisData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSezonData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSinavData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSinavKitapcikData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSinavSubeData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSinavTurData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSinavTurDersKatSayiData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSinifData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSinifSeansData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSinifSeviyeData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSinifTurData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSmsData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSmsDurumData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSmsHesapData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSmsHesapDosyaData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSmsHesapDurumData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSmsHesapHareketData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSmsMetinSablonData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSubeData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfTransferTipData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfUlkeData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfVideoData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfVideoKategoriData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfVideoKonuData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfVideoKurumYetkiData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfVideoSinifYetkiData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfVideoSubeYetkiData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfVideoVideoKategoriData.cs" />
+    <Compile Include="Concrete\EntityFramework\EfYayinData.cs" />
+    <Compile Include="Migrations\201907180824354_Update-001.cs" />
+    <Compile Include="Migrations\201907180824354_Update-001.Designer.cs">
+      <DependentUpon>201907180824354_Update-001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907190834013_Update-002.cs" />
+    <Compile Include="Migrations\201907190834013_Update-002.Designer.cs">
+      <DependentUpon>201907190834013_Update-002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907290900425_Update-003.cs" />
+    <Compile Include="Migrations\201907290900425_Update-003.Designer.cs">
+      <DependentUpon>201907290900425_Update-003.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908081025067_Update-004.cs" />
+    <Compile Include="Migrations\201908081025067_Update-004.Designer.cs">
+      <DependentUpon>201908081025067_Update-004.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908081332087_Update-005.cs" />
+    <Compile Include="Migrations\201908081332087_Update-005.Designer.cs">
+      <DependentUpon>201908081332087_Update-005.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908081338489_Update-006.cs" />
+    <Compile Include="Migrations\201908081338489_Update-006.Designer.cs">
+      <DependentUpon>201908081338489_Update-006.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908081355339_Update-007.cs" />
+    <Compile Include="Migrations\201908081355339_Update-007.Designer.cs">
+      <DependentUpon>201908081355339_Update-007.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908090615332_Update-008.cs" />
+    <Compile Include="Migrations\201908090615332_Update-008.Designer.cs">
+      <DependentUpon>201908090615332_Update-008.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908141105004_Update-009.cs" />
+    <Compile Include="Migrations\201908141105004_Update-009.Designer.cs">
+      <DependentUpon>201908141105004_Update-009.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908150656207_Update-010.cs" />
+    <Compile Include="Migrations\201908150656207_Update-010.Designer.cs">
+      <DependentUpon>201908150656207_Update-010.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908150740307_Update-011.cs" />
+    <Compile Include="Migrations\201908150740307_Update-011.Designer.cs">
+      <DependentUpon>201908150740307_Update-011.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908150831319_Update-012.cs" />
+    <Compile Include="Migrations\201908150831319_Update-012.Designer.cs">
+      <DependentUpon>201908150831319_Update-012.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908151028271_Update-013.cs" />
+    <Compile Include="Migrations\201908151028271_Update-013.Designer.cs">
+      <DependentUpon>201908151028271_Update-013.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908151116305_Update-014.cs" />
+    <Compile Include="Migrations\201908151116305_Update-014.Designer.cs">
+      <DependentUpon>201908151116305_Update-014.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908161446242_Update-015.cs" />
+    <Compile Include="Migrations\201908161446242_Update-015.Designer.cs">
+      <DependentUpon>201908161446242_Update-015.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908161447322_Update-016.cs" />
+    <Compile Include="Migrations\201908161447322_Update-016.Designer.cs">
+      <DependentUpon>201908161447322_Update-016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908170740278_Update-017.cs" />
+    <Compile Include="Migrations\201908170740278_Update-017.Designer.cs">
+      <DependentUpon>201908170740278_Update-017.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908170912033_Update-018.cs" />
+    <Compile Include="Migrations\201908170912033_Update-018.Designer.cs">
+      <DependentUpon>201908170912033_Update-018.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908170948093_Update-019.cs" />
+    <Compile Include="Migrations\201908170948093_Update-019.Designer.cs">
+      <DependentUpon>201908170948093_Update-019.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908171052445_Update-020.cs" />
+    <Compile Include="Migrations\201908171052445_Update-020.Designer.cs">
+      <DependentUpon>201908171052445_Update-020.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908172144167_Update-021.cs" />
+    <Compile Include="Migrations\201908172144167_Update-021.Designer.cs">
+      <DependentUpon>201908172144167_Update-021.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908180804278_Update-022.cs" />
+    <Compile Include="Migrations\201908180804278_Update-022.Designer.cs">
+      <DependentUpon>201908180804278_Update-022.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908181648151_Update-023.cs" />
+    <Compile Include="Migrations\201908181648151_Update-023.Designer.cs">
+      <DependentUpon>201908181648151_Update-023.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908190631104_Update-024.cs" />
+    <Compile Include="Migrations\201908190631104_Update-024.Designer.cs">
+      <DependentUpon>201908190631104_Update-024.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908191328001_Update-025.cs" />
+    <Compile Include="Migrations\201908191328001_Update-025.Designer.cs">
+      <DependentUpon>201908191328001_Update-025.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908191401341_Update-026.cs" />
+    <Compile Include="Migrations\201908191401341_Update-026.Designer.cs">
+      <DependentUpon>201908191401341_Update-026.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908230931408_Update-027.cs" />
+    <Compile Include="Migrations\201908230931408_Update-027.Designer.cs">
+      <DependentUpon>201908230931408_Update-027.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908291522414_Update-028.cs" />
+    <Compile Include="Migrations\201908291522414_Update-028.Designer.cs">
+      <DependentUpon>201908291522414_Update-028.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909021049498_Update-029.cs" />
+    <Compile Include="Migrations\201909021049498_Update-029.Designer.cs">
+      <DependentUpon>201909021049498_Update-029.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909041248285_Update-030.cs" />
+    <Compile Include="Migrations\201909041248285_Update-030.Designer.cs">
+      <DependentUpon>201909041248285_Update-030.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909050708174_Update-031.cs" />
+    <Compile Include="Migrations\201909050708174_Update-031.Designer.cs">
+      <DependentUpon>201909050708174_Update-031.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909050847032_Update-032.cs" />
+    <Compile Include="Migrations\201909050847032_Update-032.Designer.cs">
+      <DependentUpon>201909050847032_Update-032.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909051449572_Update-033.cs" />
+    <Compile Include="Migrations\201909051449572_Update-033.Designer.cs">
+      <DependentUpon>201909051449572_Update-033.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909060740107_Update-034.cs" />
+    <Compile Include="Migrations\201909060740107_Update-034.Designer.cs">
+      <DependentUpon>201909060740107_Update-034.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909060841425_Update-035.cs" />
+    <Compile Include="Migrations\201909060841425_Update-035.Designer.cs">
+      <DependentUpon>201909060841425_Update-035.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909061413329_Update-036.cs" />
+    <Compile Include="Migrations\201909061413329_Update-036.Designer.cs">
+      <DependentUpon>201909061413329_Update-036.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909080815120_Update-037.cs" />
+    <Compile Include="Migrations\201909080815120_Update-037.Designer.cs">
+      <DependentUpon>201909080815120_Update-037.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909081038478_Update-038.cs" />
+    <Compile Include="Migrations\201909081038478_Update-038.Designer.cs">
+      <DependentUpon>201909081038478_Update-038.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909081339425_Update-039.cs" />
+    <Compile Include="Migrations\201909081339425_Update-039.Designer.cs">
+      <DependentUpon>201909081339425_Update-039.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909081350277_Update-040.cs" />
+    <Compile Include="Migrations\201909081350277_Update-040.Designer.cs">
+      <DependentUpon>201909081350277_Update-040.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909100739309_Update-041.cs" />
+    <Compile Include="Migrations\201909100739309_Update-041.Designer.cs">
+      <DependentUpon>201909100739309_Update-041.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909101029403_Update-042.cs" />
+    <Compile Include="Migrations\201909101029403_Update-042.Designer.cs">
+      <DependentUpon>201909101029403_Update-042.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909101338397_Update-043.cs" />
+    <Compile Include="Migrations\201909101338397_Update-043.Designer.cs">
+      <DependentUpon>201909101338397_Update-043.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909110647227_Update-044.cs" />
+    <Compile Include="Migrations\201909110647227_Update-044.Designer.cs">
+      <DependentUpon>201909110647227_Update-044.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909110827381_Update-045.cs" />
+    <Compile Include="Migrations\201909110827381_Update-045.Designer.cs">
+      <DependentUpon>201909110827381_Update-045.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909111328584_Update-046.cs" />
+    <Compile Include="Migrations\201909111328584_Update-046.Designer.cs">
+      <DependentUpon>201909111328584_Update-046.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909121303128_Update-047.cs" />
+    <Compile Include="Migrations\201909121303128_Update-047.Designer.cs">
+      <DependentUpon>201909121303128_Update-047.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909121524187_Update-048.cs" />
+    <Compile Include="Migrations\201909121524187_Update-048.Designer.cs">
+      <DependentUpon>201909121524187_Update-048.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909121603115_Update-049.cs" />
+    <Compile Include="Migrations\201909121603115_Update-049.Designer.cs">
+      <DependentUpon>201909121603115_Update-049.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909131038043_Update-050.cs" />
+    <Compile Include="Migrations\201909131038043_Update-050.Designer.cs">
+      <DependentUpon>201909131038043_Update-050.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909131042272_Update-051.cs" />
+    <Compile Include="Migrations\201909131042272_Update-051.Designer.cs">
+      <DependentUpon>201909131042272_Update-051.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909131141145_Update-052.cs" />
+    <Compile Include="Migrations\201909131141145_Update-052.Designer.cs">
+      <DependentUpon>201909131141145_Update-052.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909131344407_Update-053.cs" />
+    <Compile Include="Migrations\201909131344407_Update-053.Designer.cs">
+      <DependentUpon>201909131344407_Update-053.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909170830428_Update-054.cs" />
+    <Compile Include="Migrations\201909170830428_Update-054.Designer.cs">
+      <DependentUpon>201909170830428_Update-054.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909170916475_Update-055.cs" />
+    <Compile Include="Migrations\201909170916475_Update-055.Designer.cs">
+      <DependentUpon>201909170916475_Update-055.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909191229534_Update-056.cs" />
+    <Compile Include="Migrations\201909191229534_Update-056.Designer.cs">
+      <DependentUpon>201909191229534_Update-056.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909201126249_Update-058.cs" />
+    <Compile Include="Migrations\201909201126249_Update-058.Designer.cs">
+      <DependentUpon>201909201126249_Update-058.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909230615324_Update-059.cs" />
+    <Compile Include="Migrations\201909230615324_Update-059.Designer.cs">
+      <DependentUpon>201909230615324_Update-059.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909231148351_Update-060.cs" />
+    <Compile Include="Migrations\201909231148351_Update-060.Designer.cs">
+      <DependentUpon>201909231148351_Update-060.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910021252547_Update-061.cs" />
+    <Compile Include="Migrations\201910021252547_Update-061.Designer.cs">
+      <DependentUpon>201910021252547_Update-061.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910030824184_Update-062.cs" />
+    <Compile Include="Migrations\201910030824184_Update-062.Designer.cs">
+      <DependentUpon>201910030824184_Update-062.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910040730353_Update-063.cs" />
+    <Compile Include="Migrations\201910040730353_Update-063.Designer.cs">
+      <DependentUpon>201910040730353_Update-063.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910041055574_Update-064.cs" />
+    <Compile Include="Migrations\201910041055574_Update-064.Designer.cs">
+      <DependentUpon>201910041055574_Update-064.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910081328473_Update-065.cs" />
+    <Compile Include="Migrations\201910081328473_Update-065.Designer.cs">
+      <DependentUpon>201910081328473_Update-065.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{f15d16bf-0c0c-41c4-a559-463403ec5e79}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{90f679f5-dbb3-48bf-b32d-213dc29f3d38}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201907180824354_Update-001.resx">
+      <DependentUpon>201907180824354_Update-001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907190834013_Update-002.resx">
+      <DependentUpon>201907190834013_Update-002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907290900425_Update-003.resx">
+      <DependentUpon>201907290900425_Update-003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908081025067_Update-004.resx">
+      <DependentUpon>201908081025067_Update-004.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908081332087_Update-005.resx">
+      <DependentUpon>201908081332087_Update-005.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908081338489_Update-006.resx">
+      <DependentUpon>201908081338489_Update-006.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908081355339_Update-007.resx">
+      <DependentUpon>201908081355339_Update-007.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908090615332_Update-008.resx">
+      <DependentUpon>201908090615332_Update-008.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908141105004_Update-009.resx">
+      <DependentUpon>201908141105004_Update-009.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908150656207_Update-010.resx">
+      <DependentUpon>201908150656207_Update-010.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908150740307_Update-011.resx">
+      <DependentUpon>201908150740307_Update-011.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908150831319_Update-012.resx">
+      <DependentUpon>201908150831319_Update-012.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908151028271_Update-013.resx">
+      <DependentUpon>201908151028271_Update-013.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908151116305_Update-014.resx">
+      <DependentUpon>201908151116305_Update-014.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908161446242_Update-015.resx">
+      <DependentUpon>201908161446242_Update-015.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908161447322_Update-016.resx">
+      <DependentUpon>201908161447322_Update-016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908170740278_Update-017.resx">
+      <DependentUpon>201908170740278_Update-017.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908170912033_Update-018.resx">
+      <DependentUpon>201908170912033_Update-018.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908170948093_Update-019.resx">
+      <DependentUpon>201908170948093_Update-019.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908171052445_Update-020.resx">
+      <DependentUpon>201908171052445_Update-020.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908172144167_Update-021.resx">
+      <DependentUpon>201908172144167_Update-021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908180804278_Update-022.resx">
+      <DependentUpon>201908180804278_Update-022.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908181648151_Update-023.resx">
+      <DependentUpon>201908181648151_Update-023.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908190631104_Update-024.resx">
+      <DependentUpon>201908190631104_Update-024.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908191328001_Update-025.resx">
+      <DependentUpon>201908191328001_Update-025.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908191401341_Update-026.resx">
+      <DependentUpon>201908191401341_Update-026.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908230931408_Update-027.resx">
+      <DependentUpon>201908230931408_Update-027.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908291522414_Update-028.resx">
+      <DependentUpon>201908291522414_Update-028.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909021049498_Update-029.resx">
+      <DependentUpon>201909021049498_Update-029.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909041248285_Update-030.resx">
+      <DependentUpon>201909041248285_Update-030.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909050708174_Update-031.resx">
+      <DependentUpon>201909050708174_Update-031.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909050847032_Update-032.resx">
+      <DependentUpon>201909050847032_Update-032.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909051449572_Update-033.resx">
+      <DependentUpon>201909051449572_Update-033.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909060740107_Update-034.resx">
+      <DependentUpon>201909060740107_Update-034.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909060841425_Update-035.resx">
+      <DependentUpon>201909060841425_Update-035.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909061413329_Update-036.resx">
+      <DependentUpon>201909061413329_Update-036.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909080815120_Update-037.resx">
+      <DependentUpon>201909080815120_Update-037.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909081038478_Update-038.resx">
+      <DependentUpon>201909081038478_Update-038.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909081339425_Update-039.resx">
+      <DependentUpon>201909081339425_Update-039.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909081350277_Update-040.resx">
+      <DependentUpon>201909081350277_Update-040.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909100739309_Update-041.resx">
+      <DependentUpon>201909100739309_Update-041.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909101029403_Update-042.resx">
+      <DependentUpon>201909101029403_Update-042.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909101338397_Update-043.resx">
+      <DependentUpon>201909101338397_Update-043.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909110647227_Update-044.resx">
+      <DependentUpon>201909110647227_Update-044.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909110827381_Update-045.resx">
+      <DependentUpon>201909110827381_Update-045.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909111328584_Update-046.resx">
+      <DependentUpon>201909111328584_Update-046.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909121303128_Update-047.resx">
+      <DependentUpon>201909121303128_Update-047.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909121524187_Update-048.resx">
+      <DependentUpon>201909121524187_Update-048.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909121603115_Update-049.resx">
+      <DependentUpon>201909121603115_Update-049.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909131038043_Update-050.resx">
+      <DependentUpon>201909131038043_Update-050.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909131042272_Update-051.resx">
+      <DependentUpon>201909131042272_Update-051.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909131141145_Update-052.resx">
+      <DependentUpon>201909131141145_Update-052.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909131344407_Update-053.resx">
+      <DependentUpon>201909131344407_Update-053.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909170830428_Update-054.resx">
+      <DependentUpon>201909170830428_Update-054.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909170916475_Update-055.resx">
+      <DependentUpon>201909170916475_Update-055.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909191229534_Update-056.resx">
+      <DependentUpon>201909191229534_Update-056.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201126249_Update-058.resx">
+      <DependentUpon>201909201126249_Update-058.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909230615324_Update-059.resx">
+      <DependentUpon>201909230615324_Update-059.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909231148351_Update-060.resx">
+      <DependentUpon>201909231148351_Update-060.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910021252547_Update-061.resx">
+      <DependentUpon>201910021252547_Update-061.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910030824184_Update-062.resx">
+      <DependentUpon>201910030824184_Update-062.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910040730353_Update-063.resx">
+      <DependentUpon>201910040730353_Update-063.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910041055574_Update-064.resx">
+      <DependentUpon>201910041055574_Update-064.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910081328473_Update-065.resx">
+      <DependentUpon>201910081328473_Update-065.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\PostSharp.4.2.17\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.2.17\tools\PostSharp.targets')" />
+  <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
+    <Error Condition="!Exists('..\packages\PostSharp.4.2.17\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="Exists('..\packages\PostSharp.4.2.17\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
+  </Target>
+</Project>

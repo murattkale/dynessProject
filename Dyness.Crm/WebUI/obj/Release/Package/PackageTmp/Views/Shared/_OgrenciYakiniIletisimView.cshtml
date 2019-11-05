@@ -1,0 +1,17 @@
+﻿@using Entities.Concrete;
+@using WebUI.Helpers;
+
+@model  OgrenciYakiniIletisim
+
+@Html.FormTextBoxFor(x => x.Ad)
+@Html.FormTextBoxFor(x => x.Soyad)
+@Html.FormTextBoxFor(x => x.DogumTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+@Html.FormTextBoxFor(x => x.TcKimlikNo, textBoxType: HtmlHelpers.TextBoxType.TcNo)
+@Html.FormTextBoxFor(x => x.CepTelefon1, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+@Html.FormTextBoxFor(x => x.CepTelefon2, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+@Html.FormTextBoxFor(x => x.EvTelefon, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+@Html.FormTextBoxFor(x => x.IsTelefon, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+@Html.FormTextBoxFor(x => x.Eposta)
+@Html.FormTextAreaFor(x => x.EvAdres, 2, 2)
+@Html.FormTextAreaFor(x => x.IsAdres, 2, 2)
+@Html.FormCardDivEnd()

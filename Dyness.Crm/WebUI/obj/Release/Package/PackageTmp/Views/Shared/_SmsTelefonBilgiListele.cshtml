@@ -1,0 +1,90 @@
+﻿@using Core.Entities.Dto;
+@using WebUI.Helpers
+@using WebUI.Models
+
+@model  SmsDuzenleViewModel
+
+<div class="form-group row">
+    <div class="col-lg-12">
+        <div class="table-responsive scarea" style="height: 410px;">
+            @if (Model.SmsTelefonBilgiler.Count > 0)
+            {
+                <table id="tblTefonlar" class="table table-striped table-hover table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            @if (Model.SmsTelefonBilgiler[0].Tip == Tip.Ogrenci)
+                            {
+                                <th colspan="7"></th>
+                            }
+                            else
+                            {
+                                <th colspan="6"></th>
+                            }
+                            <th style="text-align:center;"><input id="chcHepsiniSec" type="checkbox" class="iradio_square-blue" checked></th>
+                        </tr>
+                        <tr>
+                            <th>@Resources.LangResources.AdSoyad</th>
+                            <th style="width:5%; text-align:center;">@Resources.LangResources.Tip</th>
+                            <th style="width:5%; text-align:center;">@Resources.LangResources.Bilgi</th>
+                            <th>@Resources.LangResources.Sube</th>
+                            @if (Model.SmsTelefonBilgiler[0].Tip == Tip.Ogrenci)
+                            {
+                                <th>@Resources.LangResources.Sezon</th>
+                                <th style="width:5%; text-align:center;">@Resources.LangResources.Sinif</th>
+                            }
+                            else
+                            {
+                                <th>@Resources.LangResources.PersonelGrup</th>
+                            }
+                            <th>@Resources.LangResources.Telefon</th>
+                            <th style="width:5%; text-align:center;">@Resources.LangResources.Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.SmsTelefonBilgiler.Count; i++)
+                        {
+                            var smsTelefonBilgi = Model.SmsTelefonBilgiler[i];
+
+                        <tr>
+                            <td>@smsTelefonBilgi.AdSoyad</td>
+                            <td style=" text-align:center;">@smsTelefonBilgi.TipAd</td>
+                            <td style=" text-align:center;">@smsTelefonBilgi.BilgiAd</td>
+                            <th>@smsTelefonBilgi.SubeAd</th>
+
+                            @if (smsTelefonBilgi.Tip == Tip.Ogrenci)
+                            {
+                                <th>@smsTelefonBilgi.SezonAd</th>
+                                <th style=" text-align:center;">@smsTelefonBilgi.SinifAd</th>
+                            }
+                            else
+                            {
+                                <th>@smsTelefonBilgi.PersonelGrupAd</th>
+                            }
+                            <td>@smsTelefonBilgi.Telefon</td>
+                            <td style="text-align:center;">
+
+                                @if (smsTelefonBilgi.SmsGonderilebilir)
+                                {
+                                    @Html.FormCheckBoxOnly(x => Model.SmsTelefonBilgiler[i].Checked, "", "iradio_square-blue")
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger">@Resources.LangResources.IzniYok</span>
+                                }
+                            </td>
+                            @Html.HiddenFor(x => x.SmsTelefonBilgiler[i].Id)
+                            @Html.HiddenFor(x => x.SmsTelefonBilgiler[i].Tip)
+                            @Html.HiddenFor(x => x.SmsTelefonBilgiler[i].Bilgi)
+                            @Html.HiddenFor(x => x.SmsTelefonBilgiler[i].AdSoyad)
+                            @Html.HiddenFor(x => x.SmsTelefonBilgiler[i].Telefon)
+                            @Html.HiddenFor(x => x.SmsTelefonBilgiler[i].SezonAd)
+                            @Html.HiddenFor(x => x.SmsTelefonBilgiler[i].SinifAd)
+                            @Html.HiddenFor(x => x.SmsTelefonBilgiler[i].Iletisim)
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>

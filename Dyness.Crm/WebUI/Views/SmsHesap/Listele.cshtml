@@ -1,0 +1,45 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model  SmsHesapListeleViewModel
+
+@{
+    var title = Resources.LangResources.SmsHesaplar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Sms;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.Baslik)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Baslik)', '@Model.Model.GetColumnName(x=> x.Baslik)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.OlusturulmaTarihiFormatted)', '@Model.Model.GetColumnName(x=> x.OlusturulmaTarihiFormatted)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.GuncellemeTarihiFormatted)', '@Model.Model.GetColumnName(x=> x.GuncellemeTarihiFormatted)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SonHareketTarihiFormatted)', '@Model.Model.GetColumnName(x=> x.SonHareketTarihiFormatted)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SmsHesapDurumAd)', '@Model.Model.GetColumnName(x=> x.SmsHesapDurumAd)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Kredi)', '@Model.Model.GetColumnName(x=> x.Kredi)', false, 0, AlignEnum.Center, AlignEnum.Center));
+
+
+        var otherItems = new Array();
+        otherItems.push(new OtherItem('/SmsHesap/KrediSatinAl/', '', 'SmsHesapId', '', '_blank', 'icon-coin-dollar', '@Resources.LangResources.KrediSatinAl', ''));
+        otherItems.push(new OtherItem('/SmsHesapHareket/Listele/', '', 'SmsHesapId', '', '_blank', 'icon-list-unordered', '@Resources.LangResources.Hareketler', ''));
+
+        SetDataTable(false, 'tblListele', '/SmsHesap/Listele', 0, 'asc', columns, '/SmsHesap/Duzenle/', 'SmsHesapId', otherItems);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "", "")

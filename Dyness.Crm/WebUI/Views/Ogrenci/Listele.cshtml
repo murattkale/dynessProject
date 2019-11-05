@@ -1,0 +1,78 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+@using Core.General;
+@using Core.CrossCuttingConcerns.Security;
+
+@model  OgrenciListeleViewModel
+
+@{
+    var title = Resources.LangResources.Ogrenciler;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@{
+    var ayarlar = AyarlarService.Get();
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var imageColumn = new DataColumnImage('@Model.Model.GetColumnName(x => x.GorselYol)', @(ayarlar.OgrenciGorselSize.Height/2), @(ayarlar.OgrenciGorselSize.Width/2));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.GorselDosyaAd)', '@Model.Model.GetColumnName(x=> x.GorselYol)', false, 0, AlignEnum.Center, AlignEnum.Center, null, imageColumn, null));
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.AdSoyad)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.AdSoyad)', '@Model.Model.GetColumnName(x=> x.AdSoyad)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.OgrenciNo)', '@Model.Model.GetColumnName(x=> x.OgrenciNo)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SubeAd)', '@Model.Model.GetColumnName(x=> x.SubeAd)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.TcKimlikNo)', '@Model.Model.GetColumnName(x=> x.TcKimlikNo)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.CepTelefon)', '@Model.Model.GetColumnName(x=> x.CepTelefon)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Eposta)', '@Model.Model.GetColumnName(x=> x.Eposta)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.IlceAd)', '@Model.Model.GetColumnName(x=> x.IlceAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SehirAd)', '@Model.Model.GetColumnName(x=> x.SehirAd)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.DogumTarihi)', '@Model.Model.GetColumnName(x=> x.DogumTarihiFormatted)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.OlusturulmaTarihi)', '@Model.Model.GetColumnName(x=> x.OlusturulmaTarihiFormatted)', false, 0));
+
+        var otherItems = new Array();
+        otherItems.push(new OtherItem('/Ogrenci/Detay/', '', 'OgrenciId', '', '_blank', 'icon-search4', 'Detay', ''));
+        otherItems.push(new OtherItem('/Ogrenci/Duzenle/', '', 'OgrenciId', '', '_blank', 'icon-cog3', 'Düzenle', ''));
+
+         @if (Identity.KurumId == -1)
+            {
+                <text>
+                    otherItems.push(new OtherItem('/OgrenciBilgi/YetkiliGiris/', '', 'OgrenciId', '', '_blank', 'icon-user-plus', 'Giriş', ''));
+                </text>
+            }
+
+        SetDataTable(true, 'tblListele', '/Ogrenci/Listele', 0, 'asc', columns, '/Ogrenci/Detay/', 'OgrenciId', otherItems, true);
+
+        ExcelAktar("btnExcel", "@(Url.Action("ExcelIndir","Ogrenci"))");
+        ExcelAktar("btnTumExcel", "@(Url.Action("TumExcelIndir","Ogrenci"))");
+    </script>
+}
+
+@{
+    var controls = new List<MvcHtmlString>();
+
+    controls.Add(Html.FormTextBoxFor(x => x.SearchText, addClass: "search-filter", label: "Filtrele", forFilter: true));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.primary, "btnFiltrele", Resources.LangResources.Listele));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.success, "btnExcel", Resources.LangResources.ExcelAktar));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.success, "btnTumExcel", Resources.LangResources.DetayliExcelAktar));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.danger, "btnTemizle", Resources.LangResources.Temizle));
+}
+@Html.FormDataTablesFor(title, "YENİ ÖĞRENCİ", "/Ogrenci/Duzenle/", controls)

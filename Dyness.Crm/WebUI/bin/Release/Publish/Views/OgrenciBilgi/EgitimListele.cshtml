@@ -1,0 +1,139 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model VideoListeleViewModel
+
+@{
+    var title = Resources.LangResources.Videolar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_LayoutOgrenciBilgi.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Videolar;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script>
+
+        function VideoListele() {
+
+            var dersId = $("#SelectedDers").val();
+            var videoKategoriIdler = $("#SelectedKategoriler").val();
+            var konuIdler = $("#SelectedKonular").val();
+            var search = $("#SearchText").val();
+
+            var parameter = { DersId: dersId, VideoKategoriIdler: videoKategoriIdler, KonuIdler: konuIdler, Search: search };
+
+            $.getJSON(
+                "/OgrenciBilgi/EgitimVideoListele",
+                parameter,
+                function (response) {
+
+                    var divVideolar = $("#divVideolar");
+
+                    divVideolar.empty();
+
+                    $.each(response, function (index, item) {
+
+                        var kategoriler = '<h6 class="font-weight-semibold">';
+
+                        for (var i = 0; i < item.VideoKategoriList.length; i++) {
+                            kategoriler += item.VideoKategoriList[i] + ',';
+                        }
+
+                        kategoriler = kategoriler.substring(0, kategoriler.length - 1);
+                        kategoriler += '</h6>';
+
+                        var konular = '<h6 class="font-weight-semibold">';
+
+                        for (var i = 0; i < item.VideoKonuList.length; i++) {
+                            konular += item.VideoKonuList[i] + ',';
+                        }
+
+                        konular = konular.substring(0, konular.length - 1);
+                        konular += '</h6>';
+
+                        var html = '<div class="col-sm-4">' +
+                            '<div class="card">' +
+                            '<div class="card-header">' +
+                            '<h5 class="card-title">' + item.Baslik + '</h5>' +
+                            '</div>' +
+                            '<div class="card-body">' +
+                            '<div class="mb-4">' +
+                            kategoriler +
+                            konular +
+                            '<div class="embed-responsive embed-responsive-16by9">' +
+                            '<iframe class="embed-responsive-item" src="' + item.Url + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                        divVideolar.append(html);
+                    });
+                });
+        }
+
+        $(document).ready(function () {
+
+            $("#SelectedDers").on("change", function () {
+                VideoKategoriler($("#SelectedKategoriler"), $(this).val());
+                VideoKonular($("#SelectedKonular"),$(this).val());
+            });
+
+            VideoListele();
+
+            $("#btnFiltrele").on("click", function () {
+                 VideoListele();
+            });
+
+            $("#btnTemizle").on("click", function () {
+                $("#SearchText").val("");
+                $("#SelectedDers").val("0").trigger("change");
+                $("#SelectedDers").val("0").trigger("change");
+            });
+        });
+
+    </script>
+}
+
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">@Resources.LangResources.Videolar</h5>
+    </div>
+    <div class="card-body">
+        <fieldset class="mb-3">
+            <legend class="text-uppercase font-size-sm font-weight-bold"></legend>
+            <div class="dataTables_wrapper no-footer">
+                <div class="datatable-header">
+                    <div class="form-inline">
+                        <div class="form-group margin-top-10">
+                            <input autocomplete="off" class="form-control search-filter" id="SearchText" name="SearchText" placeholder="Filtrele" type="text" value="">
+                        </div>
+                        <div class="form-group col-lg-2 margin-top-10">
+                            @Html.FormDropDownListFor(x => x.SelectedDers, Model.DersSelectList, optionLabel: $"{Resources.LangResources.Dersler}", forFilter: true)
+                        </div>
+                        <div class="form-group col-lg-2 margin-top-10">
+                            @Html.FormDropDownListFor(x => x.SelectedKategoriler, Model.VideoKategoriSelectList, multiSelect:true, forFilter: true)
+                        </div>
+                        <div class="form-group col-lg-2 margin-top-10">
+                            @Html.FormDropDownListFor(x => x.SelectedKonular, Model.KonuSelectList, multiSelect:true,  forFilter: true)
+                        </div>
+                        <div class="form-group margin-top-10"><button id="btnFiltrele" type="button" class="btn btn-outline-primary btn-m">Listele</button></div>
+                        <div class="form-group margin-top-10"><button id="btnTemizle" type="button" class="btn btn-outline-danger btn-m">Temizle</button></div>
+                    </div>
+                    <div class="row" id="divVideolar">
+
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

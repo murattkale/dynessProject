@@ -1,0 +1,109 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model PersonelDuzenleViewModel
+
+@{
+    var title = Model.Model == null || Model.Model.PersonelId == 0
+        ? Resources.LangResources.PersonelEkle
+        : $"{Resources.LangResources.PersonelGuncelle} ({Model.Model.AdSoyad})";
+
+    var title1 = Model.Model?.Kullanici == null
+        ? Resources.LangResources.KullaniciVePersonelEkle
+        : $"{Resources.LangResources.KullaniciVePersonelGuncelle} ({Model.Model.Kullanici.KullaniciAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Personeller;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/PersonelDuzenle.js"></script>
+    <script>
+        PersonelDuzenle();
+    </script>
+}
+
+@using (Html.BeginForm("Duzenle", "Personel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- #region Personel -->
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListFor(x => x.Model.PersonelGrupId, Model.PersonelGrupSelectList)
+    @Html.FormDropDownListFor(x => x.Model.SubeId, Model.SubeSelectList)
+    @Html.FormDropDownListFor(x => x.Model.DersId, Model.DersSelectList)
+    @Html.FormDropDownListFor(x => x.Model.UlkeId, Model.UlkeSelectList)
+
+    @Html.FormTextBoxFor(x => x.Model.Ad)
+    @Html.FormTextBoxFor(x => x.Model.Soyad)
+    @Html.FormTextBoxFor(x => x.Model.DogumTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+    @Html.FormTextBoxFor(x => x.Model.TcKimlikNo, textBoxType: HtmlHelpers.TextBoxType.TcNo)
+    @Html.FormRadioButtonBooleanFor(x => x.Model.KadinMi, Resources.LangResources.Kadin, Resources.LangResources.Erkek)
+    @Html.FormTextBoxFor(x => x.Model.CepTelefon, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+    @Html.FormTextBoxFor(x => x.Model.Telefon, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+    @Html.FormTextBoxFor(x => x.Model.Eposta)
+    @Html.FormTextAreaFor(x => x.Model.Adres, 2, 2)
+    @Html.FormDropDownListFor(x => x.SelectedDersVerdigiSubeler, Model.DersSubeSelectList, true)
+    @Html.FormTextBoxFor(x => x.Model.DersUcreti)
+    @Html.FormTextBoxFor(x => x.Model.Maas)
+    @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.EgerBirdenFazlaSubedeGorevAliyorsa)
+    @Html.FormDropDownListFor(x => x.SelectedUcretAldigiSubeler, Model.DersSubeUcretSelectList, true)
+    for (int i = 0; i < Model.Model.PersonelSubeUcretler.Count(); i++)
+    {
+        <div style="@(Model.Model.PersonelSubeUcretler[i].PersonelSubeUcretId== 0 ? "display:none;" : "")" id="divPersonelSubeUcretlendirme@(Model.Model.PersonelSubeUcretler[i].SubeId)" class="PersonelSubeUcretlendirme">
+            @Html.FormTextBoxFor(x => x.Model.PersonelSubeUcretler[i].Ucret, label: $"{Model.Model.PersonelSubeUcretler[i].Sube.SubeAd} - {Resources.LangResources.Ucret}")
+            @Html.HiddenFor(x => x.Model.PersonelSubeUcretler[i].SubeId)
+            @Html.HiddenFor(x => x.Model.PersonelSubeUcretler[i].PersonelId)
+            @Html.HiddenFor(x => x.Model.PersonelSubeUcretler[i].PersonelSubeUcretId)
+        </div>
+    }
+
+    @Html.FormTextBoxFor(x => x.Model.YemekKartNo)
+    @Html.FormTextBoxFor(x => x.Model.GunlukYemekUcreti)
+    @Html.FormCheckBoxFor(x => x.Model.PrimdenFaydalansinMi)
+    @Html.FormTextBoxFor(x => x.Model.IseBaslamaTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+    @Html.FormTextBoxFor(x => x.Model.IstenAyrilmaTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+    @Html.FormFileInputFor(x => x.Model.GorselDosyaAd, "PostedFileGorselDosyaAd")
+    @Html.FormFileShowDeleteFor(x => x.Model.GorselDosyaAd, !string.IsNullOrEmpty(Model.Model.GorselDosyaAd), Model.Model.GorselYol, "Command", "GorselSil", Resources.LangResources.GorselSil)
+    @Html.FormTextAreaFor(x => x.Model.Not, 2, 2)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.PersonelId, "", false, command: "DuzenlePersonel")
+    @Html.FormCardDivEnd()
+    <!-- #endregion -->
+
+    <!-- #region Kullanıcı -->
+    @Html.FormCardDivBegin(title1)
+    @Html.FormDropDownListFor(x => x.Model.PersonelYetkiGrupId, Model.PersonelYetkiGrupSelectList)
+    @Html.FormDropDownListFor(x => x.SelectedYetkiliOlduguSubeler, Model.YetkiSubeSelectList, true)
+    @Html.FormTextBoxFor(x => x.Model.Kullanici.KullaniciAd)
+    @Html.FormTextBoxFor(x => x.Model.Kullanici.Sifre, textBoxType: HtmlHelpers.TextBoxType.Sifre)
+    @Html.FormTextBoxFor(x => x.Model.Kullanici.SifreTekrar, textBoxType: HtmlHelpers.TextBoxType.Sifre)
+    @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.SifreyiDegistirmekIstemiyorsaniz)
+    @Html.FormCheckBoxFor(x => x.Model.Kullanici.EtkinMi)
+    @Html.HiddenFor(x => x.Model.PersonelId)
+    @Html.HiddenFor(x => x.Model.Kullanici.PersonelId)
+    @Html.FormButtons(Model.Model.PersonelId, "divModalDelete", true, command: "Duzenle")
+    @Html.FormCardDivEnd()
+    <!-- #endregion -->
+}
+
+@using (Html.BeginForm("Sil", "Personel", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.PersonelId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

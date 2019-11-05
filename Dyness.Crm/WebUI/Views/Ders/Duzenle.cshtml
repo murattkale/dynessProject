@@ -1,0 +1,48 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model DersDuzenleViewModel
+
+@{
+    var title = Model.Model.DersId == 0
+    ? Resources.LangResources.DersEkle
+    : $"{Resources.LangResources.DersGuncelle} ({Model.Model.DersAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Dersler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "Ders", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.DersId, Model.DersSelectList, Model.DersSelectList.Any(), Resources.LangResources.Dersler, "/Ders/Duzenle/")
+    @Html.FormDropDownListFor(x => x.Model.DersGrupId, Model.DersGrupSelectList)
+    @Html.FormDropDownListFor(x => x.SelectedBranslar, Model.BransSelectList, true)
+    @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.OrtakDersEkleBilgi)
+    @Html.FormTextBoxFor(x => x.Model.DersAd)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.DersId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Ders", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.DersId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

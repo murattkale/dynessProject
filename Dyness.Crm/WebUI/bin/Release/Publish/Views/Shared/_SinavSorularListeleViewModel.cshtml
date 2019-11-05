@@ -1,0 +1,27 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model SinavDuzenleViewModel
+
+@Html.FormTextBoxFor(x => x.SinavKitapcikAdet)
+
+@for (int i = 0; i < Model.SinavKitapcikAdet; i++)
+{
+    @Html.FormTextBoxFor(x => x.Model.SinavKitapciklar[i].Baslik)
+    @Html.HiddenFor(x => x.Model.SinavKitapciklar[i].SinavId)
+
+    if (Model.Model.SinavKitapciklar[i].SinavSorular != null && Model.Model.SinavKitapciklar[i].SinavSorular.Count > 0)
+    {
+        for (int j = 0; j < Model.Model.SinavKitapciklar[i].SinavSorular.Count; j++)
+        {
+            @Html.FormDropDownListSelectableFor(x => x.Model.SinavKitapciklar[i].SinavSorular[j].DersId, Model.DersSelectList, Model.DersSelectList.Any(), "", "/Sinav/Duzenle/", Resources.LangResources.Dersler)
+            @Html.FormDropDownListFor(x => x.Model.SinavKitapciklar[i].SinavSorular[j].KonuId, Model.KonuSelectList, Model.KonuSelectList.Any(), optionLabel: Resources.LangResources.Dersler)
+
+            @Html.FormTextBoxFor(x => x.Model.SinavKitapciklar[i].SinavSorular[j].Soru)
+            @Html.FormTextBoxFor(x => x.Model.SinavKitapciklar[i].SinavSorular[j].Dogru)
+
+            @Html.HiddenFor(x => x.Model.SinavKitapciklar[i].SinavSorular[j].SinavSoruId)
+            @Html.HiddenFor(x => x.Model.SinavKitapciklar[i].SinavSorular[j].SinavKitapcikId)
+        }
+    }
+}

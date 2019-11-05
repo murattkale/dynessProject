@@ -1,0 +1,39 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model VideoKategoriListeleViewModel
+
+@{
+    var title = Resources.LangResources.VideoKategoriler;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Dersler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.VideoKategoriAd)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.VideoKategoriAd)', '@Model.Model.GetColumnName(x=> x.VideoKategoriAd)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.DersAd)', '@Model.Model.GetColumnName(x=> x.DersAd)', false, 0));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.EtkinMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.Durum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinMi)', '@Model.Model.GetColumnName(x=> x.Durum)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        SetDataTable(false, 'tblListele', '/VideoKategori/Listele', 0, 'asc', columns, '/VideoKategori/Duzenle/', 'VideoKategoriId', null);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "YENİ VİDEO KATEGORİ", "/VideoKategori/Duzenle/")

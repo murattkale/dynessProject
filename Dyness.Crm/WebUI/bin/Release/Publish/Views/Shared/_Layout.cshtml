@@ -1,0 +1,1095 @@
+﻿@using Core.CrossCuttingConcerns.Security
+
+<!DOCTYPE html>
+<html>
+<head>
+    @*<title>@Page.Title</title>*@
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dyness.com.tr</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/assets/global/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap_limitless.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/layout.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/global/js/plugins/forms/inputs/icheck/skins/square/blue.css" rel="stylesheet" type="text/css" />
+
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script src="~/assets/global/js/main/jquery.min.js"></script>
+    <script src="~/assets/global/js/plugins/ui/moment/moment.min.js"></script>
+    <script src="~/assets/global/js/plugins/ui/moment/moment_locales.min.js"></script>
+    <script src="~/assets/global/js/main/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/global/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script src="~/assets/global/js/plugins/forms/inputs/inputmask.js"></script>
+    <script src="~/assets/global/js/plugins/forms/validation/validate.min.js"></script>
+    <script src="~/assets/global/js/plugins/forms/validation/localization/messages_tr.js"></script>
+    <script src="~/assets/global/js/plugins/forms/validation/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/assets/global/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="~/assets/global/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+    <script src="~/assets/global/js/plugins/forms/styling/uniform.min.js"></script>
+    <script src="~/assets/global/js/plugins/forms/inputs/maxlength.min.js"></script>
+    <script src="~/assets/global/js/plugins/forms/inputs/icheck/icheck.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script src="~/assets/global/js/plugins/tables/datatables/extensions/responsive.min.js"></script>
+    <script src="~/assets/global/js/plugins/pickers/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/assets/global/js/plugins/pickers/bootstrap-datepicker/locales/bootstrap-datepicker.tr.js"></script>
+    <script src="~/assets/global/js/plugins/ckeditor/ckeditor.js"></script>
+    <script src="~/assets/js/dashboard.js"></script>
+    <script src="~/assets/js/d3.min.js"></script>
+    <script src="~/assets/js/app.js"></script>
+    <script src="~/assets/js/daterangepicker.js"></script>
+    <script src="~/assets/js/switchery.min.js"></script>
+    <script src="~/assets/js/d3_tooltip.js"></script>
+    <!-- /theme JS files -->
+
+    <script>
+        jQuery.extend(jQuery.validator.methods, {
+            number: function (value, element) {
+                return this.optional(element)
+                    || /^-?(?:\d+|\d{1,3}(?:\.\d{3})+)(?:[,.]\d+)?$/.test(value);
+            }
+        });
+
+    </script>
+
+    @RenderSection("head", required: false)
+    @{
+        var controller = ViewContext.RouteData.Values["controller"].ToString();
+    }
+
+</head>
+<body>
+    <!-- Main navbar -->
+    <div id="main_menu" class="navbar navbar-expand-md navbar-dark">
+        <div class="navbar-brand">
+            <a href="/" class="d-inline-block">
+                @if (!string.IsNullOrEmpty(Identity.KurumLogoYol))
+                {
+                    <img src="@Identity.KurumLogoYol" alt="">
+                }
+                else
+                {
+                    <img src="~/assets/images/logo/logo_light.png" alt="">
+                }
+            </a>
+        </div>
+        <div class="d-md-none">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
+                <i class="icon-tree5"></i>
+            </button>
+            <button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
+                <i class="icon-paragraph-justify3"></i>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-mobile">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
+                        <i class="icon-paragraph-justify3"></i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
+                        <i class="icon-git-compare"></i>
+                        <span class="d-md-none ml-2">Sistem Güncellemleri</span>
+                        @*<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">9</span>*@
+                    </a>
+                    <div class="dropdown-menu dropdown-content wmin-md-350">
+                        <div class="dropdown-content-header">
+                            <span class="font-weight-semibold">Sistem Güncellemleri</span>
+                            <a href="#" class="text-default"><i class="icon-sync"></i></a>
+                        </div>
+                        <div class="dropdown-content-body dropdown-scrollable">
+                            <ul class="media-list">
+                                <li class="media">
+                                    <div class="mr-3">
+                                        <a href="#" class="btn bg-transparent border-primary text-primary rounded-round border-2 btn-icon"><i class="icon-git-pull-request"></i></a>
+                                    </div>
+                                    <div class="media-body">
+                                        Güncelleme yok
+                                        <div class="text-muted font-size-sm">4 dakika önce</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="dropdown-content-footer bg-light">
+                            <a href="#" class="text-grey mr-auto">Tüm Güncellemeler</a>
+                            <div>
+                                <a href="#" class="text-grey" data-popup="tooltip" title="Tümünü Okundu İşaretle"><i class="icon-radio-unchecked"></i></a>
+                                <a href="#" class="text-grey ml-2" data-popup="tooltip" title="Hatalar"><i class="icon-bug2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <span class="badge bg-success">Aktif</span>
+            <ul class="navbar-nav ml-auto">
+                @*<li class="nav-item dropdown">
+                        <a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
+                            <i class="icon-people"></i>
+                            <span class="d-md-none ml-2">Kullanıcılar</span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-300">
+                            <div class="dropdown-content-header">
+                                <span class="font-weight-semibold">Online Kullanıcılar</span>
+                                <a href="#" class="text-default"><i class="icon-search4 font-size-base"></i></a>
+                            </div>
+                            <div class="dropdown-content-body dropdown-scrollable">
+                                <ul class="media-list">
+                                    <li class="media">
+                                        <div class="mr-3">
+                                            <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="#" class="media-title font-weight-semibold">Ahsen Balbekir</a>
+                                        </div>
+                                        <div class="ml-3 align-self-center"><span class="badge badge-mark border-success"></span></div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="mr-3">
+                                            <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="#" class="media-title font-weight-semibold">Bkir Yanbakan</a>
+                                        </div>
+                                        <div class="ml-3 align-self-center"><span class="badge badge-mark border-danger"></span></div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="mr-3">
+                                            <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="#" class="media-title font-weight-semibold">Selami Ergüney</a>
+                                        </div>
+                                        <div class="ml-3 align-self-center"><span class="badge badge-mark border-success"></span></div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="mr-3">
+                                            <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="#" class="media-title font-weight-semibold">İzzet Baykal</a>
+                                        </div>
+                                        <div class="ml-3 align-self-center"><span class="badge badge-mark border-warning-300"></span></div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="mr-3">
+                                            <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="#" class="media-title font-weight-semibold">Ramazan Bayır</a>
+                                        </div>
+                                        <div class="ml-3 align-self-center"><span class="badge badge-mark border-grey-400"></span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-content-footer bg-light">
+                                <a href="#" class="text-grey mr-auto">Tüm Kullanıcılar</a>
+                                <a href="#" class="text-grey"><i class="icon-gear"></i></a>
+                            </div>
+                        </div>
+                    </li>*@
+                <li class="nav-item dropdown">
+                    <a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
+                        <i class="icon-bubbles4"></i>
+                        <span class="d-md-none ml-2">@Resources.LangResources.Mesajlarim</span>
+                        @*<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>*@
+                    </a>
+
+                    <div id="mesajlarim" class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
+                        <div class="dropdown-content-header">
+                            <span class="font-weight-semibold">@Resources.LangResources.Mesajlarim</span>
+                            <a href="#" class="text-default"><i class="icon-compose"></i></a>
+                        </div>
+                        <div class="dropdown-content-body dropdown-scrollable">
+                            <ul class="media-list">
+                                @*<li class="media">
+                                        <div class="mr-3 position-relative">
+                                            <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="media-title">
+                                                <a href="#">
+                                                    <span class="font-weight-semibold">Taylan Kaya</span>
+                                                    <span class="text-muted float-right font-size-sm">04:58</span>
+                                                </a>
+                                            </div>
+                                            <span class="text-muted">Merhaba; Falan Filan konusu ne oldu</span>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="mr-3 position-relative">
+                                            <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="media-title">
+                                                <a href="#">
+                                                    <span class="font-weight-semibold">Ramazan Bayır</span>
+                                                    <span class="text-muted float-right font-size-sm">12:16</span>
+                                                </a>
+                                            </div>
+                                            <span class="text-muted">Merhaba; Falan Filan konusu ne oldu</span>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="mr-3">
+                                            <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="media-title">
+                                                <a href="#">
+                                                    <span class="font-weight-semibold">Zekai Yavuz</span>
+                                                    <span class="text-muted float-right font-size-sm">22:48</span>
+                                                </a>
+                                            </div>
+                                            <span class="text-muted">Merhaba; Falan Filan konusu ne oldu</span>
+                                        </div>
+                                    </li>*@
+                            </ul>
+                        </div>
+                        <div class="dropdown-content-footer justify-content-center p-0">
+                            <a href="#" class="bg-light text-grey w-100 py-2" data-popup="tooltip" title="Tüm Mesajları Görüntüle"><i class="icon-menu7 d-block top-0"></i></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown dropdown-user">
+                    <a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
+                        <img src="@Identity.GorselYol" class="rounded-circle mr-2" height="34" alt="">
+                        <span>@Identity.AdSoyad</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        @*<a href="#" class="dropdown-item"><i class="icon-user-plus"></i> Profilim</a>
+                            <a href="#" class="dropdown-item"><i class="icon-coins"></i> Ödemelerim</a>*@
+                        <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i>@Resources.LangResources.Mesajlarim @*<span class="badge badge-pill bg-blue ml-auto">58</span>*@</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="icon-cog5"></i>@Resources.LangResources.HesapAyarlari
+                        </a>
+                        <a href="@Url.Action("CikisYap","Kullanici")" class="dropdown-item"><i class="icon-switch2"></i>@Resources.LangResources.CikisYap</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /main navbar -->
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main sidebar -->
+        <div class="sidebar sidebar-light sidebar-main sidebar-expand-md">
+            <!-- Sidebar mobile toggler -->
+            <div class="sidebar-mobile-toggler text-center">
+                <a href="#" class="sidebar-mobile-main-toggle">
+                    <i class="icon-arrow-left8"></i>
+                </a>
+                Bidolu Eğitim
+                <a href="#" class="sidebar-mobile-expand">
+                    <i class="icon-screen-full"></i>
+                    <i class="icon-screen-normal"></i>
+                </a>
+            </div>
+            <!-- /sidebar mobile toggler -->
+            <!-- Sidebar content -->
+            <div class="sidebar-content">
+                <!-- User menu -->
+                @*<div class="sidebar-user">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="mr-3">
+                                    <a href="#"><img src="~/assets/images/placeholders/placeholder.jpg" width="38" height="38" class="rounded-circle" alt=""></a>
+                                </div>
+                                <div class="media-body">
+                                    <div class="media-title font-weight-semibold">Victoria Baker</div>
+                                    <div class="font-size-xs opacity-50">
+                                        <i class="icon-pin font-size-sm"></i> &nbsp;Santa Ana, CA
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                <div class="sidebar-user-material">
+                    <div class="sidebar-user-material-body">
+                        <div class="card-body text-center">
+                            <a href="#">
+                                <img src="@Identity.GorselYol" class="img-fluid rounded-circle shadow-1 mb-3" width="80" height="80" alt="">
+                            </a>
+                            <h6 class="mb-0 text-white text-shadow-dark"><strong>@Identity.AdSoyad</strong></h6>
+                            <span class="font-size-sm text-white text-shadow-dark">@Identity.PersonelGrupAd</span><br />
+                            <span class="font-size-sm text-white text-shadow-dark">@Identity.UlkeAd</span><br />
+                        </div>
+
+                        <div class="sidebar-user-material-footer">
+                            <a href="#user-nav" class="d-flex justify-content-between align-items-center text-shadow-dark dropdown-toggle" data-toggle="collapse"><span>@Resources.LangResources.Hesabim</span></a>
+                        </div>
+                    </div>
+
+                    <div class="collapse" id="user-nav">
+                        <ul class="nav nav-sidebar">
+                            @*<li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="icon-user-plus"></i>
+                                        <span>Profilim</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="icon-coins"></i>
+                                        <span>Ödemelerim</span>
+                                    </a>
+                                </li>*@
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="icon-comment-discussion"></i>
+                                    <span>@Resources.LangResources.Mesajlarim</span>
+                                    <span class="badge bg-teal-400 badge-pill align-self-center ml-auto"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="icon-cog5"></i>
+                                    <span>@Resources.LangResources.HesapAyarlari</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("CikisYap","Kullanici")" class="nav-link">
+                                    <i class="icon-switch2"></i>
+                                    <span>@Resources.LangResources.CikisYap</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /user menu -->
+                <!-- Main navigation -->
+                <div class="card card-sidebar-mobile">
+                    <ul class="nav nav-sidebar" data-nav-type="accordion">
+                        <!-- Main -->
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Home")" class="nav-link">
+                                <i class="icon-home4"></i>
+                                <span>@Resources.LangResources.BilgiPaneli</span>
+                            </a>
+                        </li>
+                        @{
+                            var navItemOpen = "nav-item-open";
+                            var navItemOpenStyle = "display:block;";
+
+                            var kurumVeSubeler = new List<string> { "kurum", "sube", "sezon", "brans", "sinif", "sinifseans", "sinifTur", "sinifseviye", "derslik" };
+
+                            var openClass = kurumVeSubeler.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpen : "";
+                            var openStyle = kurumVeSubeler.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpenStyle : "";
+                        }
+
+                        <li class="nav-item nav-item-submenu @openClass">
+                            <a href="#" class="nav-link"><i class="icon-collaboration"></i> <span>@Resources.LangResources.KurumVeSubeler</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="@Resources.LangResources.KurumVeSubeler" style="@openStyle">
+                                <li class="nav-item"><a href="/Kurum/Listele" class="nav-link">@Resources.LangResources.Kurumlar</a></li>
+                                <li class="nav-item"><a href="/Sube/Listele" class="nav-link">@Resources.LangResources.Subeler</a></li>
+                                <li class="nav-item"><a href="/Sezon/Listele" class="nav-link">@Resources.LangResources.Sezonlar</a></li>
+                                <li class="nav-item"><a href="/Brans/Duzenle" class="nav-link">@Resources.LangResources.Branslar</a></li>
+                                <li class="nav-item"><a href="/Sinif/Listele" class="nav-link">@Resources.LangResources.Siniflar</a></li>
+                                <li class="nav-item"><a href="/Sinif/TopluOgrenciSozlesmeSinifGuncelle" class="nav-link">@Resources.LangResources.TopluSinifGuncelle</a></li>
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">@Resources.LangResources.Tanimlamalar</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/SinifSeans/Duzenle" class="nav-link">@Resources.LangResources.SinifSeans</a></li>
+                                        <li class="nav-item"><a href="/SinifTur/Duzenle" class="nav-link">@Resources.LangResources.SinifTur</a></li>
+                                        <li class="nav-item"><a href="/SinifSeviye/Duzenle" class="nav-link">@Resources.LangResources.SinifSeviye</a></li>
+                                        <li class="nav-item"><a href="/Derslik/Duzenle" class="nav-link">@Resources.LangResources.Derslik</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-pencil7"></i> <span>Ön Kayıtlar</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Yeni Ön Kayıt Oluştur</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Listesi</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Kampanyaları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Randevuları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Randevuları - Bugün</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Ara </a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Hızlı Ön Kayıt Getir </a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Görüşmelerim </a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Randevularım</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Personel Randevuları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Gözlem Paneli</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Anlık Personel Verileri</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Toplu Ön Kayt Durumu Güncelle</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Dışarı Aktar</a></li>
+                                <!--Ön kayıt sayfaları bir araya toplanacak-->
+                            </ul>
+                        </li>
+                        @{
+                            var ogrenciler = new List<string> { "ogrenci", "ogrencisozlesme", "etkinlik", "yayin", "kiyafet", "servis", "kiyafettur", "kiyafetbeden", "eskikayit" };
+
+                            openClass = ogrenciler.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpen : "";
+                            openStyle = ogrenciler.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpenStyle : "";
+                        }
+
+                        <li class="nav-item nav-item-submenu @openClass">
+                            <a href="#" class="nav-link"><i class="icon-users"></i><span>@Resources.LangResources.Ogrenciler</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Ogrenciler" style="@openStyle">
+                                <li class="nav-item"><a href="/Ogrenci/Duzenle" class="nav-link">@Resources.LangResources.OgrenciEkle</a></li>
+                                <li class="nav-item"><a href="/Ogrenci/Listele" class="nav-link">@Resources.LangResources.Ogrenciler</a></li>
+                                <li class="nav-item"><a href="/OgrenciSozlesme/Duzenle" class="nav-link">@Resources.LangResources.OgrenciSozlesmeEkle</a></li>
+                                <li class="nav-item"><a href="/OgrenciSozlesme/Listele" class="nav-link">@Resources.LangResources.OgrenciSozlesmeler</a></li>
+                                <li class="nav-item"><a href="/OgrenciSozlesme/OgrenciSozlesmeVeriGuncelle" class="nav-link">@Resources.LangResources.SubeOgrenciSozlesmeVeriGuncelle</a></li>
+                                <li class="nav-item"><a href="/Etkinlik/Listele" class="nav-link">@Resources.LangResources.Etkinlikler</a></li>
+                                <li class="nav-item"><a href="/Yayin/Listele" class="nav-link">@Resources.LangResources.Yayinlar</a></li>
+                                <li class="nav-item"><a href="/Kiyafet/Listele" class="nav-link">@Resources.LangResources.Kiyafetler</a></li>
+                                <li class="nav-item"><a href="/Servis/Listele" class="nav-link">@Resources.LangResources.Servisler</a></li>
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">@Resources.LangResources.EskiKayitlar</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/EskiKayit/Listele" class="nav-link">@Resources.LangResources.EskiKayitlar</a></li>
+                                        <li class="nav-item"><a href="/EskiKayit/EskiKayitVeriGuncelle" class="nav-link">@Resources.LangResources.EskiKayitGuncelle</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">@Resources.LangResources.OgrenciTanimlamalar</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/KiyafetTur/Duzenle" class="nav-link">@Resources.LangResources.KiyafetTurler</a></li>
+                                        <li class="nav-item"><a href="/KiyafetBeden/Duzenle" class="nav-link">@Resources.LangResources.KiyafetBedenler</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        @{
+                            var personeller = new List<string> { "personel", "puantaj", "personelyetkigrup", "personelgrup", "kiyafet", "servis", "kiyafettur", "kiyafetbeden" };
+
+                            openClass = personeller.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpen : "";
+                            openStyle = personeller.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpenStyle : "";
+                        }
+                        <li class="nav-item nav-item-submenu @openClass">
+                            <a href="#" class="nav-link"><i class="icon-user-tie"></i> <span>@Resources.LangResources.Personeller</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Personeller" style="@openStyle">
+                                <li class="nav-item"><a href="/Personel/Listele" class="nav-link">@Resources.LangResources.Personeller</a></li>
+                                <li class="nav-item"><a href="/Puantaj/Duzenle" class="nav-link">@Resources.LangResources.PuantajDuzenle</a></li>
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">@Resources.LangResources.PersonelTanimlamalar</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/PersonelYetkiGrup/Duzenle" class="nav-link">@Resources.LangResources.PersonelYetkiGruplar</a></li>
+                                        <li class="nav-item"><a href="/PersonelGrup/Duzenle" class="nav-link">@Resources.LangResources.PersonelGruplar</a></li>
+                                        <li class="nav-item"><a href="/Puantaj/GunlukDurumDuzenle" class="nav-link">@Resources.LangResources.PuantajGunlukDurumlar</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        @{
+                            var dersler = new List<string> { "ders", "video", "videokategori" };
+
+                            openClass = dersler.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpen : "";
+                            openStyle = dersler.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpenStyle : "";
+                        }
+                        <li class="nav-item nav-item-submenu @openClass">
+                            <a href="#" class="nav-link"><i class="icon-compose"></i> <span>@Resources.LangResources.Dersler</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Dersler" style="@openStyle">
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">@Resources.LangResources.Videolar</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/Video/Duzenle" class="nav-link">@Resources.LangResources.VideoEkle</a></li>
+                                        <li class="nav-item"><a href="/Video/Listele" class="nav-link">@Resources.LangResources.Videolar</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">@Resources.LangResources.DersTanimlamalar</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/Ders/Duzenle" class="nav-link">@Resources.LangResources.Dersler</a></li>
+                                        <li class="nav-item"><a href="/VideoKategori/Duzenle" class="nav-link">@Resources.LangResources.VideoKategoriEkle</a></li>
+                                        <li class="nav-item"><a href="/VideoKategori/Listele" class="nav-link">@Resources.LangResources.VideoKategoriler</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        @{
+                            var sinavlar = new List<string> { "konu", "dersgrup", "sinavtur", "sinav", "puantur", "optikform" };
+
+                            openClass = sinavlar.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpen : "";
+                            openStyle = sinavlar.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpenStyle : "";
+                        }
+                        <li class="nav-item nav-item-submenu @openClass">
+                            <a href="#" class="nav-link"><i class="icon-stairs-up"></i> <span>@Resources.LangResources.Sinavlar</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Sinavlar" style="@openStyle">
+                                <li class="nav-item"><a href="/Sinav/Duzenle" class="nav-link">@Resources.LangResources.SinavEkle</a></li>
+                                <li class="nav-item"><a href="/Sinav/Listele" class="nav-link">@Resources.LangResources.Sinavlar</a></li>
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">@Resources.LangResources.SinavTanimlamalar</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/DersGrup/Duzenle" class="nav-link">@Resources.LangResources.DersGruplar</a></li>
+                                        <li class="nav-item"><a href="/Konu/Listele" class="nav-link">@Resources.LangResources.Konular</a></li>
+                                        <li class="nav-item"><a href="/PuanTur/Duzenle" class="nav-link">@Resources.LangResources.PuanTurler</a></li>
+                                        <li class="nav-item"><a href="/SinavTur/Duzenle" class="nav-link">@Resources.LangResources.SinavTurler</a></li>
+                                        <li class="nav-item"><a href="/OptikForm/Duzenle" class="nav-link">@Resources.LangResources.OptikFormlar</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        @{
+                            var smsler = new List<string> { "smshesap", "smsmetinsablon", "sms", "smshesaphareket" };
+
+                            openClass = smsler.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpen : "";
+                            openStyle = smsler.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpenStyle : "";
+                        }
+                        <li class="nav-item nav-item-submenu @openClass">
+                            <a href="#" class="nav-link"><i class="icon-envelop3"></i> <span>@Resources.LangResources.Sms</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Sinavlar" style="@openStyle">
+                                <li class="nav-item"><a href="/Sms/Duzenle" class="nav-link">@Resources.LangResources.SmsGonder</a></li>
+                                <li class="nav-item"><a href="/SmsHesapHareket/Listele" class="nav-link">@Resources.LangResources.SmsHareketleri</a></li>
+                                <li class="nav-item"><a href="/SmsHesap/Listele" class="nav-link">@Resources.LangResources.SmsHesaplar</a></li>
+                                <li class="nav-item"><a href="/SmsHesapHareket/Listele" class="nav-link">@Resources.LangResources.SmsHesapHareketler</a></li>
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">@Resources.LangResources.Tanimlamalar</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/SmsHesap/Duzenle" class="nav-link">@Resources.LangResources.SmsHesapEkle</a></li>
+                                        <li class="nav-item"><a href="/SmsMetinSablon/Duzenle" class="nav-link">@Resources.LangResources.SmsMetinSablonlar</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link"><i class="icon-stats-dots"></i> <span>Raporlar</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item" style="display:none;"><a href="/Bilgi/Goruntule" class="nav-link">Devamsızlık Raporu</a></li>
+                                <li class="nav-item" style="display:none;"><a href="/Bilgi/Goruntule" class="nav-link">Öğretmen Ders Kayıtları</a></li>
+                                <li class="nav-item" style="display:none;"><a href="/Bilgi/Goruntule" class="nav-link">Öğretmen Özel Ders Kayıtları</a></li>
+                                <li class="nav-item" style="display:none;"><a href="/Bilgi/Goruntule" class="nav-link">Öğrenci Ödeme Planları</a></li>
+                                <li class="nav-item" style="display:none;"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Raporu</a></li>
+                                <li class="nav-item" style="display:none;"><a href="/Bilgi/Goruntule" class="nav-link">Çift Kayıt Raporu</a></li>
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">@Resources.LangResources.RaporTanimlamalar</a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/NeredenDuydunuz/Duzenle" class="nav-link">@Resources.LangResources.NeredenDuydunuzlar</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        @{
+                            var muhasebeler = new List<string> { "hesap", "banka", "bankahesap", "hesaphareket", "hesaptur" };
+
+                            openClass = muhasebeler.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpen : "";
+                            openStyle = muhasebeler.Count(x => string.Equals(x, controller.ToLower())) > 0 ? navItemOpenStyle : "";
+                        }
+                        <li class="nav-item nav-item-submenu @openClass">
+                            <a href="#" class="nav-link"><i class="icon-briefcase"></i> <span>Muhasebe</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts" style="@openStyle">
+
+                                <li class="nav-item">
+                                    <a href="/HesapHareket/Listele/0" class="nav-link">
+                                        <span class="badge bg-info" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.IslemDetaylar</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/Hesap/SubeHesapListele" class="nav-link">
+                                        <span class="badge bg-primary" style="margin-left: 0px !important;font-size: 13px; ">@Resources.LangResources.SubeToplamHesaplar</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Hesap/KasaBankaHesapListele" class="nav-link">
+                                        <span class="badge bg-primary" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.KasaBankaHesaplar</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/Hesap/PersonelHesapListele" class="nav-link">
+                                        <span class="badge bg-primary" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.PersonelHesaplar</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/Hesap/OgrenciHesapListele" class="nav-link">
+                                        <span class="badge bg-primary" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.OgrenciToplamlari</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/Hesap/OgrenciHesapListele?VadesiGecen=1" class="nav-link">
+                                        <span class="badge bg-danger" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.VadesiGecenOdemeler</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/HesapHareket/Duzenle/1" class="nav-link">
+                                        <span class="badge bg-success" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.HesapHareketGelirEkle</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/Hesap/GelirHesapListele" class="nav-link">
+                                        <span class="badge bg-success" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.GelirToplamlari</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/HesapHareket/Listele/1" class="nav-link">
+                                        <span class="badge bg-success" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.HesapHareketGelirListele</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Hesap/Listele/1" class="nav-link">
+                                        <span class="badge bg-success" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.HesapGelirListele</span>
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a href="/HesapHareket/Duzenle/2" class="nav-link">
+                                        <span class="badge bg-danger" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.HesapHareketGiderEkle</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/HesapHareket/Duzenle/32" class="nav-link">
+                                        <span class="badge bg-danger" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.HesapHareketPersonelCikisEkle</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Hesap/GiderHesapListele" class="nav-link">
+                                        <span class="badge bg-danger" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.GiderToplamlari</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/HesapHareket/Listele/2" class="nav-link">
+                                        <span class="badge bg-danger" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.HesapHareketGiderListele</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Hesap/Listele/2" class="nav-link">
+                                        <span class="badge bg-danger" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.HesapGiderListele</span>
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item" style="display:none;">
+                                    <a href="#" class="nav-link">
+                                        <span class="badge bg-secondary" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.Virman</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/BankaHesap/Listele" class="nav-link">
+                                        <span class="badge bg-secondary" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.BankaHesaplar</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">
+                                        <span class="badge bg-dark" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.Bankalar</span>
+                                    </a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/Banka/Duzenle" class="nav-link">@Resources.LangResources.Bankalar</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item nav-item-submenu nav-item-close">
+                                    <a href="#" class="nav-link">
+                                        <span class="badge bg-dark" style="margin-left: 0px !important;font-size: 13px;">@Resources.LangResources.MuahsebeTanimlamalar</span>
+                                    </a>
+                                    <ul class="nav nav-group-sub">
+                                        <li class="nav-item"><a href="/HesapTur/Duzenle/1" class="nav-link">@Resources.LangResources.GelirTurler</a></li>
+                                        <li class="nav-item"><a href="/HesapTur/Duzenle/2" class="nav-link">@Resources.LangResources.GiderTurler</a></li>
+                                        <li class="nav-item"><a href="/HesapTur/Duzenle/0" class="nav-link">@Resources.LangResources.HesapTurler</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        @*<li class="nav-item nav-item-submenu" style="display: none;">
+                                <a href="#" class="nav-link"><i class="icon-podium"></i> <span>Tanımlamalar</span></a>
+                                <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                    <li class="nav-item"><a href="@Url.Action("Duzenle","SinifSeviye")" class="nav-link">Sınıf Seviye Ekle</a></li>
+                                    <li class="nav-item"><a href="@Url.Action("Listele","SinifSeviye")" class="nav-link">Sınıf Seviyeleri</a></li>
+                                    <li class="nav-item"><a href="@Url.Action("Listele","SinifTur")" class="nav-link">Sınıf Türleri</a></li>
+                                    <li class="nav-item"><a href="@Url.Action("Duzenle","SinifTur")" class="nav-link">Sınıf Tür Ekle</a></li>
+                                    <li class="nav-item"><a href="@Url.Action("Duzenle","SinifSeans")" class="nav-link">Sınıf Seans Ekle</a></li>
+                                    <li class="nav-item"><a href="@Url.Action("Listele","SinifSeans")" class="nav-link">Sınıf Seansları</a></li>
+                                    <li class="nav-item"><a href="@Url.Action("Duzenle","Derslik")" class="nav-link">Derslik Ekle</a></li>
+                                    <li class="nav-item"><a href="@Url.Action("Listele","Derslik")" class="nav-link">Derslikler</a></li>
+                                </ul>
+                            </li>*@
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-medal2"></i> <span>Etüt</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Bireysel Etüt Rezervasyonları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Etüt Konuları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Etüt Dersleri</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sınıf Etüt Rezervasyonları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Karma Etüt Rezervasyonları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Haftalık Online Etüt Planlama</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Online Etüt Rezervasyonları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Online Etüt Talep Günleri</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-font-size2"></i> <span>Özel Ders</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Özel Ders Öğrenci Ekle</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Özel Ders Öğrencileri</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-checkmark2"></i> <span>Sınıf Yoklamaları</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sınıf Yoklaması Alma</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Günlük Yoklama Kontrolü</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sınıf Yoklaması Kayıtları</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-stats-bars2"></i> <span>İstatistikler</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">İstatistikler</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Gider İstatistikleri</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Gelir İstatistikleri</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sezon Doluluk Oranları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Yerleşim Yerine Göre Öğrenciler</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sınıf Doluluk Oranları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Gelir / Gider Grafiği</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ön Kayıt Personel İstatislikleri</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sezon Ciro Karşılaştırması</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-envelop3"></i> <span>Mesajlar</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Gelen Kutusu</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Yeni Mesaj Gönder</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Giden Kutusu</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-stairs-up"></i> <span>Ölçme ve Değerlendirme</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sınav Türleri</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sınav Listesi</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sınav Kodları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Öğrenci Başarı Sıralaması</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sınav Ders Grupları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sınav Veri Dosyası Türleri</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Sınav İstatislikleri</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">MEB Sınavları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Toplu Sınav Değerleri</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Deneme Sınavları</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-download"></i> <span>Bulut</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Paylaşımlar</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Yeni Dosya Paylaşımı</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-folder"></i> <span>Ajanda</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Yeni Etkinlik Oluştur</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Etkinlikleri Düzenle</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Takvim</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-clapboard-play"></i> <span>Uzaktan Eğitim</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Video Kategori</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Videolar</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Yeni Video Ekle</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Dosya Kategorileri</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Dosyalar</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Yeni Dosya Ekle</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-megaphone"></i> <span>Duyurular</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Duyurular</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Yeni Duyuru</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-bubble"></i> <span>SMS</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">SMS Gönder</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">SMS Raporları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">SMS Hesapları</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">SMS Şablonları</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-brain"></i> <span>Ödevler</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Yeni Ödev Oluştur</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ödev Listesi</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu" style="display:none;">
+                            <a href="#" class="nav-link"><i class="icon-puzzle"></i> <span>Sistem</span></a>
+                            <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ayarlar</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Ekran Aracı Erişimini Düzenle</a></li>
+                                <li class="nav-item"><a href="/Bilgi/Goruntule" class="nav-link">Modül İçeriklerini Düzenle</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /main navigation -->
+            </div>
+            <!-- /sidebar content -->
+
+        </div>
+        <!-- /main sidebar -->
+        <!-- Main content -->
+        <div class="content-wrapper">
+            @if (IsSectionDefined("Menu") || IsSectionDefined("Page"))
+            {
+                var sectionMenu = RenderSection("Menu").ToHtmlString();
+                var sectionPage = RenderSection("Page").ToHtmlString();
+
+                <!-- Page header -->
+                <div class="page-header page-header-light">
+                    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+                        <div class="page-title d-flex">
+                            <h4><span class="font-weight-semibold">@Html.Raw(sectionMenu)</span> - @Html.Raw(sectionPage)</h4>
+                        </div>
+                        <div class="d-flex">
+                            <div class="breadcrumb">
+                                <a href="@Url.Action("Index", "Home")" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Bilgi Paneli</a>
+                                @if (IsSectionDefined("Menu"))
+                                {
+                                    <a href="form_inputs.html" class="breadcrumb-item">@Html.Raw(sectionMenu)</a>
+                                }
+                                @if (IsSectionDefined("Page"))
+                                {
+                                    <span class="breadcrumb-item active">@Html.Raw(sectionPage)</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /page header -->
+            }
+            <!-- Content area -->
+            <div class="content">
+                @RenderBody()
+            </div>
+            <!-- /content area -->
+            <!-- Footer -->
+            <div class="navbar navbar-expand-lg navbar-light">
+                <div class="text-center d-lg-none w-100">
+                    <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+                        <i class="icon-unfold mr-2"></i>
+                        Bidolu Eğitim
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-footer">
+                    <span class="navbar-text">
+                        © 2019-2020  <a href="#">dyness.com.tr</a> Tüm hakları saklıdır.
+                    </span>
+
+                </div>
+            </div>
+            <!-- /footer -->
+        </div>
+        <!-- /main content -->
+        <!-- Right sidebar -->
+        <div id="mesajlar" class="sidebar sidebar-dark sidebar-right sidebar-expand-md" style="display:none;">
+            <!-- Sidebar mobile toggler -->
+            <div class="sidebar-mobile-toggler text-center">
+                <a href="#" class="sidebar-mobile-expand">
+                    <i class="icon-screen-full"></i>
+                    <i class="icon-screen-normal"></i>
+                </a>
+                <span class="font-weight-semibold">Right sidebar</span>
+                <a href="#" class="sidebar-mobile-right-toggle">
+                    <i class="icon-arrow-right8"></i>
+                </a>
+            </div>
+            <!-- /sidebar mobile toggler -->
+            <!-- Sidebar content -->
+            <div class="sidebar-content">
+
+                <div class="card">
+                    <div class="card-header bg-transparent header-elements-inline">
+                        <span class="text-uppercase font-size-sm font-weight-semibold">Aktif Kullanıcılar</span>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                <a class="list-icons-item" data-action="collapse"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="media-list">
+                            <li class="media">
+                                <a href="#" class="mr-3">
+                                    <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <a href="#" class="media-title text-white font-weight-semibold">Ahsen Balbekir</a>
+                                </div>
+                                <div class="ml-3 align-self-center">
+                                    <span class="badge badge-mark bg-teal-300 border-teal-300"></span>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a href="#" class="mr-3">
+                                    <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <a href="#" class="media-title text-white font-weight-semibold">Bekir Yanbakan</a>
+                                </div>
+                                <div class="ml-3 align-self-center">
+                                    <span class="badge badge-mark bg-teal-300 border-teal-300"></span>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a href="#" class="mr-3">
+                                    <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <a href="#" class="media-title text-white font-weight-semibold">Selami Ergüney</a>
+                                </div>
+                                <div class="ml-3 align-self-center">
+                                    <span class="badge badge-mark bg-teal-300 border-teal-300"></span>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a href="#" class="mr-3">
+                                    <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <a href="#" class="media-title text-white font-weight-semibold">İzzet Baykal</a>
+                                </div>
+                                <div class="ml-3 align-self-center">
+                                    <span class="badge badge-mark bg-teal-300 border-teal-300"></span>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a href="#" class="mr-3">
+                                    <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <a href="#" class="media-title text-white font-weight-semibold">Ramazan Bayır</a>
+                                </div>
+                                <div class="ml-3 align-self-center">
+                                    <span class="badge badge-mark bg-teal-300 border-teal-300"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contacts -->
+                <div class="card">
+                    <div class="card-header bg-transparent header-elements-inline">
+                        <span class="text-uppercase font-size-sm font-weight-semibold">Tüm Kişiler</span>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                <a class="list-icons-item" data-action="collapse"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="media-list">
+                            <li class="media">
+                                <a href="#" class="mr-3 position-relative">
+                                    <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                    <span class="badge bg-success-400 badge-pill badge-float">6</span>
+                                </a>
+                                <div class="media-body align-self-center">
+                                    Zekai Yavuz
+                                </div>
+                                <div class="ml-3 align-self-center">
+                                    <div class="dropdown">
+                                        <a href="#" class="text-white dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-more2"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Mesaj Gönder</a>
+                                            <a href="#" class="dropdown-item"><i class="icon-user"></i>Profili Göster</a>
+                                            <a href="#" class="dropdown-item"><i class="icon-mail5"></i> Mail Gönder</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" class="dropdown-item"><i class="icon-statistics"></i> İstatislikler</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a href="#" class="mr-3 position-relative">
+                                    <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                    <span class="badge bg-success-400 badge-pill badge-float">9</span>
+                                </a>
+                                <div class="media-body align-self-center">
+                                    Taylan Kaya
+                                </div>
+                                <div class="ml-3 align-self-center">
+                                    <div class="dropdown">
+                                        <a href="#" class="text-white dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-more2"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Mesaj Gönder</a>
+                                            <a href="#" class="dropdown-item"><i class="icon-user"></i>Profili Göster</a>
+                                            <a href="#" class="dropdown-item"><i class="icon-mail5"></i> Mail Gönder</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" class="dropdown-item"><i class="icon-statistics"></i> İstatislikler</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a href="#" class="mr-3">
+                                    <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                </a>
+                                <div class="media-body align-self-center">
+                                    Davut Gün
+                                </div>
+                                <div class="ml-3 align-self-center">
+                                    <div class="dropdown">
+                                        <a href="#" class="text-white dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-more2"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Mesaj Gönder</a>
+                                            <a href="#" class="dropdown-item"><i class="icon-user"></i>Profili Göster</a>
+                                            <a href="#" class="dropdown-item"><i class="icon-mail5"></i> Mail Gönder</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" class="dropdown-item"><i class="icon-statistics"></i> İstatislikler</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a href="#" class="mr-3">
+                                    <img src="~/assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+                                </a>
+                                <div class="media-body align-self-center">
+                                    Metin Akman
+                                </div>
+                                <div class="ml-3 align-self-center">
+                                    <div class="dropdown">
+                                        <a href="#" class="text-white dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-more2"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Mesaj Gönder</a>
+                                            <a href="#" class="dropdown-item"><i class="icon-user"></i>Profili Göster</a>
+                                            <a href="#" class="dropdown-item"><i class="icon-mail5"></i> Mail Gönder</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" class="dropdown-item"><i class="icon-statistics"></i> İstatislikler</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /contacts -->
+            </div>
+            <!-- /sidebar content -->
+        </div>
+        <!-- /right sidebar -->
+    </div>
+    <!-- /page content -->
+</body>
+</html>

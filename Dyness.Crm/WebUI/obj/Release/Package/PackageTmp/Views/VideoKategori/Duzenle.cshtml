@@ -1,0 +1,44 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model  VideoKategoriDuzenleViewModel
+
+@{
+    var title = Model.Model.VideoKategoriId == 0
+        ? Resources.LangResources.VideoKategoriEkle
+        : $"{Resources.LangResources.VideoKategoriGuncelle} ({Model.Model.VideoKategoriAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Dersler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "VideoKategori", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+    @Html.FormDropDownListFor(x => x.Model.DersId, Model.DersSelectList)
+    @Html.FormTextBoxFor(x => x.Model.VideoKategoriAd)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.VideoKategoriId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Konu", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.VideoKategoriId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

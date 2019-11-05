@@ -1,0 +1,70 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model SmsMetinSablonDuzenleViewModel
+
+@{
+    var title = Model.Model.SmsMetinSablonId == 0
+    ? Resources.LangResources.SmsMetinSablonEkle
+    : $"{Resources.LangResources.SmsMetinSablonGuncelle} ({Model.Model.Baslik})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Sms;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/jquery-ui.min.js"></script>
+    <script src="~/assets/js/SmsMetinSablonDuzenle.js"></script>
+    <link href="~/assets/css/SmsMetinSablonDuzenle.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("Duzenle", "SmsMetinSablon", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.SmsMetinSablonId, Model.SmsMetinSablonSelectList, Model.SmsMetinSablonSelectList.Any(), Resources.LangResources.Dersler, "/SmsMetinSablon/Duzenle/")
+    @Html.FormTextBoxFor(x => x.Model.Baslik)
+    @Html.FormTextAreaFor(x => x.Model.Sablon, 2, 2, true)
+    <div class="form-group row">
+        <label class="col-form-label col-lg-2">@Resources.LangResources.Parametreler</label>
+        <div class="col-lg-10">
+            <div class="dragitems">
+                <ul id="allfields">
+                    <li id="node1" class="ui-draggable"><a href="#">@Resources.LangResources.SMSROgrenciAdSoyad</a></li>
+                    <li id="node1" class="ui-draggable"><a href="#">@Resources.LangResources.SMSRPersonelAdSoyad</a></li>
+                    <li id="node1" class="ui-draggable"><a href="#">@Resources.LangResources.SMSRVeliAdSoyad</a></li>
+                    <li id="node1" class="ui-draggable"><a href="#">@Resources.LangResources.SMSRSinavAd</a></li>
+                    <li id="node1" class="ui-draggable"><a href="#">@Resources.LangResources.SMSRSinavTarihi</a></li>
+                    <li id="node1" class="ui-draggable"><a href="#">@Resources.LangResources.SMSROgrenciNet</a></li>
+                    <li id="node1" class="ui-draggable"><a href="#">@Resources.LangResources.SMSROgrenciPuanlar</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.SmsMetinSablonId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "SmsMetinSablon", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.SmsMetinSablonId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

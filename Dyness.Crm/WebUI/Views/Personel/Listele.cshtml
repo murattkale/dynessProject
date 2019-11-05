@@ -1,0 +1,69 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+@using Core.General;
+@using Core.CrossCuttingConcerns.Security;
+
+@model PersonelListeleViewModel
+
+@{
+    var title = Resources.LangResources.Personeller;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Personeller;
+}
+
+@{
+    var ayarlar = AyarlarService.Get();
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var imageColumn = new DataColumnImage('@Model.Model.GetColumnName(x => x.GorselYol)', @(ayarlar.PersonelGorselSize.Height/2), @(ayarlar.PersonelGorselSize.Width/2));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.GorselDosyaAd)', '@Model.Model.GetColumnName(x=> x.GorselYol)', false, 0, AlignEnum.Center, AlignEnum.Center, null, imageColumn, null));
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.AdSoyad)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.AdSoyad)', '@Model.Model.GetColumnName(x=> x.AdSoyad)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.KurumAd)', '@Model.Model.GetColumnName(x=> x.KurumAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SubeAd)', '@Model.Model.GetColumnName(x=> x.SubeAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.PersonelGrup.PersonelGrupAd)', '@Model.Model.GetColumnName(x=> x.PersonelGrupAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.PersonelYetkiGrup.PersonelYetkiGrupAd)', '@Model.Model.GetColumnName(x=> x.PersonelYetkiGrupAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.CepTelefon)', '@Model.Model.GetColumnName(x=> x.CepTelefon)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Eposta)', '@Model.Model.GetColumnName(x=> x.Eposta)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.IseBaslamaTarihi)', '@Model.Model.GetColumnName(x=> x.IseBaslamaTarihiFormatted)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.IstenAyrilmaTarihi)', '@Model.Model.GetColumnName(x=> x.IstenAyrilmaTarihiFormatted)', false, 0));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.KullaniciMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.KullaniciDurum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.KullaniciMi)', '@Model.Model.GetColumnName(x=> x.KullaniciMi)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        var booleanColumnEtkin = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.EtkinMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.Durum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinMi)', '@Model.Model.GetColumnName(x=> x.EtkinMi)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumnEtkin));
+
+        var otherItems = new Array();
+        otherItems.push(new OtherItem('/Personel/Detay/', '', 'PersonelId', '', '_blank', 'icon-search4', 'Detay', ''));
+
+           @if (Identity.KurumId == -1)
+            {
+                <text>
+                    otherItems.push(new OtherItem('/Personel/YetkiliGiris/', '', 'PersonelId', '', '_blank', 'icon-user-plus', 'Giriş', ''));
+                </text>
+            }
+
+        SetDataTable(false, 'tblListele', '/Personel/Listele', 0, 'asc', columns, '/Personel/Duzenle/', 'PersonelId', otherItems);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "YENİ PERSONEL", "/Personel/Duzenle/")

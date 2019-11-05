@@ -1,0 +1,65 @@
+﻿@using WebUI.Helpers;
+@using WebUI.Models;
+
+@model  OgrenciSozlesmeGuncelleViewModel
+
+<script>
+    App.initComponents();
+</script>
+
+@Html.FormCardDivBegin(Resources.LangResources.OgrenciSozlesmeGuncelle)
+
+@Html.FormDropDownListFor(x => x.Model.OgrenciSozlesmeTurId, Model.OgrenciSozlesmeTurSelectList, disabled: Model.Model.OgrenciSozlesmeId > 0)
+@Html.FormTextBoxFor(x => x.Model.Referans)
+@Html.FormDropDownListFor(x => x.Model.SubeId, Model.SubeSelectList)
+@Html.FormDropDownListFor(x => x.Model.GorusenPersonelId, Model.PersonelSelectList)
+@Html.FormDropDownListFor(x => x.Model.KurumaGetirenPersonelId, Model.PersonelSelectList)
+@Html.FormDropDownListFor(x => x.Model.SezonId, Model.SezonSelectList)
+@Html.FormTextBoxFor(x => x.Model.OlusturulmaTarihi, textBoxType: HtmlHelpers.TextBoxType.Date, setRequired:true)
+
+<div id="divSinifSeviye" class="ogrenciSozlesmeDetay" style="display:none;">
+    @Html.FormDropDownListFor(x => x.Model.SinifSeviyeId, Model.SinifSeviyeSelectList, setRequired: true)
+</div>
+
+<div id="divBrans" class="ogrenciSozlesmeDetay" style="display:none;">
+    @Html.FormDropDownListFor(x => x.Model.BransId, Model.BransSelectList, setRequired: true)
+</div>
+
+<div id="divSinif" class="ogrenciSozlesmeDetay" style="display:none;">
+    @Html.FormDropDownListFor(x => x.Model.SinifId, Model.SinifSelectList, setRequired: true)
+</div>
+
+<!-- #region Okul Detay -->
+<div id="divOgrenciSozlesmeTur2" class="ogrenciSozlesmeDetay" style="display:none;">
+    @Html.FormDropDownListFor(x => x.Model.OkulTurId, Model.OkulTurSelectList, setRequired: true)
+    @Html.FormCheckBoxFor(x => x.Model.YemekDahilMi)
+</div>
+<!-- #endregion -->
+<!-- #region Özel Ders Detay -->
+<div id="divOgrenciSozlesmeTur3" class="ogrenciSozlesmeDetay" style="display:none;">
+    @Html.FormTextBoxFor(x => x.Model.DersAdeti)
+    @Html.FormTextBoxFor(x => x.Model.DersBirimFiyat)
+</div>
+<!-- #endregion -->
+<!-- #region Etkinlik -->
+<div id="divOgrenciSozlesmeTur4" class="ogrenciSozlesmeDetay" style="display:none;">
+    @Html.FormDropDownListFor(x => x.Model.EtkinlikId, Model.EtkinlikSelectList, setRequired: true)
+    @Html.FormDropDownListFor(x => x.Model.DanismanPersonelId, Model.DanismanPersonelSelectList, setRequired: true)
+</div>
+<!-- #endregion -->
+<!-- #region Sürücü Kursu -->
+<div id="divOgrenciSozlesmeTur5" class="ogrenciSozlesmeDetay" style="display:none;">
+    @Html.FormDropDownListFor(x => x.Model.EhliyetTurId, Model.EhliyetTurSelectList, setRequired: true)
+</div>
+<!-- #endregion -->
+@Html.FormDropDownListFor(x => x.Model.ServisId, Model.ServisSelectList)
+@Html.FormTextAreaFor(x => x.Model.Not, 2, 2)
+
+@Html.HiddenFor(x => x.SinifId)
+@Html.HiddenFor(x => x.Model.OgrenciSozlesmeId)
+@Html.HiddenFor(x => x.Model.OgrenciId)
+@Html.HiddenFor(x => x.Model.OzelDersDurumId)
+@Html.HiddenFor(x => x.Model.FaturaBilgiId)
+@Html.HiddenFor(x => x.Model.EkleyenPersonelId)
+@Html.HiddenFor(x => x.Model.OgrenciSozlesmeTurId)
+@Html.FormCardDivEnd()

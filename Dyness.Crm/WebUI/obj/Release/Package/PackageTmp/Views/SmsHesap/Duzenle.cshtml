@@ -1,0 +1,155 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+@using Core.General;
+@using Core.CrossCuttingConcerns.Security;
+
+@model SmsHesapDuzenleViewModel
+
+@{
+    var title = Model.Model.SmsHesapId == 0
+        ? Resources.LangResources.SmsHesapEkle
+        : $"{Resources.LangResources.SmsHesapGuncelle} ({Model.Model.Baslik})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Sms;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/SmsHesapDuzenle.js"></script>
+    <script>
+        function openModalEvrakBilgi() {
+            $("#modalEvrakBilgi").modal("show");
+
+            return false;
+        }
+    </script>
+}
+
+@using (Html.BeginForm("Duzenle", "SmsHesap", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListFor(x => x.Model.SubeId, Model.SubeSelectList)
+    @Html.FormTextBoxFor(x => x.Model.Baslik)
+
+    if (Identity.KurumId == -1)
+    {
+        @Html.FormDropDownListFor(x => x.Model.SmsHesapDurumId, Model.SmsHesapDurumSelectList)
+    }
+    else
+    {
+        @Html.FormTextBoxFor(x => x.Model.SmsHesapDurumAd, disabled: true)
+    }
+
+    @Html.FormFileInputFor(x => x.PostedFilesDosyalar, "PostedFilesDosyalar", multiple: true)
+
+    <div id="divDosyalar" style="display:none;">
+        @Html.FormGroupRowBegin(Resources.LangResources.SecilenDosyalar)
+        <ul id="ulDosyalar" class="list-group">
+        </ul>
+        @Html.FormGroupRowEnd()
+    </div>
+    @Html.FormGroupRowBegin(Resources.LangResources.EvrakBilgi)
+    <button type="button" onclick="openModalEvrakBilgi();" class="btn btn-outline-success btn-sm">@Resources.LangResources.Bilgi</button>
+    @Html.FormGroupRowEnd()
+
+    if (Model.Model.SmsHesapDosyalar != null && Model.Model.SmsHesapDosyalar.Any())
+    {
+        for (int i = 0; i < Model.Model.SmsHesapDosyalar.Count; i++)
+        {
+            var smsHesapDosya = Model.Model.SmsHesapDosyalar[i];
+            <div class="form-group row">
+                <label class="col-form-label col-lg-2">
+                </label>
+                <div class="col-lg-10">
+                    <a href="@smsHesapDosya.DosyaYol" download>@smsHesapDosya.DosyaAd</a>
+                </div>
+            </div>
+        }
+    }
+    @Html.HiddenFor(x => x.Model.SmsHesapId)
+    @Html.FormButtons(Model.Model.SmsHesapId, "", false)
+    @Html.FormCardDivEnd()
+}
+
+<div id="modalEvrakBilgi" class="modal fade bd-example-modal-lg" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container feature-box-04 box-shadow" style="padding: 1%;">
+                    <div class="row">
+                        <div class="col-md-12 sm-m-15px-tb">
+                            <p style="margin-bottom: 1rem;"><span style="color: #286090;font-size: 1.5rem;"><b>BAŞLIK ONAYLAMALARINDA DİKKAT EDİLMESİ GEREKEN BİLGİLER</b></span></p>
+                            <p style="margin-bottom: 1rem;"><span style="color: #286090;font-size: 18px;"><b>ADINIZ VE SOYADINIZ İLE SMS GÖNDERMEK İÇİN</b></span></p>
+                            <ul style="font-size: 1.2rem;">
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">T.C. kimlik belgesi fotokopisi,</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Unvan kullanılması halinde, (Dr. Av. vb.) unvanı ispatlayıcı belge,</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">e-Devlet kapısından (</span><a href="https://giris.turkiye.gov.tr/"><span style="font-weight: 400;">www.turkiye.gov.tr</span></a><span style="font-weight: 400;">) alınan, Yerleşim Yeri (İkametgah) belgesi,</span></li>
+                                <li style="font-weight: 400;"><a href="http://interaktifsms.com.tr/wp-content/themes/interaktifsms/assets/sozlesme.rar"><b>Abonelik Sözleşmesi</b></a><b> ‘nin&nbsp;</b><b>aslı.</b><span style="font-weight: 400;">&nbsp;(Tüm sayfaları, ıslak imzalı olarak.)</span></li>
+                            </ul>
+                            <p style="margin-bottom: 1rem;margin-top: 1rem;"><span style="color: #28609e;font-size: 18px;"><b>ŞİRKET UNVANI İLE SMS GÖNDERMEK İÇİN</b></span></p>
+                            <ul style="font-size: 1.2rem;">
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Şirket adına imza yetkisi olan kişinin, T.C. kimlik belgesi fotokopisi,</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">T.C. kanunlarına göre kurulmuş şirket tarafından,&nbsp;</span><b>imzalı ve kaşeli,</b></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Ticaret Sicil Gazetesi örneği&nbsp;</span><b>veya </b><span style="font-weight: 400;">Ticaret Sicil Kaydı</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Vergi Levhası </span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">İmza Sirküsü</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Yetki Belgesi</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Unvanı ispatlayıcı diğer resmi belgeler.</span></li>
+                                <li style="font-weight: 400;"><a href="http://interaktifsms.com.tr/wp-content/themes/interaktifsms/assets/sozlesme.rar"><b>Abonelik Sözleşmesi</b></a><b> ’nin&nbsp;</b><b>aslı.</b><span style="font-weight: 400;">&nbsp;(Tüm sayfaları, ıslak imzalı olarak.)</span></li>
+                            </ul>
+                            <p style="margin-bottom: 1rem;margin-top: 1rem;"><span style="color: #28609e;font-size: 18px;"><b>KAMU KURUM VE KURULUŞ UNVANI İLE SMS GÖNDERMEK İÇİN</b></span></p>
+                            <ul style="font-size: 1.2rem;">
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Kurum adına imza yetkisi olan kişinin, T.C. Kimlik belgesi fotokopisi,</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">İlgili kamu kurum ve kuruluşundan alınmış resmi belge,</span></li>
+                                <li style="font-weight: 400;"><a href="http://interaktifsms.com.tr/wp-content/themes/interaktifsms/assets/sozlesme.rar"><b>Abonelik Sözleşmesi</b></a><b> ’nin&nbsp;</b><b>aslı.</b><span style="font-weight: 400;">&nbsp;(Tüm sayfaları, ıslak imzalı olarak.)</span></li>
+                            </ul>
+                            <p style="margin-bottom: 1rem; margin-top: 1rem;"><span style="color: #28609e;font-size: 18px;"><b>DERNEK VEYA STK UNVANI İLE SMS GÖNDERMEK İÇİN</b></span></p>
+                            <ul style="font-size: 1.2rem;">
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">STK adına imza yetkisi olan kişinin, T.C. kimlik belgesi fotokopisi,</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">İlgili sivil toplum kuruluşundan alınmış belge,</span></li>
+                                <li style="font-weight: 400;"><a href="http://interaktifsms.com.tr/wp-content/themes/interaktifsms/assets/sozlesme.rar"><b>Abonelik Sözleşmesi</b></a><b> ‘nin&nbsp;</b><b>aslı.</b><span style="font-weight: 400;">&nbsp;(Tüm sayfaları, ıslak imzalı olarak.)</span></li>
+                            </ul>
+                            <p style="margin-bottom: 1rem;margin-top: 1rem;"><span style="color: #28609e;font-size: 18px;"><b>TESCİLLİ MARKA ADI İLE SMS GÖNDERMEK İÇİN</b></span></p>
+                            <ul style="font-size: 1.2rem;">
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Marka sahibi olan kişinin veya yetkilinin T.C. Kimlik belgesi fotokopisi,</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Marka sahipliğini ispatlayıcı belge,</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Marka Sahibi Şirket İse</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Ticaret Sicil Kaydı&nbsp;</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Vergi Levhası </span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">İmza Sirküsü</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Yetki Belgesi</span></li>
+                                <li style="font-weight: 400;"><a href="http://interaktifsms.com.tr/wp-content/themes/interaktifsms/assets/sozlesme.rar"><b>Abonelik Sözleşmesi</b></a><b> ‘nin&nbsp;</b><b>aslı.</b><span style="font-weight: 400;">&nbsp;(Tüm sayfaları, ıslak imzalı olarak.)</span></li>
+                            </ul>
+                            <p style="margin-bottom: 1rem;margin-top: 1rem;"><span style="color: #28609e;font-size: 18px;"><b>BAYİLİĞİ VEYA TEMSİLCİLİĞİ YAPILAN BİR FİRMA UNVANI İLE SMS GÖNDERMEK İÇİN</b></span></p>
+                            <ul style="margin-bottom: 2rem;font-size: 1.2rem;">
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Şirket adına imza yetkisi olan kişinin, T.C. kimlik belgesi fotokopisi</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">İlgili firma veya kuruluş izninin alındığını ispatlayıcı belge,</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Ticaret Sicil Kaydı&nbsp;</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Vergi Levhası </span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">İmza Sirküsü</span></li>
+                                <li style="font-weight: 400;"><span style="font-weight: 400;">Yetki Belgesi</span></li>
+                                <li style="font-weight: 400;"><a href="http://interaktifsms.com.tr/wp-content/themes/interaktifsms/assets/sozlesme.rar"><b>Abonelik Sözleşmesi</b></a><b> ‘nin&nbsp;</b><b>aslı.</b><span style="font-weight: 400;">&nbsp;(Tüm sayfaları, ıslak imzalı olarak.)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

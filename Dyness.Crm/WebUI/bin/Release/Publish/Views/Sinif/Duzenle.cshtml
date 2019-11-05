@@ -1,0 +1,59 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model  SinifDuzenleViewModel
+
+@{
+    var title = Model.Model.SinifId == 0
+        ? Resources.LangResources.SinifEkle
+        : $"{Resources.LangResources.SinifGuncelle} ({Model.Model.SinifAd})";
+
+    var title1 = Resources.LangResources.Tanimlamalar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "Sinif", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListFor(x => x.Model.SubeId, Model.SubeSelectList)
+    @Html.FormDropDownListFor(x => x.Model.SezonId, Model.SezonSelectList)
+    @Html.FormDropDownListFor(x => x.Model.BransId, Model.BransSelectList)
+    @Html.FormDropDownListFor(x => x.Model.SinifTurId, Model.SinifTurSelectList)
+    @Html.FormDropDownListFor(x => x.Model.SinifSeviyeId, Model.SinifSeviyeSelectList)
+    @Html.FormDropDownListFor(x => x.Model.SinifSeansId, Model.SinifSeansSelectList)
+    @Html.FormDropDownListFor(x => x.Model.DerslikId, Model.DerslikSelectList)
+    @Html.FormDropDownListFor(x => x.Model.PersonelId, Model.PersonelSelectList)
+    @Html.FormTextBoxFor(x => x.Model.SinifAd)
+    @Html.FormTextBoxFor(x => x.Model.ToplamDersSaat)
+    @Html.FormTextBoxFor(x => x.Model.SinifKapasite)
+    @Html.FormTextBoxFor(x => x.Model.KayitUcreti)
+    @Html.FormTextBoxFor(x => x.Model.EgitimSüre)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.HiddenFor(x => x.Model.SinifId)
+    @Html.FormButtons(Model.Model.SinifId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Sinif", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.SinifId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

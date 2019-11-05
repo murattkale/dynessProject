@@ -1,0 +1,1237 @@
+﻿@using Entities.Concrete;
+@using WebUI.Models;
+
+@model OgrenciSinavKontrolViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    @if (Model.Yazdir)
+    {
+        <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    }
+    <style type="text/css">
+        .bordernoneleft {
+            border-left: none
+        }
+
+        .bordernoneright {
+            border-right: none
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            text-indent: 0;
+        }
+
+        p {
+            color: black;
+            font-family: Calibri, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 12pt;
+            margin: 0pt;
+        }
+
+        .s1 {
+            color: black;
+            font-family: Calibri, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 7pt;
+        }
+
+        .s2 {
+            color: black;
+            font-family: Calibri, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 7pt;
+        }
+
+        .s3 {
+            color: black;
+            font-family: Calibri, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 8pt;
+        }
+
+        .s4 {
+            color: black;
+            font-family: Calibri, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 6pt;
+        }
+
+        .s5 {
+            color: black;
+            font-family: Calibri, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 6pt;
+        }
+
+        .s6 {
+            color: black;
+            font-family: Calibri, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 5pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l1 {
+            padding-left: 0pt;
+        }
+
+            #l1 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l2 {
+            padding-left: 0pt;
+        }
+
+            #l2 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l3 {
+            padding-left: 0pt;
+        }
+
+            #l3 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l4 {
+            padding-left: 0pt;
+        }
+
+            #l4 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l5 {
+            padding-left: 0pt;
+        }
+
+            #l5 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        li {
+            display: block;
+        }
+
+        #l6 {
+            padding-left: 0pt;
+        }
+
+            #l6 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l7 {
+            padding-left: 0pt;
+        }
+
+            #l7 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l8 {
+            padding-left: 0pt;
+        }
+
+            #l8 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l9 {
+            padding-left: 0pt;
+        }
+
+            #l9 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l10 {
+            padding-left: 0pt;
+        }
+
+            #l10 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l11 {
+            padding-left: 0pt;
+        }
+
+            #l11 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l12 {
+            padding-left: 0pt;
+        }
+
+            #l12 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l13 {
+            padding-left: 0pt;
+        }
+
+            #l13 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l14 {
+            padding-left: 0pt;
+        }
+
+            #l14 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l15 {
+            padding-left: 0pt;
+        }
+
+            #l15 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l16 {
+            padding-left: 0pt;
+        }
+
+            #l16 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l17 {
+            padding-left: 0pt;
+        }
+
+            #l17 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l18 {
+            padding-left: 0pt;
+        }
+
+            #l18 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        li {
+            display: block;
+        }
+
+        #l19 {
+            padding-left: 0pt;
+        }
+
+            #l19 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        li {
+            display: block;
+        }
+
+        #l20 {
+            padding-left: 0pt;
+        }
+
+            #l20 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l21 {
+            padding-left: 0pt;
+        }
+
+            #l21 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l22 {
+            padding-left: 0pt;
+        }
+
+            #l22 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l23 {
+            padding-left: 0pt;
+        }
+
+            #l23 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l24 {
+            padding-left: 0pt;
+        }
+
+            #l24 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        li {
+            display: block;
+        }
+
+        #l25 {
+            padding-left: 0pt;
+        }
+
+            #l25 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l26 {
+            padding-left: 0pt;
+        }
+
+            #l26 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l27 {
+            padding-left: 0pt;
+        }
+
+            #l27 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l28 {
+            padding-left: 0pt;
+        }
+
+            #l28 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l29 {
+            padding-left: 0pt;
+        }
+
+            #l29 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l30 {
+            padding-left: 0pt;
+        }
+
+            #l30 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l31 {
+            padding-left: 0pt;
+        }
+
+            #l31 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l32 {
+            padding-left: 0pt;
+        }
+
+            #l32 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l33 {
+            padding-left: 0pt;
+        }
+
+            #l33 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l34 {
+            padding-left: 0pt;
+        }
+
+            #l34 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l35 {
+            padding-left: 0pt;
+        }
+
+            #l35 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l36 {
+            padding-left: 0pt;
+        }
+
+            #l36 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l37 {
+            padding-left: 0pt;
+        }
+
+            #l37 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        li {
+            display: block;
+        }
+
+        #l38 {
+            padding-left: 0pt;
+        }
+
+            #l38 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l39 {
+            padding-left: 0pt;
+        }
+
+            #l39 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l40 {
+            padding-left: 0pt;
+        }
+
+            #l40 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        #l41 {
+            padding-left: 0pt;
+        }
+
+            #l41 > li:before {
+                content: "- ";
+                color: black;
+                font-family: Calibri, sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: none;
+                font-size: 5pt;
+            }
+
+        body {
+            margin: 0
+        }
+
+        .kapsa {
+            /*width: 21cm;
+            height: 29.7cm;*/
+            background-color: #fff;
+        }
+
+        .icalan {
+            /*padding: 5px;*/
+            margin: 5px;
+        }
+
+        .uppercase {
+            text-transform: uppercase
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 5px 0;
+            border: 1px solid #5282be;
+            font-size: 13px;
+        }
+
+        tr {
+            /*border: 1px solid #5282be;*/
+            vertical-align: middle;
+        }
+
+        .border-right {
+            border-right: 1px solid #5282be
+        }
+
+        .border-left {
+            border-left: 1px solid #5282be
+        }
+
+        .border-top {
+            border-top: 1px solid #5282be
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #5282be
+        }
+
+        .a_center {
+            text-align: center;
+        }
+
+        .a_right {
+            text-align: right;
+        }
+
+        .a_left {
+            text-align: left;
+        }
+
+        .f_weight {
+            font-weight: bold
+        }
+
+        .f_normal {
+            font-weight: normal
+        }
+
+        .baslik {
+            font-family: calibri;
+        }
+
+        .font20 {
+            font-size: 20px;
+        }
+
+        .backblue {
+            background-color: #dce4ee
+        }
+
+        .mtop20 {
+            margin-top: 20px;
+        }
+
+        .w15 {
+            width: 15%;
+        }
+
+        .w20 {
+            width: 20%;
+        }
+
+        .w10 {
+            width: 10%
+        }
+
+        .w5 {
+            width: 5%
+        }
+
+        .w12 {
+            width: 12%
+        }
+
+        .w8 {
+            width: 8%
+        }
+
+        .w2 {
+            width: 2%;
+        }
+
+        .w7 {
+            width: 7%
+        }
+
+        .w19 {
+            width: 19%
+        }
+
+        .w11 {
+            width: 11%;
+        }
+
+        .w3 {
+            width: 3%;
+        }
+
+        .w70 {
+            width: 70%;
+        }
+
+        .w50 {
+            width: 50% !important
+        }
+
+        .bordernone td {
+            border-top: none;
+            border-bottom: none
+        }
+
+        table.w50 {
+            border-bottom: 1px solid #5282be
+        }
+    </style>
+    <style>
+        @@page {
+            size: A4;
+            margin: 0;
+        }
+
+        @@media print {
+            .page {
+                margin: 0;
+                border: initial;
+                border-radius: initial;
+                width: initial;
+                min-height: initial;
+                box-shadow: initial;
+                background: initial;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+@{ var yazdir = Model.Yazdir ? "onload=window.print()" : ""; }
+<body @yazdir>
+    <div class="kapsa page">
+        <div class="icalan">
+            <table>
+                <tr>
+                    <td class="a_center"><img src="@Model.Model.Sube.Kurum.LogoYol" style="height:50px;" /></td>
+                    <td class="uppercase a_center f_weight baslik font20">@Resources.LangResources.KonuAnalizliSonucBElgesi</td>
+                </tr>
+            </table>
+            <table class="mtop20">
+                <tr style="height:15pt">
+                    <td bgcolor="#DCE5F1">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 2pt;text-indent: 0pt;text-align: left;">
+                            &nbsp;@Resources.LangResources.AdSoyad :
+                        </p>
+                    </td>
+                    <td colspan="3">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">
+                            &nbsp;@Model.Model.AdSoyadSon
+                        </p>
+                    </td>
+                    <td bgcolor="#DCE5F1">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Resources.LangResources.Numara :</p>
+                    </td>
+                    <td>
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Model.Model.OgrenciNo</p>
+                    </td>
+                    <td bgcolor="#DCE5F1">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Resources.LangResources.Sinif :</p>
+                    </td>
+                    <td>
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Model.Model.Sinif</p>
+                    </td>
+                    <td bgcolor="#DCE5F1">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Resources.LangResources.Sube :</p>
+                    </td>
+                    <td colspan="2">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Model.Model.Sube.SubeAd</p>
+                    </td>
+                </tr>
+                <!--**************-->
+                <tr style="height:15pt">
+                    <td bgcolor="#DCE5F1">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 2pt;text-indent: 0pt;text-align: left;">&nbsp;@Resources.LangResources.SinavAdi :</p>
+                    </td>
+                    <td colspan="3">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Model.Model.SinavKitapcik.Sinav.Baslik</p>
+                    </td>
+                    <td bgcolor="#DCE5F1">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Resources.LangResources.Alan :</p>
+                    </td>
+                    <td>
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;"></p>
+                    </td>
+                    <td bgcolor="#DCE5F1">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Resources.LangResources.SinavTarihi :</p>
+                    </td>
+                    <td>
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Model.Model.SinavKitapcik.Sinav.SinavTarihiFormatted</p>
+                    </td>
+                    <td bgcolor="#DCE5F1">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Resources.LangResources.Kitapcik :</p>
+                    </td>
+                    <td colspan="2">
+                        <p class="s1" style="padding-top: 4pt;padding-left: 1pt;text-indent: 0pt;text-align: left;">&nbsp;@Model.Model.SinavKitapcik.Baslik</p>
+                    </td>
+                </tr>
+                <!--**************-->
+                <tr>
+                    <td style="border:none">
+                    </td>
+                </tr>
+                <tr style="height:10pt">
+                    <td rowspan="1">
+                        <p class="s2" style="padding-top: 5pt;padding-left: 2pt;text-indent: 0pt;text-align: center;">@Resources.LangResources.SoruSayi</p>
+                    </td>
+                    <td rowspan="1">
+                        <p class="s1" style="padding-top: 3pt;padding-left: 5pt;padding-right: 3pt;text-indent: 1pt;line-height: 82%;text-align: center;">@Resources.LangResources.Dogru</p>
+                    </td>
+                    <td rowspan="1">
+                        <p class="s1" style="text-indent: 0pt; text-align: center;">@Resources.LangResources.Yanlis</p>
+                    </td>
+                    <td rowspan="1">
+                        <p class="s1" style="text-indent: 0pt;text-align: center;">@Resources.LangResources.Bos</p>
+                    </td>
+                    <td rowspan="1">
+                        <p class="s1" style="text-indent: 0pt;text-align: center;">@Resources.LangResources.Net</p>
+                    </td>
+                    <td rowspan="1">
+                        <p class="s1" style="padding-top: 2pt;padding-left: 3pt;padding-right: 3pt;text-indent: 0pt;line-height: 8pt;text-align: center;">@Resources.LangResources.Basari %</p>
+                    </td>
+                    <td rowspan="1">
+                        <p class="s1" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">@Resources.LangResources.CevapAnahtari :</p>
+                    </td>
+                    <td colspan="4">
+                        <div style="font-size: 8pt; font-family: Calibri, sans-serif;display:block; width:100%;word-wrap:break-word; white-space: normal">
+                            @foreach (var item in Model.Model.SinavKitapcik.CevapAnahtari)
+                            {
+                                <div style="width:8px;margin:-1px;text-align: center;float: left;">@item</div>
+                            }
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style="height:18pt">
+                    <td>
+                        <p class="s3" style="padding-top: 2pt;text-indent: 0pt;text-align: center;">@Model.Model.SoruAdet</p>
+                    </td>
+                    <td>
+                        <p class="s3" style="padding-top: 5pt;text-indent: 0pt;text-align: center;">@Model.Model.DogruCevapAdet</p>
+                    </td>
+                    <td>
+                        <p class="s3" style="padding-top: 5pt;text-indent: 0pt;text-align: center;">@Model.Model.YanlisCevapAdet</p>
+                    </td>
+                    <td>
+                        <p class="s3" style="padding-top: 5pt;text-indent: 0pt;text-align: center;">@Model.Model.BosCevapAdet</p>
+                    </td>
+                    <td>
+                        <p class="s3" style="padding-top: 5pt;text-indent: 0pt;text-align: center;">@Model.Model.NetFormatted</p>
+                    </td>
+                    <td>
+                        <p class="s3" style="padding-top: 5pt;text-indent: 0pt;text-align: center;">@Model.Model.Basari</p>
+                    </td>
+                    <td>
+                        <p class="s1" style="padding-left: 1pt;padding-right: 2pt;text-indent: 0pt;text-align: left;">&nbsp;@Resources.LangResources.OgrenciCevabi :</p>
+                    </td>
+                    <td colspan="4">
+                        <div style="font-size: 8pt; font-family: Calibri, sans-serif;display:block; width:100%;word-wrap:break-word; white-space: normal">
+                            @foreach (var item in Model.Model.SoruCevaplar.Replace(" ", "*"))
+                            {
+                                <div style="width:8px; margin:-1px;text-align: center;float: left;">@item</div>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                <!--**************-->
+
+            </table>
+
+            @{
+                var sinavPuanTurler = Model.Model.OgrenciSinavKontrolPuanTurPuanlar;
+
+                if (sinavPuanTurler.Count < 4)
+                {
+                    for (int i = sinavPuanTurler.Count; i < 4; i++)
+                    {
+                        sinavPuanTurler.Add(new OgrenciSinavKontrolPuanTurPuan());
+                    }
+                }
+            }
+
+            @for (int i = 0; i < sinavPuanTurler.Count; i++)
+            {
+                var sinavTurPuan = sinavPuanTurler[i];
+
+                var bordernoneright = i != sinavPuanTurler.Count - 1 ? "class=bordernoneright" : "";
+
+                if (sinavTurPuan.PuanTur == null)
+                {
+                    <table style="width:25%;float:left;text-align:center;margin-top:5px">
+                        <tr>
+                            <td style="height: 23px;padding:0;font-weight:bold">&nbsp;</td>
+                            <td style="height: 23px;padding:0;font-weight:bold;font-size: 11px;">&nbsp;</td>
+                            <td style="height: 23px;padding:0;font-weight:bold;font-size: 11px;">&nbsp;</td>
+                            <td style="height: 23px;padding:0;font-weight:bold;font-size: 11px;">&nbsp;</td>
+                            <td @bordernoneright style="height: 23px;padding:0;font-weight:bold;font-size: 11px;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 23px;padding:0;font-weight:bold">&nbsp;</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">&nbsp;</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">&nbsp;</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">&nbsp;</td>
+                            <td @bordernoneright style="font-size: 11px;    height: 23px;padding:0;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 23px;padding:0;font-weight:bold">&nbsp;</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">&nbsp;</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">&nbsp;</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">&nbsp;</td>
+                            <td @bordernoneright style="font-size: 11px;    height: 23px;padding:0;">&nbsp;</td>
+                        </tr>
+                    </table>
+                }
+                else
+                {
+                    <table style="width:25%;float:left;text-align:center;margin-top:5px">
+                        <tr>
+                            <td style="height: 23px;padding:0;font-weight:bold; font-size:10px;">@sinavTurPuan.PuanTur.PuanTurAd</td>
+                            <td style="height: 23px;padding:0;font-weight:bold;font-size: 11px;">@Resources.LangResources.Genel</td>
+                            <td style="height: 23px;padding:0;font-weight:bold;font-size: 11px;">@Resources.LangResources.Sube</td>
+                            <td style="height: 23px;padding:0;font-weight:bold;font-size: 11px;">@Resources.LangResources.Sinif</td>
+                            <td @bordernoneright style="font-weight:bold;font-size: 11px;    height: 23px;padding:0;">@Resources.LangResources.Puan</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 23px;padding:0;font-weight:bold;font-size:10px">@Resources.LangResources.Sira</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">@sinavTurPuan.GenelSira</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">@sinavTurPuan.SubeSira</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">@sinavTurPuan.SinifSira</td>
+                            <td @bordernoneright style="font-size: 11px;    height: 23px;padding:0;">@sinavTurPuan.ToplamPuan</td>
+                        </tr>
+                        <tr>
+                            <td style="height: 23px;padding:0;font-weight:bold;font-size:10px">@Resources.LangResources.Toplam</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">@Model.OgrenciAdet</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">@Model.SubeOgrenciAdet</td>
+                            <td style="height: 23px;padding:0;font-size: 11px;">@(string.IsNullOrEmpty(Model.Model.Sinif) ? "-" : Model.SinifOgrenciAdet.ToString())</td>
+                            <td @bordernoneright style="font-size: 11px;    height: 23px;padding:0;">-</td>
+                        </tr>
+                    </table>
+                }
+            }
+
+            <table class=" mtop20" style="border-bottom: 1px solid #5282be;width:50%;float:left">
+                <tr>
+                    <td>
+                        <p class="s5" style="padding-left: 76pt;padding-right: 75pt;text-indent: 0pt;text-align: center;">@Resources.LangResources.Konu</p>
+                    </td>
+                    <td>
+                        <p class="s5" style="padding-left: 5pt;text-indent: 0pt;text-align: center;">@Resources.LangResources.Sayi</p>
+                    </td>
+                    <td>
+                        <p class="s5" style="padding-left: 5pt;text-indent: 0pt;text-align: center;">@Resources.LangResources.Dogru</p>
+                    </td>
+                    <td>
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;text-align: center;">@Resources.LangResources.Yanlis</p>
+                    </td>
+                    <td>
+                        <p class="s5" style="text-indent: 0pt;text-align: center;">%</p>
+                    </td>
+                </tr>
+                @{
+                    var ilkIndex = Model.Model.SinavKitapcik.SinavKonuBilgiler.Count > 35 ? 35 : Model.Model.SinavKitapcik.SinavKonuBilgiler.Count;
+                }
+
+                @for (int i = 0; i < ilkIndex; i++)
+                {
+                    var dersBilgi = Model.Model.SinavKitapcik.SinavKonuBilgiler[i];
+                    var style = i % 2 == 0 ? "style=background-color:#dedede" : "";
+
+                    <tr class="bordernone" rowspan="2" @style>
+                        <td>
+                            <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: left;padding-left:2px">
+                                &nbsp;@if (string.IsNullOrEmpty(dersBilgi.Konu))
+                                {
+                                    <b>@dersBilgi.DersAd</b>
+                                }
+                                else
+                                {
+                                    @dersBilgi.Konu
+                                }
+                            </p>
+                        </td>
+                        <td>
+                            <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">@dersBilgi.SoruAdet</p>
+                        </td>
+                        <td>
+                            <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">@dersBilgi.DogruAdet</p>
+                        </td>
+                        <td>
+                            <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">@dersBilgi.YanlisAdet</p>
+                        </td>
+                        <td>
+                            <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">@dersBilgi.Basari</p>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <table class=" mtop20" style="border-bottom: 1px solid #5282be;width:50%;float:left">
+                <tr>
+                    <td style="border-left: none;">
+                        <p class="s5" style="padding-left: 76pt;padding-right: 75pt;text-indent: 0pt;text-align: center;">@Resources.LangResources.Konu</p>
+                    </td>
+                    <td>
+                        <p class="s5" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">@Resources.LangResources.Sayi</p>
+                    </td>
+                    <td>
+                        <p class="s5" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">@Resources.LangResources.Dogru</p>
+                    </td>
+                    <td>
+                        <p class="s5" style="padding-left: 6pt;text-indent: 0pt;text-align: left;">@Resources.LangResources.Yanlis</p>
+                    </td>
+                    <td>
+                        <p class="s5" style="text-indent: 0pt;text-align: center;">%</p>
+                    </td>
+                </tr>
+
+                @if (Model.Model.SinavKitapcik.SinavKonuBilgiler.Count > 35)
+                {
+                    for (int i = 35; i < 70; i++)
+                    {
+                        var style = i % 2 == 0 ? "style=background-color:#dedede" : "";
+
+                        if (Model.Model.SinavKitapcik.SinavKonuBilgiler.Count > i)
+                        {
+                            var dersBilgi = Model.Model.SinavKitapcik.SinavKonuBilgiler[i];
+
+                            <tr class="bordernone" rowspan="2" @style>
+                                <td style="border-left:none;">
+                                    <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;padding-left:2px">
+                                        &nbsp;@if (string.IsNullOrEmpty(dersBilgi.Konu))
+                                        {
+                                            <b>@dersBilgi.DersAd</b>
+                                        }
+                                        else
+                                        {
+                                            @dersBilgi.Konu
+                                        }
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px;">@dersBilgi.SoruAdet</p>
+                                </td>
+                                <td>
+                                    <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">@dersBilgi.DogruAdet</p>
+                                </td>
+                                <td>
+                                    <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">@dersBilgi.YanlisAdet</p>
+                                </td>
+                                <td>
+                                    <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">@dersBilgi.Basari</p>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="bordernone" rowspan="2" @style>
+                                <td style="border-left:none;">
+                                    <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">
+                                        &nbsp;
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px;">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">&nbsp;</p>
+                                </td>
+                                <td>
+                                    <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">&nbsp;</p>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < Model.Model.SinavKitapcik.SinavKonuBilgiler.Count; i++)
+                    {
+                        var style = i % 2 == 0 ? "style=background-color:#dedede" : "style=border-left:none;";
+
+                        <tr class="bordernone" rowspan="2" @style>
+                            <td style="border-left:none;">
+                                <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">
+                                    &nbsp;
+                                </p>
+                            </td>
+                            <td>
+                                <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px;">&nbsp;</p>
+                            </td>
+                            <td>
+                                <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">&nbsp;</p>
+                            </td>
+                            <td>
+                                <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">&nbsp;</p>
+                            </td>
+                            <td>
+                                <p class="s4" style="padding-top: 1pt;text-indent: 0pt;line-height: 5pt;text-align: center;padding-left:2px">&nbsp;</p>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</body>
+</html>

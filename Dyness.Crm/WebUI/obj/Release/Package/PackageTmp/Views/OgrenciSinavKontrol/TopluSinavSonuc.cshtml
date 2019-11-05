@@ -1,0 +1,9 @@
+﻿@using WebUI.Models;
+
+@model TopluOgrenciSinavKontrolViewModel
+
+@foreach (var model in Model.Model)
+{
+    model.Yazdir = true;
+    Html.RenderPartial("~/Views/Shared/_SinavSonucView.cshtml", model);
+}

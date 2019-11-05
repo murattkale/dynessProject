@@ -1,0 +1,400 @@
+﻿@using Core.General
+@using WebUI.Models
+@using WebUI.Helpers
+
+@model  OgrenciSozlesmeDuzenleViewModel
+
+@{
+    var title = Model.Model.Ogrenci != null
+        ? Resources.LangResources.OgrenciKayit
+        : Resources.LangResources.OgrenciSozlesmeGuncelle;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/OgrenciSozlesmeDuzenle.js"></script>
+    <script>
+
+        var subeDetaylar = @Html.Raw(Json.Encode(Model.Subeler.Select(x => new
+                      {
+                          x.SubeId,
+                          x.MinimumPesinatOrani,
+                          x.MaksimumTaksitAdeti,
+                          x.ParaBirimId
+                      }).ToList()));
+
+        var ayarlar = @Html.Raw(Json.Encode(AyarlarService.Get()));
+        var selectedSehirId = @Html.Raw(Json.Encode(Model.Model.Ogrenci?.SehirId));
+
+        var selectedIlceId = @Html.Raw(Json.Encode(Model.Model.Ogrenci?.IlceId));
+
+        var selectedSinifId = @Html.Raw(Json.Encode(Model.Model.SinifId));
+
+        var selectedPesinatHesapId = @Html.Raw(Json.Encode(Model.Model.OgrenciSozlesmeOdemeBilgi.PesinatHesapId));
+
+        var gorusenPersonelId =  @Html.Raw(Json.Encode(Model.Model.GorusenPersonelId ?? 0));
+
+        var kurumaGetirenPersonelId =  @Html.Raw(Json.Encode(Model.Model.KurumaGetirenPersonelId ?? 0 ));
+
+        var danismanPersonelId = @Html.Raw(Json.Encode(Model.Model.DanismanPersonelId));
+
+        var servisId = @Html.Raw(Json.Encode(Model.Model.ServisId));
+
+        OgrenciSozlesmeDuzenle(subeDetaylar,
+            ayarlar,
+            selectedSehirId,
+            selectedIlceId,
+            selectedSinifId,
+            selectedPesinatHesapId,
+            gorusenPersonelId,
+            kurumaGetirenPersonelId,
+            danismanPersonelId,
+            servisId);
+
+    </script>
+}
+
+@using (Html.BeginForm("Duzenle", "OgrenciSozlesme", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- #region Kayıt Bilgileri -->
+    @Html.FormCardDivBegin(Resources.LangResources.KayitBilgileri)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListFor(x => x.Model.OgrenciSozlesmeTurId, Model.OgrenciSozlesmeTurSelectList, disabled: Model.Model.OgrenciSozlesmeId > 0)
+    @Html.HiddenFor(x => x.Model.OgrenciSozlesmeTurId)
+    @Html.FormTextBoxFor(x => x.Model.Referans)
+    @Html.FormDropDownListFor(x => x.Model.SubeId, Model.SubeSelectList)
+    @Html.FormDropDownListFor(x => x.Model.GorusenPersonelId, Model.PersonelSelectList)
+    @Html.FormDropDownListFor(x => x.Model.KurumaGetirenPersonelId, Model.PersonelSelectList)
+    @Html.FormDropDownListFor(x => x.Model.SezonId, Model.SezonSelectList)
+
+    <div id="divSinifSeviye" class="ogrenciSozlesmeDetay" style="display:none;">
+        @Html.FormDropDownListFor(x => x.Model.SinifSeviyeId, Model.SinifSeviyeSelectList, setRequired: true)
+    </div>
+
+    <div id="divBrans" class="ogrenciSozlesmeDetay" style="display:none;">
+        @Html.FormDropDownListFor(x => x.Model.BransId, Model.BransSelectList, setRequired: true)
+    </div>
+
+    <div id="divSinif" class="ogrenciSozlesmeDetay" style="display:none;">
+        @Html.FormDropDownListFor(x => x.Model.SinifId, Model.SinifSelectList, setRequired: true)
+    </div>
+
+    <!-- #region Okul Detay -->
+    <div id="divOgrenciSozlesmeTur2" class="ogrenciSozlesmeDetay" style="display:none;">
+        @Html.FormDropDownListFor(x => x.Model.OkulTurId, Model.OkulTurSelectList, setRequired: true)
+        @Html.FormCheckBoxFor(x => x.Model.YemekDahilMi)
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region Özel Ders Detay -->
+    <div id="divOgrenciSozlesmeTur3" class="ogrenciSozlesmeDetay" style="display:none;">
+        @Html.FormDropDownListFor(x => x.SelectedDersler, Model.DersSelectList, true, setRequired: true)
+        @Html.FormTextBoxFor(x => x.Model.DersAdeti)
+        @Html.FormTextBoxFor(x => x.Model.DersBirimFiyat)
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region Etkinlik -->
+    <div id="divOgrenciSozlesmeTur4" class="ogrenciSozlesmeDetay" style="display:none;">
+        @Html.FormDropDownListFor(x => x.Model.EtkinlikId, Model.EtkinlikSelectList, setRequired: true)
+        @Html.FormDropDownListFor(x => x.Model.DanismanPersonelId, Model.DanismanPersonelSelectList, setRequired: true)
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region Sürücü Kursu -->
+    <div id="divOgrenciSozlesmeTur5" class="ogrenciSozlesmeDetay" style="display:none;">
+        @Html.FormDropDownListFor(x => x.Model.EhliyetTurId, Model.EhliyetTurSelectList, setRequired: true)
+    </div>
+    <!-- #endregion -->
+    @Html.FormTextBoxFor(x => x.Model.OlusturulmaTarihi, textBoxType: HtmlHelpers.TextBoxType.Date);
+    @Html.FormDropDownListFor(x => x.Model.ServisId, Model.ServisSelectList)
+
+    @Html.FormCardDivEnd()
+    <!-- #endregion -->
+
+    <!-- #region Yayınlar -->
+    <div id="divOgrenciSozlesmeYayinGenel" style="display:none;">
+        @Html.FormCardDivBegin(Resources.LangResources.Yayinlar)
+        <div id="divOgrenciSozlesmeYayinBilgi">
+            @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.YayinSecebilmekIcinBransVe)
+        </div>
+
+        <div id="divOgrenciSozlesmeYayinlar" style="display:none;">
+            @Html.FormGroupRowBegin(Resources.LangResources.Yayinlar)
+
+            @Html.FormScrollableTableThead(
+         new List<string>
+         {
+                    "",
+                    Resources.LangResources.SinifSeviye,
+                    Resources.LangResources.Brans,
+                    Resources.LangResources.Ders,
+                    Resources.LangResources.Yayin,
+                    Resources.LangResources.Stok,
+                    Resources.LangResources.TeslimDurumu
+         })
+
+            @for (int i = 0; i < Model.Model.OgrenciSozlesmeYayinlar.Count; i++)
+            {
+                var secili = Model.Model.OgrenciSozlesmeYayinlar[i].OgrenciSozlesmeYayinId > 0;
+                var yayin = Model.Model.OgrenciSozlesmeYayinlar[i].Yayin;
+
+                @Html.FormScrollableTableRow(
+                new List<object>
+                {
+                            Html.FormCheckBoxOnly(x => x.Model.OgrenciSozlesmeYayinlar[i].SecildiMi, string.Empty),
+                            yayin.SinifSeviyeAd,
+                            yayin.BransAd,
+                            yayin.DersAd,
+                            yayin.YayinAd,
+                            yayin.StokAdet,
+                            Html.FormCheckBoxOnly(x => x.Model.OgrenciSozlesmeYayinlar[i].TeslimEdildiMi, string.Empty)
+                },
+                !secili ? "display:none;" : "",
+                !secili ? $"OgrenciSozlesmeYayin{yayin.BransId}{yayin.SinifSeviyeId}" : "")
+
+                @Html.HiddenFor(x => x.Model.OgrenciSozlesmeYayinlar[i].YayinId)
+                @Html.HiddenFor(x => x.Model.OgrenciSozlesmeYayinlar[i].OgrenciSozlesmeId)
+                @Html.HiddenFor(x => x.Model.OgrenciSozlesmeYayinlar[i].OgrenciSozlesmeYayinId)
+            }
+
+            @Html.FormScrollableTableEnd()
+
+            @Html.FormGroupRowEnd()
+        </div>
+
+        @Html.FormCardDivEnd()
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region Kıyafetler -->
+    if (Model.Model.OgrenciSozlesmeKiyafetDurumlar != null && Model.Model.OgrenciSozlesmeKiyafetDurumlar.Count > 0)
+    {
+        <div id="divKiyafetler" style="display:none;">
+            @Html.FormCardDivBegin(Resources.LangResources.Kiyafetler)
+
+            @Html.FormGroupRowBegin(Resources.LangResources.Kiyafetler)
+
+            @Html.FormScrollableTableThead(
+             new List<string> {
+                    "",
+                    Resources.LangResources.KiyafetTur,
+                    Resources.LangResources.Beden,
+                    Resources.LangResources.Kiyafet,
+                    Resources.LangResources.Stok,
+                    Resources.LangResources.TeslimDurumu })
+
+            @for (int i = 0; i < Model.Model.OgrenciSozlesmeKiyafetDurumlar.Count; i++)
+            {
+                var kiyafet = Model.Model.OgrenciSozlesmeKiyafetDurumlar[i].Kiyafet;
+
+                @Html.FormScrollableTableRow(
+                 new List<object> {
+                        Html.FormCheckBoxOnly(x => x.Model.OgrenciSozlesmeKiyafetDurumlar[i].SecildiMi, string.Empty),
+                        kiyafet.KiyafetTurAd,
+                        kiyafet.KiyafetBedenAd,
+                        kiyafet.KiyafetAd,
+                        kiyafet.StokAdet,
+                        Html.FormCheckBoxOnly(x => x.Model.OgrenciSozlesmeKiyafetDurumlar[i].TeslimEdildiMi, string.Empty)
+                 })
+
+                @Html.HiddenFor(x => x.Model.OgrenciSozlesmeKiyafetDurumlar[i].KiyafetId)
+                @Html.HiddenFor(x => x.Model.OgrenciSozlesmeKiyafetDurumlar[i].OgrenciSozlesmeId)
+                @Html.HiddenFor(x => x.Model.OgrenciSozlesmeKiyafetDurumlar[i].OgrenciSozlesmeKiyafetDurumId)
+            }
+
+            @Html.FormScrollableTableEnd()
+
+            @Html.FormGroupRowEnd()
+            @Html.FormCardDivEnd()
+        </div>
+    }
+    <!-- #endregion -->
+
+    <!-- #region Öğrenci -->
+    if (Model.Model.Ogrenci != null)
+    {
+        <!-- #region Öğrenci Bilgileri -->
+        @Html.FormCardDivBegin(Resources.LangResources.ÖgrenciBilgileri)
+        @Html.FormTextBoxFor(x => x.Model.Ogrenci.OgrenciNo, disabled: true)
+        @Html.HiddenFor(x => x.Model.Ogrenci.OgrenciNo)
+        @Html.FormTextBoxFor(x => x.Model.Ogrenci.Ad)
+        @Html.FormTextBoxFor(x => x.Model.Ogrenci.Soyad)
+        @Html.FormTextBoxFor(x => x.Model.Ogrenci.DogumTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+        @Html.FormTextBoxFor(x => x.Model.Ogrenci.TcKimlikNo, textBoxType: HtmlHelpers.TextBoxType.TcNo)
+        @Html.FormRadioButtonBooleanFor(x => x.Model.Ogrenci.KadinMi, Resources.LangResources.Kadin, Resources.LangResources.Erkek)
+        @Html.FormTextBoxFor(x => x.Model.Ogrenci.CepTelefon, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+        @Html.FormTextBoxFor(x => x.Model.Ogrenci.Telefon, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+        @Html.FormTextBoxFor(x => x.Model.Ogrenci.Eposta)
+        @Html.FormDropDownListFor(x => x.Model.Ogrenci.UlkeId, Model.UlkeSelectList)
+        @Html.FormDropDownListFor(x => x.Model.Ogrenci.SehirId, selectListItems: null)
+        @Html.FormDropDownListFor(x => x.Model.Ogrenci.IlceId, selectListItems: null)
+        @Html.FormTextAreaFor(x => x.Model.Ogrenci.Adres, 2, 2)
+        @Html.FormTextBoxFor(x => x.Model.Ogrenci.PostaKodu)
+        @Html.FormFileInputFor(x => x.Model.Ogrenci.GorselDosyaAd, "PostedFileGorselDosyaAd")
+        @Html.FormTextAreaFor(x => x.Model.Ogrenci.Not, 2, 2)
+        @Html.FormDropDownListFor(x => x.Model.Ogrenci.NeredenDuydunuzId, Model.NeredenDuydunuzSelectList)
+        @Html.FormCardDivEnd()
+        <!-- #endregion -->
+
+        <!-- #region Anne İletişim Bilgileri -->
+        @Html.FormCardDivBegin(Resources.LangResources.AnneIletisimBilgileri)
+        @Html.PartialFor(x => x.Model.Ogrenci.AnneOgrenciYakiniIletisim, "_OgrenciYakiniIletisimView")
+        <!-- #endregion -->
+
+        <!-- #region Baba İletişim Bilgileri -->
+        @Html.FormCardDivBegin(Resources.LangResources.BabaIletisimBilgileri)
+        @Html.PartialFor(x => x.Model.Ogrenci.BabaOgrenciYakiniIletisim, "_OgrenciYakiniIletisimView")
+        <!-- #endregion -->
+
+        <!--#region Yakını İletişim Bilgileri -->
+        @Html.FormCardDivBegin(Resources.LangResources.YakiniIletisimBilgileri)
+        @Html.PartialFor(x => x.Model.Ogrenci.YakiniOgrenciYakiniIletisim, "_OgrenciYakiniIletisimView")
+        <!-- #endregion -->
+
+        <!-- #region İletişim Tercihleri -->
+        @Html.FormCardDivBegin(Resources.LangResources.IletisimTercihleri)
+        @Html.FormRadioButtonBooleanFor(x => x.Model.Ogrenci.IletisimKendi, Resources.LangResources.Evet, Resources.LangResources.Hayir)
+        @Html.FormRadioButtonBooleanFor(x => x.Model.Ogrenci.IletisimAnne, Resources.LangResources.Evet, Resources.LangResources.Hayir)
+        @Html.FormRadioButtonBooleanFor(x => x.Model.Ogrenci.IletisimBaba, Resources.LangResources.Evet, Resources.LangResources.Hayir)
+        @Html.FormRadioButtonBooleanFor(x => x.Model.Ogrenci.IletisimYakini, Resources.LangResources.Evet, Resources.LangResources.Hayir)
+        @Html.FormCardDivEnd()
+        <!-- #endregion -->
+    }
+    <!-- #endregion -->
+
+    <!-- #region Fatura Bilgi -->
+    @Html.FormCardDivBegin(Resources.LangResources.FaturaBilgi)
+    @Html.FormTextBoxFor(x => x.Model.FaturaBilgi.AdSoyad)
+    @Html.FormTextAreaFor(x => x.Model.FaturaBilgi.Adres, 2, 2)
+    @Html.FormTextBoxFor(x => x.Model.FaturaBilgi.VergiNo)
+    @Html.FormTextBoxFor(x => x.Model.FaturaBilgi.VergiDairesi)
+    @Html.FormCardDivEnd()
+    <!-- #endregion -->
+
+    <!-- #region Ödeme Bilgi -->
+    @Html.FormCardDivBegin(Resources.LangResources.OdemeBilgi)
+
+    <div id="divOdemeBilgi">
+        @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.OgrennciKaydedebilmekIcin)
+    </div>
+
+    <div id="divOdeme" style="display:none;">
+        @Html.FormDropDownListFor(x => x.Model.Sube.ParaBirimId, Model.ParaBirimSelectList, disabled: true, labelValue: Resources.LangResources.SubeParaBirim)
+        @Html.FormDropDownListFor(x => x.Model.OgrenciSozlesmeOdemeBilgi.PesinatHesapId, selectListItems: null)
+        @Html.FormDropDownListFor(x => x.Model.OgrenciSozlesmeOdemeBilgi.OgrenciSozlesmeOdemeBilgiSenetImzalayanId, Model.OgrenciSozlesmeOdemeBilgiSenetImzalayanSelectList)
+
+        @Html.FormTextBoxFor(x => x.Model.EgitimTutar, classString: "toplamHesap")
+        <div id="divOdemeOkulDetayBilgi" style="display:none;">
+            @Html.FormTextBoxFor(x => x.Model.YemekTutar, classString: "toplamHesap")
+            @Html.FormTextBoxFor(x => x.Model.KiyafetTutar, classString: "toplamHesap")
+        </div>
+
+        @Html.FormTextBoxFor(x => x.Model.ServisTutar, classString: "toplamHesap")
+
+        <div id="divYayinTutar">
+            @Html.FormTextBoxFor(x => x.Model.YayinTutar, classString: "toplamHesap")
+        </div>
+
+        @Html.FormTextBoxFor(x => x.Model.ToplamUcret)
+        @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.ToplamUcretHepsininToplami)
+        @Html.FormTextBoxFor(x => x.Model.OgrenciSozlesmeOdemeBilgi.PesinatTutar, classString: "toplamHesap")
+        @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.MinimumPesinatTutariSubeden + "<span id='spnMinimumPesinatTutari'>0</span>")
+        @Html.FormTextBoxFor(x => x.Model.OgrenciSozlesmeOdemeBilgi.TaksitAdet)
+        @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.MaksimumTaksitAdetiSubeden + "<span id='spnMaksimumTaksitAdeti'>0</span>")
+        @Html.FormTextBoxFor(x => x.Model.OgrenciSozlesmeOdemeBilgi.TaksitTutar, classString: "toplamHesap")
+        @Html.FormTextBoxFor(x => x.Model.OgrenciSozlesmeOdemeBilgi.TaksitBaslangicTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+        @Html.FormTextAreaFor(x => x.Model.OgrenciSozlesmeOdemeBilgi.Not, 2, 2)
+
+        @Html.HiddenFor(x => x.Model.OgrenciSozlesmeId)
+        @Html.HiddenFor(x => x.Model.OgrenciId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.EkleyenPersonelId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.SubeId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.OgrenciId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.Hesap.HesapId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.UlkeId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.SehirId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.IlceId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.YakiniOgrenciYakiniIletisimId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.YakiniOgrenciYakiniIletisim.OgrenciYakiniIletisimId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.AnneOgrenciYakiniIletisimId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.AnneOgrenciYakiniIletisim.OgrenciYakiniIletisimId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.BabaOgrenciYakiniIletisimId)
+        @Html.HiddenFor(x => x.Model.Ogrenci.BabaOgrenciYakiniIletisim.OgrenciYakiniIletisimId)
+
+        @Html.FormButtons(Model.Model.OgrenciSozlesmeId, "", false)
+    </div>
+
+    @Html.FormCardDivEnd()
+    <!-- #endregion -->
+
+    <!-- #region Ödeme Planı -->
+    @Html.FormCardDivBegin(Resources.LangResources.OdemePlani)
+
+    <div id="divOdemePlaniBilgi">
+        @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.OdemePlaniGorebilmekIcin)
+    </div>
+
+    <div id="divOdemePlani" style="display:none;">
+        @Html.FormGroupRowBegin(Resources.LangResources.OdemePlani)
+
+        <div id="divOdemeTaksitDetaylar">
+            @Html.FormGroupRowBegin(Resources.LangResources.TaksitAdet)
+            <label id="lblTaksitAdet"></label>
+            @Html.FormGroupRowEnd()
+            @Html.FormGroupRowBegin(Resources.LangResources.IlkTaksitTarihi)
+            <label id="lblIlkTaksitTarihi"></label>
+            @Html.FormGroupRowEnd()
+            @Html.FormGroupRowBegin(Resources.LangResources.SonTaksitTarihi)
+            <label id="lblSonTaksitTarihi"></label>
+            @Html.FormGroupRowEnd()
+            @Html.FormGroupRowBegin(Resources.LangResources.SonTaksitTutar)
+            <label id="lblSonTaksitTutar"></label>
+            @Html.FormGroupRowEnd()
+            <div>&nbsp;</div>
+        </div>
+
+        @Html.FormScrollableTableThead(
+            new List<string> {
+                Resources.LangResources.TaksitNo,
+                Resources.LangResources.TaksitTutari,
+                Resources.LangResources.VadeTarihi},
+            "tblTaksitler")
+
+        @for (int i = 0; i < Model.Model.OgrenciSozlesmeOdemeBilgi.AylikTaksitBilgiler.Count; i++)
+        {
+            var aylikTaksitBilgi = Model.Model.OgrenciSozlesmeOdemeBilgi.AylikTaksitBilgiler[i];
+
+            @Html.FormScrollableTableRow(
+                new List<object> {
+                    Html.FormTextBoxFor(x=> x.Model.OgrenciSozlesmeOdemeBilgi.AylikTaksitBilgiler[i].TaksitNo, classString:"taksitNo", disabled:true),
+                    Html.FormTextBoxFor(x=> x.Model.OgrenciSozlesmeOdemeBilgi.AylikTaksitBilgiler[i].TaksitTutari, classString:"taksitTutar"),
+                    Html.FormTextBoxFor(x=> x.Model.OgrenciSozlesmeOdemeBilgi.AylikTaksitBilgiler[i].VadeTarihi, textBoxType: HtmlHelpers.TextBoxType.Date, classString:"taksitTarih")
+                })
+        }
+
+        @Html.FormScrollableTableEnd()
+
+        @Html.FormGroupRowEnd()
+    </div>
+
+    @Html.FormCardDivEnd()
+    <!-- #endregion -->
+}

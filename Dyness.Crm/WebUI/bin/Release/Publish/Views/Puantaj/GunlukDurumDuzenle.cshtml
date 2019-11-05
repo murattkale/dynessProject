@@ -1,0 +1,42 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model PersonelPuantajGunlukDurumDuzenleViewModel
+
+@{
+    var title = Model.Model.PersonelPuantajGunlukDurumId == 0
+    ? Resources.LangResources.PuantajGunlukDurumEkle
+    : $"{Resources.LangResources.PuantajGunlukDurumGuncelle} ({Model.Model.PersonelPuantajGunlukDurumAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Personeller;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("GunlukDurumDuzenle", "Puantaj", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.PersonelPuantajGunlukDurumId, Model.PersonelPuantajGunlukDurumSelectList, Model.PersonelPuantajGunlukDurumSelectList.Any(), Resources.LangResources.PuantajGunlukDurumlar, "/Puantaj/GunlukDurumDuzenle/")
+    @Html.FormTextBoxFor(x => x.Model.PersonelPuantajGunlukDurumAd)
+    @Html.FormTextBoxFor(x => x.Model.PersonelPuantajGunlukDurumKisatlma)
+    @Html.FormTextBoxFor(x => x.Model.PersonelPuantajGunlukDurumRenk)
+    @Html.FormTextBoxFor(x => x.Model.Sira)
+    @Html.FormCheckBoxFor(x => x.Model.CalistiMi)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.PersonelPuantajGunlukDurumId,"")
+    @Html.FormCardDivEnd()
+}

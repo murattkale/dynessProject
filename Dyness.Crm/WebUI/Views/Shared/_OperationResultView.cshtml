@@ -1,0 +1,21 @@
+﻿@using Core.Entities.Dto;
+@using WebUI.Helpers;
+
+@model List<MessageInfo>
+
+@foreach (var messageInfo in Model)
+{
+    var messageInfoType = messageInfo.MessageInfoType == Core.Entities.Dto.MessageInfoType.Success
+        ? $"{Resources.LangResources.Bilgi} : "
+        : $"{Resources.LangResources.Hata} : ";
+
+    var errorString = string.IsNullOrEmpty(messageInfo.Field)
+        ? $"{messageInfoType} {messageInfo.Message}"
+        : $"{messageInfoType} {messageInfo.Message} ({Resources.LangResources.Alan} : {messageInfo.Field})";
+
+    var alertType = messageInfo.MessageInfoType == Core.Entities.Dto.MessageInfoType.Success
+        ? HtmlHelpers.AlertType.Success
+        : HtmlHelpers.AlertType.Danger;
+
+    @Html.FormMessagesFor(alertType, errorString)
+}

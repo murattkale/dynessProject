@@ -1,0 +1,37 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model  OgrenciSifreDegistirViewModel
+
+@{
+    var title = Resources.LangResources.SifreDegistir;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_LayoutOgrenciBilgi.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenci;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("SifreDegistir", "OgrenciBilgi", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormTextBoxFor(x => x.TcKimlikNo)
+    @Html.FormTextBoxFor(x => x.Sifre)
+    @Html.FormTextBoxFor(x => x.SifreTekrar)
+    @Html.FormButtons(0, "", false)
+    @Html.FormCardDivEnd()
+}
+

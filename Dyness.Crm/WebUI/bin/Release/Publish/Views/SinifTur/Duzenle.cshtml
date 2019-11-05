@@ -1,0 +1,46 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model SinifTurDuzenleViewModel
+
+@{
+    var title = Model.Model.SinifTurId == 0
+        ? Resources.LangResources.SinifTurEkle
+        : $"{Resources.LangResources.SinifTurGuncelle} ({Model.Model.SinifTurAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "SinifTur", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.SinifTurId, Model.SinifTurSelectList, Model.SinifTurSelectList.Any(), Resources.LangResources.SinifTurler, "/SinifTur/Duzenle/")
+    @Html.FormTextBoxFor(x => x.Model.SinifTurAd)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormCheckBoxFor(x => x.Model.OnlineEtutVerebilirMi)
+    @Html.FormButtons(Model.Model.SinifTurId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "SinifTur", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.SinifTurId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

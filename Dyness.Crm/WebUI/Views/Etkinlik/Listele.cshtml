@@ -1,0 +1,45 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model  EtkinlikListeleViewModel
+
+@{
+    var title = Resources.LangResources.Etkinlikler;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.EtkinlikAd)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinlikAd)', '@Model.Model.GetColumnName(x=> x.EtkinlikAd)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SorumluPersonelId)', '@Model.Model.GetColumnName(x=> x.SorumluPersonelAdSoyad)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.OlusturulmaTarihi)', '@Model.Model.GetColumnName(x=> x.OlusturulmaTarihiFormatted)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.EtkinlikBaslangicTarihi)', '@Model.Model.GetColumnName(x=> x.EtkinlikBaslangicTarihiFormatted)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.EtkinlikBitisTarihi)', '@Model.Model.GetColumnName(x=> x.EtkinlikBitisTarihiFormatted)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.EtkinlikSonBasvuruTarihi)', '@Model.Model.GetColumnName(x=> x.EtkinlikSonBasvuruTarihiFormatted)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Kontenjan)', '@Model.Model.GetColumnName(x=> x.Kontenjan)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.KatilimAdet)', '@Model.Model.GetColumnName(x=> x.KatilimAdet)', false, 0, AlignEnum.Center, AlignEnum.Center));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.KontenjanDurumu)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.KontenjanDurumu)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.KontenjanDurumu)', '@Model.Model.GetColumnName(x=> x.KontenjanDurumu)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        SetDataTable(false, 'tblListele', '/Etkinlik/Listele', 0, 'asc', columns, '/Etkinlik/Duzenle/', 'EtkinlikId', null);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "YENİ ETKİNLİK", "/Etkinlik/Duzenle/")

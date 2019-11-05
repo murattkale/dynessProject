@@ -1,0 +1,1788 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Aciklama" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="Alacak" xml:space="preserve">
+    <value>Alacak</value>
+  </data>
+  <data name="AlacakliBagliHesapAciklama" xml:space="preserve">
+    <value>Gönderen Bağlı Hesap</value>
+  </data>
+  <data name="AlacakliUstHesapAciklama" xml:space="preserve">
+    <value>Gönderen Hesap</value>
+  </data>
+  <data name="Alan" xml:space="preserve">
+    <value>Alan</value>
+  </data>
+  <data name="AldigiDersler" xml:space="preserve">
+    <value>Aldığı Dersler</value>
+  </data>
+  <data name="Anasayfa" xml:space="preserve">
+    <value>Anasayfa</value>
+  </data>
+  <data name="AnneIletisimBilgileri" xml:space="preserve">
+    <value>Anne İletişim Bilgileri</value>
+  </data>
+  <data name="Aylar" xml:space="preserve">
+    <value>Ay Seçebilirsiniz</value>
+  </data>
+  <data name="AyYilBosOlamaz" xml:space="preserve">
+    <value>Ay, Yıl boş olamaz</value>
+  </data>
+  <data name="BabaIletisimBilgileri" xml:space="preserve">
+    <value>Baba İletişim Bilgileri</value>
+  </data>
+  <data name="BANKAB" xml:space="preserve">
+    <value>BANKA</value>
+  </data>
+  <data name="BankaEkle" xml:space="preserve">
+    <value>Banka Ekle</value>
+  </data>
+  <data name="BankaGuncelle" xml:space="preserve">
+    <value>Banka Güncelle</value>
+  </data>
+  <data name="BankaHesapEkle" xml:space="preserve">
+    <value>Banka Hesap Ekle</value>
+  </data>
+  <data name="BankaHesapGuncelle" xml:space="preserve">
+    <value>Banka Hesap Güncelle</value>
+  </data>
+  <data name="BankaHesaplar" xml:space="preserve">
+    <value>Banka Hesaplar</value>
+  </data>
+  <data name="Bankalar" xml:space="preserve">
+    <value>Bankalar</value>
+  </data>
+  <data name="Beden" xml:space="preserve">
+    <value>Beden</value>
+  </data>
+  <data name="BESB" xml:space="preserve">
+    <value>BES</value>
+  </data>
+  <data name="Bilgi" xml:space="preserve">
+    <value>Bilgi</value>
+  </data>
+  <data name="Bilgiler" xml:space="preserve">
+    <value>Bilgiler</value>
+  </data>
+  <data name="BilgileriniDuzenle" xml:space="preserve">
+    <value>Bilgilerini Düzenle</value>
+  </data>
+  <data name="BilgiPaneli" xml:space="preserve">
+    <value>Bilgi Paneli</value>
+  </data>
+  <data name="Borc" xml:space="preserve">
+    <value>Borç</value>
+  </data>
+  <data name="Borclandi" xml:space="preserve">
+    <value>Borçlandı</value>
+  </data>
+  <data name="Borclu" xml:space="preserve">
+    <value>Borçlu</value>
+  </data>
+  <data name="BorcluBagliHesapAciklama" xml:space="preserve">
+    <value>Alıcı Bağlı Hesap</value>
+  </data>
+  <data name="BorcluUstHesapAciklama" xml:space="preserve">
+    <value>Alıcı Hesap</value>
+  </data>
+  <data name="Brans" xml:space="preserve">
+    <value>Branş</value>
+  </data>
+  <data name="BransDersSecenekBilgi" xml:space="preserve">
+    <value>Herhangi bir branç seçmezseniz, ortak dersleri listeleyebilirsiniz.</value>
+  </data>
+  <data name="BransEkle" xml:space="preserve">
+    <value>Branş Ekle</value>
+  </data>
+  <data name="BransGuncelle" xml:space="preserve">
+    <value>Branş Güncelle</value>
+  </data>
+  <data name="Branslar" xml:space="preserve">
+    <value>Branşlar</value>
+  </data>
+  <data name="BuIslemBilgilerinSilinmesineNedenOlacaktir" xml:space="preserve">
+    <value>Bu işlem bilgilerin silinmesine neden olacaktır.</value>
+  </data>
+  <data name="CikisYap" xml:space="preserve">
+    <value>Çıkış Yap</value>
+  </data>
+  <data name="Ders" xml:space="preserve">
+    <value>Ders</value>
+  </data>
+  <data name="DersEkle" xml:space="preserve">
+    <value>Ders Ekle</value>
+  </data>
+  <data name="DersGrupEkle" xml:space="preserve">
+    <value>Ders Grup Ekle</value>
+  </data>
+  <data name="DersGrupGuncelle" xml:space="preserve">
+    <value>Ders Grup Güncelle</value>
+  </data>
+  <data name="DersGruplar" xml:space="preserve">
+    <value>Ders Gruplar</value>
+  </data>
+  <data name="DersGuncelle" xml:space="preserve">
+    <value>Ders Güncelle</value>
+  </data>
+  <data name="Dersler" xml:space="preserve">
+    <value>Dersler</value>
+  </data>
+  <data name="Derslik" xml:space="preserve">
+    <value>Derslik</value>
+  </data>
+  <data name="DerslikEkle" xml:space="preserve">
+    <value>Derslik Ekle</value>
+  </data>
+  <data name="DerslikGuncelle" xml:space="preserve">
+    <value>Derslik Güncelle</value>
+  </data>
+  <data name="Derslikler" xml:space="preserve">
+    <value>Derslikler</value>
+  </data>
+  <data name="DersTanimlamalar" xml:space="preserve">
+    <value>Ders Tanımlamalar</value>
+  </data>
+  <data name="DigerHesaplar" xml:space="preserve">
+    <value>Diğer Hesaplar</value>
+  </data>
+  <data name="DIKKAT" xml:space="preserve">
+    <value>DİKKAT!</value>
+  </data>
+  <data name="Durum" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="EgerBirdenFazlaSubedeGorevAliyorsa" xml:space="preserve">
+    <value>Eğer personel birden fazla şubede görev alıyorsa, maaş tutarını aşmayacak şekilde şubenin karşılaması gereken tutarı ilgili şubenin kutusuna giriniz.</value>
+  </data>
+  <data name="ELDENB" xml:space="preserve">
+    <value>ELDEN</value>
+  </data>
+  <data name="Erkek" xml:space="preserve">
+    <value>Erkek</value>
+  </data>
+  <data name="EtkinlikEkle" xml:space="preserve">
+    <value>Etkinlik Ekle</value>
+  </data>
+  <data name="EtkinlikGuncelle" xml:space="preserve">
+    <value>Etkinlik Guncelle</value>
+  </data>
+  <data name="Etkinlikler" xml:space="preserve">
+    <value>Etkinlikler</value>
+  </data>
+  <data name="Evet" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+  <data name="FaturaBilgi" xml:space="preserve">
+    <value>Fatura Bilgi</value>
+  </data>
+  <data name="FieldMustBeDate" xml:space="preserve">
+    <value>{0} alanı tarih olmalıdır.</value>
+  </data>
+  <data name="FieldMustBeNumeric" xml:space="preserve">
+    <value>{0} alanı sayısal değer olmalıdır.</value>
+  </data>
+  <data name="Gelir" xml:space="preserve">
+    <value>Gelir</value>
+  </data>
+  <data name="Gider" xml:space="preserve">
+    <value>Gider</value>
+  </data>
+  <data name="GiderHareketEkle" xml:space="preserve">
+    <value>Gider Hareket Ekle</value>
+  </data>
+  <data name="GiderHareketGuncelle" xml:space="preserve">
+    <value>Gider Hareket Güncelle</value>
+  </data>
+  <data name="GiderHesaplar" xml:space="preserve">
+    <value>Gider Hesapları</value>
+  </data>
+  <data name="Giris" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="GirisYapin" xml:space="preserve">
+    <value>Kullanıcı Girişi Yapın</value>
+  </data>
+  <data name="GorselSil" xml:space="preserve">
+    <value>Görsel Sil</value>
+  </data>
+  <data name="GUNB" xml:space="preserve">
+    <value>GÜN</value>
+  </data>
+  <data name="GUNCELLE" xml:space="preserve">
+    <value>GÜNCELLE</value>
+  </data>
+  <data name="GUNLUKB" xml:space="preserve">
+    <value>GÜNLÜK</value>
+  </data>
+  <data name="HAKEDISB" xml:space="preserve">
+    <value>HAKEDİŞ</value>
+  </data>
+  <data name="HareketTarihi" xml:space="preserve">
+    <value>Hareket Tarihi</value>
+  </data>
+  <data name="Hata" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="HataOlustu" xml:space="preserve">
+    <value>Hata oluştu. Ana sayfaya dönmek için linki tıklayınız.</value>
+  </data>
+  <data name="Hayir" xml:space="preserve">
+    <value>Hayır</value>
+  </data>
+  <data name="Hepsi" xml:space="preserve">
+    <value>Hepsi</value>
+  </data>
+  <data name="Hesabim" xml:space="preserve">
+    <value>Hesabım</value>
+  </data>
+  <data name="HesapAyarlari" xml:space="preserve">
+    <value>Hesap Ayarları</value>
+  </data>
+  <data name="HesapEkle" xml:space="preserve">
+    <value>Hesap Ekle</value>
+  </data>
+  <data name="HesapGuncelle" xml:space="preserve">
+    <value>Hesap Güncelle</value>
+  </data>
+  <data name="HesapHareketEkle" xml:space="preserve">
+    <value>Hesap Hareket Ekle</value>
+  </data>
+  <data name="HesapHareketGuncelle" xml:space="preserve">
+    <value>Hesap Hareket Güncelle</value>
+  </data>
+  <data name="HesapHareketler" xml:space="preserve">
+    <value>Hesap Hareketler</value>
+  </data>
+  <data name="Hesaplar" xml:space="preserve">
+    <value>Hesaplar</value>
+  </data>
+  <data name="HesapTurEkle" xml:space="preserve">
+    <value>Hesap Tür Ekle</value>
+  </data>
+  <data name="HesapTurGruplar" xml:space="preserve">
+    <value>Hesap Tür Gruplar</value>
+  </data>
+  <data name="HesapTurGuncelle" xml:space="preserve">
+    <value>Hesap Tür Güncelle</value>
+  </data>
+  <data name="HesapTurler" xml:space="preserve">
+    <value>Hesap Türler</value>
+  </data>
+  <data name="ICRAB" xml:space="preserve">
+    <value>İCRA</value>
+  </data>
+  <data name="IletisimBilgileri" xml:space="preserve">
+    <value>İletişim Bilgileri</value>
+  </data>
+  <data name="IletisimTercihleri" xml:space="preserve">
+    <value>İletişim Tercihleri</value>
+  </data>
+  <data name="IlkTaksitTarihi" xml:space="preserve">
+    <value>İlk Taksit Tarihi</value>
+  </data>
+  <data name="IPTAL" xml:space="preserve">
+    <value>İPTAL</value>
+  </data>
+  <data name="IslemiOnayliyormusunuz" xml:space="preserve">
+    <value>İşlemi Onaylıyor musunuz?</value>
+  </data>
+  <data name="Kadin" xml:space="preserve">
+    <value>Kadın</value>
+  </data>
+  <data name="KAPAT" xml:space="preserve">
+    <value>KAPAT</value>
+  </data>
+  <data name="KasaBankaHesaplar" xml:space="preserve">
+    <value>Kasa ve Banka Toplamları</value>
+  </data>
+  <data name="Kasalar" xml:space="preserve">
+    <value>Kasalar</value>
+  </data>
+  <data name="KAYDET" xml:space="preserve">
+    <value>KAYDET</value>
+  </data>
+  <data name="KayitBilgileri" xml:space="preserve">
+    <value>Kayıt Bilgileri</value>
+  </data>
+  <data name="KayitBulunamadi" xml:space="preserve">
+    <value>Kayıt Bulunamadı</value>
+  </data>
+  <data name="KisiselBilgileri" xml:space="preserve">
+    <value>Kişisel Bilgileri</value>
+  </data>
+  <data name="Kitapcik" xml:space="preserve">
+    <value>Kitapçık</value>
+  </data>
+  <data name="KitapcikDuzenle" xml:space="preserve">
+    <value>Kitapçık Soru Düzenle</value>
+  </data>
+  <data name="Kitapciklar" xml:space="preserve">
+    <value>Kitapçıklar</value>
+  </data>
+  <data name="Kiyafet" xml:space="preserve">
+    <value>Kıyafet</value>
+  </data>
+  <data name="KiyafetBedenEkle" xml:space="preserve">
+    <value>Kıyafet Beden Ekle</value>
+  </data>
+  <data name="KiyafetBedenGuncelle" xml:space="preserve">
+    <value>Kıyafet Beden Güncelle</value>
+  </data>
+  <data name="KiyafetBedenler" xml:space="preserve">
+    <value>Kıyafet Bedenler</value>
+  </data>
+  <data name="KiyafetEkle" xml:space="preserve">
+    <value>Kıyafet Ekle</value>
+  </data>
+  <data name="KiyafetGuncelle" xml:space="preserve">
+    <value>Kıyafet Güncelle</value>
+  </data>
+  <data name="Kiyafetler" xml:space="preserve">
+    <value>Kıyafetler</value>
+  </data>
+  <data name="KiyafetTur" xml:space="preserve">
+    <value>Kıyafet Tür</value>
+  </data>
+  <data name="KiyafetTurEkle" xml:space="preserve">
+    <value>Kıyafet Tür Ekle</value>
+  </data>
+  <data name="KiyafetTurGuncelle" xml:space="preserve">
+    <value>Kiyafet Tür Güncelle</value>
+  </data>
+  <data name="KiyafetTurler" xml:space="preserve">
+    <value>Kıyafet Türler</value>
+  </data>
+  <data name="Konu" xml:space="preserve">
+    <value>Konu</value>
+  </data>
+  <data name="KonuEkle" xml:space="preserve">
+    <value>Konu Ekle</value>
+  </data>
+  <data name="KonuGuncelle" xml:space="preserve">
+    <value>Konu Güncelle</value>
+  </data>
+  <data name="Konular" xml:space="preserve">
+    <value>Konular</value>
+  </data>
+  <data name="KullaniciBigileri" xml:space="preserve">
+    <value>Kullanıcı Bilgileri</value>
+  </data>
+  <data name="KullaniciBilgileriniziGirin" xml:space="preserve">
+    <value>Kullanıcı Bilgilerinizi Girin</value>
+  </data>
+  <data name="KullaniciEkle" xml:space="preserve">
+    <value>Kullanıcı Ekle</value>
+  </data>
+  <data name="KullaniciGiris" xml:space="preserve">
+    <value>Kullanıcı Giriş</value>
+  </data>
+  <data name="KullaniciGrupEkle" xml:space="preserve">
+    <value>Kullanıcı Grup Ekle</value>
+  </data>
+  <data name="KullaniciGrupGuncelle" xml:space="preserve">
+    <value>Kullanıcı Grup Güncelle</value>
+  </data>
+  <data name="KullaniciGruplar" xml:space="preserve">
+    <value>Kullanıcı Gruplar</value>
+  </data>
+  <data name="KullaniciGuncelle" xml:space="preserve">
+    <value>Kullanıcı Güncelle</value>
+  </data>
+  <data name="Kullanicilar" xml:space="preserve">
+    <value>Kullanıcılar</value>
+  </data>
+  <data name="KullaniciSifreGuncelle" xml:space="preserve">
+    <value>Kullanıcı Şifre Güncelle</value>
+  </data>
+  <data name="KullaniciVePersonelEkle" xml:space="preserve">
+    <value>Kullanıcı ve Personel Ekle</value>
+  </data>
+  <data name="KullaniciVePersonelGuncelle" xml:space="preserve">
+    <value>Kullanıcı ve Personel Güncelle</value>
+  </data>
+  <data name="KurumEkle" xml:space="preserve">
+    <value>Kurum Ekle</value>
+  </data>
+  <data name="KurumGuncelle" xml:space="preserve">
+    <value>Kurum Güncelle</value>
+  </data>
+  <data name="Kurumlar" xml:space="preserve">
+    <value>Kurumlar</value>
+  </data>
+  <data name="KurumVeSubeler" xml:space="preserve">
+    <value>Kurum Ve Şubeler</value>
+  </data>
+  <data name="KurumYetkiYok" xml:space="preserve">
+    <value>Bu kurumda yetkiniz yok!</value>
+  </data>
+  <data name="Listele" xml:space="preserve">
+    <value>Listele</value>
+  </data>
+  <data name="MAASB" xml:space="preserve">
+    <value>MAAŞ</value>
+  </data>
+  <data name="MaksimumTaksitAdetiSubeden" xml:space="preserve">
+    <value>Maksimum Taksit Adeti şubeden belirlenir. Maksimum Taksit Adeti : </value>
+  </data>
+  <data name="Mesajlarim" xml:space="preserve">
+    <value>Mesajlarım</value>
+  </data>
+  <data name="MinimumPesinatTutariSubeden" xml:space="preserve">
+    <value>Minimum Peşinat Tutarı şubeden belirlenir. Minimum Peşinat Oranı : </value>
+  </data>
+  <data name="MuahsebeTanimlamalar" xml:space="preserve">
+    <value>Muhasebe Tanımlamalar</value>
+  </data>
+  <data name="Muhasebe" xml:space="preserve">
+    <value>Muhasebe</value>
+  </data>
+  <data name="NeredenDuydunuzEkle" xml:space="preserve">
+    <value>Nereden Duydunuz Ekle</value>
+  </data>
+  <data name="NeredenDuydunuzGuncelle" xml:space="preserve">
+    <value>Nereden Duydunuz Güncelle</value>
+  </data>
+  <data name="NeredenDuydunuzlar" xml:space="preserve">
+    <value>Nereden Duydunuz Listele</value>
+  </data>
+  <data name="Ode" xml:space="preserve">
+    <value>Öde</value>
+  </data>
+  <data name="OdemeBilgi" xml:space="preserve">
+    <value>Ödeme Bilgi</value>
+  </data>
+  <data name="OdemePlani" xml:space="preserve">
+    <value>Ödeme Planı</value>
+  </data>
+  <data name="OdemePlaniGorebilmekIcin" xml:space="preserve">
+    <value>Ödeme Planını görebilmek için Toplam Tutar, Peşinat Tutarı ve Taksit Sayısını girmeniz gerekiyor.</value>
+  </data>
+  <data name="OdemeYapiandir" xml:space="preserve">
+    <value>Ödeme Yapılandır</value>
+  </data>
+  <data name="Odendi" xml:space="preserve">
+    <value>Ödendi</value>
+  </data>
+  <data name="OdenecekHesap" xml:space="preserve">
+    <value>Ödenecek Hesap</value>
+  </data>
+  <data name="OgrenciBilgileri" xml:space="preserve">
+    <value>Öğrenci Bilgileri</value>
+  </data>
+  <data name="OgrenciEkle" xml:space="preserve">
+    <value>Öğrenci Ekle</value>
+  </data>
+  <data name="OgrenciGuncelle" xml:space="preserve">
+    <value>Öğrenci Güncelle</value>
+  </data>
+  <data name="OgrenciHesaplar" xml:space="preserve">
+    <value>Öğrenci Hesaplar</value>
+  </data>
+  <data name="OgrenciKayit" xml:space="preserve">
+    <value>Öğrenci Kayıt</value>
+  </data>
+  <data name="Ogrenciler" xml:space="preserve">
+    <value>Öğrenciler</value>
+  </data>
+  <data name="OgrenciSozlesmeBilgileri" xml:space="preserve">
+    <value>Öğrenci Sözleşme Bilgileri</value>
+  </data>
+  <data name="OgrenciSozlesmeEkle" xml:space="preserve">
+    <value>Sözleşme Ekle</value>
+  </data>
+  <data name="OgrenciSozlesmeGuncelle" xml:space="preserve">
+    <value>Sözleşme Güncelle</value>
+  </data>
+  <data name="OgrenciSozlesmeler" xml:space="preserve">
+    <value>Sözleşmeler</value>
+  </data>
+  <data name="OgrenciSozlesmeSil" xml:space="preserve">
+    <value>Sözleşme Sil</value>
+  </data>
+  <data name="OgrenciSozlesmeTur" xml:space="preserve">
+    <value>Sözleşme Tür</value>
+  </data>
+  <data name="OgrenciSozlesmeYazdir" xml:space="preserve">
+    <value>Sözleşme Yazdır</value>
+  </data>
+  <data name="OgrenciTanimlamalar" xml:space="preserve">
+    <value>Öğrenci Tanımlamalar</value>
+  </data>
+  <data name="OgrennciKaydedebilmekIcin" xml:space="preserve">
+    <value>Ödeme bilgilerini görmek ve kaydı tamamlayabilmek için Sözleşme Tür seçmelisiniz.</value>
+  </data>
+  <data name="ONAYLA" xml:space="preserve">
+    <value>ONAYLA</value>
+  </data>
+  <data name="OptikFormBilgileri" xml:space="preserve">
+    <value>Optik Form Bilgileri</value>
+  </data>
+  <data name="OptikFormDersTanimlamalar" xml:space="preserve">
+    <value>Optik Form Ders Tanımlamaları</value>
+  </data>
+  <data name="OptikFormDetaylari" xml:space="preserve">
+    <value>Optik Form Detayları</value>
+  </data>
+  <data name="OrtakDersEkleBilgi" xml:space="preserve">
+    <value>Branş seçmezseniz, ortak bir ders eklemiş olursunuz.</value>
+  </data>
+  <data name="PERSONELB" xml:space="preserve">
+    <value>PERSONEL</value>
+  </data>
+  <data name="PersonelBilgileri" xml:space="preserve">
+    <value>Personel Bilgileri</value>
+  </data>
+  <data name="PersonelDetay" xml:space="preserve">
+    <value>Personel Detay</value>
+  </data>
+  <data name="PersonelEkle" xml:space="preserve">
+    <value>Personel Ekle</value>
+  </data>
+  <data name="PersonelGrupEkle" xml:space="preserve">
+    <value>Personel Grup Ekle</value>
+  </data>
+  <data name="PersonelGrupGuncelle" xml:space="preserve">
+    <value>Personel Grup Güncelle</value>
+  </data>
+  <data name="PersonelGruplar" xml:space="preserve">
+    <value>Personel Gruplar</value>
+  </data>
+  <data name="PersonelGuncelle" xml:space="preserve">
+    <value>Personel Güncelle</value>
+  </data>
+  <data name="PersonelHesaplar" xml:space="preserve">
+    <value>Personel Toplamları</value>
+  </data>
+  <data name="Personeller" xml:space="preserve">
+    <value>Personeller</value>
+  </data>
+  <data name="PersonelTanimlamalar" xml:space="preserve">
+    <value>Personel Tanımlamalar</value>
+  </data>
+  <data name="PersonelYetkiGrupEkle" xml:space="preserve">
+    <value>Personel Yetki Grup Ekle</value>
+  </data>
+  <data name="PersonelYetkiGrupGuncelle" xml:space="preserve">
+    <value>Personel Yetki Grup Güncelle</value>
+  </data>
+  <data name="PersonelYetkiGruplar" xml:space="preserve">
+    <value>Personel Yetki Gruplar</value>
+  </data>
+  <data name="PropertyValueInvalid" xml:space="preserve">
+    <value>{1} alanı için girdiğiniz, '{0}' değeri geçerli değildir.</value>
+  </data>
+  <data name="PropertyValueRequired" xml:space="preserve">
+    <value>Değer gerekli.</value>
+  </data>
+  <data name="PuantajDuzenle" xml:space="preserve">
+    <value>Puantaj Düzenle</value>
+  </data>
+  <data name="PuantajGunlukDurumEkle" xml:space="preserve">
+    <value>Puantaj Durum Ekle</value>
+  </data>
+  <data name="PuantajGunlukDurumGuncelle" xml:space="preserve">
+    <value>Puantaj Durum Güncelle</value>
+  </data>
+  <data name="PuantajGunlukDurumlar" xml:space="preserve">
+    <value>Puantaj Durumlar</value>
+  </data>
+  <data name="PuantajOlustur" xml:space="preserve">
+    <value>Puantaj Oluştur</value>
+  </data>
+  <data name="PuanTurEkle" xml:space="preserve">
+    <value>Puan Tür Ekle</value>
+  </data>
+  <data name="PuanTurGuncelle" xml:space="preserve">
+    <value>Puan Tür Güncelle</value>
+  </data>
+  <data name="PuanTurler" xml:space="preserve">
+    <value>Puan Türler</value>
+  </data>
+  <data name="RaporTanimlamalar" xml:space="preserve">
+    <value>Rapor Tanımlamalar</value>
+  </data>
+  <data name="SayfaBulunamadi" xml:space="preserve">
+    <value>Sayfa Bulunamadı</value>
+  </data>
+  <data name="Seciniz" xml:space="preserve">
+    <value>Seçiniz</value>
+  </data>
+  <data name="ServisEkle" xml:space="preserve">
+    <value>Servis Ekle</value>
+  </data>
+  <data name="ServisGuncelle" xml:space="preserve">
+    <value>Servis Güncelle</value>
+  </data>
+  <data name="Servisler" xml:space="preserve">
+    <value>Servisler</value>
+  </data>
+  <data name="SezonEkle" xml:space="preserve">
+    <value>Sezon Ekle</value>
+  </data>
+  <data name="SezonGuncelle" xml:space="preserve">
+    <value>Sezon Güncelle</value>
+  </data>
+  <data name="SezonKoduSezonBaslangic" xml:space="preserve">
+    <value>Sezon kodu, sezon başlangıç ve bitiş yıllarının son 2 hanesinden oluştur. Örneğin : 2017-2018 sezonu için 1718 kodu kullanılır.</value>
+  </data>
+  <data name="Sezonlar" xml:space="preserve">
+    <value>Sezonlar</value>
+  </data>
+  <data name="SifirIleYuzArasi" xml:space="preserve">
+    <value>0 ile 100 arası bir değer belirtiniz.</value>
+  </data>
+  <data name="SifreyiDegistirmekIstemiyorsaniz" xml:space="preserve">
+    <value>Şifre değiştirmek istediğinizde, şifre alanlarını doldurmanız gerekir. Aksi taktirde boş bırakınız.</value>
+  </data>
+  <data name="SIL" xml:space="preserve">
+    <value>SİL</value>
+  </data>
+  <data name="SinavBilgileri" xml:space="preserve">
+    <value>Sınav Detayları</value>
+  </data>
+  <data name="SinavEkle" xml:space="preserve">
+    <value>Sınav Ekle</value>
+  </data>
+  <data name="SinavGuncelle" xml:space="preserve">
+    <value>Sınav Güncelle</value>
+  </data>
+  <data name="SinavKitapcikDosyaEkle" xml:space="preserve">
+    <value>Sınav konu ve cevapları güncellemek için .xlsx uzantılı dosyalar yükleyebilirsiniz.</value>
+  </data>
+  <data name="Sinavlar" xml:space="preserve">
+    <value>Sınavlar</value>
+  </data>
+  <data name="SinavTanimlamalar" xml:space="preserve">
+    <value>Sınav Tanımlamalar</value>
+  </data>
+  <data name="SinavTurDersKatSayilar" xml:space="preserve">
+    <value>Sınav Tür Ders Kat Sayılar</value>
+  </data>
+  <data name="SinavTurDersler" xml:space="preserve">
+    <value>Sınav Tür Dersler</value>
+  </data>
+  <data name="SinavTurEkle" xml:space="preserve">
+    <value>Sınav Tür Ekle</value>
+  </data>
+  <data name="SinavTurGuncelle" xml:space="preserve">
+    <value>Sınav Tür Güncelle</value>
+  </data>
+  <data name="SinavTurler" xml:space="preserve">
+    <value>Sınav Türler</value>
+  </data>
+  <data name="SinifEkle" xml:space="preserve">
+    <value>Sınıf Ekle</value>
+  </data>
+  <data name="SinifGuncelle" xml:space="preserve">
+    <value>Sınıf Güncelle</value>
+  </data>
+  <data name="Siniflar" xml:space="preserve">
+    <value>Sınıflar</value>
+  </data>
+  <data name="SinifSeans" xml:space="preserve">
+    <value>Sınıf Seans</value>
+  </data>
+  <data name="SinifSeansEkle" xml:space="preserve">
+    <value>Sınıf Seans Ekle</value>
+  </data>
+  <data name="SinifSeansGuncelle" xml:space="preserve">
+    <value>Sınıf Seans Güncelle</value>
+  </data>
+  <data name="SinifSeanslar" xml:space="preserve">
+    <value>Sınıf Seanslar</value>
+  </data>
+  <data name="SinifSeviye" xml:space="preserve">
+    <value>Sınıf Seviye</value>
+  </data>
+  <data name="SinifSeviyeEkle" xml:space="preserve">
+    <value>Sınıf Seviye Ekle</value>
+  </data>
+  <data name="SinifSeviyeGuncelle" xml:space="preserve">
+    <value>Sınıf Seviye Güncelle</value>
+  </data>
+  <data name="SinifSeviyeler" xml:space="preserve">
+    <value>Sınıf Seviyeler</value>
+  </data>
+  <data name="SinifTur" xml:space="preserve">
+    <value>Sınıf Tur</value>
+  </data>
+  <data name="SinifTurEkle" xml:space="preserve">
+    <value>Sınıf Tür Ekle</value>
+  </data>
+  <data name="SinifTurGuncelle" xml:space="preserve">
+    <value>Sınıf Tür Güncelle</value>
+  </data>
+  <data name="SinifTurler" xml:space="preserve">
+    <value>Sınıf Türler</value>
+  </data>
+  <data name="SISTEMB" xml:space="preserve">
+    <value>SİSTEM</value>
+  </data>
+  <data name="SonTaksitTarihi" xml:space="preserve">
+    <value>Son Taksit Tarihi</value>
+  </data>
+  <data name="SonTaksitTutar" xml:space="preserve">
+    <value>Son Taksit Tutarı</value>
+  </data>
+  <data name="SoruAnahtarDosyaYuklemeUzantiHata" xml:space="preserve">
+    <value>Cevap anahtarı olarak .txt uzantılı dosya yükleyebilirsiniz.</value>
+  </data>
+  <data name="SorumluPersonel" xml:space="preserve">
+    <value>Sorumlu Personel</value>
+  </data>
+  <data name="SozlesmeEkle" xml:space="preserve">
+    <value>Sözleşme Ekle</value>
+  </data>
+  <data name="Stok" xml:space="preserve">
+    <value>Stok</value>
+  </data>
+  <data name="Sube" xml:space="preserve">
+    <value>Şube</value>
+  </data>
+  <data name="SubeBilgileri" xml:space="preserve">
+    <value>Şube Bilgileri</value>
+  </data>
+  <data name="SubeEkle" xml:space="preserve">
+    <value>Şube Ekle</value>
+  </data>
+  <data name="SubeGuncelle" xml:space="preserve">
+    <value>Şube Güncelle</value>
+  </data>
+  <data name="SubeHesaplar" xml:space="preserve">
+    <value>Şube Hesaplar</value>
+  </data>
+  <data name="Subeler" xml:space="preserve">
+    <value>Şubeler</value>
+  </data>
+  <data name="SubeOptikSonuc" xml:space="preserve">
+    <value>Optik Form Kaydet</value>
+  </data>
+  <data name="SubeParaBirim" xml:space="preserve">
+    <value>Şube Para Birim</value>
+  </data>
+  <data name="SubeYetkiYok" xml:space="preserve">
+    <value>Bu şubede yetkiniz yok!</value>
+  </data>
+  <data name="TaksitAdet" xml:space="preserve">
+    <value>Taksit Adet</value>
+  </data>
+  <data name="Taksitler" xml:space="preserve">
+    <value>Taksitler</value>
+  </data>
+  <data name="TaksitNo" xml:space="preserve">
+    <value>Taksit No</value>
+  </data>
+  <data name="TaksitOde" xml:space="preserve">
+    <value>Taksit Öde</value>
+  </data>
+  <data name="TaksittenFarkliTutar" xml:space="preserve">
+    <value>Taksit Tutardan Farklı Tutar Ödeme</value>
+  </data>
+  <data name="TaksitTutari" xml:space="preserve">
+    <value>Taksit Tutarı</value>
+  </data>
+  <data name="Tanimlamalar" xml:space="preserve">
+    <value>Tanımlamalar</value>
+  </data>
+  <data name="TcKimikNoDogrulanamadi" xml:space="preserve">
+    <value>T.C. Kimlik No, girilen veriler ile doğrulanamadı.</value>
+  </data>
+  <data name="TcKimlikKontrolEdebilmekIcin" xml:space="preserve">
+    <value>T.C. Kimlik No doğrulayabilmek için; ad, soyad, doğum tarihi ve T.C. Kimlik no alanları dolu olmalıdır.</value>
+  </data>
+  <data name="TcKimlikNoDogrulandi" xml:space="preserve">
+    <value>T.C. Kimlik No doğrulandı.</value>
+  </data>
+  <data name="Temizle" xml:space="preserve">
+    <value>Temizle</value>
+  </data>
+  <data name="TeslimDurumu" xml:space="preserve">
+    <value>Teslim Durumu</value>
+  </data>
+  <data name="TeslimEdildi" xml:space="preserve">
+    <value>Teslim Edildi</value>
+  </data>
+  <data name="TeslimEdilmedi" xml:space="preserve">
+    <value>Henüz Teslim Edilmedi</value>
+  </data>
+  <data name="Tip" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Toplam" xml:space="preserve">
+    <value>Toplam</value>
+  </data>
+  <data name="TOPLAMB" xml:space="preserve">
+    <value>TOPLAM</value>
+  </data>
+  <data name="ToplamDers" xml:space="preserve">
+    <value>Toplam Ders</value>
+  </data>
+  <data name="ToplamSoru" xml:space="preserve">
+    <value>Toplam Soru</value>
+  </data>
+  <data name="ToplamUcretHepsininToplami" xml:space="preserve">
+    <value>Toplam Ücret, Eğitim, Yayın ve varsa Yemek, Servis, Kıyafet ücretlerinin toplamı olmalıdır.</value>
+  </data>
+  <data name="Ucret" xml:space="preserve">
+    <value>Ücret</value>
+  </data>
+  <data name="VadesiGecen" xml:space="preserve">
+    <value>Vadesi Geçen</value>
+  </data>
+  <data name="VadesiGecti" xml:space="preserve">
+    <value>Vadesi Geçti</value>
+  </data>
+  <data name="VadesiGelmedi" xml:space="preserve">
+    <value>Vadesi Gelmedi</value>
+  </data>
+  <data name="VadeTarihi" xml:space="preserve">
+    <value>Vade Tarihi</value>
+  </data>
+  <data name="YakiniIletisimBilgileri" xml:space="preserve">
+    <value>Yakını İletişim Bilgileri</value>
+  </data>
+  <data name="Yayin" xml:space="preserve">
+    <value>Yayın</value>
+  </data>
+  <data name="YayinEkle" xml:space="preserve">
+    <value>Yayın Ekle</value>
+  </data>
+  <data name="YayinGuncelle" xml:space="preserve">
+    <value>Yayın Güncelle</value>
+  </data>
+  <data name="Yayinlar" xml:space="preserve">
+    <value>Yayınlar</value>
+  </data>
+  <data name="YayinSecebilmekIcinBransVe" xml:space="preserve">
+    <value>Yayın seçebilmek için, Branş ve Sınıf Seviye seçmelisiniz.</value>
+  </data>
+  <data name="YeniGelir" xml:space="preserve">
+    <value>Yeni Gelir</value>
+  </data>
+  <data name="YeniGider" xml:space="preserve">
+    <value>Yeni Gider</value>
+  </data>
+  <data name="YeniHesap" xml:space="preserve">
+    <value>Yeni Hesap</value>
+  </data>
+  <data name="YeniHesapHareket" xml:space="preserve">
+    <value>Yeni Hesap Hareket</value>
+  </data>
+  <data name="YetkisizIslem" xml:space="preserve">
+    <value>Yetkisiz İşlem</value>
+  </data>
+  <data name="Yillar" xml:space="preserve">
+    <value>Yıl</value>
+  </data>
+  <data name="ÖgrenciBilgileri" xml:space="preserve">
+    <value>Öğrenci Bilgileri</value>
+  </data>
+  <data name="ExcelAktar" xml:space="preserve">
+    <value>Excele Aktar</value>
+  </data>
+  <data name="IslemiYapan" xml:space="preserve">
+    <value>Personel</value>
+  </data>
+  <data name="TopluSinifGuncelle" xml:space="preserve">
+    <value>Toplu Sınıf Güncelle</value>
+  </data>
+  <data name="SinifOgrenciListeExcelAktar" xml:space="preserve">
+    <value>Öğrenci listelerini Excele aktar</value>
+  </data>
+  <data name="SubeOgrenciSozlesmeVeriGuncelle" xml:space="preserve">
+    <value>Öğrenci Veri Güncelle</value>
+  </data>
+  <data name="OrnekVeri" xml:space="preserve">
+    <value>Veri Şablonu</value>
+  </data>
+  <data name="Indir" xml:space="preserve">
+    <value>İndir</value>
+  </data>
+  <data name="ExcelAktarimSozlesmeTur" xml:space="preserve">
+    <value>Sözleşme Tür alanı, Etkinlik, Kurs, Okul, Özel Ders, Sürücü Kursu değerlerinden seçilebilir.</value>
+  </data>
+  <data name="ExcelAktarimServis" xml:space="preserve">
+    <value>Servis alanına, Öğrenci servis kullanıyorsa, kullandığı servisin plakası eklenir.</value>
+  </data>
+  <data name="ExcelAktarimYemekDahilMi" xml:space="preserve">
+    <value>Yemek Dahil Mi alanı için, Evet veya Hayır seçilebilir. Boş bırakılırsa, Hayır kabul edilir.</value>
+  </data>
+  <data name="ExcelAktarimCinsiyet" xml:space="preserve">
+    <value>Cinsiyet alanı için, Erkek, Kadın değerlerinden seçilebilir. K, E gibi kısatlmalar kullanılmaz. Farklı bir değer kullanıldığında, Erkek olarak kabul edilecektir.</value>
+  </data>
+  <data name="ExcelAktarimSenetiImzalayan" xml:space="preserve">
+    <value>Seneti İmzalayan alanı için, Kendisi, Anne, Baba, Yakını değerlerinden seçim yapılır. Farklı bir değer kullanıldığında, boş kabul edilecektir.</value>
+  </data>
+  <data name="ExcelAktarimTransferTip" xml:space="preserve">
+    <value>Transfer Tip alanı için, Nakit, Havale/EFT, Kredi Kartı, Çek değerlerinden seçim yapılabilir. Nakit veya Çek ise, yeni kasa tanımlanır. Havale veya Kredi Kartı ise banka alanı dolu olmalı. Ödenen Hesap Ad boş kalırsa, transfer tipine göre bir isim belirlenir.</value>
+  </data>
+  <data name="ExcelAktarimTaksitAciklama" xml:space="preserve">
+    <value>Taksit bilgilerine göre, taksitler oluşturulacak. Ödenen tutara göre, taksitler ödenecek.</value>
+  </data>
+  <data name="ExcelAktarimEkAciklama" xml:space="preserve">
+    <value>Örnek veriye göre dolduracak excel, yüklenir. Excelde, hatalı olan satırlar, hata mesajı ile birlikte indirilebilir olacaktır.</value>
+  </data>
+  <data name="SubeBulunamadi" xml:space="preserve">
+    <value>Şube bulunamadı.</value>
+  </data>
+  <data name="VeriBulunamadi" xml:space="preserve">
+    <value>Veri bulunamadı.</value>
+  </data>
+  <data name="ExcelAktarimHataUzunluk" xml:space="preserve">
+    <value>karakterden fazla.</value>
+  </data>
+  <data name="Yanlis" xml:space="preserve">
+    <value>Yanlış</value>
+  </data>
+  <data name="BosOlamaz" xml:space="preserve">
+    <value>Boş olamaz.</value>
+  </data>
+  <data name="KaydetK" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="TCKimlikNoBenzerdegil" xml:space="preserve">
+    <value>T.C. No benzersiz olmalıdır.</value>
+  </data>
+  <data name="OgrenciNoBenzersizOlmalidir" xml:space="preserve">
+    <value>Öğrenci No benzersiz olmalıdır.</value>
+  </data>
+  <data name="Makbuz" xml:space="preserve">
+    <value>Makbuz</value>
+  </data>
+  <data name="TahsilEden" xml:space="preserve">
+    <value>Tahsil Eden</value>
+  </data>
+  <data name="IslemTarihi" xml:space="preserve">
+    <value>İşlem Tarihi</value>
+  </data>
+  <data name="Yazdirilma" xml:space="preserve">
+    <value>Yazdırılma</value>
+  </data>
+  <data name="Imza" xml:space="preserve">
+    <value>İmza</value>
+  </data>
+  <data name="MakbuzNo" xml:space="preserve">
+    <value>Makbuz No</value>
+  </data>
+  <data name="OdenenTutar" xml:space="preserve">
+    <value>Ödenen Tutar</value>
+  </data>
+  <data name="OdemeTarihi" xml:space="preserve">
+    <value>Ödeme Tarihi</value>
+  </data>
+  <data name="OdemeSekli" xml:space="preserve">
+    <value>Ödeme Şekli</value>
+  </data>
+  <data name="SUBEB" xml:space="preserve">
+    <value>ŞUBE</value>
+  </data>
+  <data name="HESAPNOB" xml:space="preserve">
+    <value>HESAP NO</value>
+  </data>
+  <data name="CEKNOB" xml:space="preserve">
+    <value>ÇEK NO</value>
+  </data>
+  <data name="VADEB" xml:space="preserve">
+    <value>VADE</value>
+  </data>
+  <data name="TUTARB" xml:space="preserve">
+    <value>TUTAR</value>
+  </data>
+  <data name="NAKITB" xml:space="preserve">
+    <value>NAKİT</value>
+  </data>
+  <data name="CEKB" xml:space="preserve">
+    <value>ÇEK</value>
+  </data>
+  <data name="KREDIKARTIB" xml:space="preserve">
+    <value>KREDİ KARTI</value>
+  </data>
+  <data name="HAVALEB" xml:space="preserve">
+    <value>HAVALE</value>
+  </data>
+  <data name="MakbuzSayin" xml:space="preserve">
+    <value>Sayin;</value>
+  </data>
+  <data name="MakbuzBorcunaMahsuben" xml:space="preserve">
+    <value>borcuna mahsuben yalnız</value>
+  </data>
+  <data name="MakbuzTahsilEdilmistir" xml:space="preserve">
+    <value>tahsil edilmiştir.</value>
+  </data>
+  <data name="TAHSILATMAKBUZUB" xml:space="preserve">
+    <value>TAHSİLAT MAKBUZU</value>
+  </data>
+  <data name="Kopya" xml:space="preserve">
+    <value>(Kopya)</value>
+  </data>
+  <data name="GuncelleK" xml:space="preserve">
+    <value>Güncelle</value>
+  </data>
+  <data name="EskiKayitEkle" xml:space="preserve">
+    <value>Eski Kayıt Ekle</value>
+  </data>
+  <data name="EskiKayitGuncelle" xml:space="preserve">
+    <value>Eski Kayıt Güncelle</value>
+  </data>
+  <data name="EskiKayitlar" xml:space="preserve">
+    <value>Eski Kayıtlar</value>
+  </data>
+  <data name="YeniSezonB" xml:space="preserve">
+    <value>YENİ SEZON</value>
+  </data>
+  <data name="YeniEskiKayitB" xml:space="preserve">
+    <value>YENİ ESKİ KAYIT</value>
+  </data>
+  <data name="EskiKayitVeriGuncelle" xml:space="preserve">
+    <value>Eski Kayıt Veri Güncelle</value>
+  </data>
+  <data name="EskiKayit" xml:space="preserve">
+    <value>Eski Kayıt</value>
+  </data>
+  <data name="Dosya" xml:space="preserve">
+    <value>Dosya</value>
+  </data>
+  <data name="UzantiUygunDegil" xml:space="preserve">
+    <value>Dosyanın uzantısı uygun değil.</value>
+  </data>
+  <data name="BuAy" xml:space="preserve">
+    <value>Bu Ay</value>
+  </data>
+  <data name="Bugun" xml:space="preserve">
+    <value>Bugün</value>
+  </data>
+  <data name="BuHafta" xml:space="preserve">
+    <value>Bu Hafta</value>
+  </data>
+  <data name="ZamanTurler" xml:space="preserve">
+    <value>Zaman</value>
+  </data>
+  <data name="OptikFormEkle" xml:space="preserve">
+    <value>Optik Form Ekle</value>
+  </data>
+  <data name="OptikFormGuncelle" xml:space="preserve">
+    <value>Optik Form Güncelle</value>
+  </data>
+  <data name="OptikFormlar" xml:space="preserve">
+    <value>Optik Formlar</value>
+  </data>
+  <data name="GoruntulenmeDurumunuDegistir" xml:space="preserve">
+    <value>Görüntülenme Durumunu Değiştir</value>
+  </data>
+  <data name="DosyaYukle" xml:space="preserve">
+    <value>Dosya Yükle</value>
+  </data>
+  <data name="SinavDetaylar" xml:space="preserve">
+    <value>Sınav Detaylar</value>
+  </data>
+  <data name="KonuDagilimi" xml:space="preserve">
+    <value>Konu Dağılımı</value>
+  </data>
+  <data name="DersGrup" xml:space="preserve">
+    <value>Ders Grup</value>
+  </data>
+  <data name="SoruAdet" xml:space="preserve">
+    <value>Soru Adet</value>
+  </data>
+  <data name="Ornek" xml:space="preserve">
+    <value>Örnek</value>
+  </data>
+  <data name="SinavSonuclarıHenuzGoruntulenemez" xml:space="preserve">
+    <value>Sınav Sonuçları henüz açıklanmadı.</value>
+  </data>
+  <data name="OptikForm" xml:space="preserve">
+    <value>Optik Form</value>
+  </data>
+  <data name="SinavTur" xml:space="preserve">
+    <value>Sinav Tür</value>
+  </data>
+  <data name="PuanTur" xml:space="preserve">
+    <value>Puan Tür</value>
+  </data>
+  <data name="KatSayi" xml:space="preserve">
+    <value>Kat Sayı</value>
+  </data>
+  <data name="Sira" xml:space="preserve">
+    <value>Sıra</value>
+  </data>
+  <data name="SoruSayi" xml:space="preserve">
+    <value>Soru Sayı</value>
+  </data>
+  <data name="Genel" xml:space="preserve">
+    <value>Genel</value>
+  </data>
+  <data name="Sorular" xml:space="preserve">
+    <value>Sorular</value>
+  </data>
+  <data name="SonucBelgesiYazdir" xml:space="preserve">
+    <value>Sonuç Belgesi Yazdır</value>
+  </data>
+  <data name="Puan" xml:space="preserve">
+    <value>Puan</value>
+  </data>
+  <data name="ToplamPuan" xml:space="preserve">
+    <value>Toplam Puan</value>
+  </data>
+  <data name="SinifSira" xml:space="preserve">
+    <value>Sınıf Sıra</value>
+  </data>
+  <data name="SubeSira" xml:space="preserve">
+    <value>Şube Sıra</value>
+  </data>
+  <data name="GenelSira" xml:space="preserve">
+    <value>Genel Sıra</value>
+  </data>
+  <data name="Cevaplar" xml:space="preserve">
+    <value>Cevaplar</value>
+  </data>
+  <data name="OgrenciCevaplar" xml:space="preserve">
+    <value>Öğrenci Cevaplar</value>
+  </data>
+  <data name="SmsHesapEkle" xml:space="preserve">
+    <value>Sms Hesap Başvuru</value>
+  </data>
+  <data name="SmsHesapGuncelle" xml:space="preserve">
+    <value>Sms Hesap Başvuru Güncelle</value>
+  </data>
+  <data name="Sms" xml:space="preserve">
+    <value>SMS</value>
+  </data>
+  <data name="SmsHesaplar" xml:space="preserve">
+    <value>Sms Hesaplar</value>
+  </data>
+  <data name="OptikFormDersGruplar" xml:space="preserve">
+    <value>Optik Form Ders Gruplar</value>
+  </data>
+  <data name="KonuAnalizliSonucBElgesi" xml:space="preserve">
+    <value>SONUÇ BELGESİ</value>
+  </data>
+  <data name="AdSoyad" xml:space="preserve">
+    <value>Ad Soyad</value>
+  </data>
+  <data name="Numara" xml:space="preserve">
+    <value>Numara</value>
+  </data>
+  <data name="Sinif" xml:space="preserve">
+    <value>Sınıf</value>
+  </data>
+  <data name="SinavAdi" xml:space="preserve">
+    <value>Sınav Adı</value>
+  </data>
+  <data name="SinavTarihi" xml:space="preserve">
+    <value>SınavTarihi</value>
+  </data>
+  <data name="Dogru" xml:space="preserve">
+    <value>Doğru</value>
+  </data>
+  <data name="Net" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="Basari" xml:space="preserve">
+    <value>Başarı</value>
+  </data>
+  <data name="CevapAnahtari" xml:space="preserve">
+    <value>Cevap Anahtarı</value>
+  </data>
+  <data name="Bos" xml:space="preserve">
+    <value>Boş</value>
+  </data>
+  <data name="OgrenciCevabi" xml:space="preserve">
+    <value>Öğrenci Cevabı</value>
+  </data>
+  <data name="Sayi" xml:space="preserve">
+    <value>Sayı</value>
+  </data>
+  <data name="Sinav" xml:space="preserve">
+    <value>Sınav</value>
+  </data>
+  <data name="SinavBulunamadi" xml:space="preserve">
+    <value>Sınav Bulunamadı</value>
+  </data>
+  <data name="Sezon" xml:space="preserve">
+    <value>Sezon</value>
+  </data>
+  <data name="Detay" xml:space="preserve">
+    <value>Detay</value>
+  </data>
+  <data name="OgrenciSinavlar" xml:space="preserve">
+    <value>Öğrenci Sınavlar</value>
+  </data>
+  <data name="SonucBelgesi" xml:space="preserve">
+    <value>Sonuç Belgesi</value>
+  </data>
+  <data name="SmsMetinSablonlar" xml:space="preserve">
+    <value>Sms Metin Şablonlar</value>
+  </data>
+  <data name="SmsMetinSablonEkle" xml:space="preserve">
+    <value>Sms Metin Şablon Ekle</value>
+  </data>
+  <data name="SmsMetinSablonGuncelle" xml:space="preserve">
+    <value>Sms Metin Şablon Güncelle</value>
+  </data>
+  <data name="Parametreler" xml:space="preserve">
+    <value>Parametreler</value>
+  </data>
+  <data name="OgrenciAdSoyad" xml:space="preserve">
+    <value>OgrenciAdSoyad</value>
+  </data>
+  <data name="PersonelAdSoyad" xml:space="preserve">
+    <value>PersonelAdSoyad</value>
+  </data>
+  <data name="VeliAdSoyad" xml:space="preserve">
+    <value>VeliAdSoyad</value>
+  </data>
+  <data name="SmsGonder" xml:space="preserve">
+    <value>Sms Gönder</value>
+  </data>
+  <data name="SmsHareketleri" xml:space="preserve">
+    <value>Sms Hareketleri</value>
+  </data>
+  <data name="SmsKullaniciFiltrele" xml:space="preserve">
+    <value>Gönderilecekleri Filtrele</value>
+  </data>
+  <data name="GonderilecekGrup" xml:space="preserve">
+    <value>Gönderilecek Grup</value>
+  </data>
+  <data name="Ogrenci" xml:space="preserve">
+    <value>Öğrenci</value>
+  </data>
+  <data name="Personel" xml:space="preserve">
+    <value>Personel</value>
+  </data>
+  <data name="SeciliSmsSablon" xml:space="preserve">
+    <value>Seçili Sms Şablon</value>
+  </data>
+  <data name="Filtrele" xml:space="preserve">
+    <value>Filtrele</value>
+  </data>
+  <data name="PersonelGrup" xml:space="preserve">
+    <value>Personel Grup</value>
+  </data>
+  <data name="Telefon" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="GrupSecimiZorunlu" xml:space="preserve">
+    <value>Grup seçmeniz gerekiyor.</value>
+  </data>
+  <data name="SubeSecimiZorunlu" xml:space="preserve">
+    <value>Şube seçmeniz gerekiyor.</value>
+  </data>
+  <data name="SezonSecimiZorunlu" xml:space="preserve">
+    <value>Sezon seçmeniz gerekiyor.</value>
+  </data>
+  <data name="SmsGonderilecekSecin" xml:space="preserve">
+    <value>Sms gönderilecekleri seçmeinz gerekiyor.</value>
+  </data>
+  <data name="GonderilecekAdet" xml:space="preserve">
+    <value>Gönderilecek Kişi Adet</value>
+  </data>
+  <data name="MetinKarakterAdeti" xml:space="preserve">
+    <value>Metin karakter adeti yaklaşık olarak gösterilmektedir.</value>
+  </data>
+  <data name="HerBirSmsIcin" xml:space="preserve">
+    <value>Her bir sms için,</value>
+  </data>
+  <data name="Arasi" xml:space="preserve">
+    <value>arası</value>
+  </data>
+  <data name="KrediKullanilir" xml:space="preserve">
+    <value>kredi kullanılır.</value>
+  </data>
+  <data name="IzniYok" xml:space="preserve">
+    <value>İzinsiz</value>
+  </data>
+  <data name="SmsHesapHareketler" xml:space="preserve">
+    <value>Sms Hesap Hareketler</value>
+  </data>
+  <data name="Hareketler" xml:space="preserve">
+    <value>Hareketler</value>
+  </data>
+  <data name="KrediSatinAl" xml:space="preserve">
+    <value>Kredi satın al</value>
+  </data>
+  <data name="CevapAnahtariYuklenmeli" xml:space="preserve">
+    <value>Sınava ait kitapçıkların cevap anahtarlarını eklemeniz gerekiyor.</value>
+  </data>
+  <data name="DersBulunamadi" xml:space="preserve">
+    <value>Ders Bulunamadı.</value>
+  </data>
+  <data name="CevapAnahtariDersSirasinaGore" xml:space="preserve">
+    <value>Cevap anahtarı dosyasını ders sırasına göre sıralamanız gerekiyor.</value>
+  </data>
+  <data name="OrnekIndir" xml:space="preserve">
+    <value>Örnek İndir</value>
+  </data>
+  <data name="SablonIndir" xml:space="preserve">
+    <value>Şablon İndir</value>
+  </data>
+  <data name="CevapAnahtariBilgi" xml:space="preserve">
+    <value>Cevap Anahtarı, Sınav Türde belirlenen sıraya göre, belirlenen adet kadar boşluksuz olarak doğru şıklardan oluşmalıdır. Örnek dosyayı inceleyiniz.</value>
+  </data>
+  <data name="KonuDagilimiExcelBilgi" xml:space="preserve">
+    <value>Konu Dağılımlı Cevap Anahtarı, Sınav Türde belirlenen sıraya göre, belirlenen adet kadar satırdan oluşmalıdır. Soru Sırası 1'den başlayıp, Ders sırasına göre artarak devam etmelidir. Örnek dosyayı inceleyiniz. Şablonu indirip, gerekli alanları doldurup, sisteme yükleyiniz.</value>
+  </data>
+  <data name="KonuDagilimliCevapAnahtari" xml:space="preserve">
+    <value>Konu Dağılımlı Cevap Anahtarı</value>
+  </data>
+  <data name="YeniKonu" xml:space="preserve">
+    <value>YENİ KONU</value>
+  </data>
+  <data name="OptikFormAdSoyadBosOlamaz" xml:space="preserve">
+    <value>Optik formda AdSoyad alanları ya da Ad &amp; Soyad alanları dolu olmalıdır.</value>
+  </data>
+  <data name="SmsHesapBulunamadi" xml:space="preserve">
+    <value>Sms Hesap bulunamadı.</value>
+  </data>
+  <data name="OptikFormHata" xml:space="preserve">
+    <value>Optik Form Hata</value>
+  </data>
+  <data name="UzunlukHatasi" xml:space="preserve">
+    <value>Karakter uzunluk hatası</value>
+  </data>
+  <data name="Dosyalar" xml:space="preserve">
+    <value>Dosyalar</value>
+  </data>
+  <data name="SecilenDosyalar" xml:space="preserve">
+    <value>Seçilen Dosyalar</value>
+  </data>
+  <data name="EvrakBilgi" xml:space="preserve">
+    <value>Gerekli Evrak Bilgisi</value>
+  </data>
+  <data name="EnYakinVeli" xml:space="preserve">
+    <value>En Yakın Veli</value>
+  </data>
+  <data name="VeliAnne" xml:space="preserve">
+    <value>Veli - Anne</value>
+  </data>
+  <data name="VeliBaba" xml:space="preserve">
+    <value>Veli - Baba</value>
+  </data>
+  <data name="VeliYakini" xml:space="preserve">
+    <value>Veli - Yakını</value>
+  </data>
+  <data name="VeliEnYakini" xml:space="preserve">
+    <value>Veli - En Yakını</value>
+  </data>
+  <data name="DahilEt" xml:space="preserve">
+    <value>Dahil Et</value>
+  </data>
+  <data name="SmsKrediYeterliDegil" xml:space="preserve">
+    <value>Sms krediniz yeterli değil. Gereken sms kredi : </value>
+  </data>
+  <data name="SmsBakiye" xml:space="preserve">
+    <value>Sms Kredi Bakiye</value>
+  </data>
+  <data name="Secebilirsiniz" xml:space="preserve">
+    <value>Seçebilirsiniz</value>
+  </data>
+  <data name="SinavAd" xml:space="preserve">
+    <value>SınavAd</value>
+  </data>
+  <data name="OgrenciSinavNet" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="OgrenciSinavPuanlar" xml:space="preserve">
+    <value>Puanlar</value>
+  </data>
+  <data name="SMSROgrenciAdSoyad" xml:space="preserve">
+    <value>OgrenciAdSoyad</value>
+  </data>
+  <data name="SMSRPersonelAdSoyad" xml:space="preserve">
+    <value>PersonelAdSoyad</value>
+  </data>
+  <data name="SMSRVeliAdSoyad" xml:space="preserve">
+    <value>VeliAdSoyad</value>
+  </data>
+  <data name="SMSRSinavAd" xml:space="preserve">
+    <value>SinavAd</value>
+  </data>
+  <data name="SMSRSinavTarihi" xml:space="preserve">
+    <value>SinavTarihi</value>
+  </data>
+  <data name="SMSROgrenciNet" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="SMSROgrenciPuanlar" xml:space="preserve">
+    <value>Puanlar</value>
+  </data>
+  <data name="Kredi" xml:space="preserve">
+    <value>Kredi</value>
+  </data>
+  <data name="Birim Fiyat" xml:space="preserve">
+    <value>Birim Fiyat</value>
+  </data>
+  <data name="ToplamTutar" xml:space="preserve">
+    <value>Toplam Tutar</value>
+  </data>
+  <data name="SmsHesap" xml:space="preserve">
+    <value>Sms Hesap</value>
+  </data>
+  <data name="BilinmeyenBirHataOlustu" xml:space="preserve">
+    <value>Bilinmeyen bir hata oluştu!</value>
+  </data>
+  <data name="SmsTelefonSmsGonderme" xml:space="preserve">
+    <value>Birden fazla numaraya sms gönderebilirsiniz. Her numaranın arasına ,(virgül) karakteri eklemeniz gerekiyor.</value>
+  </data>
+  <data name="HesapHareketGiderEkle" xml:space="preserve">
+    <value>Gider Ekle</value>
+  </data>
+  <data name="HesapHareketGiderGuncelle" xml:space="preserve">
+    <value>Gider Güncelle</value>
+  </data>
+  <data name="ParaCikisiYapilacakSube" xml:space="preserve">
+    <value>Çıkış Yapılacak Şube</value>
+  </data>
+  <data name="ParaCikisiYapilacakSubeKasasi" xml:space="preserve">
+    <value>Çıkış Yapılacak Şube Kasası</value>
+  </data>
+  <data name="GiderHesabi" xml:space="preserve">
+    <value>Gider Hesabı</value>
+  </data>
+  <data name="SubeToplamHesaplar" xml:space="preserve">
+    <value>Şube Toplamları</value>
+  </data>
+  <data name="IslemDetaylar" xml:space="preserve">
+    <value>İşlem Detayları</value>
+  </data>
+  <data name="HesapHareketGelirEkle" xml:space="preserve">
+    <value>Gelir Ekle</value>
+  </data>
+  <data name="HesapHareketGiderListele" xml:space="preserve">
+    <value>Gider İşlemleri Listele</value>
+  </data>
+  <data name="HesapHareketGelirListele" xml:space="preserve">
+    <value>Gelir İşlemleri Listele</value>
+  </data>
+  <data name="HesapGelirListele" xml:space="preserve">
+    <value>Gelir Hesapları Listele</value>
+  </data>
+  <data name="HesapGiderListele" xml:space="preserve">
+    <value>Gider Hesapları Listele</value>
+  </data>
+  <data name="GelirIslemDetaylar" xml:space="preserve">
+    <value>Gelir İşlem Detayları</value>
+  </data>
+  <data name="GiderIslemDetaylari" xml:space="preserve">
+    <value>Gider İşlem Detayları</value>
+  </data>
+  <data name="GiderEkle" xml:space="preserve">
+    <value>Gider Ekle</value>
+  </data>
+  <data name="GelirEkle" xml:space="preserve">
+    <value>Gelir Ekle</value>
+  </data>
+  <data name="GiderGuncelle" xml:space="preserve">
+    <value>Gider Güncelle</value>
+  </data>
+  <data name="GelirGuncelle" xml:space="preserve">
+    <value>Gelir Güncelle</value>
+  </data>
+  <data name="ParaGirisiYapilacakSube" xml:space="preserve">
+    <value>Giriş Yapılacak Şube</value>
+  </data>
+  <data name="ParaGirisiYapilacakSubeKasasi" xml:space="preserve">
+    <value>Giriş Yapılacak Şube Kasası</value>
+  </data>
+  <data name="ParaGirisiYapilacakHesap" xml:space="preserve">
+    <value>Gelir Hesabı</value>
+  </data>
+  <data name="ParaCikisiYapilacakHesap" xml:space="preserve">
+    <value>Gider Hesabı</value>
+  </data>
+  <data name="VadesiGecenOdemeler" xml:space="preserve">
+    <value>Vadesi Geçen Ödemeler</value>
+  </data>
+  <data name="Virman" xml:space="preserve">
+    <value>Virman</value>
+  </data>
+  <data name="GelirHesaplar" xml:space="preserve">
+    <value>Gelir Hesaplar</value>
+  </data>
+  <data name="YENIGELIRHESABI" xml:space="preserve">
+    <value>YENİ GELİR HESABI</value>
+  </data>
+  <data name="YENIGIDERHESABI" xml:space="preserve">
+    <value>YENİ GİDER HESABI</value>
+  </data>
+  <data name="YENIHESAPB" xml:space="preserve">
+    <value>YENİ HESAP</value>
+  </data>
+  <data name="GelirHesabiEkle" xml:space="preserve">
+    <value>Gelir Hesabı Ekle</value>
+  </data>
+  <data name="GelirHesabiGuncelle" xml:space="preserve">
+    <value>Gelir Hesabı Güncelle</value>
+  </data>
+  <data name="GiderHesabiEkle" xml:space="preserve">
+    <value>Gider Hesabı Ekle</value>
+  </data>
+  <data name="GiderHesabiGuncelle" xml:space="preserve">
+    <value>Gider Hesabı Güncelle</value>
+  </data>
+  <data name="GiderTur" xml:space="preserve">
+    <value>Gider Tür</value>
+  </data>
+  <data name="GelirTur" xml:space="preserve">
+    <value>Gelir Tür</value>
+  </data>
+  <data name="HesapTur" xml:space="preserve">
+    <value>Hesap Tür</value>
+  </data>
+  <data name="GelirTurler" xml:space="preserve">
+    <value>Gelir Türler</value>
+  </data>
+  <data name="GiderTurler" xml:space="preserve">
+    <value>Gider Türler</value>
+  </data>
+  <data name="GelirTurEkle" xml:space="preserve">
+    <value>Gelir Tür Ekle</value>
+  </data>
+  <data name="GelirTurGuncelle" xml:space="preserve">
+    <value>Gelir Tür Güncelle</value>
+  </data>
+  <data name="GiderTurEkle" xml:space="preserve">
+    <value>Gider Tür Ekle</value>
+  </data>
+  <data name="GiderTurGuncelle" xml:space="preserve">
+    <value>Gider Tür Güncelle</value>
+  </data>
+  <data name="KasaHesabi" xml:space="preserve">
+    <value>Kasa Hesabı</value>
+  </data>
+  <data name="HesapTurSeciniz" xml:space="preserve">
+    <value>Hesap Tür Seçiniz</value>
+  </data>
+  <data name="BankaHesabi" xml:space="preserve">
+    <value>Banka Hesabı (Pos vb.)</value>
+  </data>
+  <data name="CekHesabi" xml:space="preserve">
+    <value>Çek Hesabı</value>
+  </data>
+  <data name="GelirHesabi" xml:space="preserve">
+    <value>Gelir Hesabı</value>
+  </data>
+  <data name="Tur" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Ekle" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="OgrenciToplamlari" xml:space="preserve">
+    <value>Öğrenci Toplamları</value>
+  </data>
+  <data name="GelirToplamlari" xml:space="preserve">
+    <value>Gelir Toplamları</value>
+  </data>
+  <data name="GiderToplamlari" xml:space="preserve">
+    <value>Gider Toplamları</value>
+  </data>
+  <data name="Odenen" xml:space="preserve">
+    <value>Ödenen</value>
+  </data>
+  <data name="Bakiye" xml:space="preserve">
+    <value>Bakiye</value>
+  </data>
+  <data name="PersonelCikisEkle" xml:space="preserve">
+    <value>Personel Çıkış Ekle</value>
+  </data>
+  <data name="PersonelCikisGuncelle" xml:space="preserve">
+    <value>Personel Çıkış Güncelle</value>
+  </data>
+  <data name="HesapHareketPersonelCikisEkle" xml:space="preserve">
+    <value>Personel Çıkış Ekle</value>
+  </data>
+  <data name="OptikFormSinavKitapcikBos" xml:space="preserve">
+    <value>Optik Form'da sınav kitapçık bilgisi boş.</value>
+  </data>
+  <data name="TumSubeSec" xml:space="preserve">
+    <value>Tüm Şubeleri Seç/Seçme</value>
+  </data>
+  <data name="TumSubeSecimiBilgi" xml:space="preserve">
+    <value>Eğer şube seçmezseniz, seçilen kuruma ait tüm şubeler yetkili olur.</value>
+  </data>
+  <data name="Videolar" xml:space="preserve">
+    <value>Videolar</value>
+  </data>
+  <data name="VideoEkle" xml:space="preserve">
+    <value>Video Ekle</value>
+  </data>
+  <data name="VideoGuncelle" xml:space="preserve">
+    <value>Video Güncelle</value>
+  </data>
+  <data name="VideoKategoriEkle" xml:space="preserve">
+    <value>Video Kategori Ekle</value>
+  </data>
+  <data name="VideoKategoriGuncelle" xml:space="preserve">
+    <value>Video Kategori Güncelle</value>
+  </data>
+  <data name="VideoKategoriler" xml:space="preserve">
+    <value>Video Kategoriler</value>
+  </data>
+  <data name="SinavTurDersSoruSayiCevapAnahtariUyusmuyor" xml:space="preserve">
+    <value>Sınav Tür'de belirlenen soru adet ile cevap anahtarındaki cevap adeti aynı değil. Ders : </value>
+  </data>
+  <data name="OgrenciGiris" xml:space="preserve">
+    <value>Öğrenci Giriş</value>
+  </data>
+  <data name="VeliGiris" xml:space="preserve">
+    <value>Veli Giriş</value>
+  </data>
+  <data name="OgrenciGirisiYapin" xml:space="preserve">
+    <value>Giriş Yapın</value>
+  </data>
+  <data name="OgrenciBilgileriBilgi" xml:space="preserve">
+    <value>İlk kez giriş yapacaksanız, T.C. No ve Doğum Tarihiniz ile giriş yapabilirsiniz. Daha sonra şifre kullanmanız gerekir. Doğum Tarihi (Gün.Ay.Yıl)</value>
+  </data>
+  <data name="VeliBilgileriBilgi" xml:space="preserve">
+    <value>İlk kez giriş yapacaksanız, sizin T.C. No ve velisi olduğunuz öğrencinin Doğum Tarihi ile giriş yapabilirsiniz. Daha sonra şifre kullanmanız gerekir. Doğum Tarihi (Gün.Ay.Yıl)</value>
+  </data>
+  <data name="EksikBilgi" xml:space="preserve">
+    <value>Eksik Bilgi</value>
+  </data>
+  <data name="Veli" xml:space="preserve">
+    <value>Veli</value>
+  </data>
+  <data name="DogumTarihiYanlis" xml:space="preserve">
+    <value>Doğum tarihini GÜN.AY.YIL formatında giriniz.</value>
+  </data>
+  <data name="SifreDegistir" xml:space="preserve">
+    <value>Şifre Değiştir</value>
+  </data>
+  <data name="OgrenciBilgi" xml:space="preserve">
+    <value>Öğrenci Bilgi</value>
+  </data>
+  <data name="EgitimListele" xml:space="preserve">
+    <value>Eğitim Listele</value>
+  </data>
+  <data name="OgrenciSifreGirmeli" xml:space="preserve">
+    <value>Şifre belirlediğiniz için, şifreyle giriş yapabilirsiniz.</value>
+  </data>
+  <data name="TopluCiktiAl" xml:space="preserve">
+    <value>Toplu Çıktı</value>
+  </data>
+  <data name="DetayliExcelAktar" xml:space="preserve">
+    <value>Excele Detaylı Aktar</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+</root>

@@ -1,0 +1,327 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model PersonelDetayViewModel
+
+@{
+    var title = $"{Resources.LangResources.KisiselBilgileri} ({Model.Model.AdSoyad})";
+    var title1 = Resources.LangResources.PersonelBilgileri;
+    var title2 = Resources.LangResources.KullaniciBigileri;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Personeller;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+<div class="row">
+    <div class="col-md-4">
+
+        @Html.FormCardDivBegin(title)
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <td colspan="2" class="text-center"><img src="@Model.Model.GorselYol" alt="@Model.Model.AdSoyad" /> </td>
+                    </tr>
+                    <tr>
+                        <td width="40%;"><b>@Model.Model.GetDisplayName(x => x.AdSoyad):</b></td>
+                        <td width="60%;">@Model.Model.AdSoyad</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.TcKimlikNo):</b></td>
+                        <td>@Model.Model.TcKimlikNo</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.DogumTarihiFormatted):</b></td>
+                        <td>@Model.Model.DogumTarihiFormatted</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Cinsiyet):</b></td>
+                        <td>@Model.Model.Cinsiyet</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.CepTelefon):</b></td>
+                        <td>@Model.Model.CepTelefon</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Eposta):</b></td>
+                        <td>@Model.Model.Eposta</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Adres):</b></td>
+                        <td>@Model.Model.Adres</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.YasadigiUlkeAd):</b></td>
+                        <td>@Model.Model.YasadigiUlkeAd</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Not):</b></td>
+                        <td>@Model.Model.Not</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.DersAd):</b></td>
+                        <td><span class="badge badge-success">@Model.Model.DersAd</span> </td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Durum):</b></td>
+                        <td><span class="badge badge-@(Model.Model.EtkinMi ? "success" : "danger")">@Model.Model.Durum</span> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        @Html.FormCardDivEnd()
+
+        @Html.FormCardDivBegin(title1)
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <td width="40%;"><b>@Model.Model.GetDisplayName(x => x.IseBaslamaTarihiFormatted):</b></td>
+                        <td width="60%;">@Model.Model.IseBaslamaTarihiFormatted</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.IstenAyrilmaTarihiFormatted):</b></td>
+                        <td>@Model.Model.IstenAyrilmaTarihiFormatted</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.CalismaDurum):</b></td>
+                        <td><span class="badge badge-@(Model.Model.CalisiyorMu ? "success" : "danger")">@Model.Model.CalismaDurum</span> </td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.YemekKartNo):</b></td>
+                        <td>@Model.Model.YemekKartNo</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.GunlukYemekUcreti):</b></td>
+                        <td>@Model.Model.GunlukYemekUcretiFormatted</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.PrimdenFaydalansinMi):</b></td>
+                        <td>@Model.Model.PrimdenFaydalansinMiDurum</td>
+                    </tr>
+                    @if (Model.Model.PersonelSubeDersler != null && Model.Model.PersonelSubeDersler.Count > 0)
+                    {
+                        string dersVerdigiSubeler = string.Empty;
+
+                        for (int i = 0; i < Model.Model.PersonelSubeDersler.Count; i++)
+                        {
+                            dersVerdigiSubeler = $"{dersVerdigiSubeler}{Model.Model.PersonelSubeDersler[i].Sube.SubeAd}{(i != Model.Model.PersonelSubeDersler.Count - 1 ? "," : "")} ";
+                        }
+
+                        <tr>
+                            <td><b>@Model.Model.GetDisplayName(x => x.PersonelSubeDerslerDisplayName):</b></td>
+                            <td>@dersVerdigiSubeler</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.DersUcreti):</b></td>
+                        <td>@Model.Model.DersUcretiFormatted</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Maas):</b></td>
+                        <td>@Model.Model.MaasFormatted</td>
+                    </tr>
+                    @if (Model.Model.PersonelSubeUcretler != null && Model.Model.PersonelSubeUcretler.Count > 0)
+                    {
+                        foreach (var personelSubeUcret in Model.Model.PersonelSubeUcretler)
+                        {
+                            <tr>
+                                <td><b><label>@(personelSubeUcret.Sube.SubeAd) - Ücret:</label></b></td>
+                                <td>@personelSubeUcret.UcretFormatted</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        @Html.FormCardDivEnd()
+
+        @Html.FormCardDivBegin(title2)
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    @if (Model.Model.Kullanici != null)
+                    {
+                        <tr>
+                            <td width="40%;"><b>@Model.Model.Kullanici.GetDisplayName(x => x.KullaniciAd):</b></td>
+                            <td width="60%;">@Model.Model.Kullanici.KullaniciAd</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Model.Model.PersonelYetkiGrup.GetDisplayName(x => x.PersonelYetkiGrupAd):</b></td>
+                            <td>@Model.Model.PersonelYetkiGrup.PersonelYetkiGrupAd</td>
+                        </tr>
+
+                        <tr>
+                            <td><b>@Model.Model.GetDisplayName(x => x.PersonelSubeYetkilerDisplayName):</b></td>
+                            <td>
+                                @if (Model.Model.PersonelSubeYetkiler != null && Model.Model.PersonelSubeYetkiler.Count > 0)
+                                {
+                                    string yetkiler = "";
+
+                                    for (int i = 0; i < Model.Model.PersonelSubeYetkiler.Count; i++)
+                                    {
+                                        yetkiler = $"{yetkiler}{Model.Model.PersonelSubeYetkiler[i].Sube.SubeAd}{(i != Model.Model.PersonelSubeYetkiler.Count - 1 ? "," : "")} ";
+                                    }
+
+                                    @yetkiler
+                                }
+                                else
+                                {
+                                    <span>@Resources.LangResources.Hepsi</span>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>@Model.Model.Kullanici.GetDisplayName(x => x.Durum):</b></td>
+                            <td><span class="badge badge-@(Model.Model.Kullanici.EtkinMi ? "success" : "danger")">@Model.Model.Kullanici.Durum</span> </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td><b>@Model.Model.Kullanici.GetDisplayName(x => x.Durum):</b></td>
+                            <td colspan="1">
+                                <span class="badge badge-danger">@Model.Model.KullaniciDurum</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @Html.FormCardDivEnd()
+
+    </div>
+    <div class="col-md-8">
+
+        @Html.FormCardDivBegin("Ödeme Geçmişi (Son 12 Ay)")
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th class="text-center">Dönem</th>
+                        <th class="text-center">Başlangıç</th>
+                        <th class="text-center">Bitiş</th>
+                        <th class="text-center">Avans</th>
+                        <th class="text-center">Maaş</th>
+                        <th class="text-center">Toplam Ödenen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-success">
+                        <td class="text-center">2019-04</td>
+                        <td class="text-center">01-04-2019</td>
+                        <td class="text-center">30-04-2019</td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                    </tr>
+                    <tr class="bg-success">
+                        <td class="text-center">2019-03</td>
+                        <td class="text-center">01-03-2019</td>
+                        <td class="text-center">31-03-2019</td>
+                        <td class="text-center"></td>
+                        <td class="text-center">1.200,00</td>
+                        <td class="text-center">1.200,00</td>
+                    </tr>
+                    <tr class="bg-success">
+                        <td class="text-center">2019-02</td>
+                        <td class="text-center">01-02-2019</td>
+                        <td class="text-center">28-02-2019</td>
+                        <td class="text-center"></td>
+                        <td class="text-center">1.200,00</td>
+                        <td class="text-center">1.200,00</td>
+                    </tr>
+                    <tr class="bg-success">
+                        <td class="text-center">2019-01</td>
+                        <td class="text-center">01-01-2019</td>
+                        <td class="text-center">31-01-2019</td>
+                        <td class="text-center"></td>
+                        <td class="text-center">1.200,00</td>
+                        <td class="text-center">1.200,00</td>
+                    </tr>
+                    <tr class="bg-success">
+                        <td class="text-center">2018-12</td>
+                        <td class="text-center">01-12-2018</td>
+                        <td class="text-center">31-12-2018</td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                    </tr>
+                    <tr class="bg-success">
+                        <td class="text-center">2018-11</td>
+                        <td class="text-center">01-11-2018</td>
+                        <td class="text-center">30-11-2018</td>
+                        <td class="text-center"></td>
+                        <td class="text-center">1.200,00</td>
+                        <td class="text-center">1.200,00</td>
+                    </tr>
+                    <tr class="bg-success">
+                        <td class="text-center">2018-10</td>
+                        <td class="text-center">01-10-2018</td>
+                        <td class="text-center">31-10-2018</td>
+                        <td class="text-center"></td>
+                        <td class="text-center">1.200,00</td>
+                        <td class="text-center">1.200,00</td>
+                    </tr>
+                    <tr class="bg-success">
+                        <td class="text-center">2018-09</td>
+                        <td class="text-center">01-09-2018</td>
+                        <td class="text-center">30-09-2018</td>
+                        <td class="text-center"></td>
+                        <td class="text-center">1.200,00</td>
+                        <td class="text-center">1.200,00</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2018-08</td>
+                        <td class="text-center">01-08-2018</td>
+                        <td class="text-center">31-08-2018</td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2018-07</td>
+                        <td class="text-center">01-07-2018</td>
+                        <td class="text-center">31-07-2018</td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2018-06</td>
+                        <td class="text-center">01-06-2018</td>
+                        <td class="text-center">30-06-2018</td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2018-05</td>
+                        <td class="text-center">01-05-2018</td>
+                        <td class="text-center">31-05-2018</td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2018-04</td>
+                        <td class="text-center">01-04-2018</td>
+                        <td class="text-center">30-04-2018</td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        @Html.FormCardDivEnd()
+
+    </div>
+</div>

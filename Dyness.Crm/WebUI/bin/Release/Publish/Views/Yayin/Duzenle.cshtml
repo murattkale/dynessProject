@@ -1,0 +1,60 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model YayinDuzenleViewModel
+
+@{
+    var title = Model.Model.YayinId == 0
+        ? Resources.LangResources.YayinEkle
+        : $"{Resources.LangResources.YayinGuncelle} ({Model.Model.YayinAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/YayinDuzenle.js"></script>
+    <script>
+          var selectedDersId = @Html.Raw(Json.Encode(Model.Model.DersId));
+
+        YayinDuzenle(selectedDersId);
+    </script>
+}
+
+@using (Html.BeginForm("Duzenle", "Yayin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormTextBoxFor(x => x.Model.YayinAd)
+    @Html.FormDropDownListFor(x => x.Model.BransId, Model.BransSelectList)
+    @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.BransDersSecenekBilgi)
+    @Html.FormDropDownListFor(x => x.Model.SinifSeviyeId, Model.SinifSeviyeSelectList)
+    @Html.FormDropDownListFor(x => x.Model.DersId, Model.DersSelectList)
+    @Html.FormTextBoxFor(x => x.Model.StokAdet)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.HiddenFor(x => x.Model.YayinId)
+    @Html.FormButtons(Model.Model.YayinId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Yayin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.YayinId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

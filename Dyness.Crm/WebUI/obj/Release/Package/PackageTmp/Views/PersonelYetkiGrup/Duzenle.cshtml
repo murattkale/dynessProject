@@ -1,0 +1,45 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model PersonelYetkiGrupDuzenleViewModel
+
+@{
+    var title = Model.Model.PersonelYetkiGrupId == 0
+        ? Resources.LangResources.PersonelYetkiGrupEkle
+        : $"{Resources.LangResources.PersonelYetkiGrupGuncelle} ({Model.Model.PersonelYetkiGrupAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Personeller;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "PersonelYetkiGrup", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.PersonelYetkiGrupId, Model.PersonelYetkiGrupSelectList, Model.PersonelYetkiGrupSelectList.Any(), Resources.LangResources.PersonelYetkiGruplar, "/PersonelYetkiGrup/Duzenle/")
+    @Html.FormTextBoxFor(x => x.Model.PersonelYetkiGrupAd)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.PersonelYetkiGrupId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "PersonelYetkiGrup", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.PersonelYetkiGrupId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

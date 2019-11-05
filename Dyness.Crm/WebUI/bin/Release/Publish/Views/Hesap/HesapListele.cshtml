@@ -1,0 +1,87 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+@using Core.General;
+
+@model  HesapListeleViewModel
+
+@{
+    var gelir = Model.Gelir;
+    var gider = Model.Gider;
+
+    var title = gelir
+        ? Resources.LangResources.GelirHesaplar
+        : gider
+            ? Resources.LangResources.GiderHesaplar
+            : Resources.LangResources.DigerHesaplar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Muhasebe;
+}
+
+@{
+    var ayarlar = AyarlarService.Get();
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.GelirGider)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.GelirGiderDurum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.GelirGiderDurum)', '@Model.Model.GetColumnName(x=> x.GelirGiderDurum)', false, 0, AlignEnum.Left, AlignEnum.Left, null, null, booleanColumn));
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.HesapBaslik)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.HesapBaslik)', '@Model.Model.GetColumnName(x=> x.HesapBaslik)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.HesapTurAd)', '@Model.Model.GetColumnName(x=> x.HesapTurAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.ParaBirimAd)', '@Model.Model.GetColumnName(x=> x.ParaBirimAd)', false, 0));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.EtkinMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.Durum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinMi)', '@Model.Model.GetColumnName(x=> x.EtkinMi)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        SetDataTable(true, 'tblListele', '/Hesap/Listele', 0, 'asc', columns, '/Hesap/Duzenle/' + '@(gelir ? "4/" : "5/")', 'HesapId', null, false, false);
+
+        $(document).ready(function () {
+            $("#btnFiltrele").click();
+        });
+    </script>
+}
+
+@{
+    var controls = new List<MvcHtmlString>();
+
+    controls.Add(Html.FormTextBoxFor(x => x.SearchText, addClass: "search-filter", label: "Filtrele", forFilter: true));
+    controls.Add(Html.FormDropDownListFor(x => x.HesapTurGrupId, Model.HesapTurGrupSelectList, optionLabel: Resources.LangResources.HesapTurGruplar, forFilter: true, addClass: "search-filter", disabled:true));
+    controls.Add(Html.FormDropDownListFor(x => x.HesapTurId, Model.HesapTurSelectList, optionLabel: Resources.LangResources.HesapTurler, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormDropDownListFor(x => x.HesapId, Model.HesapSelectList, optionLabel: Resources.LangResources.SubeHesaplar, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormCheckBoxOnly(x => x.EtkinMi, "Durum", addClass: "search-filter"));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.primary, "btnFiltrele", Resources.LangResources.Listele));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.danger, "btnTemizle", Resources.LangResources.Temizle));
+}
+
+@{
+    var yeniGelirHesabi = Resources.LangResources.YENIGELIRHESABI;
+    var yeniGiderHesabi = Resources.LangResources.YENIGIDERHESABI;
+
+    var yeniHesap = gelir
+        ? yeniGelirHesabi
+        : gider
+            ? yeniGiderHesabi
+            : Resources.LangResources.YENIHESAPB;
+
+    var url = gelir
+        ? "/Hesap/Duzenle/4"
+        : gider
+            ? "/Hesap/Duzenle/5"
+            : "/Hesap/Duzenle";
+}
+
+@Html.FormDataTablesFor(title, yeniHesap, url, controls)

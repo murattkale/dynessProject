@@ -1,0 +1,19 @@
+﻿.table th, .table td {
+    padding: 0rem 0rem !important;
+    font-size: 11px;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    padding: 5px !important;
+    border: none;
+    height: 27px;
+    width: 32px;
+}

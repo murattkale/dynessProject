@@ -1,0 +1,77 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model  HesapTurDuzenleViewModel
+
+@{
+    var gelir = Model.Gelir;
+    var gider = Model.Gider;
+
+    var hesapTurEkle = gelir
+        ? Resources.LangResources.GelirTurEkle
+        : gider
+            ? Resources.LangResources.GiderTurEkle
+            : Resources.LangResources.HesapTurEkle;
+
+    var hesapTurGuncelle = gelir
+        ? Resources.LangResources.GelirTurGuncelle
+        : gider
+            ? Resources.LangResources.GiderTurGuncelle
+            : Resources.LangResources.HesapTurGuncelle;
+
+
+    var title = Model.Model.HesapTurId == 0
+        ? hesapTurEkle
+        : $"{hesapTurGuncelle} ({Model.Model.HesapTurAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Muhasebe;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "HesapTur", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    var hesapTurler = gelir
+      ? Resources.LangResources.GelirTurler
+      : gider
+          ? Resources.LangResources.GiderTurler
+          : Resources.LangResources.HesapTurler;
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.HesapTurId, Model.HesapTurSelectList, Model.HesapTurSelectList.Any(), hesapTurler, $"/HesapTur/Duzenle/{(Model.Gelir ? 1 : Model.Gider ? 2 : 0)}/")
+
+    var hesapTurStyle = gelir || gider
+        ? "style=display:none;"
+        : "";
+
+    <div @hesapTurStyle>
+
+        @Html.FormDropDownListFor(x => x.Model.HesapTurGrupId, Model.HesapTurGrupSelectList)
+
+    </div>
+
+    var hesapTur = gelir
+    ? Resources.LangResources.GelirTur
+    : gider
+        ? Resources.LangResources.GiderTur
+        : Resources.LangResources.HesapTur;
+
+    @Html.FormTextBoxFor(x => x.Model.HesapTurAd, label: hesapTur)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.HesapTurId, "", false)
+    @Html.FormCardDivEnd()
+}

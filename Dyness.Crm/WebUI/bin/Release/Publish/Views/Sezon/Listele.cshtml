@@ -1,0 +1,49 @@
+﻿@using Core.CrossCuttingConcerns.Security;
+@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model SezonListeleViewModel
+
+@{
+    var title = Resources.LangResources.Sezonlar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+         var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.SezonAd)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SezonAd)', '@Model.Model.GetColumnName(x=> x.SezonAd)', false, 0, null, null, htmlColumn));
+
+        @if(Identity.KurumId == -1)
+        {
+            <text>
+                columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.KurumAd)', '@Model.Model.GetColumnName(x=> x.KurumAd)', false, 0));
+            </text>
+        }
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Kod)', '@Model.Model.GetColumnName(x=> x.Kod)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.BaslangicTarihi)', '@Model.Model.GetColumnName(x=> x.BaslangicTarihiFormatted)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.BitisTarihi)', '@Model.Model.GetColumnName(x=> x.BitisTarihiFormatted)',false, 0));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.EtkinMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.Durum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinMi)', '@Model.Model.GetColumnName(x=> x.EtkinMi)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn ));
+
+        SetDataTable(false, 'tblListele', '/Sezon/Listele', 0, 'asc', columns, '/Sezon/Duzenle/', 'SezonId', null);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title, Resources.LangResources.YeniSezonB, "/Sezon/Duzenle/")

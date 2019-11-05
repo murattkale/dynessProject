@@ -1,0 +1,333 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@section Menu
+    {
+        Anasayfa
+        }*@
+
+<div class="row">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body">
+            <div class="media">
+                <a style="display: contents;color:inherit" href="#">
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-pointer icon-3x text-success-400"></i>
+                    </div>
+                    <div class="media-body text-right">
+                        <h3 class="font-weight-semibold mb-0">3</h3>
+                        <span class="font-size-sm text-muted">Vadesi geçen taksitler</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body">
+            <div class="media">
+                <a style="display: contents;color:inherit" href="#">
+                    <div class="mr-3 align-self-center">
+                        <i class="icon-enter6 icon-3x text-indigo-400"></i>
+                    </div>
+                    <div class="media-body text-right">
+                        <h3 class="font-weight-semibold mb-0">24</h3>
+                        <span class="font-size-sm text-muted">Vadesi yaklaşan taksitler</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body">
+            <div class="media">
+                <a style="display: contents;color:inherit" href="#">
+                    <div class="media-body">
+                        <h3 class="font-weight-semibold mb-0">54</h3>
+                        <span class="font-size-sm text-muted">Yeni kayıt olan öğrenciler</span>
+                    </div>
+                    <div class="ml-3 align-self-center">
+                        <i class="icon-bubbles4 icon-3x text-blue-400">
+
+                            </i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-body">
+            <div class="media">
+                <a style="display: contents;color:inherit" href="#">
+                    <div class="media-body">
+                        <h3 class="font-weight-semibold mb-0">BiDolu</h3>
+                        <span class="font-size-sm text-muted">İşlem Günlüğü</span>
+                    </div>
+                    <div class="ml-3 align-self-center">
+                        <i class="icon-bag icon-3x text-danger-400"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card bg-teal-400">
+            <div class="card-body">
+                <div class="d-flex">
+                    <h3 class="font-weight-semibold mb-0">Kurumlar</h3>
+                    <span class="badge bg-teal-800 badge-pill align-self-center ml-auto">+53,6%</span>
+                </div>
+
+                <div>
+
+                    <div class="font-size-sm opacity-75">150 Öğrenci</div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div id="members-online"></div>
+            </div>
+        </div>
+        <!-- /members online -->
+    </div>
+    <div class="col-lg-4">
+        <!-- Current server load -->
+        <div class="card bg-pink-400">
+            <div class="card-body">
+                <div class="d-flex">
+                    <h3 class="font-weight-semibold mb-0">Şubeler</h3>
+                    @*<div class="list-icons ml-auto">
+                            <div class="list-icons-item dropdown">
+                                <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="#" class="dropdown-item"><i class="icon-sync"></i> Update data</a>
+                                    <a href="#" class="dropdown-item"><i class="icon-list-unordered"></i> Detailed log</a>
+                                    <a href="#" class="dropdown-item"><i class="icon-pie5"></i> Statistics</a>
+                                    <a href="#" class="dropdown-item"><i class="icon-cross3"></i> Clear list</a>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+
+                <div>
+
+                    <div class="font-size-sm opacity-75">60 Personel</div>
+                </div>
+            </div>
+            <div id="server-load"></div>
+        </div>
+        <!-- /current server load -->
+    </div>
+    <div class="col-lg-4">
+        <!-- Today's revenue -->
+        <div class="card bg-blue-400">
+            <div class="card-body">
+                <div class="d-flex">
+                    <h3 class="font-weight-semibold mb-0">Ders Programları</h3>
+                    <div class="list-icons ml-auto">
+                        <a class="list-icons-item" data-action="reload"></a>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="font-size-sm opacity-75">15 Aktif Sınıf</div>
+                </div>
+            </div>
+            <div id="today-revenue"></div>
+        </div>
+        <!-- /today's revenue -->
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <!-- Available hours -->
+        <div class="card text-center">
+            <div class="card-body">
+                <!-- Progress counter -->
+                <div class="svg-center position-relative" id="hours-available-progress"></div>
+                <!-- /progress counter -->
+                <!-- Bars -->
+                <div id="hours-available-bars"></div>
+                <!-- /bars -->
+            </div>
+        </div>
+        <!-- /available hours -->
+    </div>
+    <div class="col-sm-4">
+        <!-- Productivity goal -->
+        <div class="card text-center">
+            <div class="card-body">
+                <!-- Progress counter -->
+                <div class="svg-center position-relative" id="goal-progress"></div>
+                <!-- /progress counter -->
+                <!-- Bars -->
+                <div id="goal-bars"></div>
+                <!-- /bars -->
+            </div>
+        </div>
+        <!-- /productivity goal -->
+    </div>
+    <div class="col-sm-4">
+        <!-- Productivity goal -->
+        <div class="card text-center">
+            <div class="card-body">
+                <!-- Progress counter -->
+                <div class="svg-center position-relative" id="goal-progress2"></div>
+                <!-- /progress counter -->
+                <!-- Bars -->
+                <div id="goal-bars2"></div>
+                <!-- /bars -->
+            </div>
+        </div>
+        <!-- /productivity goal -->
+    </div>
+
+</div>
+@*<div class="row">
+        <div class=" col-sm-12">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h6 class="card-title">Kayıt Olan Öğrenciler</h6>
+                    <div class="header-elements">
+                        <a href="#"><span class="font-weight-bold text-danger-600 ml-2">Toplam 5000 Adet</span></a>
+                        @*<div class="list-icons ml-3">
+                                <div class="list-icons-item dropdown">
+                                    <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-cog3"></i></a>
+                                    <div class="dropdown-menu">
+                                        <a href="#" class="dropdown-item"><i class="icon-sync"></i> Update data</a>
+                                        <a href="#" class="dropdown-item"><i class="icon-list-unordered"></i> Detailed log</a>
+                                        <a href="#" class="dropdown-item"><i class="icon-pie5"></i> Statistics</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="#" class="dropdown-item"><i class="icon-cross3"></i> Clear list</a>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart" id="sales-heatmap"></div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="w-100">Öğrenci İsmi</th>
+                                <th>Kayıt Yeri</th>
+                                <th>Ödeme</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <a href="#" class="btn bg-primary-400 rounded-round btn-icon btn-sm">
+                                                <span class="letter-icon"></span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="text-default font-weight-semibold letter-icon-title">Ayşe Gündoğdu</a>
+                                            <div class="text-muted font-size-sm"><i class="icon-checkmark3 font-size-sm mr-1"></i> Hasta Kabul Sekreterliği</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="text-muted font-size-sm">Gündoğdu Şubesi </span>
+                                </td>
+                                <td>
+                                    <h6 class="font-weight-semibold mb-0">500 ₺</h6>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <a href="#" class="btn bg-danger-400 rounded-round btn-icon btn-sm">
+                                                <span class="letter-icon"></span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="text-default font-weight-semibold letter-icon-title">Erdem Karabekir</a>
+                                            <div class="text-muted font-size-sm"><i class="icon-checkmark3 font-size-sm mr-1"></i> Aile Danışmanlığı Eğitimi</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="text-muted font-size-sm">Gündoğdu Şubesi</span>
+                                </td>
+                                <td>
+                                    <h6 class="font-weight-semibold mb-0">900 ₺</h6>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <a href="#" class="btn bg-indigo-400 rounded-round btn-icon btn-sm">
+                                                <span class="letter-icon"></span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="text-default font-weight-semibold letter-icon-title">Bekir Sağbacak</a>
+                                            <div class="text-muted font-size-sm"><i class="icon-checkmark3 font-size-sm mr-1"></i> Gelişimi Uzmanlığı Eğitimi</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="text-muted font-size-sm">Gündoğdu Şubesi</span>
+                                </td>
+                                <td>
+                                    <h6 class="font-weight-semibold mb-0">1450 ₺</h6>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <a href="#" class="btn bg-success-400 rounded-round btn-icon btn-sm">
+                                                <span class="letter-icon"></span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="text-default font-weight-semibold letter-icon-title">Melek Baykal</a>
+                                            <div class="text-muted font-size-sm"><i class="icon-checkmark3 font-size-sm mr-1"></i> Profesyonel Yaşam Koçluğu Eğitimi</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="text-muted font-size-sm">Gündoğdu Şubesi</span>
+                                </td>
+                                <td>
+                                    <h6 class="font-weight-semibold mb-0">1.250 ₺</h6>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <a href="#" class="btn bg-danger-400 rounded-round btn-icon btn-sm">
+                                                <span class="letter-icon"></span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="text-default font-weight-semibold letter-icon-title">Sezen Aksu</a>
+                                            <div class="text-muted font-size-sm"><i class="icon-checkmark3 font-size-sm mr-1"></i>  Emlak Danışmanlığı Eğitimi</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="text-muted font-size-sm">Gündoğdu Şubesi</span>
+                                </td>
+                                <td>
+                                    <h6 class="font-weight-semibold mb-0">1.250 ₺</h6>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>*@

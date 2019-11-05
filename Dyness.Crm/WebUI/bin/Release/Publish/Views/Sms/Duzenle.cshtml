@@ -1,0 +1,117 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model  SmsDuzenleViewModel
+
+@{
+    var title1 = Resources.LangResources.SmsKullaniciFiltrele;
+    var title2 = Resources.LangResources.SmsGonder;
+
+    ViewBag.Title = title2;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Sms;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title2}
+
+@section head
+{
+    <script src="~/assets/js/SmsDuzenle.js"></script>
+    <script>
+        SmsDuzenle(
+            '@Resources.LangResources.GrupSecimiZorunlu',
+            '@Resources.LangResources.SubeSecimiZorunlu',
+            '@Resources.LangResources.SezonSecimiZorunlu',
+            '@Resources.LangResources.SmsGonderilecekSecin',
+            @(Model.SmsTelefonBilgiler != null && Model.SmsTelefonBilgiler.Count > 0 ? "true" : "false" ));
+    </script>
+}
+@using (Html.BeginForm("Duzenle", "Sms", FormMethod.Post, new { id = "formSmsGonder" }))
+{
+    <div class="row">
+        <div class="col-md-6">
+            @Html.AntiForgeryToken()
+            @Html.FormCardDivBegin(title1)
+            @Html.FormDropDownListFor(x => x.SelectedSmsHesapId, Model.SmsHesapSelectList, false, "", true, Resources.LangResources.SmsHesaplar, false, false, "", "")
+            @Html.FormDropDownListFor(x => x.SelectedGonderilenGrup, Model.GonderilenGrupSelectList, false, "", true, Resources.LangResources.GonderilecekGrup, false, false, "", "")
+            @Html.FormDropDownListFor(x => x.SelectedSubeler, Model.SubeSelectList, true, "", true, Resources.LangResources.Subeler, false, false, "", "")
+
+            <div id="divOgrenci" style="display:none;">
+                @Html.FormDropDownListFor(x => x.SelectedOgrenciGonderilenGrup, Model.OgrenciGonderilenGrupSelectList, true, "", false, Resources.LangResources.DahilEt, false, false, "", "")
+                @Html.FormDropDownListFor(x => x.SelectedSezonlar, Model.SezonSelectList, true, "", true, Resources.LangResources.Sezonlar, false, false, "", "")
+                @Html.FormDropDownListFor(x => x.SelectedSinavId, Model.SinavSelectList, false, "", true, Resources.LangResources.Sinavlar, false, false, "", "")
+                @Html.FormDropDownListFor(x => x.SelectedSiniflar, Model.SinifSelectList, true, "", false, Resources.LangResources.Siniflar, false, false, "", "")
+            </div>
+
+            <div id="divPersonel" style="display:none;">
+                @Html.FormDropDownListFor(x => x.SelectedPersonelGruplar, Model.PersonelGrupSelectList, true, "", false, Resources.LangResources.Siniflar, false, false, "", "")
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-lg-2">@Resources.LangResources.GonderilecekAdet</label>
+                <label class="col-form-label col-lg-10"> <strong><span id="spnToplamSms">0</span></strong></label>
+            </div>
+
+            @Html.HiddenFor(x => x.Model.SmsId)
+            <div class="form-group row">
+                <div class="col-lg-12 offset-lg-2">
+                    @Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.success, "btnFiltrele", Resources.LangResources.Filtrele)
+                </div>
+            </div>
+            <div id="divTelefonBilgiler" style="display:none;"></div>
+            <div id="divTelefonBilgilerPartialView">
+                @if (Model.SmsTelefonBilgiler != null && Model.SmsTelefonBilgiler.Count > 0)
+                {
+                    @Html.PartialFor(x => x, "_SmsTelefonBilgiListele")
+                }
+            </div>
+            @Html.FormCardDivEnd()
+        </div>
+        <div class="col-md-6">
+
+            @Html.AntiForgeryToken()
+
+            @if (Model.MessageExists)
+            {
+                Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+            }
+
+            @Html.FormCardDivBegin(title2)
+            @Html.FormDropDownListFor(x => x.SelectedSmsSablonId, Model.SmsSablonSelectList, false, "", false, Resources.LangResources.SmsMetinSablonlar, false, false, "", "")
+            @Html.FormTextAreaFor(x => x.Model.Mesaj, 3, 3)
+            <div class="form-group row">
+                <label class="col-form-label col-lg-2"></label>
+                <div class="col-lg-10">
+                    <div class="alert alert-info">
+                        <span class="font-weight-semibold">
+                            @Resources.LangResources.MetinKarakterAdeti <br />
+                            @Resources.LangResources.HerBirSmsIcin <b>1-155</b> @Resources.LangResources.Arasi <b>1</b>, <b>156-292</b> @Resources.LangResources.Arasi <b>2</b>, <b>293-439</b> @Resources.LangResources.Arasi <b>3</b>, <b>440-587</b> @Resources.LangResources.Arasi <b>4</b>, <b>588-735</b> @Resources.LangResources.Arasi <b>5</b>, <b>736-882</b> <b>6</b> @Resources.LangResources.KrediKullanilir
+                        </span>
+                    </div>
+                </div>
+            </div>
+            @Html.FormTextAreaFor(x => x.TelefonNumaralar, 2, 2)
+            <div class="form-group row">
+                <label class="col-form-label col-lg-2"></label>
+                <div class="col-lg-10">
+                    <div class="alert alert-info">
+                        <span class="font-weight-semibold">
+                            @Resources.LangResources.SmsTelefonSmsGonderme 
+                        </span>
+                    </div>
+                </div>
+            </div>
+            @Html.FormTextBoxFor(x => x.Model.GonderilecegiTarih, textBoxType: HtmlHelpers.TextBoxType.Date)
+            <div class="form-group row">
+                <div class="col-lg-10 offset-lg-2">
+                    @Html.FormSubmit(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.primary, "btnSmsGonder", Resources.LangResources.SmsGonder)
+                </div>
+            </div>
+            @Html.FormCardDivEnd()
+        </div>
+    </div>
+}

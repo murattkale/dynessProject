@@ -1,0 +1,501 @@
+﻿@using Core.CrossCuttingConcerns.Security;
+@using Core.General;
+@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model SinavDetayViewModel
+
+@{
+    var title = $"{Resources.LangResources.SinavBilgileri} ({Model.Model.Baslik})";
+    var title1 = Resources.LangResources.IletisimBilgileri;
+    var title2 = Resources.LangResources.Ogrenciler;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Sinavlar;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/SinavDetay.js"></script>
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+    var columns = new Array();
+
+    var htmlColumn = new DataColumnHtmlFuncs('@Model.ListeleModel.Model.GetColumnName(x => x.SubeAd)',true);
+    columns.push(new DataColumn('@Model.ListeleModel.Model.GetDisplayName(x=> x.SubeAd)', '@Model.ListeleModel.Model.GetColumnName(x=> x.SubeAd)', false, 0, null, null, htmlColumn));
+
+    columns.push(new DataColumn('@Model.ListeleModel.Model.GetDisplayName(x=> x.OgrenciMi)', '@Model.ListeleModel.Model.GetColumnName(x=> x.Durum)', false, 0));
+    columns.push(new DataColumn('@Model.ListeleModel.Model.GetDisplayName(x => x.AdSoyad)', '@Model.ListeleModel.Model.GetColumnName(x=> x.AdSoyad)', false, 0, AlignEnum.Center, AlignEnum.Center));
+    columns.push(new DataColumn('@Model.ListeleModel.Model.GetDisplayName(x => x.TcKimlikNo)', '@Model.ListeleModel.Model.GetColumnName(x=> x.TcKimlikNo)', false, 0, AlignEnum.Center, AlignEnum.Center));
+    columns.push(new DataColumn('@Model.ListeleModel.Model.GetDisplayName(x => x.OgrenciNo)', '@Model.ListeleModel.Model.GetColumnName(x=> x.OgrenciNo)', false, 0, AlignEnum.Center, AlignEnum.Center));
+    columns.push(new DataColumn('@Model.ListeleModel.Model.GetDisplayName(x => x.Sinif)', '@Model.ListeleModel.Model.GetColumnName(x=> x.Sinif)', false, 0, AlignEnum.Center, AlignEnum.Center));
+    columns.push(new DataColumn('@Model.ListeleModel.Model.GetDisplayName(x => x.DogruCevapAdet)', '@Model.ListeleModel.Model.GetColumnName(x=> x.DogruCevapAdet)', false, 0, AlignEnum.Center, AlignEnum.Center));
+    columns.push(new DataColumn('@Model.ListeleModel.Model.GetDisplayName(x => x.YanlisCevapAdet)', '@Model.ListeleModel.Model.GetColumnName(x=> x.YanlisCevapAdet)', false, 0, AlignEnum.Center, AlignEnum.Center));
+    columns.push(new DataColumn('@Model.ListeleModel.Model.GetDisplayName(x => x.BosCevapAdet)', '@Model.ListeleModel.Model.GetColumnName(x=> x.BosCevapAdet)', false, 0, AlignEnum.Center, AlignEnum.Center));
+    columns.push(new DataColumn('@Model.ListeleModel.Model.GetDisplayName(x => x.Net)', '@Model.ListeleModel.Model.GetColumnName(x=> x.Net)', false, 0, AlignEnum.Center, AlignEnum.Center));
+
+    var otherItems = new Array();
+    otherItems.push(new OtherItem('/OgrenciSinavKontrol/Detay/', '', 'OgrenciSinavKontrolId', '', '_blank', 'icon-search4', 'Detay', ''));
+
+    SetDataTable(true, 'tblListele', '/Sinav/OgrenciSinavListele/' + @Model.ListeleModel.SinavId, 0, 'desc', columns, '', 0, otherItems, false, null, 100);
+
+    </script>
+}
+<div class="row">
+    <div class="col-md-12">
+        @if (Model.MessageExists)
+        {
+            Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+        }
+        <div class="card">
+            <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+                <li class="nav-item"><a href="#tabOgrenciBilgileri" class="nav-link active show" data-toggle="tab"><h5 class="card-title">@Resources.LangResources.OgrenciBilgileri</h5></a></li>
+                <li class="nav-item"><a href="#tabSinavBilgileri" class="nav-link" data-toggle="tab"><h5 class="card-title">@Resources.LangResources.SinavBilgileri</h5></a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="tabOgrenciBilgileri">
+                    @if (Model.Model.SonuclarGoruntulenebilir)
+                    {
+                        var controls = new List<MvcHtmlString>();
+
+                        controls.Add(Html.FormTextBoxFor(x => x.SearchText, addClass: "search-filter", label: "Filtrele", forFilter: true));
+                        controls.Add(Html.FormDropDownListFor(x => x.ListeleModel.SubeId, Model.ListeleModel.SubeSelectList, optionLabel: Resources.LangResources.Subeler, forFilter: true, addClass: "search-filter"));
+                        controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.primary, "btnFiltrele", Resources.LangResources.Listele));
+                        controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.danger, "btnTemizle", Resources.LangResources.Temizle));
+                        @Html.FormDataTablesFor(Model.ListeleModel.SinavBaslik, "", "", controls)
+                    }
+                    else
+                    {
+                        <div class="card">
+                            <div class="card-header header-elements-inline"><h5 class="card-title">@Resources.LangResources.Durum</h5></div>
+                            <div class="card-body">
+                                @Resources.LangResources.SinavSonuclarıHenuzGoruntulenemez
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="tab-pane fade " id="tabSinavBilgileri">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header header-elements-inline"><h5 class="card-title">@Resources.LangResources.SinavDetaylar</h5></div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="40%;"><b>@Model.Model.GetDisplayName(x => x.Baslik):</b></td>
+                                                    <td width="60%;" colspan="3">@Model.Model.Baslik</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="40%;"><b>@Model.Model.GetDisplayName(x => x.SinavTur.SinavTurAd):</b></td>
+                                                    <td width="60%;" colspan="3">
+                                                        <a onclick="SinavTurGoster()" href="#"> @Model.Model.SinavTurAd</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="40%;"><b>@Model.Model.GetDisplayName(x => x.OptikForm.OptikFormAd):</b></td>
+                                                    <td width="60%;" colspan="3">
+                                                        <a onclick="OptikFormGoster()" href="#">
+                                                            @Model.Model.OptikForm.OptikFormAd
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>@Model.Model.GetDisplayName(x => x.SinavTarihi):</b></td>
+                                                    <td colspan="3">@Model.Model.SinavTarihiFormatted</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>@Model.Model.GetDisplayName(x => x.KurumAd):</b></td>
+                                                    <td colspan="3">@Model.Model.KurumAd</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>@Model.Model.GetDisplayName(x => x.SonucGoruntulenmeDurumu):</b></td>
+                                                    <td colspan="3">
+                                                        <span class="badge badge-@(Model.Model.SonuclarGoruntulenebilir ? "success" : "danger")"> @Model.Model.SonucGoruntulenmeDurumu</span>
+                                                    </td>
+                                                </tr>
+                                                @if (Model.Model.SinavSubeler.Count(x => x.SubeId == Identity.SubeId) > 0 || Identity.SubeId == -1)
+                                                {
+                                                    <tr>
+                                                        <td colspan="4" class="text-center">
+                                                            @using (Html.BeginForm("GoruntulenmeDurumuGuncelle", "Sinav", FormMethod.Post))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+                                                                @Html.Hidden("id", Model.Model.SinavId)
+                                                                <button type="submit" class="btn btn-outline-primary btn-sm">@Resources.LangResources.GoruntulenmeDurumunuDegistir</button>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                @if (Model.Model.SinavSubeler != null && Model.Model.SinavSubeler.Count > 0)
+                                                {
+                                                    <tr>
+                                                        <td colspan="4"><b>@Resources.LangResources.SubeOptikSonuc</b></td>
+                                                    </tr>
+
+                                                    var yetkiliSubeIdler = PersonelSubeYetkiService.Get(Identity.PersonelId).Select(x => x.SubeId);
+
+                                                    for (int i = 0; i < Model.Model.SinavSubeler.Count; i++)
+                                                    {
+                                                        var sinavSube = Model.Model.SinavSubeler[i];
+
+                                                        var subeYetkilimi = yetkiliSubeIdler.Contains(sinavSube.SubeId) || yetkiliSubeIdler.Count() == 0;
+
+                                                        if (subeYetkilimi)
+                                                        {
+                                                            <tr id="trSubeDosyaYukle@(sinavSube.SubeId)" @(!string.IsNullOrEmpty(sinavSube.DosyaAd) ? "style=display:none;" : "")>
+                                                                <td>@sinavSube.Sube.SubeAd</td>
+                                                                <td colspan="3">
+                                                                    @using (Html.BeginForm("SubeOptikFormKaydet", "Sinav", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                                    {
+                                                                        @Html.AntiForgeryToken()
+
+                                                                        <div style="width:80%;float:left;">
+                                                                            <input type="file" name="subeOptikForm" class="form-control-uniform" />
+                                                                        </div>
+                                                                        <div style="width:20%;float:right;text-align:right; margin-top:2px;">
+                                                                            <input type="submit" value="Yükle" class="btn btn-success btn-sm" />
+                                                                        </div>
+
+                                                                        @Html.Hidden("optikFormSinavId", Model.Model.SinavId)
+                                                                        @Html.Hidden("optikFormSubeId", sinavSube.SubeId)
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr @(string.IsNullOrEmpty(sinavSube.DosyaAd) ? "style=display:none;" : "")>
+                                                                <td width="40%;">@sinavSube.Sube.SubeAd</td>
+                                                                <td width="20%;"><a href="/OgrenciSinavKontrol/TopluSinavSonuc/@sinavSube.SubeId" target="_blank">@Resources.LangResources.TopluCiktiAl</a></td>
+                                                                <td width="20%;"><a href="@sinavSube.DosyaYol" download>@Resources.LangResources.Indir</a></td>
+                                                                <td width="20%;">
+                                                                    <input type="submit" value="@Resources.LangResources.DosyaYukle" class="btn btn-success btn-sm" onclick="DosyaYukleGoster('trSubeDosyaYukle@(sinavSube.SubeId)')" />
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header header-elements-inline"><h5 class="card-title">@Resources.LangResources.Kitapciklar</h5></div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <td></td>
+                                                    <td colspan="3"><b>@Resources.LangResources.CevapAnahtari.ToUpper()</b></td>
+                                                    <td colspan="3"><b>@Resources.LangResources.KonuDagilimliCevapAnahtari.ToUpper()</b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:20%;"><b>@Resources.LangResources.Kitapcik</b></td>
+                                                    <td style="width:30%;"><b>@Resources.LangResources.Kitapcik</b></td>
+                                                    <td style="width:5%; background-color:#D1F2EB; text-align:center;">
+                                                        <b><a href="\Dosya\Sinav\Kitapçık Cevap Anahtarı Şablonu.txt" download>@Resources.LangResources.SablonIndir</a></b>
+                                                    </td>
+                                                    <td style="width:5%; background-color:#D1F2EB; text-align:center;">
+                                                        <b><a href="\Dosya\Sinav\Örnek Kitapçık Cevap Anahtarı.txt" download>@Resources.LangResources.OrnekIndir</a></b>
+                                                    </td>
+                                                    <td style="width:30%;"><b>@Resources.LangResources.Konu</b></td>
+                                                    <td style="width:5%; background-color:#D1F2EB; text-align:center;"><b><a href="\Dosya\Sinav\Konu dağılım şablonu.xlsx" download>@Resources.LangResources.SablonIndir</a></b></td>
+                                                    <td style="width:5%; background-color:#D1F2EB; text-align:center;">
+                                                        <b><a href="\Dosya\Sinav\Örnek Kitapçık Konu Dağılımı.xlsx" download>@Resources.LangResources.OrnekIndir</a></b>
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for (int i = 0; i < Model.Model.SinavKitapciklar.Count; i++)
+                                                {
+                                                    var sinavKitapcik = Model.Model.SinavKitapciklar[i];
+
+                                                    <tr>
+                                                        <td><b>@Model.Model.SinavKitapciklar[i].Baslik</b></td>
+                                                        <td colspan="3">
+
+                                                            @using (Html.BeginForm("SinavKitapcikYukle", "Sinav", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+
+                                                                <div style="width:80%;float:left;"><input type="file" name="sinavKitapcikSorular" class="form-control-uniform" /></div>
+                                                                <div style="width:20%;float:right;text-align:right; margin-top:2px;"><input type="submit" value="Yükle" class="btn btn-success btn-sm" /></div>
+
+                                                                @Html.Hidden("dosyaSinavId", Model.Model.SinavId)
+                                                                @Html.Hidden("dosyaSinavKitapcik", sinavKitapcik.Baslik)
+                                                                @Html.Hidden("dosyaSinavKitapcikId", sinavKitapcik.SinavKitapcikId)
+
+                                                            }
+                                                        </td>
+                                                        <td colspan="2">
+
+                                                            @using (Html.BeginForm("SinavSoruKonuYukle", "Sinav", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+
+                                                                <div style="width:80%;float:left;">
+                                                                    <input type="file" name="soruKonular" class="form-control-uniform" />
+                                                                </div>
+                                                                <div style="width:20%;float:right;text-align:right; margin-top:2px;">
+                                                                    <input type="submit" value="Yükle" class="btn btn-info btn-sm" />
+                                                                </div>
+                                                                @Html.Hidden("soruSinavId", Model.Model.SinavId)
+                                                                @Html.Hidden("soruKonuKitapcik", sinavKitapcik.Baslik)
+                                                                @Html.Hidden("soruKonuKitapcikId", sinavKitapcik.SinavKitapcikId)
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            <a href="/Sinav/SinavKitapcikDuzenle/@sinavKitapcik.SinavKitapcikId">@Resources.LangResources.GUNCELLE</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td colspan="3" style="background-color:#FF5733; color:white;">
+                                                            <b>@Resources.LangResources.CevapAnahtariBilgi</b>
+                                                        </td>
+                                                        <td colspan="3" style="background-color:#FF5733; color:white;">
+                                                            <b>@Resources.LangResources.KonuDagilimiExcelBilgi</b>
+                                                        </td>
+                                                    </tr>
+                                                    if (!string.IsNullOrEmpty(sinavKitapcik.CevapAnahtari))
+                                                    {
+                                                        foreach (var sinavKitapcikDersBilgi in sinavKitapcik.SinavKitapcikDersBilgiler)
+                                                        {
+                                                            <tr>
+                                                                <td><b>@(sinavKitapcikDersBilgi.Ders.DersAd) (@sinavKitapcikDersBilgi.CevapAnahtartari.Length)</b></td>
+                                                                <td colspan="3">@sinavKitapcikDersBilgi.CevapAnahtartari</td>
+                                                                <td colspan="3"></td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                    <tr>
+                                                        <td colspan="7"></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (Model.Konular != null && Model.Konular.Any())
+                            {
+                                var konular = Model.Konular;
+                                <div class="card">
+                                    <div class="card-header header-elements-inline"><h5 class="card-title">@Resources.LangResources.KonuDagilimi</h5></div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <td style="width:32%;"><b>@Resources.LangResources.DersGrup</b></td>
+                                                        <td style="width:32%;"><b>@Resources.LangResources.Ders</b></td>
+                                                        <td style="width:32%;"><b>@Resources.LangResources.Konu</b></td>
+                                                        <td style="width:4%;"><b>@Resources.LangResources.SoruAdet</b></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < konular.Count; i++)
+                                                    {
+                                                        var konu = konular[i];
+
+                                                        <tr>
+                                                            <td><b>@konu.Item1.Ders.DersGrup.DersGrupAd</b></td>
+                                                            <td>@konu.Item1.Ders.DersAd</td>
+                                                            <td>@konu.Item1.Baslik</td>
+                                                            <td>@konu.Item2</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalSinavTur" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                @Html.FormCardDivBegin(Resources.LangResources.SinavTur)
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <tbody>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.SinavTur.GetDisplayName(x => x.SinavTurAd):</b></td>
+                                <td colspan="3" width="60%;">@Model.Model.SinavTur.SinavTurAd</td>
+                            </tr>
+                            <tr>
+                                <td><b>@Model.Model.SinavTur.GetDisplayName(x => x.TabanPuan):</b></td>
+                                <td colspan="3">@Model.Model.SinavTur.TabanPuan</td>
+                            </tr>
+                            <tr>
+                                <td><b>@Model.Model.SinavTur.GetDisplayName(x => x.KacYanlisBirDogruyuGoturur):</b></td>
+                                <td colspan="3">@Model.Model.SinavTur.KacYanlisBirDogruyuGoturur</td>
+                            </tr>
+                            <tr>
+                                <td><b>@Model.Model.SinavTur.GetDisplayName(x => x.Durum):</b></td>
+                                <td colspan="3">
+                                    <span class="badge badge-@(Model.Model.SinavTur.EtkinMi ? "success" : "danger")"> @Model.Model.SinavTur.Durum</span>
+                                </td>
+                            </tr>
+
+                            @if (Model.Model.SinavTur.SinavTurDersKatSayilar != null && Model.Model.SinavTur.SinavTurDersKatSayilar.Any())
+                            {
+                                var sinavTurDersKatSayilar = Model.Model.SinavTur.SinavTurDersKatSayilar.OrderBy(x => x.DersGrup.DersGrupAd).ThenBy(x => x.PuanTur.PuanTurAd).ToList();
+
+                                <tr>
+                                    <td colspan="4"></td>
+                                </tr>
+                                <tr>
+                                    <td width="40%;"><b>@Resources.LangResources.DersGrup</b></td>
+                                    <td width="20%;"><b>@Resources.LangResources.PuanTur</b></td>
+                                    <td width="20%;" class="text-center"><b>@Resources.LangResources.KatSayi</b></td>
+                                    <td width="20%;"></td>
+                                </tr>
+
+                                foreach (var sinavTurDersKatSayi in sinavTurDersKatSayilar)
+                                {
+                                    <tr>
+                                        <td>@sinavTurDersKatSayi.DersGrup.DersGrupAd</td>
+                                        <td>@sinavTurDersKatSayi.PuanTur.PuanTurAd</td>
+                                        <td class="text-center">@sinavTurDersKatSayi.KatSayi</td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            }
+
+                            @if (Model.Model.SinavTur.SinavTurDersler != null && Model.Model.SinavTur.SinavTurDersler.Any())
+                            {
+                                var sinavTurDersler = Model.Model.SinavTur.SinavTurDersler.OrderBy(x => x.Sira).ToList();
+
+                                <tr>
+                                    <td colspan="4"></td>
+                                </tr>
+                                <tr>
+                                    <td width="40%;"><b>@Resources.LangResources.Ders</b></td>
+                                    <td width="20%;" class="text-center"><b>@Resources.LangResources.Sira</b></td>
+                                    <td width="20%;" class="text-center"><b>@Resources.LangResources.SoruSayi</b></td>
+                                    <td width="20%;"></td>
+                                </tr>
+
+                                foreach (var sinavTurDers in sinavTurDersler)
+                                {
+                                    <tr>
+                                        <td>@sinavTurDers.Ders.DersAd</td>
+                                        <td class="text-center">@sinavTurDers.Sira</td>
+                                        <td class="text-center">@sinavTurDers.SoruSayi</td>
+                                        <td></td>
+                                    </tr>
+
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+                @Html.FormCardDivEnd()
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalOptikForm" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                @Html.FormCardDivBegin(Resources.LangResources.OptikForm)
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <tbody>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.OptikFormAd):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.OptikFormAd</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.TcNoBasla):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.TcNoBasla</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.TcNoAdet):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.TcNoAdet</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.OgrenciNoBasla):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.OgrenciNoBasla</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.OgrenciNoAdet):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.OgrenciNoAdet</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.AdBasla):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.AdBasla</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.AdAdet):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.AdAdet</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.SoyadBasla):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.SoyadBasla</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.SoyadAdet):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.SoyadAdet</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.SinifBasla):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.SinifBasla</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.SinifAdet):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.SinifAdet</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.KitapcikTurBasla):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.KitapcikTurBasla</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.KitapcikTurAdet):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.KitapcikTurAdet</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.CinsiyetBasla):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.CinsiyetBasla</td>
+                            </tr>
+                            <tr>
+                                <td width="40%;"><b>@Model.Model.OptikForm.GetDisplayName(x => x.CinsiyetAdet):</b></td>
+                                <td width="60%;">@Model.Model.OptikForm.CinsiyetAdet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                @Html.FormCardDivEnd()
+            </div>
+        </div>
+    </div>
+</div>

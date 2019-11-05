@@ -1,0 +1,93 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model EskiKayitDuzenleViewModel
+
+@{
+    var title = Model.Model.EskiKayitId == 0
+        ? Resources.LangResources.EskiKayitEkle
+        : $"{Resources.LangResources.EskiKayitGuncelle} ({Model.Model.Ogrenci})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "EskiKayit", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormTextBoxFor(x => x.Model.SozlesmeDurumu)
+    @Html.FormTextBoxFor(x => x.Model.OgrenciTckn)
+    @Html.FormTextBoxFor(x => x.Model.OgrenciId)
+    @Html.FormTextBoxFor(x => x.Model.OgrenciNo)
+    @Html.FormTextBoxFor(x => x.Model.OgrenciAdi)
+    @Html.FormTextBoxFor(x => x.Model.OgrenciSoyadi)
+    @Html.FormTextBoxFor(x => x.Model.OgrenciTelefon)
+    @Html.FormTextBoxFor(x => x.Model.OgrenciAdres)
+    @Html.FormTextBoxFor(x => x.Model.OgrenciEposta)
+    @Html.FormTextBoxFor(x => x.Model.ServisBilgisi)
+    @Html.FormTextBoxFor(x => x.Model.Nakit)
+    @Html.FormTextBoxFor(x => x.Model.Cek)
+    @Html.FormTextBoxFor(x => x.Model.KrediKartiPosCihazi)
+    @Html.FormTextBoxFor(x => x.Model.Havale)
+    @Html.FormTextBoxFor(x => x.Model.KrediKartiSanalPos)
+    @Html.FormTextBoxFor(x => x.Model.MailOrder)
+    @Html.FormTextBoxFor(x => x.Model.KayitUcreti)
+    @Html.FormTextBoxFor(x => x.Model.KalanOdeme)
+    @Html.FormTextBoxFor(x => x.Model.OdemeTuru)
+    @Html.FormTextBoxFor(x => x.Model.KayitTarihi)
+    @Html.FormTextBoxFor(x => x.Model.BiziNeredenDuydunuz)
+    @Html.FormTextBoxFor(x => x.Model.SinifSeviyesi)
+    @Html.FormTextBoxFor(x => x.Model.Sinif)
+    @Html.FormTextBoxFor(x => x.Model.Brans)
+    @Html.FormTextBoxFor(x => x.Model.Sezon)
+    @Html.FormTextBoxFor(x => x.Model.SubeBilgi)
+    @Html.FormTextBoxFor(x => x.Model.Adres)
+    @Html.FormTextBoxFor(x => x.Model.Ilce)
+    @Html.FormTextBoxFor(x => x.Model.Il)
+    @Html.FormTextBoxFor(x => x.Model.Ulke)
+    @Html.FormTextBoxFor(x => x.Model.VeliAnne)
+    @Html.FormTextBoxFor(x => x.Model.AnneTckn)
+    @Html.FormTextBoxFor(x => x.Model.AnneTel)
+    @Html.FormTextBoxFor(x => x.Model.VeliBaba)
+    @Html.FormTextBoxFor(x => x.Model.BabaTckn)
+    @Html.FormTextBoxFor(x => x.Model.BabaTel)
+    @Html.FormTextBoxFor(x => x.Model.VeliDiger)
+    @Html.FormTextBoxFor(x => x.Model.DigerTckn)
+    @Html.FormTextBoxFor(x => x.Model.DigerTel)
+    @Html.FormTextBoxFor(x => x.Model.FaturaAdSoyad)
+    @Html.FormTextBoxFor(x => x.Model.VergiDairesi)
+    @Html.FormTextBoxFor(x => x.Model.VergiTckNo)
+    @Html.FormTextBoxFor(x => x.Model.FaturaAdres)
+    @Html.FormTextBoxFor(x => x.Model.FaturaSemt)
+    @Html.FormTextBoxFor(x => x.Model.FaturaIlce)
+    @Html.FormTextBoxFor(x => x.Model.FaturaSehir)
+    @Html.FormTextBoxFor(x => x.Model.FaturaPostaKodu)
+    @Html.FormTextBoxFor(x => x.Model.Gorusen)
+    @Html.FormTextBoxFor(x => x.Model.KaydiYapan)
+    @Html.FormTextBoxFor(x => x.Model.Referans)
+    @Html.HiddenFor(x => x.Model.EskiKayitId)
+    @Html.FormButtons(Model.Model.EskiKayitId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "EskiKayit", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.EskiKayitId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

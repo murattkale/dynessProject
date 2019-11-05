@@ -1,0 +1,173 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model VideoDuzenleViewModel
+
+@{
+    var title = Model.Model.VideoId == 0
+        ? Resources.LangResources.VideoEkle
+        : $"{Resources.LangResources.VideoGuncelle} ({Model.Model.Baslik})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Dersler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script>
+        $(document).ready(function () {
+
+            var selectedKonular = new Array();
+
+            @if(Model.SelectedKonular != null && Model.SelectedKonular.Length > 0)
+            {
+                for (int i = 0; i < Model.SelectedKonular.Length; i++)
+                {
+                    @:selectedKonular[@i] = @(Model.SelectedKonular[i]);
+                }
+            }
+
+            DersKonular($("#SelectedKonular"), selectedKonular, $("#Model_DersId").val());
+
+            var selectedKategoriler = new Array();
+
+            @if(Model.SelectedVideoKategoriler != null && Model.SelectedVideoKategoriler.Length > 0)
+            {
+                for (int i = 0; i < Model.SelectedVideoKategoriler.Length; i++)
+                {
+                    @:selectedKategoriler[@i] = @(Model.SelectedVideoKategoriler[i]);
+                }
+            }
+
+            DersVideoKategoriler($("#SelectedVideoKategoriler"), selectedKategoriler, $("#Model_DersId").val());
+
+            Kurumlar();
+
+            SinifListele();
+
+            $("#Model_DersId").on("change", function () {
+                DersKonular($("#SelectedKonular"), null, $(this).val());
+                DersVideoKategoriler($("#SelectedVideoKategoriler"), null, $(this).val());
+            });
+
+            function Kurumlar() {
+                var selectedSubeler = new Array();
+
+                @if(Model.SelectedSubeler != null && Model.SelectedSubeler.Length > 0)
+                {
+                    for (int i = 0; i < Model.SelectedSubeler.Length; i++)
+                    {
+                        @:selectedSubeler[@i] = @(Model.SelectedSubeler[i]);
+                    }
+                }
+
+                KurumSubeler($("#SelectedSubeler"), selectedSubeler, $("#SelectedKurumlar").val());
+
+                var selectedSezonlar = new Array();
+
+                @if(Model.SelectedSezonlar != null && Model.SelectedSezonlar.Length > 0)
+                {
+                    for (int i = 0; i < Model.SelectedSezonlar.Length; i++)
+                    {
+                        @:selectedSezonlar[@i] = @(Model.SelectedSezonlar[i]);
+                    }
+                }
+
+                KurumSezonlar($("#SelectedSezonlar"), selectedSezonlar, $("#SelectedKurumlar").val());
+
+                var selectedBranslar = new Array();
+
+                @if(Model.SelectedBranslar != null && Model.SelectedBranslar.Length > 0)
+                {
+                    for (int i = 0; i < Model.SelectedBranslar.Length; i++)
+                    {
+                        @:selectedBranslar[@i] = @(Model.SelectedBranslar[i]);
+                    }
+                }
+
+                KurumBranslar($("#SelectedBranslar"), selectedBranslar, $("#SelectedKurumlar").val());
+            }
+
+            $("#SelectedKurumlar").on("change", function () {
+                Kurumlar();
+            });
+
+            function SinifListele() {
+
+                 var selectedSiniflar = new Array();
+
+                @if(Model.SelectedSiniflar != null && Model.SelectedSiniflar.Length > 0)
+                {
+                    for (int i = 0; i < Model.SelectedSiniflar.Length; i++)
+                    {
+                        @:selectedSiniflar[@i] = @(Model.SelectedSiniflar[i]);
+                    }
+                }
+
+                SubeSezonBransSiniflar(
+                    $("#SelectedSiniflar"),
+                    selectedSiniflar,
+                    $("#SelectedSubeler").val(),
+                    $("#SelectedSezonlar").val(),
+                    $("#SelectedBranslar").val());
+            }
+
+            $("#SelectedSubeler").on("change", function () {
+                SinifListele();
+            });
+
+            $("#SelectedSezonlar").on("change", function () {
+                SinifListele();
+            });
+
+            $("#SelectedBranslar").on("change", function () {
+                SinifListele();
+            });
+        });
+
+    </script>
+
+}
+
+@using (Html.BeginForm("Duzenle", "Video", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListFor(x => x.Model.DersId, Model.DersSelectList)
+    @Html.FormDropDownListFor(x => x.SelectedVideoKategoriler, Model.VideoKategoriSelectList, multiSelect: true)
+    @Html.FormDropDownListFor(x => x.SelectedKonular, Model.KonuSelectList, multiSelect: true)
+    @Html.FormTextBoxFor(x => x.Model.Baslik)
+    @Html.FormTextBoxFor(x => x.Model.Url)
+    @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, "ÖRN: 'https://www.youtube.com/embed/TazHNpt6OTo'" )
+    @Html.FormDropDownListFor(x => x.SelectedKurumlar, Model.KurumSelectList, true)
+    @Html.FormDropDownListFor(x => x.SelectedSubeler, Model.SubeSelectList, true)
+    @Html.FormDropDownListFor(x => x.SelectedSezonlar, Model.SezonSelectList, true)
+    @Html.FormDropDownListFor(x => x.SelectedBranslar, Model.BransSelectList, true)
+    @Html.FormDropDownListFor(x => x.SelectedSiniflar, Model.SinifSelectList, true)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.HiddenFor(x => x.Model.VideoId)
+
+    @Html.FormButtons(Model.Model.VideoId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Video", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.VideoId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

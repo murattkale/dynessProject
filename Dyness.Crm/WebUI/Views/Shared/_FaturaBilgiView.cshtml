@@ -1,0 +1,14 @@
+﻿@using Entities.Concrete;
+@using WebUI.Helpers;
+
+@model  FaturaBilgi
+
+@Html.FormCardDivBegin(Resources.LangResources.FaturaBilgi)
+@Html.FormTextBoxFor(x => x.AdSoyad)
+@Html.FormTextAreaFor(x => x.Adres, 2, 2)
+@Html.FormTextBoxFor(x => x.VergiNo)
+@Html.FormTextBoxFor(x => x.VergiDairesi)
+@Html.HiddenFor(x => x.FaturaBilgiId)
+@Html.Hidden("FaturaBilgiOgrenciSozlesmeId")
+@Html.Hidden("FaturaBilgiOgrenciId")
+@Html.FormCardDivEnd()

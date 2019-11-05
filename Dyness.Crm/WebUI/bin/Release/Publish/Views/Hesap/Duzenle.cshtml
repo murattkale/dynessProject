@@ -1,0 +1,112 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model  HesapDuzenleViewModel
+
+@{
+    if (Model.Model.HesapTur?.HesapTurGrupId != null && Model.Model.HesapTur?.HesapTurGrupId > 0)
+    {
+        Model.HesapTurGrupId = (int)Model.Model.HesapTur.HesapTurGrupId;
+    }
+
+    var titleGenel = Model.HesapTurGrupId == 1
+        ? Resources.LangResources.KasaHesabi
+        : Model.HesapTurGrupId == 2
+            ? Resources.LangResources.BankaHesabi
+            : Model.HesapTurGrupId == 3
+                ? Resources.LangResources.CekHesabi
+                : Model.HesapTurGrupId == 4
+                    ? Resources.LangResources.GelirHesabi
+                    : Resources.LangResources.GiderHesabi;
+
+
+    var title = Model.Model.HesapId == 0
+        ? $"{titleGenel} {Resources.LangResources.Ekle}"
+        : $"{titleGenel} {Resources.LangResources.GuncelleK} ({Model.Model.HesapBaslik})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Muhasebe;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/app.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            function Duzenle(id) {
+
+                if (id == "")
+                    $("#divDuzenler").hide();
+                else
+                    $("#divDuzenler").show();
+
+                if (id == "4" || id == "5") {
+                    $("#divHesapTur").show();
+
+                    var hesapTurGrupId = id == "4"
+                        ? 1
+                        : id == "5"
+                            ? 2
+                            : 0;
+
+                     HesapTur($("#Model_HesapTurId"), @(Model.Model.HesapTurId?.ToString() ?? "null"), hesapTurGrupId);
+                }
+                else
+                    $("#divHesapTur").hide();
+
+                }
+
+            var id = @(Model.HesapTurGrupId);
+
+            Duzenle(id);
+
+        });
+    </script>
+}
+
+@using (Html.BeginForm("Duzenle", "Hesap", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.HiddenFor(x => x.HesapTurGrupId)
+
+    <div id="divDuzenler" style="display:none;">
+
+        @Html.FormDropDownListFor(x => x.Model.UstHesapId, Model.SubeSelectList, setRequired: true)
+        @Html.FormDropDownListFor(x => x.Model.ParaBirimId, Model.ParaBirimSelectList, setRequired: true)
+
+        <div id="divHesapTur" style="display:none;">
+            @Html.FormDropDownListFor(x => x.Model.HesapTurId, Model.HesapTurSelectList, labelValue: Resources.LangResources.Tur)
+        </div>
+
+        @Html.FormTextBoxFor(x => x.Model.HesapBaslik)
+
+        @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+        @Html.HiddenFor(x => x.Model.BagliKurumId)
+        @Html.HiddenFor(x => x.Model.HesapId)
+        @Html.FormButtons(Model.Model.HesapId, "divModalDelete", true)
+    </div>
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Hesap", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.HesapId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

@@ -1,0 +1,45 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model NeredenDuydunuzDuzenleViewModel
+
+@{
+    var title = Model.Model.NeredenDuydunuzId == 0
+        ? Resources.LangResources.NeredenDuydunuzEkle
+        : $"{Resources.LangResources.NeredenDuydunuzGuncelle} ({Model.Model.NeredenDuydunuzBaslik})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = "Raporlar";
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "NeredenDuydunuz", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.NeredenDuydunuzId, Model.NeredenDuydunuzSelectList, Model.NeredenDuydunuzSelectList.Any(), @Resources.LangResources.NeredenDuydunuzlar, "/NeredenDuydunuz/Duzenle/")
+    @Html.FormTextBoxFor(x => x.Model.NeredenDuydunuzBaslik)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.NeredenDuydunuzId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "NeredenDuydunuz", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.NeredenDuydunuzId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

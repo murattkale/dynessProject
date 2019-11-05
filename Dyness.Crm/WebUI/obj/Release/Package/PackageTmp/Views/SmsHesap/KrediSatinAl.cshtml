@@ -1,0 +1,58 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model KrediSatinAlViewModel
+
+@{
+    var title = Resources.LangResources.KrediSatinAl;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Sms;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#KrediAdet").keyup(function () {
+
+                var krediAdet = parseInt($(this).val());
+                var krediBirimFiyat = parseFloat($("#KrediBirimFiyat").val().replace(",","."));
+                var krediToplamTutar = krediAdet * krediBirimFiyat;
+
+                if (krediToplamTutar > 0)
+                    $("#KrediToplamTutar").val(krediToplamTutar);
+                else
+                     $("#KrediToplamTutar").val("");
+            });
+
+        });
+    </script>
+}
+
+@using (Html.BeginForm("KrediSatinAl", "SmsHesap", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListFor(x => x.SelectedSmsHesapId, Model.SmsHesapSelectList)
+    @Html.FormTextBoxFor(x => x.KrediBirimFiyat, disabled: true)
+    @Html.FormTextBoxFor(x => x.KrediAdet)
+    @Html.FormTextBoxFor(x => x.KrediToplamTutar, disabled:true)
+    @Html.FormButtons(Model.SelectedSmsHesapId, "", false)
+    @Html.FormCardDivEnd()
+}

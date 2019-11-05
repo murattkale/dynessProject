@@ -1,0 +1,46 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model  BankaHesapDuzenleViewModel
+
+@{
+    var title = Model.Model.BankaId == 0
+        ? Resources.LangResources.BankaHesapEkle
+        : $"{Resources.LangResources.BankaHesapGuncelle} ({Model.Model.AciklamaFormatted})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Muhasebe;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "BankaHesap", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+    @Html.FormDropDownListSelectableFor(x => x.Model.BankaHesapId, Model.BankaHesapSelectList, Model.BankaHesapSelectList.Any(), Resources.LangResources.BankaHesaplar, "/BankaHesap/Duzenle/")
+    @Html.FormDropDownListFor(x => x.Model.BankaId, Model.BankaSelectList)
+    @Html.FormDropDownListFor(x => x.Model.UstHesapId, Model.HesapSelectList)
+    @Html.FormDropDownListFor(x => x.Model.ParaBirimId, Model.ParaBirimSelectList)
+    @Html.FormTextBoxFor(x => x.Model.Aciklama)
+    @Html.FormTextBoxFor(x => x.Model.HesapSahibi)
+    @Html.FormTextBoxFor(x => x.Model.Sube)
+    @Html.FormTextBoxFor(x => x.Model.SubeNo)
+    @Html.FormTextBoxFor(x => x.Model.HesapNo)
+    @Html.FormTextBoxFor(x => x.Model.Iban)
+    @Html.FormTextBoxFor(x => x.Model.Sira)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.BankaHesapId, "", false)
+    @Html.FormCardDivEnd()
+}

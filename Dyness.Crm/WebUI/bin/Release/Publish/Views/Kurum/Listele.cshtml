@@ -1,0 +1,37 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model KurumListeleViewModel
+
+@{
+    var title = Resources.LangResources.Kurumlar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.KurumAd)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.KurumAd)', '@Model.Model.GetColumnName(x=> x.KurumAd)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Telefon)', '@Model.Model.GetColumnName(x=> x.Telefon)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Eposta)', '@Model.Model.GetColumnName(x=> x.Eposta)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Adres)', '@Model.Model.GetColumnName(x=> x.Adres)',false, 0));
+
+        SetDataTable(false, 'tblListele', '/Kurum/Listele', 0, 'asc', columns, '/Kurum/Duzenle/', 'KurumId', null);
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "YENİ KURUM ", "/Kurum/Duzenle")

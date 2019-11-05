@@ -1,0 +1,52 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model SinifListeleViewModel
+
+@{
+    var title = Resources.LangResources.Siniflar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Sube.SubeAd)', '@Model.Model.GetColumnName(x=>x.Sube.SubeAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SezonId)', '@Model.Model.GetColumnName(x=> x.Sezon.SezonAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SinifSeviyeId)', '@Model.Model.GetColumnName(x=> x.SinifSeviye.SinifSeviyeAd)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.BransId)', '@Model.Model.GetColumnName(x=> x.Brans.BransAd)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SinifAd)', '@Model.Model.GetColumnName(x=> x.SinifAd)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SinifTurId)', '@Model.Model.GetColumnName(x=> x.SinifTur.SinifTurAd)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.ToplamDersSaat)', '@Model.Model.GetColumnName(x=> x.ToplamDersSaat)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.KayitUcreti)', '@Model.Model.GetColumnName(x=> x.KayitUcreti)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SinifKapasite)', '@Model.Model.GetColumnName(x=> x.SinifKapasite)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SinifSeansId)', '@Model.Model.GetColumnName(x=> x.SinifSeans.SinifSeansAd)',false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.DerslikId)', '@Model.Model.GetColumnName(x=> x.Derslik.DerslikAd)', false, 0));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.EtkinMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.Durum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinMi)', '@Model.Model.GetColumnName(x=> x.EtkinMi)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn ));
+
+        SetDataTable(false, 'tblListele', '/Sinif/Listele', 0, 'asc', columns, '/Sinif/Duzenle/', 'SinifId', null);
+
+        ExcelAktar("btnExcel", "@(Url.Action("ExcelIndir","Sinif"))");
+
+    </script>
+}
+@{
+    var controls = new List<MvcHtmlString>();
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.success, "btnExcel", Resources.LangResources.ExcelAktar));
+}
+
+@Html.FormDataTablesFor(title, "YENİ SINIF", "/Sinif/Duzenle/", controls)

@@ -1,0 +1,64 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+@using Core.General;
+
+@model  SmsHesapHareketListeleViewModel
+
+@{
+    var title = Resources.LangResources.SmsHesapHareketler;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Sms;
+}
+
+@{
+    var ayarlar = AyarlarService.Get();
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.SubeAd)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SubeAd)', '@Model.Model.GetColumnName(x=> x.SubeAd)', false, 0, null, null, htmlColumn));
+
+        var htmlColumn1 = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.Baslik)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Baslik)', '@Model.Model.GetColumnName(x=> x.Baslik)', false, 0, null, null, htmlColumn1));
+
+        var htmlColumn2 = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.SmsHesapHareketTipAd)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SmsHesapHareketTipAd)', '@Model.Model.GetColumnName(x=> x.SmsHesapHareketTipAd)', false, 0, null, null, htmlColumn2));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.PersonelAdSoyad)', '@Model.Model.GetColumnName(x=> x.PersonelAdSoyad)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Kredi)', '@Model.Model.GetColumnName(x=> x.Kredi)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Telefon)', '@Model.Model.GetColumnName(x=> x.Telefon)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.HareketTarihiFormatted)', '@Model.Model.GetColumnName(x=> x.HareketTarihiFormatted)', false, 0));
+
+        SetDataTable(true, 'tblListele', '/SmsHesapHareket/Listele', 0, 'asc', columns, '', '', null, true, false);
+    </script>
+    <script src="~/assets/js/HesapHareketListele.js"></script>
+}
+
+@{
+    var controls = new List<MvcHtmlString>();
+
+   
+    controls.Add(Html.FormTextBoxFor(x => x.IlkTarih, addClass: "search-filter", label: "Başlangıç", forFilter: true, textBoxType: HtmlHelpers.TextBoxType.Date));
+    controls.Add(Html.FormTextBoxFor(x => x.SonTarih, addClass: "search-filter", label: "Bitiş", forFilter: true, textBoxType: HtmlHelpers.TextBoxType.Date));
+    controls.Add(Html.FormTextBoxFor(x => x.SearchText, addClass: "search-filter", label: "Açıklama", forFilter: true));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.primary, "btnFiltrele", Resources.LangResources.Listele));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.danger, "btnTemizle", Resources.LangResources.Temizle));
+}
+@Html.FormDataTablesFor(title, "", "", controls)
+

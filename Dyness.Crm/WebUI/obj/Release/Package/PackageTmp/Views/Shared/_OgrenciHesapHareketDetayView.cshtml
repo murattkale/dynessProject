@@ -1,0 +1,138 @@
+﻿@using Entities.Concrete;
+
+@model  Hesap
+
+<div class="row">
+    <div class="col-md-12">
+        @{
+            var hesapHareketler = Model.HesapHareketler;
+        }
+        <div class="card" style="border:none !important;">
+            <div class="card-header header-elements-inline"><h5 class="card-title">@Resources.LangResources.HesapHareketler</h5></div>
+            <div class="card-body">
+                @if (hesapHareketler != null && hesapHareketler.Count > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <b>@Resources.LangResources.Sube</b>
+                                    </td>
+                                    <td>
+                                        <b>@Resources.LangResources.Aciklama</b>
+                                    </td>
+                                    @*<td>
+                                            <b>@Resources.LangResources.Alan</b>
+                                        </td>*@
+                                    <td class="text-right">
+                                        <b>@Resources.LangResources.VadeTarihi</b>
+                                    </td>
+                                    <td class="text-right">
+                                        <b>@Resources.LangResources.HareketTarihi</b>
+                                    </td>
+                                    <td class="text-right">
+                                        <b>@Resources.LangResources.IslemiYapan</b>
+                                    </td>
+                                    <td class="text-right">
+                                        <b>@Resources.LangResources.Borc</b>
+                                    </td>
+                                    <td class="text-right">
+                                        <b>@Resources.LangResources.Alacak</b>
+                                    </td>
+                                    <td class="text-right">
+                                        <b>@Resources.LangResources.Durum</b>
+                                    </td>
+                                    @if (Model.Odenebilir)
+                                    {
+                                        <td class="text-center"></td>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-dark">
+                                    <td><strong>@Resources.LangResources.Toplam</strong></td>
+                                    <td class="text-right"></td>
+                                    @*<td class="text-right"></td>*@
+                                    <td class="text-right"></td>
+                                    <td class="text-right"></td>
+                                    <td class="text-right"></td>
+                                    <td class="text-right">@Model.ToplamBorcFormatted</td>
+                                    <td class="text-right">@Model.ToplamAlacakFormatted</td>
+                                    <td class="text-right">@Model.ToplamFormatted</td>
+                                    @if (Model.Odenebilir)
+                                    {
+                                        <td></td>
+                                    }
+                                </tr>
+                                @foreach (var hesapHareket in hesapHareketler)
+                                {
+                                    var rowClass = "";
+                                    var durum = "";
+
+                                    if (hesapHareket.BorcluHesapId == Model.HesapId)
+                                    {
+                                        rowClass = "bg-primary";
+                                        durum = Resources.LangResources.Borclandi;
+                                    }
+                                    else if (hesapHareket.HareketTarihi != null && hesapHareket.AlacakliHesapId == Model.HesapId)
+                                    {
+                                        rowClass = "bg-success";
+                                        durum = Resources.LangResources.Odendi;
+                                    }
+                                    else if (hesapHareket.HareketTarihi == null && hesapHareket.VadeTarihi != null && (DateTime.Now - hesapHareket.VadeTarihi.Value).TotalDays < 0)
+                                    {
+                                        rowClass = "bg-warning";
+                                        durum = Resources.LangResources.VadesiGelmedi;
+                                    }
+                                    else if (hesapHareket.HareketTarihi == null && hesapHareket.VadeTarihi != null && (DateTime.Now - hesapHareket.VadeTarihi.Value).TotalDays > 0)
+                                    {
+                                        rowClass = "bg-danger";
+                                        durum = Resources.LangResources.VadesiGecti;
+                                    }
+
+                                    <tr class="@rowClass">
+                                        <td>@hesapHareket.AlacakliHesap.HesapBaslik</td>
+                                        <td class="text-right">@hesapHareket.Aciklama</td>
+                                        @*@if (@hesapHareket.Personel != null)
+                                            {
+                                                <td class="text-right">@hesapHareket.Personel.AdSoyad</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-right">&nbsp;</td>
+                                            }*@
+                                        <td class="text-right">@hesapHareket.VadeTarihiFormatted</td>
+                                        <td class="text-right">@hesapHareket.HareketTarihiFormatted</td>
+                                        <td class="text-right">@(hesapHareket.PersonelAdSoyad)</td>
+                                        <td class="text-right">@(hesapHareket.BorcluHesapId == Model.HesapId ? hesapHareket.TutarFormatted : string.Empty)</td>
+                                        <td class="text-right">@(hesapHareket.BorcluHesapId != Model.HesapId ? hesapHareket.TutarFormatted : string.Empty)</td>
+                                        <td class="text-right">@durum</td>
+                                        @if (Model.Odenebilir)
+                                        {
+                                            <td class="text-center">
+                                                @if (!string.Equals(rowClass, "bg-success") && !string.Equals(rowClass, "bg-primary"))
+                                                {
+                                                    <button type="button" class="btn btn-secondary btn-sm" onclick="TakistOdemeHesapHareketAc(@hesapHareket.HesapHareketId);">@Resources.LangResources.Ode</button>
+                                                }else if(!string.Equals(rowClass, "bg-primary"))
+                                                {
+                                                    <a class="btn btn-dark btn-sm" href="/Ogrenci/MakbuzYazdir/@hesapHareket.HesapHareketId" target="_blank">@Resources.LangResources.Makbuz</a>
+                                                }
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center">
+                        <h1 class="text-center">@Resources.LangResources.KayitBulunamadi</h1>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model  HesapHareketDuzenleViewModel
+
+@{
+    var ekle = Model.HesapTurGrupId == 1
+        ? Resources.LangResources.GelirEkle
+        : Model.HesapTurGrupId == 2
+            ? Resources.LangResources.GiderEkle
+            : Model.HesapTurGrupId == 32
+            ? Resources.LangResources.PersonelCikisEkle
+            : Resources.LangResources.HesapHareketEkle;
+
+    var guncelle = Model.HesapTurGrupId == 1
+        ? Resources.LangResources.GelirGuncelle
+        : Model.HesapTurGrupId == 2
+            ? Resources.LangResources.GiderGuncelle
+            : Model.HesapTurGrupId == 32
+            ? Resources.LangResources.PersonelCikisGuncelle
+            : Resources.LangResources.HesapHareketGuncelle;
+
+    var title = Model.Model.HesapHareketId == 0
+        ? ekle
+        : $"{guncelle} ({Model.Model.Aciklama})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Muhasebe;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/HesapHareketDuzenle.js"></script>
+    <script>
+
+        var selectedParaBirimId =  @Html.Raw(Json.Encode(Model.Model.ParaBirimId == 0 ? (int?)null : Model.Model.ParaBirimId));
+
+        var selectedBorcluHesapId = @Html.Raw(Json.Encode(Model.Model.BorcluHesap.UstHesapId == null ? (Model.Model.BorcluHesapId ?? 0 ) : Model.Model.BorcluHesap.UstHesapId));
+        var selectedBorcluAltHesapId = @Html.Raw(Json.Encode(Model.Model.BorcluHesap.UstHesapId == null ? 0 : Model.Model.BorcluHesapId));
+
+        var selectedAlacakliHesapId = @Html.Raw(Json.Encode(Model.Model.AlacakliHesap.UstHesapId == null ? (Model.Model.AlacakliHesapId ?? 0 ): Model.Model.AlacakliHesap.UstHesapId));
+        var selectedAlacakliAltHesapId = @Html.Raw(Json.Encode(Model.Model.AlacakliHesap.UstHesapId == null ? 0 : Model.Model.AlacakliHesapId));
+
+        var personelSeletList =  @(Model.HesapTurGrupId == 32 ? "true" : "false");
+
+        HesapHareketDuzenle(
+            selectedParaBirimId,
+            selectedBorcluHesapId,
+            selectedBorcluAltHesapId,
+            selectedAlacakliHesapId,
+            selectedAlacakliAltHesapId,
+            personelSeletList);
+
+    </script>
+}
+
+@using (Html.BeginForm("Duzenle", "HesapHareket", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    @Html.HiddenFor(x=> x.HesapTurGrupId)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+    @Html.FormDropDownListFor(x => x.Model.ParaBirimId, Model.ParaBirimSelectList, setRequired: true)
+
+    var gonderenSubeHesap = Model.HesapTurGrupId == 1
+        ? Resources.LangResources.ParaGirisiYapilacakSube
+        : Model.HesapTurGrupId == 2 || Model.HesapTurGrupId == 32
+            ? Resources.LangResources.ParaCikisiYapilacakSube
+            : Resources.LangResources.AlacakliUstHesapAciklama;
+
+    @Html.FormDropDownListFor(x => x.AlacakliHesapId, Model.AlacakliHesapSelectList, setRequired: true, labelValue: gonderenSubeHesap)
+
+    var gonderenSubeBagliHesap = Model.HesapTurGrupId == 1
+        ? Resources.LangResources.ParaGirisiYapilacakSubeKasasi
+        : Model.HesapTurGrupId == 2 || Model.HesapTurGrupId == 32
+            ? Resources.LangResources.ParaCikisiYapilacakSubeKasasi
+            : Resources.LangResources.AlacakliBagliHesapAciklama;
+
+    @Html.FormDropDownListFor(x => x.AlacakliAltHesapId, Model.AlacakliAltHesapSelectList, labelValue: gonderenSubeBagliHesap)
+
+    var ikinciSubeHesapStyle = Model.HesapTurGrupId != 0 ? "style=display:none;" : "";
+
+    <div @ikinciSubeHesapStyle>
+
+        @Html.FormDropDownListFor(x => x.BorcluHesapId, Model.BorcluHesapSelectList, setRequired: true, labelValue: Resources.LangResources.BorcluUstHesapAciklama)
+    </div>
+
+    var alacakSubeBagliHesap = Model.HesapTurGrupId == 1
+          ? Resources.LangResources.ParaGirisiYapilacakHesap
+          : Model.HesapTurGrupId == 2
+              ? Resources.LangResources.ParaCikisiYapilacakHesap
+              : Model.HesapTurGrupId == 32
+              ? "Personeller"
+              : Resources.LangResources.BorcluBagliHesapAciklama;
+
+    @Html.FormDropDownListFor(x => x.BorcluAltHesapId, Model.BorcluAltHesapSelectList, labelValue: alacakSubeBagliHesap)
+
+    @Html.FormTextBoxFor(x => x.Model.Tutar)
+    @Html.FormTextBoxFor(x => x.Model.HareketTarihi, textBoxType: HtmlHelpers.TextBoxType.DateTime)
+    @Html.FormTextBoxFor(x => x.Model.Aciklama)
+
+    @Html.FormButtons(Model.Model.HesapHareketId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "HesapHareket", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.HesapHareketId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

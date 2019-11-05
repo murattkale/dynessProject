@@ -1,0 +1,18 @@
+﻿.dropitems {
+    width: 70%;
+    float: left;
+    background: #f1f1f1;
+    margin-left: 20px;
+    padding: 5px 5px 5px 5px;
+}
+
+.dragitems ul {
+    list-style-type: none;
+    padding-left: 5px;
+    display: block;
+}
+
+#content {
+    height: 400px;
+    width: 650px;
+}

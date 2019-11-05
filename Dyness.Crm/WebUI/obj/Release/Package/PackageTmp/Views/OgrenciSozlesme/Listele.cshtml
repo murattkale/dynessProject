@@ -1,0 +1,75 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+@using Core.General;
+
+@model  OgrenciSozlesmeListeleViewModel
+
+@{
+    var title = Resources.LangResources.OgrenciSozlesmeler;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@{
+    var ayarlar = AyarlarService.Get();
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var imageColumn = new DataColumnImage('@Model.Model.GetColumnName(x => x.GorselYol)', @(ayarlar.OgrenciGorselSize.Height/2), @(ayarlar.OgrenciGorselSize.Width/2));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.GorselDosyaAd)', '@Model.Model.GetColumnName(x=> x.GorselYol)', false, 0, AlignEnum.Center, AlignEnum.Center, null, imageColumn, null));
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.AdSoyad)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.AdSoyad)', '@Model.Model.GetColumnName(x=> x.AdSoyad)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.OgrenciNo)', '@Model.Model.GetColumnName(x=> x.OgrenciNo)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.TcKimlikNo)', '@Model.Model.GetColumnName(x=> x.TcKimlikNo)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.CepTelefon)', '@Model.Model.GetColumnName(x=> x.CepTelefon)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Eposta)', '@Model.Model.GetColumnName(x=> x.Eposta)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Cinsiyet)', '@Model.Model.GetColumnName(x=> x.Cinsiyet)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.OgrenciSozlesmeTurAd)', '@Model.Model.GetColumnName(x=> x.OgrenciSozlesmeTurAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SubeAd)', '@Model.Model.GetColumnName(x=> x.SubeAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SezonAd)', '@Model.Model.GetColumnName(x=> x.SezonAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SinifAd)', '@Model.Model.GetColumnName(x=> x.SinifAd)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.ToplamUcret)', '@Model.Model.GetColumnName(x=> x.ToplamUcretFormatted)', false, 0, AlignEnum.Right, AlignEnum.Right));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.ToplamOdenen)', '@Model.Model.GetColumnName(x=> x.ToplamOdenenFormatted)', false, 0, AlignEnum.Right, AlignEnum.Right));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.ToplamKalan)', '@Model.Model.GetColumnName(x=> x.ToplamKalanFormatted)', false, 0, AlignEnum.Right, AlignEnum.Right));
+
+        var otherItems = new Array();
+        otherItems.push(new OtherItem('/Ogrenci/Detay/', '', 'OgrenciId', '', '_blank', 'icon-search4', 'Detay', ''));
+
+        SetDataTable(true, 'tblListele', '/OgrenciSozlesme/Listele', 0, 'asc', columns, '/Ogrenci/Detay/', 'OgrenciId', otherItems, true);
+
+        ExcelAktar("btnExcel", "@(Url.Action("ExcelIndir","OgrenciSozlesme"))");
+
+    </script>
+}
+
+@{
+    var controls = new List<MvcHtmlString>();
+
+    controls.Add(Html.FormTextBoxFor(x => x.SearchText, addClass: "search-filter", label: "Filtrele", forFilter: true));
+    controls.Add(Html.FormDropDownListFor(x => x.OgrenciSozlesmeTurId, Model.OgrenciSozlesmeTurSelectList, optionLabel: Resources.LangResources.OgrenciSozlesmeler, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormDropDownListFor(x => x.SubeId, Model.SubeSelectList, optionLabel: Resources.LangResources.Subeler, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormDropDownListFor(x => x.SezonId, Model.SezonSelectList, optionLabel: Resources.LangResources.Sezonlar, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormDropDownListFor(x => x.SinifId, Model.SinifSelectList, optionLabel: Resources.LangResources.Siniflar, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.primary, "btnFiltrele", Resources.LangResources.Listele));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.success, "btnExcel", Resources.LangResources.ExcelAktar));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.danger, "btnTemizle", Resources.LangResources.Temizle));
+}
+
+@Html.FormDataTablesFor(title, "YENİ SÖZLEŞME", "/OgrenciSozlesme/Duzenle/", controls)

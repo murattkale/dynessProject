@@ -1,0 +1,87 @@
+﻿@using Core.CrossCuttingConcerns.Security;
+@using WebUI.Models
+@using WebUI.Helpers
+
+@model OptikFormDuzenleViewModel
+
+@{
+    var title = Model.Model.OptikFormId == 0
+        ? Resources.LangResources.OptikFormEkle
+        : $"{Resources.LangResources.OptikFormGuncelle} ({Model.Model.OptikFormAd})";
+
+    var title1 = Resources.LangResources.OptikFormDersGruplar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Sinavlar;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@if (Identity.KurumId == -1)
+{
+    using (Html.BeginForm("Duzenle", "OptikForm", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.FormCardDivBegin(title)
+
+        if (Model.MessageExists)
+        {
+            Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+        }
+
+        @Html.FormDropDownListSelectableFor(x => x.Model.OptikFormId, Model.OptikFormSelectList, Model.OptikFormSelectList.Any(), @Resources.LangResources.OptikFormlar, "/OptikForm/Duzenle/")
+        @Html.FormTextBoxFor(x => x.Model.OptikFormAd)
+        @Html.FormTextBoxFor(x => x.Model.TcNoBasla)
+        @Html.FormTextBoxFor(x => x.Model.TcNoAdet)
+        @Html.FormTextBoxFor(x => x.Model.OgrenciNoBasla)
+        @Html.FormTextBoxFor(x => x.Model.OgrenciNoAdet)
+        @Html.FormTextBoxFor(x => x.Model.AdBasla)
+        @Html.FormTextBoxFor(x => x.Model.AdAdet)
+        @Html.FormTextBoxFor(x => x.Model.SoyadBasla)
+        @Html.FormTextBoxFor(x => x.Model.SoyadAdet)
+        @Html.FormTextBoxFor(x => x.Model.AdSoyadBasla)
+        @Html.FormTextBoxFor(x => x.Model.AdSoyadAdet)
+        @Html.FormTextBoxFor(x => x.Model.SinifBasla)
+        @Html.FormTextBoxFor(x => x.Model.SinifAdet)
+        @Html.FormTextBoxFor(x => x.Model.KitapcikTurBasla)
+        @Html.FormTextBoxFor(x => x.Model.KitapcikTurAdet)
+        @Html.FormTextBoxFor(x => x.Model.CinsiyetBasla)
+        @Html.FormTextBoxFor(x => x.Model.CinsiyetAdet)
+        @Html.FormCardDivEnd()
+
+        @Html.FormCardDivBegin(title1)
+
+        for (int i = 0; i < Model.Model.OptikFormDersGrupBilgiler.Count; i++)
+        {
+            @Html.FormTextBoxFor(x => x.Model.OptikFormDersGrupBilgiler[i].DersGrup.DersGrupAd, disabled: true)
+
+            @Html.FormTextBoxFor(x => x.Model.OptikFormDersGrupBilgiler[i].DersGrupBasla)
+            @Html.FormTextBoxFor(x => x.Model.OptikFormDersGrupBilgiler[i].DersGrupAdet)
+
+            @Html.HiddenFor(x => x.Model.OptikFormDersGrupBilgiler[i].DersGrupId)
+            @Html.HiddenFor(x => x.Model.OptikFormDersGrupBilgiler[i].DersGrup.DersGrupId)
+            @Html.HiddenFor(x => x.Model.OptikFormDersGrupBilgiler[i].DersGrup.DersGrupAd)
+            @Html.HiddenFor(x => x.Model.OptikFormDersGrupBilgiler[i].OptikFormId)
+            @Html.HiddenFor(x => x.Model.OptikFormDersGrupBilgiler[i].OptikFormDersGrupBilgiId)
+
+            <hr />
+        }
+
+        @Html.HiddenFor(x => x.Model.KurumId)
+        @Html.FormButtons(Model.Model.OptikFormId, "divModalDelete", true)
+        @Html.FormCardDivEnd()
+    }
+
+    using (Html.BeginForm("Sil", "OptikForm", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("id", Model.Model.OptikFormId)
+        @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+    }
+}

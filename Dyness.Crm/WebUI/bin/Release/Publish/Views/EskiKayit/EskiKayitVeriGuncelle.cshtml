@@ -1,0 +1,43 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model EskiKayitVeriGuncelleViewModel
+
+@{
+    var title = Resources.LangResources.EskiKayitVeriGuncelle;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("EskiKayitVeriGuncelle", "EskiKayit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListFor(x => x.SubeId, Model.SubeSelectList)
+    @Html.FormFileInputFor(x => x.PostedFileVeri, "PostedFileVeri")
+    <div class="form-group row">
+        <label class="col-form-label col-lg-2"></label>
+        <div class="col-lg-10">
+            <div class="alert alert-info" id="divModel_Ogrenci_TcKimlikNo">
+                <span class="font-weight-semibold">@Resources.LangResources.ExcelAktarimSozlesmeTur</span>
+            </div>
+        </div>
+    </div>
+    @Html.FormButtons(0, "", false)
+    @Html.FormCardDivEnd()
+}

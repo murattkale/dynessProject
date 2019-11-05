@@ -1,0 +1,84 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+@using Core.General;
+
+@model  HesapHareketListeleViewModel
+
+@{
+    var title = Model.HesapTurGrupId == 1
+          ? Resources.LangResources.GelirIslemDetaylar
+          : Model.HesapTurGrupId == 2
+            ? Resources.LangResources.GiderIslemDetaylari
+            : Resources.LangResources.IslemDetaylar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Muhasebe;
+}
+
+@{
+    var ayarlar = AyarlarService.Get();
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.GelirGider)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.GelirGiderDurum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.GelirGider)', '@Model.Model.GetColumnName(x=> x.GelirGider)', false, 0, AlignEnum.Left, AlignEnum.Left, null, null, booleanColumn));
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.SubeHesap)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.SubeHesap)', '@Model.Model.GetColumnName(x=> x.AlacakliHesapFormatted)', false, 0, null, null, htmlColumn));
+
+        var htmlColumn1 = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.DigerHesap)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.DigerHesap)', '@Model.Model.GetColumnName(x=> x.DigerHesap)', false, 0, null, null, htmlColumn1));
+
+        var htmlColumn2 = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.HesapTur)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.HesapTur)', '@Model.Model.GetColumnName(x=> x.HesapTur)', false, 0, null, null, htmlColumn2));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.PersonelAdSoyad)', '@Model.Model.GetColumnName(x=> x.PersonelAdSoyad)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Aciklama)', '@Model.Model.GetColumnName(x=> x.Aciklama)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.VadeTarihiFormatted)', '@Model.Model.GetColumnName(x=> x.VadeTarihiFormatted)', false, 0));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.IslemTarihiFormatted)', '@Model.Model.GetColumnName(x=> x.IslemTarihiFormatted)', false, 0));
+
+        var htmlColumn3 = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.TutarFormatted)', true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.TutarFormatted)', '@Model.Model.GetColumnName(x=> x.TutarFormatted)', false, 0, AlignEnum.Right, AlignEnum.Right, htmlColumn3));
+
+        SetDataTable(true, 'tblListele', '/HesapHareket/Listele/@Model.HesapTurGrupId', 0, 'desc', columns, '', '', null, true, false);
+
+        $(document).ready(function () {
+            $("#btnFiltrele").click();
+        });
+
+    </script>
+    <script src="~/assets/js/HesapHareketListele.js"></script>
+}
+
+@{
+    var controls = new List<MvcHtmlString>();
+
+    controls.Add(Html.FormTextBoxFor(x => x.SearchText, addClass: "search-filter", label: "Filtrele", forFilter: true));
+    controls.Add(Html.FormDropDownListFor(x => x.Zaman, Model.ZamanSelectList, optionLabel: Resources.LangResources.ZamanTurler, forFilter: true));
+    controls.Add(Html.FormTextBoxFor(x => x.IlkTarih, addClass: "search-filter", label: "Başlangıç", forFilter: true, textBoxType: HtmlHelpers.TextBoxType.Date));
+    controls.Add(Html.FormTextBoxFor(x => x.SonTarih, addClass: "search-filter", label: "Bitiş", forFilter: true, textBoxType: HtmlHelpers.TextBoxType.Date));
+    controls.Add(Html.FormTextBoxFor(x => x.SearchText, addClass: "search-filter", label: "Açıklama", forFilter: true));
+    controls.Add(Html.FormDropDownListFor(x => x.SubeId, Model.SubeSelectList, optionLabel: Resources.LangResources.Subeler, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormDropDownListFor(x => x.HesapTurGrupId, Model.HareketTurSelectList, forFilter: true, addClass: "search-filter", disabled: Model.HesapTurGrupId != 0));
+
+    controls.Add(Html.FormDropDownListFor(x => x.SorumluPersonelId, Model.SorumluPersonelSelectList, optionLabel: Resources.LangResources.SorumluPersonel, forFilter: true, addClass: "search-filter"));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.primary, "btnFiltrele", Resources.LangResources.Listele));
+    controls.Add(Html.FormButton(HtmlHelpers.ButtonSize.m, HtmlHelpers.ButtonType.danger, "btnTemizle", Resources.LangResources.Temizle));
+}
+@Html.FormDataTablesFor(title, "YENİ HESAP HAREKET", "/HesapHareket/Duzenle/1", controls)
+

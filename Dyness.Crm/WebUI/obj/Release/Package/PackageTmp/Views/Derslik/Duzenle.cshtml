@@ -1,0 +1,45 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model DerslikDuzenleViewModel
+
+@{
+    var title = Model.Model.DerslikId == 0
+        ? Resources.LangResources.DerslikEkle
+        : $"{Resources.LangResources.DerslikGuncelle} ({Model.Model.DerslikAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "Derslik", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.DerslikId, Model.DerslikSelectList, Model.DerslikSelectList.Any(), @Resources.LangResources.Derslikler, "/Derslik/Duzenle/")
+    @Html.FormTextBoxFor(x => x.Model.DerslikAd)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.DerslikId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Derslik", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.DerslikId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

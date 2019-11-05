@@ -1,0 +1,47 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model BankaHesapListeleViewModel
+
+@{
+    var title = Resources.LangResources.BankaHesaplar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Muhasebe;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.UstHesapBaslik)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.UstHesapBaslik)', '@Model.Model.GetColumnName(x=> x.UstHesapBaslik)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.BankaAd)', '@Model.Model.GetColumnName(x=> x.BankaAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.ParaBirimAd)', '@Model.Model.GetColumnName(x=> x.ParaBirimAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.HesapSahibi)', '@Model.Model.GetColumnName(x=> x.HesapSahibi)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.AciklamaFormatted)', '@Model.Model.GetColumnName(x=> x.AciklamaFormatted)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Iban)', '@Model.Model.GetColumnName(x=> x.Iban)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SubeNo)', '@Model.Model.GetColumnName(x=> x.SubeNo)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.HesapNo)', '@Model.Model.GetColumnName(x=> x.HesapNo)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.Sira)', '@Model.Model.GetColumnName(x=> x.Sira)', false, 0));
+
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.EtkinMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.Durum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinMi)', '@Model.Model.GetColumnName(x=> x.Durum)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        SetDataTable(false, 'tblListele', '/BankaHesap/Listele', 0, 'asc', columns, '/BankaHesap/Duzenle/', 'BankaHesapId', null);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "YENİ BANKA HESAP", "/BankaHesap/Duzenle/")

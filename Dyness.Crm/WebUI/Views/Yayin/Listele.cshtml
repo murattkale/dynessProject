@@ -1,0 +1,42 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model YayinListeleViewModel
+
+@{
+    var title = Resources.LangResources.Yayinlar;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.YayinAd)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.YayinAd)', '@Model.Model.GetColumnName(x=> x.YayinAd)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.SinifSeviyeId)', '@Model.Model.GetColumnName(x=> x.SinifSeviyeAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.BransId)', '@Model.Model.GetColumnName(x=> x.BransAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.DersId)', '@Model.Model.GetColumnName(x=> x.DersAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.StokAdet)', '@Model.Model.GetColumnName(x=> x.StokAdet)', false, 0, AlignEnum.Center, AlignEnum.Center));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.StoktaVarmi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.StokDurumu)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.StoktaVarmi)', '@Model.Model.GetColumnName(x=> x.StoktaVarmi)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        SetDataTable(false, 'tblListele', '/Yayin/Listele', 0, 'asc', columns, '/Yayin/Duzenle/', 'YayinId', null);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "YENİ YAYIN", "/Yayin/Duzenle/")

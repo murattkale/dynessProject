@@ -1,0 +1,42 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model KiyafetListeleViewModel
+
+@{
+    var title = Resources.LangResources.Kiyafetler;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.KiyafetAd)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.KiyafetAd)', '@Model.Model.GetColumnName(x=> x.KiyafetAd)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.KiyafetTurAd)', '@Model.Model.GetColumnName(x=> x.KiyafetTurAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.KiyafetBedenAd)', '@Model.Model.GetColumnName(x=> x.KiyafetBedenAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.StokAdet)', '@Model.Model.GetColumnName(x=> x.StokAdet)', false, 0, AlignEnum.Center, AlignEnum.Center));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x => x.StokDurumu)', '@Model.Model.GetColumnName(x=> x.StokDurumu)', false, 0, AlignEnum.Center, AlignEnum.Center));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.EtkinMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.Durum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinMi)', '@Model.Model.GetColumnName(x=> x.EtkinMi)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        SetDataTable(false, 'tblListele', '/Kiyafet/Listele', 0, 'asc', columns, '/Kiyafet/Duzenle/', 'KiyafetId', null);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title, "YENİ KIYAFET", "/Kiyafet/Duzenle/")

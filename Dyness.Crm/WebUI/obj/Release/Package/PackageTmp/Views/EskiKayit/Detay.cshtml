@@ -1,0 +1,306 @@
+﻿@using Entities.Concrete;
+@using WebUI.Helpers;
+
+@model EskiKayit
+
+@{
+    var title = $"{Resources.LangResources.EskiKayit} ({Model.OgrenciAdi} {Model.OgrenciSoyadi})";
+    var title1 = Resources.LangResources.IletisimBilgileri;
+    var title2 = Resources.LangResources.KullaniciBigileri;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+<div class="row">
+    <div class="col-md-4">
+        @Html.FormCardDivBegin(title)
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <td width="40%;"><b>@Model.GetDisplayName(x => x.SubeAd):</b></td>
+                        <td width="60%;">@Model.SubeAd</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.OgrenciTckn):</b></td>
+                        <td>@Model.OgrenciTckn</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.OgrenciNo):</b></td>
+                        <td>@Model.OgrenciNo</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.OgrenciAdi):</b></td>
+                        <td>@Model.OgrenciAdi</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.OgrenciSoyadi):</b></td>
+                        <td>@Model.OgrenciSoyadi</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.OgrenciTelefon):</b></td>
+                        <td>@Model.OgrenciTelefon</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.OgrenciAdres):</b></td>
+                        <td>@Model.OgrenciAdres</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.Ilce):</b></td>
+                        <td>@Model.Ilce</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.Il):</b></td>
+                        <td>@Model.Il</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.Ulke):</b></td>
+                        <td>@Model.Ulke</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.OgrenciEposta):</b></td>
+                        <td>@Model.OgrenciEposta</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.ServisBilgisi):</b></td>
+                        <td>@Model.ServisBilgisi</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.KayitTarihi):</b></td>
+                        <td>@Model.KayitTarihi</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.BiziNeredenDuydunuz):</b></td>
+                        <td>@Model.BiziNeredenDuydunuz</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.Referans):</b></td>
+                        <td>@Model.Referans</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.Gorusen):</b></td>
+                        <td>@Model.Gorusen</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.GetDisplayName(x => x.KaydiYapan):</b></td>
+                        <td>@Model.KaydiYapan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        @Html.FormCardDivEnd()
+
+        @Html.FormCardDivBegin(title1)
+        <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+            <li class="nav-item"><a href="#tabAnneIletisim" class="nav-link active show" data-toggle="tab">@Resources.LangResources.AnneIletisimBilgileri</a></li>
+            <li class="nav-item"><a href="#tabBabaIletisim" class="nav-link" data-toggle="tab">@Resources.LangResources.BabaIletisimBilgileri</a></li>
+            <li class="nav-item"><a href="#tabYakiniIletisim" class="nav-link" data-toggle="tab">@Resources.LangResources.YakiniIletisimBilgileri</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active show" id="tabAnneIletisim">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <tbody>
+                            <tr>
+                                <td width="40%;"><b>@Model.GetDisplayName(x => x.VeliAnne):</b></td>
+                                <td width="60%;">@Model.VeliAnne</td>
+                            </tr>
+                            <tr>
+                                <td><b>@Model.GetDisplayName(x => x.AnneTckn):</b></td>
+                                <td>@Model.AnneTckn</td>
+                            </tr>
+                            <tr>
+                                <td><b>@Model.GetDisplayName(x => x.AnneTel):</b></td>
+                                <td>@Model.AnneTel</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tabBabaIletisim">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <tbody>
+                            <tr>
+                                <td width="40%;"><b>@Model.GetDisplayName(x => x.VeliBaba):</b></td>
+                                <td width="60%;">@Model.VeliBaba</td>
+                            </tr>
+                            <tr>
+                                <td><b>@Model.GetDisplayName(x => x.BabaTckn):</b></td>
+                                <td>@Model.BabaTckn</td>
+                            </tr>
+                            <tr>
+                                <td><b>@Model.GetDisplayName(x => x.BabaTel):</b></td>
+                                <td>@Model.BabaTel</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tabYakiniIletisim">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <tbody>
+                            <tr>
+                                <td width="40%;"><b>@Model.GetDisplayName(x => x.VeliDiger):</b></td>
+                                <td width="60%;">@Model.VeliDiger</td>
+                            </tr>
+                            <tr>
+                                <td><b>@Model.GetDisplayName(x => x.DigerTckn):</b></td>
+                                <td>@Model.DigerTckn</td>
+                            </tr>
+                            <tr>
+                                <td><b>@Model.GetDisplayName(x => x.DigerTel):</b></td>
+                                <td>@Model.DigerTel</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @Html.FormCardDivEnd()
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">@Resources.LangResources.OgrenciSozlesmeBilgileri</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm" style="min-width:600px;">
+                                        <tbody>
+                                            <tr>
+                                                <td width="40%;"><b>@Model.GetDisplayName(x => x.Sezon):</b></td>
+                                                <td width="60%;">@Model.Sezon</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.Brans):</b></td>
+                                                <td>@Model.Brans</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.SinifSeviyesi):</b></td>
+                                                <td>@Model.SinifSeviyesi</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.Sinif):</b></td>
+                                                <td>@Model.Sinif</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.SubeBilgi):</b></td>
+                                                <td>@Model.SubeBilgi</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">@Resources.LangResources.OdemeBilgi</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm" style="min-width:600px;">
+                                        <tbody>
+                                            <tr>
+                                                <td width="40%;"><b>@Model.GetDisplayName(x => x.KayitUcreti):</b></td>
+                                                <td width="60%;">@Model.KayitUcreti</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.KalanOdeme):</b></td>
+                                                <td>@Model.KalanOdeme</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.Nakit):</b></td>
+                                                <td>@Model.Nakit</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.Cek):</b></td>
+                                                <td>@Model.Cek</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.KrediKartiPosCihazi):</b></td>
+                                                <td>@Model.KrediKartiPosCihazi</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.Havale):</b></td>
+                                                <td>@Model.Havale</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.KrediKartiSanalPos):</b></td>
+                                                <td>@Model.KrediKartiSanalPos</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.MailOrder):</b></td>
+                                                <td>@Model.MailOrder</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header header-elements-inline">
+                                <h5 class="card-title">@Resources.LangResources.FaturaBilgi</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-sm" style="min-width:600px;">
+                                        <tbody>
+                                            <tr>
+                                                <td width="40%;"><b>@Model.GetDisplayName(x => x.FaturaAdSoyad):</b></td>
+                                                <td width="60%;">@Model.FaturaAdSoyad</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.VergiDairesi):</b></td>
+                                                <td>@Model.VergiDairesi</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.VergiTckNo):</b></td>
+                                                <td>@Model.VergiTckNo</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.FaturaAdres):</b></td>
+                                                <td>@Model.FaturaAdres</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.FaturaPostaKodu):</b></td>
+                                                <td>@Model.FaturaPostaKodu</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.FaturaSemt):</b></td>
+                                                <td>@Model.FaturaSemt</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.FaturaIlce):</b></td>
+                                                <td>@Model.FaturaIlce</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>@Model.GetDisplayName(x => x.FaturaSehir):</b></td>
+                                                <td>@Model.FaturaSehir</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

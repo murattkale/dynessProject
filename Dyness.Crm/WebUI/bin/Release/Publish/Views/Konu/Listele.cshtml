@@ -1,0 +1,40 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model KonuListeleViewModel
+
+@{
+    var title = Resources.LangResources.Konular;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var menu = Resources.LangResources.Sinavlar;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script src="~/assets/js/local-dataTable.js"></script>
+    <script type="text/javascript">
+
+        var columns = new Array();
+
+        var htmlColumn = new DataColumnHtmlFuncs('@Model.Model.GetColumnName(x => x.Baslik)',true);
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Baslik)', '@Model.Model.GetColumnName(x=> x.Baslik)', false, 0, null, null, htmlColumn));
+
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.DersAd)', '@Model.Model.GetColumnName(x=> x.DersAd)', false, 0));
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.Kod)', '@Model.Model.GetColumnName(x=> x.Kod)', false, 0));
+
+        var booleanColumn = new DataColumnBoolean('@Model.Model.GetColumnName(x => x.EtkinMi)', htmlFalseClass, htmlTrueClass, '@Model.Model.GetColumnName(x => x.Durum)');
+        columns.push(new DataColumn('@Model.Model.GetDisplayName(x=> x.EtkinMi)', '@Model.Model.GetColumnName(x=> x.EtkinMi)', false, 0, AlignEnum.Center, AlignEnum.Center, null, null, booleanColumn));
+
+        SetDataTable(false, 'tblListele', '/Konu/Listele', 0, 'asc', columns, '/Konu/Duzenle/', 'KonuId', null);
+
+    </script>
+}
+
+@Html.FormDataTablesFor(title,Resources.LangResources.YeniKonu, "/Konu/Duzenle/")

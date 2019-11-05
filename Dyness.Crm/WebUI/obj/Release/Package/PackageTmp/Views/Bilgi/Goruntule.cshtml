@@ -1,0 +1,33 @@
+﻿@using WebUI.Helpers
+
+@{
+    var title = "Bilgi";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = "Genel";
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Goruntule", "Bilgi", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    <div class="form-group row">
+    <div class="col-lg-10 offset-2">
+        <h1 style="color:dimgray;">
+            Hesabınız bu menüye erişim sağlamaya yetkili değildir.
+            En kısa sürede düzenlemeleri yapıp tarafınıza bilgi vereceğiz.
+        </h1>
+    </div>
+    </div>
+
+    @Html.FormCardDivEnd()
+}

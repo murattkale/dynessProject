@@ -1,0 +1,45 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model PuanTurDuzenleViewModel
+
+@{
+    var title = Model.Model.PuanTurId == 0
+    ? Resources.LangResources.PuanTurEkle
+    : $"{Resources.LangResources.PuanTurGuncelle} ({Model.Model.PuanTurId})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Sinavlar;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "PuanTur", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.PuanTurId, Model.PuanTurSelectList, Model.PuanTurSelectList.Any(), Resources.LangResources.PuanTurler, "/PuanTur/Duzenle/")
+    @Html.FormTextBoxFor(x => x.Model.PuanTurAd)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.PuanTurId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "PuanTur", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.PuanTurId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

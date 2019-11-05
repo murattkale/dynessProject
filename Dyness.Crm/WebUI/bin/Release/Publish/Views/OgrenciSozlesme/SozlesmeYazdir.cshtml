@@ -1,0 +1,479 @@
+﻿@using WebUI.Models
+
+@model OgrenciSozlesmeYazdirViewModel
+
+@{
+                /**/
+
+                /**/
+
+                Layout = null;
+}
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Sözleşme Yazdır</title>
+    <style>
+        body {
+            color: #000000;
+            font-family: tahoma;
+            font-size: 13pt;
+        }
+
+        td {
+            color: #000000;
+            font-family: tahoma;
+            font-size: 13pt;
+        }
+
+        th {
+            color: #000000;
+            font-family: tahoma;
+            font-size: 13pt;
+            text-align: left;
+        }
+
+        table {
+            color: #000000;
+            font-family: tahoma;
+            font-size: 13pt;
+            border: 1px solid #000000;
+        }
+
+        p {
+            font-family: tahoma;
+            font-size: 13pt;
+        }
+
+        .kurum {
+            font-family: tahoma;
+            font-size: 14pt;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .sozlesme {
+            font-family: tahoma;
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .sozlesme-metni {
+            font-family: tahoma;
+            font-size: 10pt;
+            font-weight: normal;
+        }
+
+        .sube {
+            font-family: tahoma;
+            font-size: 12pt;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .taksit_bilgisi {
+            font-family: tahoma;
+            font-size: 11pt;
+        }
+
+        @@media print {
+            .graph-img img {
+                display: inline;
+            }
+        }
+
+        .arka-plan-1 {
+            opacity: 0.05;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 200px;
+            left: 0;
+            position: fixed;
+        }
+
+        .arka-plan-2 {
+            opacity: 0.05;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 200px;
+            left: 0;
+            position: fixed;
+        }
+    </style>
+</head>
+<body onload="window.print()">
+    @{
+        var sube = Model.Model.Sube;
+        var kurum = sube.Kurum;
+    }
+
+    @if (kurum.SozlesmedeArkaPlanGorselKullanilsinMi && !string.IsNullOrEmpty(kurum.ArkaPlanDosyaAd))
+    {
+        <div class="arka-plan-1 graph-img"><img src="@kurum.ArkaPlanYol"></div>
+    }
+<div style="width:1024px">
+    <table cellspacing="5" cellpadding="5" style="width:1024px">
+        <tbody>
+            @if (kurum.SozlesmedeLogoKullanilsinMi && !string.IsNullOrEmpty(kurum.LogoDosyaAd))
+            {
+                <tr>
+                    <td width="25%" height="111">
+                        <p class="kurum"><img style="width:auto;max-height:70px;" src="@kurum.LogoYol"></p>
+                    </td>
+                    <td width="50%">
+                        <p class="sozlesme">EĞİTİM SÖZLEŞMESİ</p>
+                    </td>
+                    <td width="25%">
+                        <p class="sube">@(sube.Sehir != null ? $"{sube.SehirAd} - {sube.SubeAd}" : sube.SubeAd)</p>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td width="75%">
+                        <p class="sozlesme">@Model.Model.OgrenciSozlesmeTurAd.ToUpper() SÖZLEŞMESİ</p>
+                    </td>
+                    <td width="25%">
+                        <p class="sube">@(sube.Sehir != null ? sube.SehirAd : "")</p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <table style="width:1024px">
+        <tbody>
+            <tr>
+                <td>Adı ve Soyadı : @Model.Model.OgrenciAdSoyad</td>
+                <td>Öğrenci No : @Model.Model.Ogrenci.OgrenciNo</td>
+                <td></td>
+                <td align="right">T.C. Kimlik No : @Model.Model.Ogrenci.TcKimlikNo</td>
+            </tr>
+            <tr>
+                <td nowrap="">@sube.UzaktanEgitim</td>
+                <td nowrap="">@Model.Model.Ogrenci.OgrenciSozlesmeler[0].EgitimTutarFormatted </td>
+                <td nowrap=""></td>
+                <td nowrap="" align="right">@(Model.Model.DersAdeti != null && Model.Model.DersAdeti > 0 ? $"Ders : {Model.Model.DersAdeti}" : "")</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>ÖDEME PLANI<br>
+    <div style="min-height:400px;">
+        <table style="width:1024px;">
+
+            @{int ilkYariAdet = Model.Model.OgrenciSozlesmeHesapHareketler.Count / 2; }
+
+            <tbody>
+                <tr>
+                    <td valign="top">
+                        <table style="width:512px;">
+                            <tbody>
+                                <tr>
+                                    <th width="33%">Taksit No</th>
+                                    <th width="33%">Vade Tarihi</th>
+                                    <th width="33%">Taksit Tutarı</th>
+                                </tr>
+                                @for (int i = 0; i < ilkYariAdet; i++)
+                                {
+                                    var taksit = Model.Model.OgrenciSozlesmeHesapHareketler[i];
+
+                                    <tr>
+                                        <td class="taksit_bilgisi" width="15%">@taksit.HesapHareket.Aciklama</td>
+                                        <td class="taksit_bilgisi" width="15%">@taksit.HesapHareket.VadeTarihiFormatted</td>
+                                        <td class="taksit_bilgisi" width="70%">@taksit.HesapHareket.TutarFormatted</td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </td>
+                    <td valign="top">
+                        <table style="width:512px;">
+                            <tbody>
+                                <tr>
+                                    <th width="33%">Taksit No</th>
+                                    <th width="33%">Vade Tarihi</th>
+                                    <th width="33%">Taksit Tutarı</th>
+                                </tr>
+                                @for (int i = ilkYariAdet; i < Model.Model.OgrenciSozlesmeHesapHareketler.Count; i++)
+                                {
+                                    var taksit = Model.Model.OgrenciSozlesmeHesapHareketler[i];
+
+                                    <tr>
+                                        <td class="taksit_bilgisi" width="15%">@taksit.HesapHareket.Aciklama</td>
+                                        <td class="taksit_bilgisi" width="15%">@taksit.HesapHareket.VadeTarihiFormatted</td>
+                                        <td class="taksit_bilgisi" width="70%">@taksit.HesapHareket.TutarFormatted</td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        Toplam : #@(Model.Model.ToplamKalanFormatted)#
+    </div>
+    <b>Yukarıdaki taksitleri yazılı borcumu tarihlerinde ödeyeceğimi kabul ve taahhüt ederim.</b><br>
+    <p class="sozlesme-metni"></p>
+    <p>
+        @*<span style="font-size:14px">
+                <strong>1-)</strong> Kayıt yaptıran öğrenci&nbsp;eğitim almadan kaydını iptal ederse&nbsp;sözleşme bedelinin 1/2'sini&nbsp;cayma bedeli olarak ödemeyi kabul ve taahhüt eder. Eğitime başlamış olan öğrenci ise; sözleşme bedelinin <strong>TAMAMINI</strong> işbu sözleşmede yer alan ödeme planına uyarak ödeyeceğini kabul ve taahhüt etmektedir.<br>
+                <strong>2-)</strong> Eğitim sonunda verilecek olan sertifika<strong> "KESİNLİKLE İŞ GARANTİSİ</strong>" vermez.<br>
+                <strong>3-)</strong> Bu Eğitim sözleşmesinin uygulanmasında çıkacak uyuşmazlıklarda İSTANBUL&nbsp;mahkemeleri ve İCRA daireleri yetkilidir.<br>
+                <br>
+                İş bu sözleşmede <strong>@kurum.KurumAd</strong> ve <strong>ÖĞRENCİ</strong> arasında tamamen kendi istek ve serbest iradeleri ile belirtilen şartlarla "EĞİTİM SÖZLEŞMESİ" iki nüsha olarak tanzim edilip okunarak imza altına alınmıştır. Sözleşme İmza tarihinde yürürlüğe girmiştir.
+            </span>*@
+        <span style="font-size:14px">
+            <strong>1-)</strong> EĞİTİM ÖĞRETİM YILI BAŞLAMADAN KAYIT İPTALİ DURUMUNDA KAYIT ÜCRETİNDEN %10 ÖZEL ÖĞRETİM KURUMLARI YÖNETMELİĞİNE GÖRE KESİNTİ YAPILIP İPTAL EDİLİR.<br>
+            <strong>2-)</strong> EĞİTİM ÖĞRETİM YILI BAŞLADIKTAN SONRA KAYIT İPTALİ DURUMUNDA KAYIT ÜCERİNDEN %10 VE GÖRÜLEN DERSLERİN ÜCRETİ ÖZEL ÖĞRETİM KURUMLARI YÖNETMELİĞİNE GÖRE KESİNTİ YAPILIP İPTAL EDİLİR.<br>
+            <strong>3-)</strong> ÖDEME YAPILMADIĞI DURUMDA HUKUKİ İŞLEM BAŞLATILIR.<br>
+            <br>
+            İş bu sözleşmede <strong>@kurum.KurumAd</strong> ve <strong>VELİSİ</strong> arasında tamamen kendi istek ve serbest iradeleri ile belirtilen şartlarla "EĞİTİM SÖZLEŞMESİ" iki nüsha olarak tanzim edilip okunarak imza altına alınmıştır. Sözleşme İmza tarihinde yürürlüğe girmiştir.
+        </span>
+    </p>
+    <p></p>
+    <p align="right">İmza</p>
+    <hr style="border:1px dashed">
+    <p align="right">Öğrenci No : </p>
+        <table style="width:1024px;min-height:300px;">
+            <tbody>
+                <tr>
+                    <td colspan="2" style="border-bottom:3px solid #000000;text-align:center;font-size:30pt;font-weight:bold;height:75px;font-family:georgia">S  E  N  E  T</td>
+                </tr>
+                <tr>
+                    <td style="width:50%;text-align:center;">VADESİ</td>
+                    <td style="width:50%;text-align:center;">TUTARI</td>
+                </tr>
+                <tr>
+                    <td style="width:50%;text-align:center;">@(Model.Model.OgrenciSozlesmeHesapHareketler!= null && Model.Model.OgrenciSozlesmeHesapHareketler.Count  > 0 ? Model.Model.OgrenciSozlesmeHesapHareketler[Model.Model.OgrenciSozlesmeHesapHareketler.Count - 1].HesapHareket.VadeTarihiFormatted : "")</td>
+                    <td style="width:50%;text-align:center;">#@(Model.Model.ToplamKalanFormatted)#</td>
+                </tr>
+                <tr>
+                    <td style="height:30px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="height:120px">
+                        <p><span style="font-size:14px">İş bu emre muharrer senedim mukabilinde @Model.Model.OlusturulmaTarihiFormatted tarihinde<strong> Sayın @kurum.KurumAd&nbsp;</strong>veya emrühavalesine yukarıda yazılı yalnız #@(Model.Model.ToplamKalanFormatted)# ödeyeceğim. Bedeli nakden&nbsp;ahzolunmuştur. İş bu bono vadesinde ödenmediği taktirde, müteakip bonoların da muacceliyet kesbedeceğini, ihtilaf vukuunda İSTANBUL mahkemelerinin selahiyetini şimdiden kabul eylerim.</span></p>
+                        <p><strong><span style="font-size:14px">İSTANBUL</span></strong></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:30px;"></td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td colspan="2" style="text-align:right;">DÜZENLENME TARİHİ : #@DateTime.Now.ToShortDateString()#</td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="100%">
+                        <table style="border:1px solid #00000;width:100%;height:150px;">
+                            <tbody>
+                                <tr>
+                                    @if (Model.Model.Ogrenci.OgrenciSozlesmeler[0].OgrenciSozlesmeOdemeBilgi.OgrenciSozlesmeOdemeBilgiSenetImzalayanId == 3)
+                                    {
+                                        <td style="width:75%;text-align:left;vertical-align:top">İsim : @Model.Model.Ogrenci.BabaOgrenciYakiniIletisim.AdSoyad<br>Adres : <br><span style="font-size:12pt">@Model.Model.Ogrenci.BabaOgrenciYakiniIletisim.EvAdres</span><br>T.C. Kimlik No : @Model.Model.Ogrenci.BabaOgrenciYakiniIletisim.TcKimlikNo<br>Kefil : </td>
+                                    }
+                                    @if (Model.Model.Ogrenci.OgrenciSozlesmeler[0].OgrenciSozlesmeOdemeBilgi.OgrenciSozlesmeOdemeBilgiSenetImzalayanId == 2)
+                                    {
+                                        <td style="width:75%;text-align:left;vertical-align:top">İsim : @Model.Model.Ogrenci.AnneOgrenciYakiniIletisim.AdSoyad<br>Adres : <br><span style="font-size:12pt">@Model.Model.Ogrenci.AnneOgrenciYakiniIletisim.EvAdres</span><br>T.C. Kimlik No : @Model.Model.Ogrenci.AnneOgrenciYakiniIletisim.TcKimlikNo<br>Kefil : </td>
+                                    }
+                                    @if (Model.Model.Ogrenci.OgrenciSozlesmeler[0].OgrenciSozlesmeOdemeBilgi.OgrenciSozlesmeOdemeBilgiSenetImzalayanId == 4)
+                                    {
+                                        <td style="width:75%;text-align:left;vertical-align:top">İsim : @Model.Model.Ogrenci.AnneOgrenciYakiniIletisim.AdSoyad<br>Adres : <br><span style="font-size:12pt">@Model.Model.Ogrenci.AnneOgrenciYakiniIletisim.EvAdres</span><br>T.C. Kimlik No : @Model.Model.Ogrenci.AnneOgrenciYakiniIletisim.TcKimlikNo<br>Kefil : </td>
+
+                                    }
+                                    @if (Model.Model.Ogrenci.OgrenciSozlesmeler[0].OgrenciSozlesmeOdemeBilgi.OgrenciSozlesmeOdemeBilgiSenetImzalayanId == 1)
+                                    {
+                                        <td style="width:75%;text-align:left;vertical-align:top">İsim : @Model.Model.Ogrenci.AdSoyad<br>Adres : <br><span style="font-size:12pt">@Model.Model.Ogrenci.Adres</span><br>T.C. Kimlik No : @Model.Model.Ogrenci.TcKimlikNo<br>Kefil : </td>
+
+                                    }
+
+                                    <td style="width:50%;text-align:center;vertical-align:top">İmza&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;İmza</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+    <div style="page-break-before:always">
+        <div style="width:1024px">
+            <table cellspacing="5" cellpadding="5" style="width:1024px">
+                <tbody>
+                    @if (kurum.SozlesmedeLogoKullanilsinMi && !string.IsNullOrEmpty(kurum.LogoDosyaAd))
+                    {
+                        <tr>
+                            <td width="25%" height="111">
+                                <p class="kurum"><img style="width:auto;max-height:70px;" src="@kurum.LogoYol"></p>
+                            </td>
+                            <td width="50%">
+                                <p class="sozlesme">EĞİTİM SÖZLEŞMESİ</p>
+                            </td>
+                            <td width="25%">
+                                <p class="sube">@(sube.Sehir != null ? $"{sube.SehirAd} - {sube.SubeAd}" : sube.SubeAd)</p>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td width="75%">
+                                <p class="sozlesme">@Model.Model.OgrenciSozlesmeTurAd.ToUpper() SÖZLEŞMESİ</p>
+                            </td>
+                            <td width="25%">
+                                <p class="sube">@(sube.Sehir != null ? sube.SehirAd : "")</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <table style="width:1024px">
+                <tbody>
+                    <tr>
+                        <td nowrap="">@sube.UzaktanEgitim</td>
+                        <td nowrap="">@Model.Model.Ogrenci.OgrenciSozlesmeler[0].EgitimTutarFormatted</td>
+                        <td nowrap=""></td>
+                        <td nowrap="" align="right">@(Model.Model.DersAdeti != null && Model.Model.DersAdeti > 0 ? $"Ders : {Model.Model.DersAdeti}" : "")</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>ÖDEME PLANI<br>
+            <div style="min-height:400px;">
+                <table style="width:1024px;">
+
+                    <tbody>
+                        <tr>
+                            <td valign="top">
+                                <table style="width:512px;">
+                                    <tbody>
+                                        <tr>
+                                            <th width="33%">Taksit No</th>
+                                            <th width="33%">Vade Tarihi</th>
+                                            <th width="33%">Taksit Tutarı</th>
+                                        </tr>
+                                        @for (int i = 0; i < ilkYariAdet; i++)
+                                        {
+                                            var taksit = Model.Model.OgrenciSozlesmeHesapHareketler[i];
+
+                                            <tr>
+                                                <td class="taksit_bilgisi" width="15%">@taksit.HesapHareket.Aciklama</td>
+                                                <td class="taksit_bilgisi" width="15%">@taksit.HesapHareket.VadeTarihiFormatted</td>
+                                                <td class="taksit_bilgisi" width="70%">@taksit.HesapHareket.TutarFormatted</td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td valign="top">
+                                <table style="width:512px;">
+                                    <tbody>
+                                        <tr>
+                                            <th width="33%">Taksit No</th>
+                                            <th width="33%">Vade Tarihi</th>
+                                            <th width="33%">Taksit Tutarı</th>
+                                        </tr>
+                                        @for (int i = ilkYariAdet; i < Model.Model.OgrenciSozlesmeHesapHareketler.Count; i++)
+                                        {
+                                            var taksit = Model.Model.OgrenciSozlesmeHesapHareketler[i];
+
+                                            <tr>
+                                                <td class="taksit_bilgisi" width="15%">@taksit.HesapHareket.Aciklama</td>
+                                                <td class="taksit_bilgisi" width="15%">@taksit.HesapHareket.VadeTarihiFormatted</td>
+                                                <td class="taksit_bilgisi" width="70%">@taksit.HesapHareket.TutarFormatted</td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                Toplam : #@(Model.Model.ToplamKalanFormatted)#
+            </div>
+            <b>Yukarıdaki taksitleri yazılı borcumu tarihlerinde ödeyeceğimi kabul ve taahhüt ederim.</b><br>
+            <table style="width:1024px">
+                <tbody>
+                    <tr>
+                        <td>Adı ve Soyadı : @Model.Model.Ogrenci.AdSoyad</td>
+                        <td>T.C. Kimlik No : @Model.Model.Ogrenci.TcKimlikNo</td>
+                    </tr>
+                    <tr>
+                        <td>Öğrenci No : @Model.Model.Ogrenci.OgrenciNo</td>
+                        <td>Öğrenci Telefon : @Model.Model.Ogrenci.CepTelefon</td>
+                    </tr>
+                    <tr>
+                        <td>Doğum Tarihi : @Model.Model.Ogrenci.DogumTarihiFormatted</td>
+                        <td>Kayıt Tarihi : @Model.Model.OlusturulmaTarihiFormatted</td>
+                    </tr>
+                    <tr>
+                        <td>Görüşen Kişi : @Model.Model.GorusenPersonelAdSoyad </td>
+                        <td>Referans : @Model.Model.Referans</td>
+                    </tr>
+                    <tr>
+                        <td>Kaydı Yapan Kişi : @Model.Model.EkleyenPersonel.AdSoyad </td>
+                        <td>Şube : @sube.SubeAd</td>
+                    </tr>
+                    <tr>
+                        <td>Sezon : @Model.Model.SezonAd</td>
+                        <td>Branş : @Model.Model.BransAd</td>
+                    </tr>
+                    <tr>
+                        <td>Sınıf : @Model.Model.SinifAd</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Anne :  @(@Model.Model.Ogrenci.AnneOgrenciYakiniIletisim != null ? $"{Model.Model.Ogrenci.AnneOgrenciYakiniIletisim.AdSoyad} - {Model.Model.Ogrenci.AnneOgrenciYakiniIletisim.CepTelefon1}" : " - ")</td>
+                        <td>Baba :  @(@Model.Model.Ogrenci.BabaOgrenciYakiniIletisim != null ? $"{Model.Model.Ogrenci.BabaOgrenciYakiniIletisim.AdSoyad} - {Model.Model.Ogrenci.BabaOgrenciYakiniIletisim.CepTelefon1}" : " - ")</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table style="width:1024px">
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox">Fotoğraf&nbsp;&nbsp;&nbsp;<input type="checkbox">Nüfus Cüzdanı Fotokopisi&nbsp;&nbsp;&nbsp;<input type="checkbox">İkametgah Belgesi&nbsp;&nbsp;&nbsp;<input type="checkbox">Öğrenci Belgesi&nbsp;&nbsp;&nbsp;<input type="checkbox">Sabıka Belge Kaydı</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>ADRES BİLGİLERİ
+            <table style="width:1024px;min-height:113px;">
+                <tbody>
+                    <tr>
+                        <td valign="top">Öğrenci Adres :<br>@Model.Model.Ogrenci.Adres</td>
+                        <td>
+                            Veli (Anne) Adresi : @(@Model.Model.Ogrenci.AnneOgrenciYakiniIletisim != null ? Model.Model.Ogrenci.AnneOgrenciYakiniIletisim.EvAdres : " - ") <br><br><br>
+                            Veli (Baba) Adresi : @(@Model.Model.Ogrenci.BabaOgrenciYakiniIletisim != null ? Model.Model.Ogrenci.BabaOgrenciYakiniIletisim.EvAdres : " - ")
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            @*<span style="font-size:14px">
+            <strong>1-)</strong> Kayıt yaptıran öğrenci&nbsp;eğitim almadan kaydını iptal ederse&nbsp;sözleşme bedelinin 1/2'sini&nbsp;cayma bedeli olarak ödemeyi kabul ve taahhüt eder. Eğitime başlamış olan öğrenci ise; sözleşme bedelinin <strong>TAMAMINI</strong> işbu sözleşmede yer alan ödeme planına uyarak ödeyeceğini kabul ve taahhüt etmektedir.<br>
+            <strong>2-)</strong> Eğitim sonunda verilecek olan sertifika<strong> "KESİNLİKLE İŞ GARANTİSİ</strong>" vermez.<br>
+            <strong>3-)</strong> Bu Eğitim sözleşmesinin uygulanmasında çıkacak uyuşmazlıklarda İSTANBUL&nbsp;mahkemeleri ve İCRA daireleri yetkilidir.<br>
+            <br>
+            İş bu sözleşmede <strong>@kurum.KurumAd</strong> ve <strong>ÖĞRENCİ</strong> arasında tamamen kendi istek ve serbest iradeleri ile belirtilen şartlarla "EĞİTİM SÖZLEŞMESİ" iki nüsha olarak tanzim edilip okunarak imza altına alınmıştır. Sözleşme İmza tarihinde yürürlüğe girmiştir.
+        </span>*@
+            <span style="font-size:14px">
+                <strong>1-)</strong> EĞİTİM ÖĞRETİM YILI BAŞLAMADAN KAYIT İPTALİ DURUMUNDA KAYIT ÜCRETİNDEN %10 ÖZEL ÖĞRETİM KURUMLARI YÖNETMELİĞİNE GÖRE KESİNTİ YAPILIP İPTAL EDİLİR.<br>
+                <strong>2-)</strong> EĞİTİM ÖĞRETİM YILI BAŞLADIKTAN SONRA KAYIT İPTALİ DURUMUNDA KAYIT ÜCERİNDEN %10 VE GÖRÜLEN DERSLERİN ÜCRETİ ÖZEL ÖĞRETİM KURUMLARI YÖNETMELİĞİNE GÖRE KESİNTİ YAPILIP İPTAL EDİLİR.<br>
+                <strong>3-)</strong> ÖDEME YAPILMADIĞI DURUMDA HUKUKİ İŞLEM BAŞLATILIR.<br>
+                <br>
+                İş bu sözleşmede <strong>@kurum.KurumAd</strong> ve <strong>VELİSİ</strong> arasında tamamen kendi istek ve serbest iradeleri ile belirtilen şartlarla "EĞİTİM SÖZLEŞMESİ" iki nüsha olarak tanzim edilip okunarak imza altına alınmıştır. Sözleşme İmza tarihinde yürürlüğe girmiştir.            
+            </span>
+        </p>
+        <br><br>
+        <p align="right">İmza</p>
+    </div>
+</body>
+</html>

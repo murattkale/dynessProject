@@ -1,0 +1,101 @@
+﻿@using WebUI.Helpers;
+@using WebUI.Models;
+
+@model  OgrenciSozlesmeOdemeBilgiGuncelleViewModel
+
+<script>
+    App.initComponents();
+</script>
+
+<!-- #region Ödeme Bilgi -->
+@Html.FormCardDivBegin(Resources.LangResources.OdemeBilgi)
+
+@Html.FormDropDownListFor(x => x.ParaBirimId, Model.ParaBirimSelectList, disabled: true, labelValue: Resources.LangResources.SubeParaBirim)
+@Html.FormDropDownListFor(x => x.PesinatHesapId, Model.PesinatHesapSelectList)
+@Html.FormDropDownListFor(x => x.OgrenciSozlesmeOdemeBilgiSenetImzalayanId, Model.OgrenciSozlesmeOdemeBilgiSenetImzalayanSelectList)
+
+@Html.FormTextBoxFor(x => x.EgitimTutar, classString: "toplamHesap")
+@Html.FormTextBoxFor(x => x.YayinTutar, classString: "toplamHesap")
+@Html.FormTextBoxFor(x => x.YemekTutar, classString: "toplamHesap")
+@Html.FormTextBoxFor(x => x.ServisTutar, classString: "toplamHesap")
+@Html.FormTextBoxFor(x => x.KiyafetTutar, classString: "toplamHesap")
+
+@Html.FormTextBoxFor(x => x.ToplamTutar)
+@Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.ToplamUcretHepsininToplami)
+@Html.FormTextBoxFor(x => x.OdenenTutar, disabled: true)
+@Html.FormTextBoxFor(x => x.KalanTutar, disabled: true)
+@Html.FormTextBoxFor(x => x.PesinatTutar, classString: "toplamHesap", disabled: true)
+@Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.MinimumPesinatTutariSubeden + "<span id='spnMinimumPesinatTutari'>0</span>")
+@Html.FormTextBoxFor(x => x.TaksitAdet)
+@Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.MaksimumTaksitAdetiSubeden + "<span id='spnMaksimumTaksitAdeti'>0</span>")
+@Html.FormTextBoxFor(x => x.TaksitTutar, classString: "toplamHesap")
+@Html.FormTextBoxFor(x => x.TaksitBaslangicTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+@Html.FormTextAreaFor(x => x.Not, 2, 2)
+@Html.FormRadioButtonBooleanFor(x => x.OdenenlerSilinsinMi, Resources.LangResources.Evet, Resources.LangResources.Hayir)
+
+@Html.HiddenFor(x => x.OgrenciSozlesmeId)
+@Html.HiddenFor(x => x.OgrenciId)
+@Html.HiddenFor(x => x.SubeId)
+
+@Html.FormCardDivEnd()
+<!-- #endregion -->
+<!-- #region Ödeme Planı -->
+@Html.FormCardDivBegin(Resources.LangResources.OdemePlani)
+
+<div id="divOdemePlaniBilgi">
+    @Html.FormMessagesFor(HtmlHelpers.AlertType.Info, Resources.LangResources.OdemePlaniGorebilmekIcin)
+</div>
+
+@Html.FormGroupRowBegin(Resources.LangResources.OdemePlani)
+
+<div id="divOdemeTaksitDetaylar">
+    <table class="table table-bordered table-sm">
+        <tr>
+            <td><label>@Resources.LangResources.Toplam</label></td>
+            <td><label id="lblToplamTutar"></label></td>
+        </tr>
+        <tr>
+            <td><label>@Resources.LangResources.TaksitAdet</label></td>
+            <td><label id="lblTaksitAdet"></label></td>
+        </tr>
+        <tr>
+            <td><label>@Resources.LangResources.IlkTaksitTarihi</label></td>
+            <td><label id="lblIlkTaksitTarihi"></label></td>
+        </tr>
+        <tr>
+            <td><label>@Resources.LangResources.SonTaksitTarihi</label></td>
+            <td><label id="lblSonTaksitTarihi"></label></td>
+        </tr>
+        <tr>
+            <td><label>@Resources.LangResources.SonTaksitTutar</label></td>
+            <td><label id="lblSonTaksitTutar"></label></td>
+        </tr>
+    </table>
+    <hr />
+</div>
+
+@Html.FormScrollableTableThead(
+    new List<string> {
+        Resources.LangResources.TaksitNo,
+        Resources.LangResources.TaksitTutari,
+        Resources.LangResources.VadeTarihi},
+    "tblTaksitler")
+
+@for (var i = 0; i < Model.AylikTaksitBilgiler.Count; i++)
+{
+    var aylikTaksitBilgi = Model.AylikTaksitBilgiler[i];
+
+    @Html.FormScrollableTableRow(
+        new List<object> {
+            Html.FormCellTextBoxFor(x=> x.AylikTaksitBilgiler[i].TaksitNo, classString:"taksitNo", disabled:true),
+            Html.FormCellTextBoxFor(x=> x.AylikTaksitBilgiler[i].TaksitTutari, classString:"taksitTutar"),
+            Html.FormCellTextBoxFor(x=> x.AylikTaksitBilgiler[i].VadeTarihi, textBoxType: HtmlHelpers.TextBoxType.Date, classString:"taksitTarih")
+        })
+}
+
+@Html.FormScrollableTableEnd()
+
+@Html.FormGroupRowEnd()
+
+@Html.FormCardDivEnd()
+<!-- #endregion -->

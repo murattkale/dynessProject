@@ -1,0 +1,45 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+
+@model BransDuzenleViewModel
+
+@{
+    var title = Model.Model.BransId == 0
+        ? Resources.LangResources.BransEkle
+        : $"{Resources.LangResources.BransGuncelle} ({Model.Model.BransAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{ @title}
+
+@using (Html.BeginForm("Duzenle", "Brans", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.BransId, Model.BransSelectList, Model.BransSelectList.Any(), @Resources.LangResources.Branslar, "/Brans/Duzenle/")
+    @Html.FormTextBoxFor(x => x.Model.BransAd)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.BransId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "Brans", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.BransId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

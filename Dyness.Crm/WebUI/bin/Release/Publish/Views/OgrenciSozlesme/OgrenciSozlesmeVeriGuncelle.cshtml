@@ -1,0 +1,73 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model OgrenciSozlesmeVeriGuncelleViewModel
+
+@{
+    var title = Resources.LangResources.SubeOgrenciSozlesmeVeriGuncelle;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("OgrenciSozlesmeVeriGuncelle", "OgrenciSozlesme", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListFor(x => x.SubeId, Model.SubeSelectList)
+    <div class="form-group row">
+        <label class="col-form-label col-lg-2">
+            <label for="PostedFileVeri">@Resources.LangResources.OrnekVeri</label>
+        </label><div class="col-lg-10">
+            <div class="uniform-uploader">
+                <a class="form-control" href="/VeriGuncelle/Örnek Veri Aktarım.xlsx" target="_blank">@Resources.LangResources.Indir</a>
+            </div>
+        </div>
+    </div>
+    @Html.FormFileInputFor(x => x.PostedFileVeri, "PostedFileVeri")
+    <div class="form-group row">
+        <label class="col-form-label col-lg-2"></label>
+        <div class="col-lg-10">
+            <div class="alert alert-info" id="divModel_Ogrenci_TcKimlikNo">
+                <span class="font-weight-semibold">@Resources.LangResources.ExcelAktarimSozlesmeTur</span>
+            </div>
+            <div class="alert alert-info" id="divModel_Ogrenci_TcKimlikNo">
+                <span class="font-weight-semibold">@Resources.LangResources.ExcelAktarimServis</span>
+            </div>
+            <div class="alert alert-info" id="divModel_Ogrenci_TcKimlikNo">
+                <span class="font-weight-semibold">@Resources.LangResources.ExcelAktarimYemekDahilMi</span>
+            </div>
+            <div class="alert alert-info" id="divModel_Ogrenci_TcKimlikNo">
+                <span class="font-weight-semibold">@Resources.LangResources.ExcelAktarimCinsiyet</span>
+            </div>
+            <div class="alert alert-info" id="divModel_Ogrenci_TcKimlikNo">
+                <span class="font-weight-semibold">@Resources.LangResources.ExcelAktarimSenetiImzalayan</span>
+            </div>
+            <div class="alert alert-info" id="divModel_Ogrenci_TcKimlikNo">
+                <span class="font-weight-semibold">@Resources.LangResources.ExcelAktarimTransferTip</span>
+            </div>
+            <div class="alert alert-info" id="divModel_Ogrenci_TcKimlikNo">
+                <span class="font-weight-semibold">@Resources.LangResources.ExcelAktarimTaksitAciklama</span>
+            </div>
+            <div class="alert alert-info" id="divModel_Ogrenci_TcKimlikNo">
+                <span class="font-weight-semibold">@Resources.LangResources.ExcelAktarimEkAciklama</span>
+            </div>
+        </div>
+    </div>
+    @Html.FormButtons(0, "", false)
+    @Html.FormCardDivEnd()
+}

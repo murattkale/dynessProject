@@ -1,0 +1,8 @@
+﻿@using WebUI.Models;
+
+@model OgrenciSinavKontrolViewModel
+@{
+    Model.Yazdir = true;
+}
+
+@{Html.RenderPartial("~/Views/Shared/_SinavSonucView.cshtml", Model);}

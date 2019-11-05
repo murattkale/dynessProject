@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D56407A5-486F-46D7-90F2-437A82C648F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Services</RootNamespace>
+    <AssemblyName>Services</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <DontImportPostSharp>True</DontImportPostSharp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.2.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Factory, Version=3.3.2.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Factory.3.3.2\lib\net45\Ninject.Extensions.Factory.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp, Version=4.2.17.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.4.2.17\lib\net35-client\PostSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IBankaHesapService.cs" />
+    <Compile Include="Abstract\IBankaService.cs" />
+    <Compile Include="Abstract\IBransService.cs" />
+    <Compile Include="Abstract\IDersGrupService.cs" />
+    <Compile Include="Abstract\IDerslikService.cs" />
+    <Compile Include="Abstract\IDersService.cs" />
+    <Compile Include="Abstract\IDuyuruService.cs" />
+    <Compile Include="Abstract\IVideoKategoriService.cs" />
+    <Compile Include="Abstract\IEhliyetTurService.cs" />
+    <Compile Include="Abstract\IEskiKayitService.cs" />
+    <Compile Include="Abstract\IEtkinlikService.cs" />
+    <Compile Include="Abstract\IFaturaBilgiService.cs" />
+    <Compile Include="Abstract\IHesapBilgiService.cs" />
+    <Compile Include="Abstract\IHesapHareketService.cs" />
+    <Compile Include="Abstract\IHesapService.cs" />
+    <Compile Include="Abstract\IHesapTurGrupService.cs" />
+    <Compile Include="Abstract\IHesapTurService.cs" />
+    <Compile Include="Abstract\IIlceService.cs" />
+    <Compile Include="Abstract\IKiyafetBedenService.cs" />
+    <Compile Include="Abstract\IKiyafetService.cs" />
+    <Compile Include="Abstract\IKiyafetTurService.cs" />
+    <Compile Include="Abstract\IKonuService.cs" />
+    <Compile Include="Abstract\IKullaniciGrupService.cs" />
+    <Compile Include="Abstract\IKullaniciService.cs" />
+    <Compile Include="Abstract\IKurumOgrenciSozlesmeMetinService.cs" />
+    <Compile Include="Abstract\IKurumService.cs" />
+    <Compile Include="Abstract\INeredenDuydunuzService.cs" />
+    <Compile Include="Abstract\IOgrenciService.cs" />
+    <Compile Include="Abstract\IOgrenciSinavKontrolPuanTurPuanService.cs" />
+    <Compile Include="Abstract\IOgrenciSinavKontrolService.cs" />
+    <Compile Include="Abstract\IOgrenciSozlesmeHesapHareketService.cs" />
+    <Compile Include="Abstract\IOgrenciSozlesmeOdemeBilgiSenetImzalayanService.cs" />
+    <Compile Include="Abstract\IOgrenciSozlesmeOdemeBilgiService.cs" />
+    <Compile Include="Abstract\IOgrenciSozlesmeService.cs" />
+    <Compile Include="Abstract\IOgrenciSozlesmeTurService.cs" />
+    <Compile Include="Abstract\IOkulTurService.cs" />
+    <Compile Include="Abstract\IOptikFormService.cs" />
+    <Compile Include="Abstract\IParaBirimService.cs" />
+    <Compile Include="Abstract\IPersonelGrupService.cs" />
+    <Compile Include="Abstract\IPersonelPuantajGunlukDurumService.cs" />
+    <Compile Include="Abstract\IPersonelPuantajService.cs" />
+    <Compile Include="Abstract\IPersonelService.cs" />
+    <Compile Include="Abstract\IPersonelYetkiGrupService.cs" />
+    <Compile Include="Abstract\IPuanTurService.cs" />
+    <Compile Include="Abstract\ISehirService.cs" />
+    <Compile Include="Abstract\IServisService.cs" />
+    <Compile Include="Abstract\ISezonService.cs" />
+    <Compile Include="Abstract\ISinavKitapcikService.cs" />
+    <Compile Include="Abstract\ISinavService.cs" />
+    <Compile Include="Abstract\ISinavSubeService.cs" />
+    <Compile Include="Abstract\ISinavTurDersKatSayiService.cs" />
+    <Compile Include="Abstract\ISinavTurService.cs" />
+    <Compile Include="Abstract\ISinifSeansService.cs" />
+    <Compile Include="Abstract\ISinifSeviyeService.cs" />
+    <Compile Include="Abstract\ISinifService.cs" />
+    <Compile Include="Abstract\ISinifTurService.cs" />
+    <Compile Include="Abstract\ISmsDurumService.cs" />
+    <Compile Include="Abstract\ISmsHesapDosyaService.cs" />
+    <Compile Include="Abstract\ISmsHesapDurumService.cs" />
+    <Compile Include="Abstract\ISmsHesapHareketService.cs" />
+    <Compile Include="Abstract\ISmsHesapService.cs" />
+    <Compile Include="Abstract\ISmsMetinSablonService.cs" />
+    <Compile Include="Abstract\ISmsService.cs" />
+    <Compile Include="Abstract\ISubeService.cs" />
+    <Compile Include="Abstract\ITransferTipService.cs" />
+    <Compile Include="Abstract\IUlkeService.cs" />
+    <Compile Include="Abstract\IVideoKonuService.cs" />
+    <Compile Include="Abstract\IVideoKurumYetkiService.cs" />
+    <Compile Include="Abstract\IVideoService.cs" />
+    <Compile Include="Abstract\IVideoSinifYetkiService.cs" />
+    <Compile Include="Abstract\IVideoSubeYetkiService.cs" />
+    <Compile Include="Abstract\IVideoVideoKategoriService.cs" />
+    <Compile Include="Abstract\IYayinService.cs" />
+    <Compile Include="Concrete\DersGrupManager.cs" />
+    <Compile Include="Concrete\EskiKayitManager.cs" />
+    <Compile Include="Concrete\FaturaBilgiManager.cs" />
+    <Compile Include="Concrete\KonuManager.cs" />
+    <Compile Include="Concrete\KullaniciManager.cs" />
+    <Compile Include="Concrete\BankaHesapManager.cs" />
+    <Compile Include="Concrete\BankaManager.cs" />
+    <Compile Include="Concrete\BransManager.cs" />
+    <Compile Include="Concrete\DerslikManager.cs" />
+    <Compile Include="Concrete\DersManager.cs" />
+    <Compile Include="Concrete\DuyuruManager.cs" />
+    <Compile Include="Concrete\EhliyetTurManager.cs" />
+    <Compile Include="Concrete\EtkinlikManager.cs" />
+    <Compile Include="Concrete\HesapBilgiManager.cs" />
+    <Compile Include="Concrete\HesapHareketManager.cs" />
+    <Compile Include="Concrete\HesapManager.cs" />
+    <Compile Include="Concrete\HesapTurGrupManager.cs" />
+    <Compile Include="Concrete\HesapTurManager.cs" />
+    <Compile Include="Concrete\IlceManager.cs" />
+    <Compile Include="Concrete\KiyafetBedenManager.cs" />
+    <Compile Include="Concrete\KiyafetManager.cs" />
+    <Compile Include="Concrete\KiyafetTurManager.cs" />
+    <Compile Include="Concrete\KurumManager.cs" />
+    <Compile Include="Concrete\KurumOgrenciSozlesmeMetinManager.cs" />
+    <Compile Include="Concrete\NeredenDuydunuzManager.cs" />
+    <Compile Include="Concrete\OgrenciManager.cs" />
+    <Compile Include="Concrete\OgrenciSinavKontrolManager.cs" />
+    <Compile Include="Concrete\OgrenciSinavKontrolPuanTurPuanManager.cs" />
+    <Compile Include="Concrete\OgrenciSozlesmeHesapHareketManager.cs" />
+    <Compile Include="Concrete\OgrenciSozlesmeManager.cs" />
+    <Compile Include="Concrete\OgrenciSozlesmeOdemeBilgiManager.cs" />
+    <Compile Include="Concrete\OgrenciSozlesmeOdemeBilgiSenetImzalayanManager.cs" />
+    <Compile Include="Concrete\OgrenciSozlesmeTurManager.cs" />
+    <Compile Include="Concrete\OkulTurManager.cs" />
+    <Compile Include="Concrete\OptikFormManager.cs" />
+    <Compile Include="Concrete\ParaBirimManager.cs" />
+    <Compile Include="Concrete\PersonelGrupManager.cs" />
+    <Compile Include="Concrete\PersonelManager.cs" />
+    <Compile Include="Concrete\PersonelPuantajGunlukDurumManager.cs" />
+    <Compile Include="Concrete\PersonelPuantajManager.cs" />
+    <Compile Include="Concrete\PersonelYetkiGrupManager.cs" />
+    <Compile Include="Concrete\PuanTurManager.cs" />
+    <Compile Include="Concrete\SehirManager.cs" />
+    <Compile Include="Concrete\ServisManager.cs" />
+    <Compile Include="Concrete\SezonManager.cs" />
+    <Compile Include="Concrete\SinavKitapcikManager.cs" />
+    <Compile Include="Concrete\SinavManager.cs" />
+    <Compile Include="Concrete\SinavSubeManager.cs" />
+    <Compile Include="Concrete\SinavTurDersKatSayiManager.cs" />
+    <Compile Include="Concrete\SinavTurManager.cs" />
+    <Compile Include="Concrete\SinifSeansManager.cs" />
+    <Compile Include="Concrete\SinifSeviyeManager.cs" />
+    <Compile Include="Concrete\SinifManager.cs" />
+    <Compile Include="Concrete\SinifTurManager.cs" />
+    <Compile Include="Concrete\SmsDurumManager.cs" />
+    <Compile Include="Concrete\SmsHesapDurumManager.cs" />
+    <Compile Include="Concrete\SmsHesapDosyaManager.cs" />
+    <Compile Include="Concrete\SmsHesapHareketManager.cs" />
+    <Compile Include="Concrete\SmsHesapManager.cs" />
+    <Compile Include="Concrete\SmsManager.cs" />
+    <Compile Include="Concrete\SmsMetinSablonManager.cs" />
+    <Compile Include="Concrete\SubeManager.cs" />
+    <Compile Include="Concrete\TransferTipManager.cs" />
+    <Compile Include="Concrete\UlkeManager.cs" />
+    <Compile Include="Concrete\VideoKategoriManager.cs" />
+    <Compile Include="Concrete\VideoKonuManager.cs" />
+    <Compile Include="Concrete\VideoKurumYetkiManager.cs" />
+    <Compile Include="Concrete\VideoManager.cs" />
+    <Compile Include="Concrete\VideoSinifYetkiManager.cs" />
+    <Compile Include="Concrete\VideoSubeYetkiManager.cs" />
+    <Compile Include="Concrete\VideoVideoKategoriManager.cs" />
+    <Compile Include="Concrete\YayinManager.cs" />
+    <Compile Include="DependencyResolvers\IServiceFactory.cs" />
+    <Compile Include="DependencyResolvers\Ninject\BusinessModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\EntityValidator.cs" />
+    <Compile Include="Web References\KPSPublic\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WebServices\TcKimlikSorgulama.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\KPSPublic\KPSPublic.wsdl" />
+    <None Include="Web References\KPSPublic\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{f15d16bf-0c0c-41c4-a559-463403ec5e79}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{ae783aec-162e-449b-bdc3-0de9c9919eeb}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{90f679f5-dbb3-48bf-b32d-213dc29f3d38}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\KPSPublic\</RelPath>
+      <UpdateFromURL>https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Services_KPSPublic_KPSPublic</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\PostSharp.4.2.17\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.2.17\tools\PostSharp.targets')" />
+  <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
+    <Error Condition="!Exists('..\packages\PostSharp.4.2.17\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="Exists('..\packages\PostSharp.4.2.17\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
+  </Target>
+</Project>

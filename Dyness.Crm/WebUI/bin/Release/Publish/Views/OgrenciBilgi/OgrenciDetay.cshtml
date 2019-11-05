@@ -1,0 +1,741 @@
+﻿@using WebUI.Models;
+@using WebUI.Helpers;
+@using Core.General;
+
+@model OgrenciDetayViewModel
+
+@{
+    var title = $"{Resources.LangResources.OgrenciBilgileri} ({Model.Model.AdSoyad})";
+    var title1 = Resources.LangResources.IletisimBilgileri;
+    var title2 = Resources.LangResources.Ogrenciler;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_LayoutOgrenciBilgi.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.OgrenciBilgi;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+<div class="row">
+    <div class="col-md-4">
+
+        @Html.FormCardDivBegin(title)
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <tbody>
+                    <tr>
+                        <td colspan="2" class="text-center"><img src="@Model.Model.GorselYol" alt="@Model.Model.AdSoyad" /> </td>
+                    </tr>
+                    <tr>
+                        <td width="40%;"><b>@Model.Model.GetDisplayName(x => x.AdSoyad):</b></td>
+                        <td width="60%;">@Model.Model.AdSoyad</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.OgrenciNo):</b></td>
+                        <td>@Model.Model.OgrenciNo</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.TcKimlikNo):</b></td>
+                        <td>@Model.Model.TcKimlikNo</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.DogumTarihiFormatted):</b></td>
+                        <td>@Model.Model.DogumTarihiFormatted</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Cinsiyet):</b></td>
+                        <td>@Model.Model.Cinsiyet</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.CepTelefon):</b></td>
+                        <td>@Model.Model.CepTelefon</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Telefon):</b></td>
+                        <td>@Model.Model.Telefon</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Eposta):</b></td>
+                        <td>@Model.Model.Eposta</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.PostaKodu):</b></td>
+                        <td>@Model.Model.PostaKodu</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.Adres):</b></td>
+                        <td>@Model.Model.Adres</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.YasadigiUlkeAd):</b></td>
+                        <td>@Model.Model.YasadigiUlkeAd</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.YasadigiSehirAd):</b></td>
+                        <td>@Model.Model.YasadigiSehirAd</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.YasadigiIlceAd):</b></td>
+                        <td>@Model.Model.YasadigiIlceAd</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Model.GetDisplayName(x => x.IletisimKendi):</b></td>
+                        <td>
+                            @Html.FormSpanBadge(Model.Model.IletisimKendi, (Model.Model.IletisimKendi ? Resources.LangResources.Evet : Resources.LangResources.Hayir))
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        @Html.FormCardDivEnd()
+
+        @if (Model.Model.AnneOgrenciYakiniIletisim != null || Model.Model.BabaOgrenciYakiniIletisim != null || Model.Model.YakiniOgrenciYakiniIletisim != null)
+        {
+            @Html.FormCardDivBegin(title1)
+
+            <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+                @if (Model.Model.AnneOgrenciYakiniIletisim != null)
+                {
+                    <li class="nav-item"><a href="#tabAnneIletisim" class="nav-link active show" data-toggle="tab">@Resources.LangResources.AnneIletisimBilgileri</a></li>
+                }
+                @if (Model.Model.BabaOgrenciYakiniIletisim != null)
+                {
+                    <li class="nav-item"><a href="#tabBabaIletisim" class="nav-link @(Model.Model.AnneOgrenciYakiniIletisim == null ? "active show" : "")" data-toggle="tab">@Resources.LangResources.BabaIletisimBilgileri</a></li>
+                }
+                @if (Model.Model.YakiniOgrenciYakiniIletisim != null)
+                {
+                    <li class="nav-item"><a href="#tabYakiniIletisim" class="nav-link @(Model.Model.AnneOgrenciYakiniIletisim == null && Model.Model.BabaOgrenciYakiniIletisim == null ? "active show" : "")" data-toggle="tab">@Resources.LangResources.YakiniIletisimBilgileri</a></li>
+                }
+            </ul>
+            <div class="tab-content">
+                @if (Model.Model.AnneOgrenciYakiniIletisim != null)
+                {
+                    <div class="tab-pane fade active show" id="tabAnneIletisim">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td width="40%;"><b>@Model.Model.GetDisplayName(x => x.AnneOgrenciYakiniIletisim.AdSoyad):</b></td>
+                                        <td width="60%;">@Model.Model.AnneOgrenciYakiniIletisim.AdSoyad</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.AnneOgrenciYakiniIletisim.DogumTarihi):</b></td>
+                                        <td>@Model.Model.AnneOgrenciYakiniIletisim.DogumTarihiFormatted</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.AnneOgrenciYakiniIletisim.TcKimlikNo):</b></td>
+                                        <td>@Model.Model.AnneOgrenciYakiniIletisim.TcKimlikNo</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.AnneOgrenciYakiniIletisim.CepTelefon1):</b></td>
+                                        <td>@Model.Model.AnneOgrenciYakiniIletisim.CepTelefon1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.AnneOgrenciYakiniIletisim.CepTelefon2):</b></td>
+                                        <td>@Model.Model.AnneOgrenciYakiniIletisim.CepTelefon2</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.AnneOgrenciYakiniIletisim.EvTelefon):</b></td>
+                                        <td>@Model.Model.AnneOgrenciYakiniIletisim.EvTelefon</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.AnneOgrenciYakiniIletisim.IsTelefon):</b></td>
+                                        <td>@Model.Model.AnneOgrenciYakiniIletisim.IsTelefon</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.AnneOgrenciYakiniIletisim.Eposta):</b></td>
+                                        <td>@Model.Model.AnneOgrenciYakiniIletisim.Eposta</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.AnneOgrenciYakiniIletisim.EvAdres):</b></td>
+                                        <td>@Model.Model.AnneOgrenciYakiniIletisim.EvAdres</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.AnneOgrenciYakiniIletisim.IsAdres):</b></td>
+                                        <td>@Model.Model.AnneOgrenciYakiniIletisim.IsAdres</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.IletisimAnne):</b></td>
+                                        <td>
+                                            @Html.FormSpanBadge(Model.Model.IletisimAnne, (Model.Model.IletisimAnne ? Resources.LangResources.Evet : Resources.LangResources.Hayir))
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+                @if (Model.Model.BabaOgrenciYakiniIletisim != null)
+                {
+                    <div class="tab-pane fade @(Model.Model.AnneOgrenciYakiniIletisim == null ? "active show" : "")" id="tabBabaIletisim">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td width="40%;"><b>@Model.Model.GetDisplayName(x => x.BabaOgrenciYakiniIletisim.AdSoyad):</b></td>
+                                        <td width="60%;">@Model.Model.BabaOgrenciYakiniIletisim.AdSoyad</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.BabaOgrenciYakiniIletisim.DogumTarihi):</b></td>
+                                        <td>@Model.Model.BabaOgrenciYakiniIletisim.DogumTarihiFormatted</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.BabaOgrenciYakiniIletisim.TcKimlikNo):</b></td>
+                                        <td>@Model.Model.BabaOgrenciYakiniIletisim.TcKimlikNo</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.BabaOgrenciYakiniIletisim.CepTelefon1):</b></td>
+                                        <td>@Model.Model.BabaOgrenciYakiniIletisim.CepTelefon1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.BabaOgrenciYakiniIletisim.CepTelefon2):</b></td>
+                                        <td>@Model.Model.BabaOgrenciYakiniIletisim.CepTelefon2</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.BabaOgrenciYakiniIletisim.EvTelefon):</b></td>
+                                        <td>@Model.Model.BabaOgrenciYakiniIletisim.EvTelefon</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.BabaOgrenciYakiniIletisim.IsTelefon):</b></td>
+                                        <td>@Model.Model.BabaOgrenciYakiniIletisim.IsTelefon</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.BabaOgrenciYakiniIletisim.Eposta):</b></td>
+                                        <td>@Model.Model.BabaOgrenciYakiniIletisim.Eposta</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.BabaOgrenciYakiniIletisim.EvAdres):</b></td>
+                                        <td>@Model.Model.BabaOgrenciYakiniIletisim.EvAdres</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.BabaOgrenciYakiniIletisim.IsAdres):</b></td>
+                                        <td>@Model.Model.BabaOgrenciYakiniIletisim.IsAdres</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.IletisimBaba):</b></td>
+                                        <td>
+                                            @Html.FormSpanBadge(Model.Model.IletisimBaba, (Model.Model.IletisimBaba ? Resources.LangResources.Evet : Resources.LangResources.Hayir))
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+                @if (Model.Model.YakiniOgrenciYakiniIletisim != null)
+                {
+                    <div class="tab-pane fade @(Model.Model.AnneOgrenciYakiniIletisim == null && Model.Model.BabaOgrenciYakiniIletisim == null ? "active show" : "")" id="tabYakiniIletisim">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td width="40%;"><b>@Model.Model.GetDisplayName(x => x.YakiniOgrenciYakiniIletisim.AdSoyad):</b></td>
+                                        <td width="60%;">@Model.Model.YakiniOgrenciYakiniIletisim.AdSoyad</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.YakiniOgrenciYakiniIletisim.DogumTarihi):</b></td>
+                                        <td>@Model.Model.YakiniOgrenciYakiniIletisim.DogumTarihiFormatted</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.YakiniOgrenciYakiniIletisim.TcKimlikNo):</b></td>
+                                        <td>@Model.Model.YakiniOgrenciYakiniIletisim.TcKimlikNo</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.YakiniOgrenciYakiniIletisim.CepTelefon1):</b></td>
+                                        <td>@Model.Model.YakiniOgrenciYakiniIletisim.CepTelefon1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.YakiniOgrenciYakiniIletisim.CepTelefon2):</b></td>
+                                        <td>@Model.Model.YakiniOgrenciYakiniIletisim.CepTelefon2</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.YakiniOgrenciYakiniIletisim.EvTelefon):</b></td>
+                                        <td>@Model.Model.YakiniOgrenciYakiniIletisim.EvTelefon</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.YakiniOgrenciYakiniIletisim.IsTelefon):</b></td>
+                                        <td>@Model.Model.YakiniOgrenciYakiniIletisim.IsTelefon</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.YakiniOgrenciYakiniIletisim.Eposta):</b></td>
+                                        <td>@Model.Model.YakiniOgrenciYakiniIletisim.Eposta</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.YakiniOgrenciYakiniIletisim.EvAdres):</b></td>
+                                        <td>@Model.Model.YakiniOgrenciYakiniIletisim.EvAdres</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.YakiniOgrenciYakiniIletisim.IsAdres):</b></td>
+                                        <td>@Model.Model.YakiniOgrenciYakiniIletisim.IsAdres</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Model.Model.GetDisplayName(x => x.IletisimYakini):</b></td>
+                                        <td>
+                                            @Html.FormSpanBadge(Model.Model.IletisimYakini, (Model.Model.IletisimYakini ? Resources.LangResources.Evet : Resources.LangResources.Hayir))
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            </div>
+            @Html.FormCardDivEnd()
+        }
+    </div>
+    <div class="col-md-8">
+        @if (Model.MessageExists)
+        {
+            Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+        }
+
+        <div class="card">
+            <ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+                <li class="nav-item"><a href="#tabSozlesmeler" class="nav-link active show" data-toggle="tab"><h5 class="card-title">@Resources.LangResources.OgrenciSozlesmeler</h5></a></li>
+                <li class="nav-item"><a href="#tabSinav" class="nav-link" data-toggle="tab"><h5 class="card-title">@Resources.LangResources.Sinavlar</h5></a></li>
+                <li class="nav-item"><a href="#tabMuhasebe" class="nav-link" data-toggle="tab"><h5 class="card-title">@Resources.LangResources.OdemePlani</h5></a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="tabSozlesmeler">
+                    <div id="accordionSozlesmeler">
+                        @if (Model.Model.OgrenciSozlesmeler != null)
+                        {
+                            for (int i = 0; i < Model.Model.OgrenciSozlesmeler.Count; i++)
+                            {
+                                var ogrenciSozlesme = Model.Model.OgrenciSozlesmeler[i];
+                                <div class="card">
+                                    <div class="card-header bg-dark">
+                                        <h6 class="card-title">
+                                            <a data-toggle="collapse" class="text-white collapsed" href="#sozlesme@(ogrenciSozlesme.OgrenciSozlesmeId)" aria-expanded="false">@($"{ogrenciSozlesme.OgrenciSozlesmeTurAd} / {ogrenciSozlesme.SubeAd} / {ogrenciSozlesme.SezonAd}")</a>
+                                        </h6>
+                                    </div>
+                                    <div id="sozlesme@(ogrenciSozlesme.OgrenciSozlesmeId)" class="collapse @(i == 0 ? "show" : "")" data-parent="#accordionSozlesmeler">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="card">
+                                                        <div class="card-header header-elements-inline">
+                                                            <h5 class="card-title">@Resources.LangResources.OgrenciSozlesmeBilgileri</h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                @using (Html.BeginForm("OgrenciSozlesmeDosyaGuncelle", "Ogrenci", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                                {
+                                                                    @Html.AntiForgeryToken()
+
+                                                                    <table class="table table-bordered table-sm" style="min-width:600px;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="40%;"><b>@ogrenciSozlesme.GetDisplayName(x => x.OgrenciSozlesmeTurAd):</b></td>
+                                                                                <td width="60%;">@ogrenciSozlesme.OgrenciSozlesmeTurAd</td>
+                                                                            </tr>
+                                                                            @if (ogrenciSozlesme.OgrenciSozlesmeTurId == 2)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.OkulTurAd):</b></td>
+                                                                                    <td>@ogrenciSozlesme.OkulTurAd</td>
+                                                                                </tr>
+                                                                            }
+                                                                            @if (ogrenciSozlesme.OgrenciSozlesmeTurId == 3)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.DersAdeti):</b></td>
+                                                                                    <td>@ogrenciSozlesme.DersAdeti</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.DersBirimFiyat):</b></td>
+                                                                                    <td>@ogrenciSozlesme.DersBirimFiyat</td>
+                                                                                </tr>
+                                                                            }
+                                                                            @if (ogrenciSozlesme.OgrenciSozlesmeTurId == 4)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.EtkinlikAd):</b></td>
+                                                                                    <td>@ogrenciSozlesme.EtkinlikAd</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.DanismanPersonelAdSoyad):</b></td>
+                                                                                    <td>@ogrenciSozlesme.DanismanPersonelAdSoyad</td>
+                                                                                </tr>
+                                                                            }
+                                                                            @if (ogrenciSozlesme.OgrenciSozlesmeTurId == 5)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.EhliyetTurAd):</b></td>
+                                                                                    <td>@ogrenciSozlesme.EhliyetTurAd</td>
+                                                                                </tr>
+                                                                            }
+                                                                            @if (!string.IsNullOrEmpty(ogrenciSozlesme.Referans))
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.Referans):</b></td>
+                                                                                    <td>@ogrenciSozlesme.Referans</td>
+                                                                                </tr>
+                                                                            }
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.GorusenPersonelAdSoyad):</b></td>
+                                                                                <td>@ogrenciSozlesme.GorusenPersonelAdSoyad</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.KurumaGetirenPersonelAdSoyad):</b></td>
+                                                                                <td>@ogrenciSozlesme.KurumaGetirenPersonelAdSoyad</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.SubeAd):</b></td>
+                                                                                <td>@ogrenciSozlesme.SubeAd</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.SezonAd):</b></td>
+                                                                                <td>@ogrenciSozlesme.SezonAd</td>
+                                                                            </tr>
+                                                                            @if (ogrenciSozlesme.SinifSeviye != null)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.SinifSeviyeAd):</b></td>
+                                                                                    <td>@ogrenciSozlesme.SinifSeviyeAd</td>
+                                                                                </tr>
+                                                                            }
+                                                                            @if (ogrenciSozlesme.Brans != null)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.BransAd):</b></td>
+                                                                                    <td>@ogrenciSozlesme.BransAd</td>
+                                                                                </tr>
+                                                                            }
+                                                                            @if (ogrenciSozlesme.Sinif != null)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.SinifAd):</b></td>
+                                                                                    <td>@ogrenciSozlesme.SinifAd</td>
+                                                                                </tr>
+                                                                            }
+                                                                            @if (ogrenciSozlesme.Servis != null)
+                                                                            {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.ServisAd):</b></td>
+                                                                                <td>@($"{ogrenciSozlesme.ServisAd} - {ogrenciSozlesme.Servis.Guzergah}")</td>
+                                                                            </tr>
+                                                                            }
+                                                                            @if (ogrenciSozlesme.OgrenciSozlesmeTurId == 2)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.YemekDahilMi):</b></td>
+                                                                                    <td>
+                                                                                        @Html.FormSpanBadge(ogrenciSozlesme.YemekDahilMi, (ogrenciSozlesme.YemekDahilMi ? Resources.LangResources.Evet : Resources.LangResources.Hayir))
+                                                                                    </td>
+                                                                                </tr>
+                                                                            }
+                                                                            @if (ogrenciSozlesme.OzelDersDurum != null)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.OzelDersDurumAd):</b></td>
+                                                                                    <td>@ogrenciSozlesme.OzelDersDurumAd</td>
+                                                                                </tr>
+                                                                            }
+                                                                            @if (ogrenciSozlesme.DosyaAd != null)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td><b>@ogrenciSozlesme.GetDisplayName(x => x.DosyaAd):</b></td>
+                                                                                    <td><a href="@ogrenciSozlesme.DosyaYol" target="_blank">@ogrenciSozlesme.DosyaAd</a></td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @if (ogrenciSozlesme.OgrenciSozlesmeYayinlar != null && ogrenciSozlesme.OgrenciSozlesmeYayinlar.Count > 0)
+                                                    {
+                                                        <div class="card">
+                                                            <div class="card-header header-elements-inline"><h5 class="card-title">@Resources.LangResources.Yayinlar</h5></div>
+                                                            <div class="card-body">
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-bordered table-sm">
+                                                                        <tbody>
+                                                                            @foreach (var ogrenciSozlesmeYayin in ogrenciSozlesme.OgrenciSozlesmeYayinlar)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td width="40%;"><b>@ogrenciSozlesmeYayin.Yayin.YayinAd:</b></td>
+                                                                                    <td width="60%;">
+                                                                                        @Html.FormSpanBadge(ogrenciSozlesmeYayin.TeslimEdildiMi, ogrenciSozlesmeYayin.TeslimDurum)
+                                                                                    </td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    @if (ogrenciSozlesme.OgrenciSozlesmeDersSecimler != null && ogrenciSozlesme.OgrenciSozlesmeDersSecimler.Count > 0)
+                                                    {
+                                                        <div class="card">
+                                                            <div class="card-header header-elements-inline"><h5 class="card-title">@Resources.LangResources.AldigiDersler</h5></div>
+                                                            <div class="card-body">
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-bordered table-sm">
+                                                                        <tbody>
+                                                                            @for (int j = 0; j < ogrenciSozlesme.OgrenciSozlesmeDersSecimler.Count; j++)
+                                                                            {
+                                                                                var ogrenciSozlesmeDersSecim = ogrenciSozlesme.OgrenciSozlesmeDersSecimler[j];
+                                                                                <tr>
+                                                                                    <td width="40%;"><b>@($"Ders {(j + 1)}"):</b></td>
+                                                                                    <td width="60%;">@ogrenciSozlesmeDersSecim.Ders.DersAd</td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    @if (ogrenciSozlesme.OgrenciSozlesmeKiyafetDurumlar != null && ogrenciSozlesme.OgrenciSozlesmeKiyafetDurumlar.Count > 0)
+                                                    {
+                                                        <div class="card">
+                                                            <div class="card-header header-elements-inline"><h5 class="card-title">@Resources.LangResources.Kiyafetler</h5></div>
+                                                            <div class="card-body">
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-bordered table-sm">
+                                                                        <tbody>
+                                                                            @foreach (var ogrenciSozlesmeKiyafetDurum in ogrenciSozlesme.OgrenciSozlesmeKiyafetDurumlar)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td width="40%;"><b>@($"{ogrenciSozlesmeKiyafetDurum.KiyafetAd} - {ogrenciSozlesmeKiyafetDurum.Kiyafet.KiyafetBedenAd}"):</b></td>
+                                                                                    <td width="60%;">
+                                                                                        @Html.FormSpanBadge(ogrenciSozlesmeKiyafetDurum.TeslimEdildiMi, ogrenciSozlesmeKiyafetDurum.TeslimDurum)
+                                                                                    </td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card">
+                                                        <div class="card-header header-elements-inline">
+                                                            <h5 class="card-title">@Resources.LangResources.OdemeBilgi</h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered table-sm">
+                                                                    <tbody>
+                                                                        @if (ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.OgrenciSozlesmeOdemeBilgiSenetImzalayan != null)
+                                                                        {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.OgrenciSozlesmeOdemeBilgi.OgrenciSozlesmeOdemeBilgiSenetImzalayan.OgrenciSozlesmeOdemeBilgiSenetImzalayanBilgi):</b></td>
+                                                                                <td>@ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.OgrenciSozlesmeOdemeBilgiSenetImzalayan.OgrenciSozlesmeOdemeBilgiSenetImzalayanBilgi</td>
+                                                                            </tr>
+                                                                        }
+                                                                        <tr>
+                                                                            <td><b>@ogrenciSozlesme.GetDisplayName(x => x.EgitimTutar):</b></td>
+                                                                            <td>@ogrenciSozlesme.EgitimTutarFormatted</td>
+                                                                        </tr>
+                                                                        @if (ogrenciSozlesme.YayinTutar > 0)
+                                                                        {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.YayinTutar):</b></td>
+                                                                                <td>@ogrenciSozlesme.YayinTutarFormatted</td>
+                                                                            </tr>
+                                                                        }
+                                                                        @if (ogrenciSozlesme.YemekTutar != null && ogrenciSozlesme.YemekTutar > 0)
+                                                                        {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.YemekTutar):</b></td>
+                                                                                <td>@ogrenciSozlesme.YemekTutarFormatted</td>
+                                                                            </tr>
+                                                                        }
+                                                                        @if (ogrenciSozlesme.ServisTutar != null && ogrenciSozlesme.ServisTutar > 0)
+                                                                        {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.ServisTutar):</b></td>
+                                                                                <td>@ogrenciSozlesme.ServisTutarFormatted</td>
+                                                                            </tr>
+                                                                        }
+                                                                        @if (ogrenciSozlesme.KiyafetTutar != null && ogrenciSozlesme.KiyafetTutar > 0)
+                                                                        {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.KiyafetTutar):</b></td>
+                                                                                <td>@ogrenciSozlesme.KiyafetTutarFormatted</td>
+                                                                            </tr>
+                                                                        }
+                                                                        @if (ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.ParaBirim != null && ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.ParaBirimId > 0)
+                                                                        {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.OgrenciSozlesmeOdemeBilgi.ParaBirimId):</b></td>
+                                                                                <td>@ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.ParaBirim.ParaBirimAd</td>
+                                                                            </tr>
+                                                                        }
+                                                                        @if (ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.PesinatHesap != null && ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.PesinatHesapId > 0)
+                                                                        {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.OgrenciSozlesmeOdemeBilgi.PesinatHesapId):</b></td>
+                                                                                <td>@ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.PesinatHesap.HesapBaslik</td>
+                                                                            </tr>
+                                                                        }
+                                                                        <tr>
+                                                                            <td><b>@ogrenciSozlesme.GetDisplayName(x => x.ToplamUcret):</b></td>
+                                                                            <td>@ogrenciSozlesme.ToplamUcretFormatted</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b>@ogrenciSozlesme.GetDisplayName(x => x.ToplamOdenen):</b></td>
+                                                                            <td>@ogrenciSozlesme.ToplamOdenenFormatted</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b>@ogrenciSozlesme.GetDisplayName(x => x.ToplamKalan):</b></td>
+                                                                            <td>@ogrenciSozlesme.ToplamKalanFormatted</td>
+                                                                        </tr>
+                                                                        @if (!string.IsNullOrEmpty(ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.Not))
+                                                                        {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.OgrenciSozlesmeOdemeBilgi.Not):</b></td>
+                                                                                <td>@ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.Not</td>
+                                                                            </tr>
+                                                                        }
+                                                                        @if (ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.SonGuncelleyenPersonel != null)
+                                                                        {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.OgrenciSozlesmeOdemeBilgi.SonGuncelleyenPersonelId):</b></td>
+                                                                                <td>@ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.SonGuncelleyenPersonel.AdSoyad</td>
+                                                                            </tr>
+                                                                        }
+                                                                        @if (ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.SonGuncellenmeTarihi != null)
+                                                                        {
+                                                                            <tr>
+                                                                                <td><b>@ogrenciSozlesme.GetDisplayName(x => x.OgrenciSozlesmeOdemeBilgi.SonGuncellenmeTarihi):</b></td>
+                                                                                <td>@ogrenciSozlesme.OgrenciSozlesmeOdemeBilgi.SonGuncellenmeTarihiFormatted</td>
+                                                                            </tr>
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-header header-elements-inline">
+                                                            <h5 class="card-title">@Resources.LangResources.FaturaBilgi</h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered table-sm">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td width="40%;"><b>@ogrenciSozlesme.GetDisplayName(x => x.FaturaBilgi.AdSoyad):</b></td>
+                                                                            <td width="60%;">@ogrenciSozlesme.FaturaBilgi.AdSoyad</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b>@ogrenciSozlesme.GetDisplayName(x => x.FaturaBilgi.Adres):</b></td>
+                                                                            <td>@ogrenciSozlesme.FaturaBilgi.Adres</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b>@ogrenciSozlesme.GetDisplayName(x => x.FaturaBilgi.VergiNo):</b></td>
+                                                                            <td>@ogrenciSozlesme.FaturaBilgi.VergiNo</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b>@ogrenciSozlesme.GetDisplayName(x => x.FaturaBilgi.VergiDairesi):</b></td>
+                                                                            <td>@ogrenciSozlesme.FaturaBilgi.VergiDairesi</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tabSinav">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    @if (Model.Model.OgrenciSinavKontroller != null && Model.Model.OgrenciSinavKontroller.Any())
+                                    {
+                                        <div class="card-header header-elements-inline">
+                                            <h5 class="card-title">@Resources.LangResources.OgrenciSinavlar</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-sm">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><b>@Resources.LangResources.Sinav</b></td>
+                                                            <td><b>@Resources.LangResources.Sezon</b></td>
+                                                            <td class="text-center"><b>@Resources.LangResources.SoruAdet</b></td>
+                                                            <td class="text-center"><b>@Core.Properties.FieldNameResources.DogruCevapAdet</b></td>
+                                                            <td class="text-center"><b>@Core.Properties.FieldNameResources.YanlisCevapAdet</b></td>
+                                                            <td class="text-center"><b>@Core.Properties.FieldNameResources.BosCevapAdet</b></td>
+                                                            <td class="text-center"><b>@Core.Properties.FieldNameResources.Net</b></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        @for (int i = 0; i < Model.Model.OgrenciSinavKontroller.Count; i++)
+                                                        {
+                                                            var ogrenciSinavKontrol = Model.Model.OgrenciSinavKontroller[i];
+                                                            <tr>
+                                                                <td>
+                                                                    @ogrenciSinavKontrol.SinavKitapcik.Sinav.Baslik
+                                                                </td>
+                                                                <td>
+                                                                    @ogrenciSinavKontrol.SinavKitapcik.Sinav.Sezon.SezonAd
+                                                                </td>
+                                                                <td class="text-center">@ogrenciSinavKontrol.SoruAdet</td>
+                                                                <td class="text-center">@ogrenciSinavKontrol.DogruCevapAdet</td>
+                                                                <td class="text-center">@ogrenciSinavKontrol.YanlisCevapAdet</td>
+                                                                <td class="text-center">@ogrenciSinavKontrol.BosCevapAdet</td>
+                                                                <td class="text-center">@ogrenciSinavKontrol.NetFormatted</td>
+                                                                <td><a href="/OgrenciSinavKontrol/Detay/@ogrenciSinavKontrol.OgrenciSinavKontrolId">@Resources.LangResources.Detay</a></td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="card-header header-elements-inline">
+                                            <h5 class="card-title">@Resources.LangResources.SinavBulunamadi</h5>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade " id="tabMuhasebe">
+                    @Html.PartialFor(x => x.Model.Hesap, "_OgrenciHesapHareketDetayView")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (TempData.ContainsKey("ODEME"))
+{
+    var idler = TempData["ODEME"].ToString().Split(',');
+
+    for (int i = 0; i < idler.Length; i++)
+    {
+        if (string.IsNullOrEmpty(idler[i]))
+        { continue; }
+
+        <script>
+            $(document).ready(function () {
+                window.open('/Ogrenci/MakbuzYazdir/@idler[i]', '_blank');
+            });
+        </script>
+
+        TempData.Remove("ODEME");
+    }
+}

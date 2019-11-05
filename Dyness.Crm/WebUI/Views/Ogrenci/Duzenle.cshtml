@@ -1,0 +1,121 @@
+﻿@using System.Web.Mvc
+@using WebUI.Models
+@using WebUI.Helpers
+
+@model  OgrenciDuzenleViewModel
+
+@{
+    var title = Model.Model.OgrenciId == 0
+        ? Resources.LangResources.OgrenciEkle
+        : Resources.LangResources.OgrenciGuncelle;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.Ogrenciler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@section head
+{
+    <script>
+
+        var selectedSehirId = @Html.Raw(Json.Encode(Model.Model.SehirId ));
+        var selectedIlceId = @Html.Raw(Json.Encode(Model.Model.IlceId));
+
+    $(function () {
+
+        UlkeSehirIlce(
+            $("#Model_UlkeId"),
+            $("#Model_SehirId"),
+            selectedSehirId,
+            $("#Model_IlceId"),
+            selectedIlceId);
+    });
+    </script>
+}
+
+@using (Html.BeginForm("Duzenle", "Ogrenci", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    <!-- #region Öğrenci Bilgileri -->
+    @Html.FormCardDivBegin(Resources.LangResources.ÖgrenciBilgileri)
+    @Html.FormTextBoxFor(x => x.Model.OgrenciNo, disabled: true)
+    @Html.HiddenFor(x => x.Model.OgrenciNo)
+    @Html.FormTextBoxFor(x => x.Model.Ad)
+    @Html.FormTextBoxFor(x => x.Model.Soyad)
+    @Html.FormTextBoxFor(x => x.Model.DogumTarihi, textBoxType: HtmlHelpers.TextBoxType.Date)
+    @Html.FormTextBoxFor(x => x.Model.TcKimlikNo, textBoxType: HtmlHelpers.TextBoxType.TcNo)
+    @Html.FormRadioButtonBooleanFor(x => x.Model.KadinMi, Resources.LangResources.Kadin, Resources.LangResources.Erkek)
+    @Html.FormTextBoxFor(x => x.Model.CepTelefon, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+    @Html.FormTextBoxFor(x => x.Model.Telefon, textBoxType: HtmlHelpers.TextBoxType.PhoneNumber)
+    @Html.FormTextBoxFor(x => x.Model.Eposta)
+    @Html.FormDropDownListFor(x => x.Model.UlkeId, Model.UlkeSelectList)
+    @Html.FormDropDownListFor(x => x.Model.SehirId, selectListItems: null)
+    @Html.FormDropDownListFor(x => x.Model.IlceId, selectListItems: null)
+    @Html.FormTextAreaFor(x => x.Model.Adres, 2, 2)
+    @Html.FormTextBoxFor(x => x.Model.PostaKodu)
+    @Html.FormFileInputFor(x => x.Model.GorselDosyaAd, "PostedFileGorselDosyaAd")
+    @Html.FormTextAreaFor(x => x.Model.Not, 2, 2)
+    @Html.FormDropDownListFor(x => x.Model.NeredenDuydunuzId, Model.NeredenDuydunuzSelectList)
+    @Html.FormTextBoxFor(x=> x.Model.OlusturulmaTarihi, textBoxType:HtmlHelpers.TextBoxType.Date)
+    @Html.FormCardDivEnd()
+    <!-- #endregion -->
+
+    <!-- #region Anne İletişim Bilgileri -->
+    @Html.FormCardDivBegin(Resources.LangResources.AnneIletisimBilgileri)
+    @Html.PartialFor(x => x.Model.AnneOgrenciYakiniIletisim, "_OgrenciYakiniIletisimView")
+    <!-- #endregion -->
+
+    <!-- #region Baba İletişim Bilgileri -->
+    @Html.FormCardDivBegin(Resources.LangResources.BabaIletisimBilgileri)
+    @Html.PartialFor(x => x.Model.BabaOgrenciYakiniIletisim, "_OgrenciYakiniIletisimView")
+    <!-- #endregion -->
+
+    <!--#region Yakını İletişim Bilgileri -->
+    @Html.FormCardDivBegin(Resources.LangResources.YakiniIletisimBilgileri)
+    @Html.PartialFor(x => x.Model.YakiniOgrenciYakiniIletisim, "_OgrenciYakiniIletisimView")
+    <!-- #endregion -->
+
+    <!-- #region İletişim Tercihleri -->
+    @Html.FormCardDivBegin(Resources.LangResources.IletisimTercihleri)
+    @Html.FormRadioButtonBooleanFor(x => x.Model.IletisimKendi, Resources.LangResources.Evet, Resources.LangResources.Hayir)
+    @Html.FormRadioButtonBooleanFor(x => x.Model.IletisimAnne, Resources.LangResources.Evet, Resources.LangResources.Hayir)
+    @Html.FormRadioButtonBooleanFor(x => x.Model.IletisimBaba, Resources.LangResources.Evet, Resources.LangResources.Hayir)
+    @Html.FormRadioButtonBooleanFor(x => x.Model.IletisimYakini, Resources.LangResources.Evet, Resources.LangResources.Hayir)
+
+    @Html.HiddenFor(x => x.Model.OgrenciId)
+    @Html.HiddenFor(x => x.Model.UlkeId)
+    @Html.HiddenFor(x => x.Model.SehirId)
+    @Html.HiddenFor(x => x.Model.IlceId)
+    @Html.HiddenFor(x => x.Model.YakiniOgrenciYakiniIletisimId)
+    @Html.HiddenFor(x => x.Model.YakiniOgrenciYakiniIletisim.OgrenciYakiniIletisimId)
+    @Html.HiddenFor(x => x.Model.AnneOgrenciYakiniIletisimId)
+    @Html.HiddenFor(x => x.Model.AnneOgrenciYakiniIletisim.OgrenciYakiniIletisimId)
+    @Html.HiddenFor(x => x.Model.BabaOgrenciYakiniIletisimId)
+    @Html.HiddenFor(x => x.Model.BabaOgrenciYakiniIletisim.OgrenciYakiniIletisimId)
+    @Html.HiddenFor(x => x.Model.EkleyenPersonelId)
+    @Html.HiddenFor(x => x.Model.SubeId)
+
+    @Html.FormButtons(Model.Model.OgrenciId, "divModalDelete", true)
+
+    @Html.FormCardDivEnd()
+    <!-- #endregion -->
+}
+
+@using (Html.BeginForm("Sil", "Ogrenci", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.OgrenciId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

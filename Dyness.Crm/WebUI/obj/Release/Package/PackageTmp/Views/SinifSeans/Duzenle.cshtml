@@ -1,0 +1,46 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model  SinifSeansDuzenleViewModel
+
+@{
+    var title = Model.Model.SinifSeansId == 0
+        ? Resources.LangResources.SinifSeansEkle
+        : $"{Resources.LangResources.SinifSeansGuncelle} ({Model.Model.SinifSeansAd})";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation(true);
+
+    var menu = Resources.LangResources.KurumVeSubeler;
+}
+
+@section Menu{ @menu}
+
+@section Page{@title}
+
+@using (Html.BeginForm("Duzenle", "SinifSeans", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.FormCardDivBegin(title)
+
+    if (Model.MessageExists)
+    {
+        Html.RenderPartial("_OperationResultView", Model.OperationResult.MessageInfos);
+    }
+
+    @Html.FormDropDownListSelectableFor(x => x.Model.SinifSeansId, Model.SinifSeansSelectList, Model.SinifSeansSelectList.Any(), Resources.LangResources.SinifSeanslar, "/SinifSeans/Duzenle/")
+    @Html.FormTextBoxFor(x => x.Model.SinifSeansAd)
+    @Html.FormTextAreaFor(x => x.Model.Aciklama, 2, 2)
+    @Html.FormCheckBoxFor(x => x.Model.EtkinMi)
+    @Html.FormButtons(Model.Model.SinifSeansId, "divModalDelete", true)
+    @Html.FormCardDivEnd()
+}
+
+@using (Html.BeginForm("Sil", "SinifSeans", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id", Model.Model.SinifSeansId)
+    @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
+}

@@ -1,0 +1,19 @@
+﻿@using WebUI.Models
+@using WebUI.Helpers
+
+@model SinavDuzenleViewModel
+
+@if (Model.Model.SinavDersler != null && Model.Model.SinavDersler.Count > 0)
+{
+    for (int i = 0; i < Model.Model.SinavDersler.Count; i++)
+    {
+        @Html.FormTextBoxFor(x => x.Model.SinavDersler[i].Sira)
+        @Html.FormTextBoxFor(x => x.Model.SinavDersler[i].SoruSayi)
+
+        @Html.FormDropDownListFor(x => x.Model.SinavDersler[i].DersGrupId, Model.DersGrupSelectList, Model.DersGrupSelectList.Any(), optionLabel: Resources.LangResources.DersGruplar)
+        @Html.FormDropDownListFor(x => x.Model.SinavDersler[i].DersId, Model.DersSelectList, Model.DersSelectList.Any(), optionLabel: Resources.LangResources.Dersler)
+
+        @Html.HiddenFor(x => x.Model.SinavDersler[i].SinavDersId)
+        @Html.HiddenFor(x => x.Model.SinavDersler[i].SinavId)
+    }
+}
