@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\WorkSpaces\dyness.com.tr\Dyness.Crm\WebUI\bin\Release\Publish</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\DELL\Source\Repos\dynessProject\Dyness.Crm\WebUI\bin\Release\Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_GlobalResources/LangResources.resx">
@@ -2722,10 +2722,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:21:35</publishTime>
     </File>
     <File Include="bin/WebUI.dll">
-      <publishTime>11/05/2019 19:11:33</publishTime>
+      <publishTime>11/05/2019 19:37:22</publishTime>
     </File>
     <File Include="bin/WebUI.pdb">
-      <publishTime>11/05/2019 19:11:33</publishTime>
+      <publishTime>11/05/2019 19:37:22</publishTime>
     </File>
     <File Include="Dosya/Makbuz/MakbuzKontrol.txt">
       <publishTime>10/02/2019 10:29:15</publishTime>
@@ -3148,7 +3148,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:22:10</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/05/2019 19:11:33</publishTime>
+      <publishTime>11/05/2019 19:37:24</publishTime>
     </File>
   </ItemGroup>
 </Project>
