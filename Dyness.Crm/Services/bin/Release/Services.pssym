@@ -1,64 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="4100" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Core]Core.Aspects.Postsharp.CacheAspects.CacheRemoveAspect">
-    <Instance Declaration="#2=M:[Services]Services.Concrete.IlceManager::Add(Entities.Concrete.Ilce)" Id="85edfee1ad1d86bf">
+    <Instance Declaration="#2=M:[Services]Services.Concrete.IlceManager::Add(Entities.Concrete.Ilce)" Id="85edfee1ef3df4a1">
       <Target>
         <JoinPoint Advising="#1" Description="#3=Wrapped by advice(s) OnEntry, OnSuccess, OnException, OnExit" Ordinal="0" />
       </Target>
     </Instance>
-    <Instance Declaration="#4=M:[Services]Services.Concrete.IlceManager::Update(Entities.Concrete.Ilce)" Id="85edfee199eebd8c">
+    <Instance Declaration="#4=M:[Services]Services.Concrete.IlceManager::Update(Entities.Concrete.Ilce)" Id="85edfee113acce41">
       <Target>
         <JoinPoint Advising="#1" Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=M:[Services]Services.Concrete.SehirManager::Add(Entities.Concrete.Sehir)" Id="85edfee15711108e">
+    <Instance Declaration="#5=M:[Services]Services.Concrete.SehirManager::Add(Entities.Concrete.Sehir)" Id="85edfee171535a24">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="3" />
       </Target>
     </Instance>
-    <Instance Declaration="#6=M:[Services]Services.Concrete.SehirManager::Update(Entities.Concrete.Sehir)" Id="85edfee10691d9a5">
+    <Instance Declaration="#6=M:[Services]Services.Concrete.SehirManager::Update(Entities.Concrete.Sehir)" Id="85edfee118e4880e">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="4" />
       </Target>
     </Instance>
-    <Instance Declaration="#7=M:[Services]Services.Concrete.TransferTipManager::Add(Entities.Concrete.TransferTip)" Id="85edfee1ea34b40e">
+    <Instance Declaration="#7=M:[Services]Services.Concrete.TransferTipManager::Add(Entities.Concrete.TransferTip)" Id="85edfee1bef97f2d">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="6" />
       </Target>
     </Instance>
-    <Instance Declaration="#8=M:[Services]Services.Concrete.TransferTipManager::Update(Entities.Concrete.TransferTip)" Id="85edfee1145818d7">
+    <Instance Declaration="#8=M:[Services]Services.Concrete.TransferTipManager::Update(Entities.Concrete.TransferTip)" Id="85edfee125602c00">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="7" />
       </Target>
     </Instance>
-    <Instance Declaration="#9=M:[Services]Services.Concrete.UlkeManager::Add(Entities.Concrete.Ulke)" Id="85edfee1e67f7671">
+    <Instance Declaration="#9=M:[Services]Services.Concrete.UlkeManager::Add(Entities.Concrete.Ulke)" Id="85edfee1ff11a5c5">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="9" />
       </Target>
     </Instance>
-    <Instance Declaration="#10=M:[Services]Services.Concrete.UlkeManager::Update(Entities.Concrete.Ulke)" Id="85edfee15911bad3">
+    <Instance Declaration="#10=M:[Services]Services.Concrete.UlkeManager::Update(Entities.Concrete.Ulke)" Id="85edfee1e153bb29">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="10" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#11=T:[Core]Core.Aspects.Postsharp.CacheAspects.CacheAspect">
-    <Instance Declaration="#12=M:[Services]Services.Concrete.IlceManager::List(System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Ilce,System.Boolean}}, System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Ilce,System.Object}}[])" Id="85edfee19ffa022e">
+    <Instance Declaration="#12=M:[Services]Services.Concrete.IlceManager::List(System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Ilce,System.Boolean}}, System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Ilce,System.Object}}[])" Id="85edfee10aa25d7f">
       <Target>
         <JoinPoint Advising="#11" Description="#13=Intercepted by OnInvoke" Ordinal="2" />
       </Target>
     </Instance>
-    <Instance Declaration="#14=M:[Services]Services.Concrete.SehirManager::List(System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Sehir,System.Boolean}}, System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Sehir,System.Object}}[])" Id="85edfee1467ba658">
+    <Instance Declaration="#14=M:[Services]Services.Concrete.SehirManager::List(System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Sehir,System.Boolean}}, System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Sehir,System.Object}}[])" Id="85edfee191f328ae">
       <Target>
         <JoinPoint Advising="#11" Description="#13" Ordinal="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#15=M:[Services]Services.Concrete.TransferTipManager::List(System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.TransferTip,System.Boolean}}, System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.TransferTip,System.Object}}[])" Id="85edfee1014f91d3">
+    <Instance Declaration="#15=M:[Services]Services.Concrete.TransferTipManager::List(System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.TransferTip,System.Boolean}}, System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.TransferTip,System.Object}}[])" Id="85edfee1210ee59c">
       <Target>
         <JoinPoint Advising="#11" Description="#13" Ordinal="8" />
       </Target>
     </Instance>
-    <Instance Declaration="#16=M:[Services]Services.Concrete.UlkeManager::List(System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Ulke,System.Boolean}}, System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Ulke,System.Object}}[])" Id="85edfee100a8d481">
+    <Instance Declaration="#16=M:[Services]Services.Concrete.UlkeManager::List(System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Ulke,System.Boolean}}, System.Linq.Expressions.Expression{[mscorlib]System.Func{[Entities]Entities.Concrete.Ulke,System.Object}}[])" Id="85edfee18aaf7e71">
       <Target>
         <JoinPoint Advising="#11" Description="#13" Ordinal="11" />
       </Target>

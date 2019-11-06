@@ -88,10 +88,10 @@ namespace WebUI
                 {
                     try
                     {
-                      // if (Identity.SonGirisTarihi != null && Identity.CevrimIciDakika % 17 > 15)
-                      // {
-                      //    
-                      // }
+                        // if (Identity.SonGirisTarihi != null && Identity.CevrimIciDakika % 17 > 15)
+                        // {
+                        //    
+                        // }
 
                         string kullaniciVeri = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
                         var roleDatas = kullaniciVeri.Split('|');
@@ -112,36 +112,36 @@ namespace WebUI
                         HttpContext.Current.User = identity;
                         Thread.CurrentPrincipal = identity;
                     }
-                    catch //(Exception exc)
+                    catch (Exception exc)
                     {
-                        //  string logPath = Server.MapPath(string.Format("~/logs/kysLoginLogs/{0}/", DateTime.Now.ToString("dd-MM-yyyy")));
-                        //  if (!Directory.Exists(logPath)) Directory.CreateDirectory(logPath);
-                        //  var filePath = string.Format("{0}{1}.txt", logPath, DateTime.Now.ToString("HH-mm-ss"));
-                        //  var loginParameters = "";
-                        //  if (Thread.CurrentPrincipal.Identity != null && Thread.CurrentPrincipal.Identity.IsAuthenticated)
-                        //  {
-                        //      loginParameters = Thread.CurrentPrincipal.Identity.Name;
-                        //  }
-                        //
-                        //  string exceptionMessage = "Login Parameters: " + loginParameters + Environment.NewLine + exc.Message + Environment.NewLine + Environment.NewLine + exc.StackTrace;
-                        //  exceptionMessage = exceptionMessage.Replace("\n", Environment.NewLine);
-                        //  exceptionMessage = exceptionMessage.Replace("\t", "    ");
-                        //
-                        //  if (exc.InnerException != null)
-                        //  {
-                        //  innerExcLoop:
-                        //      var innerException = exc.InnerException;
-                        //      var innerExceptionMessage = innerException.Message;
-                        //      exceptionMessage += innerExceptionMessage.Replace("\nInner Exception\n", Environment.NewLine);
-                        //      exceptionMessage += innerExceptionMessage.Replace("\t", "    ");
-                        //      if (innerException.InnerException != null)
-                        //      {
-                        //          var tempInner = innerException.InnerException;
-                        //          innerException = tempInner;
-                        //          goto innerExcLoop;
-                        //      }
-                        //  }
-                        //  File.WriteAllText(filePath, exceptionMessage, Encoding.UTF8);
+                        string logPath = Server.MapPath(string.Format("~/logs/kysLoginLogs/{0}/", DateTime.Now.ToString("dd-MM-yyyy")));
+                        if (!Directory.Exists(logPath)) Directory.CreateDirectory(logPath);
+                        var filePath = string.Format("{0}{1}.txt", logPath, DateTime.Now.ToString("HH-mm-ss"));
+                        var loginParameters = "";
+                        if (Thread.CurrentPrincipal.Identity != null && Thread.CurrentPrincipal.Identity.IsAuthenticated)
+                        {
+                            loginParameters = Thread.CurrentPrincipal.Identity.Name;
+                        }
+
+                        string exceptionMessage = "Login Parameters: " + loginParameters + Environment.NewLine + exc.Message + Environment.NewLine + Environment.NewLine + exc.StackTrace;
+                        exceptionMessage = exceptionMessage.Replace("\n", Environment.NewLine);
+                        exceptionMessage = exceptionMessage.Replace("\t", "    ");
+
+                        if (exc.InnerException != null)
+                        {
+                        innerExcLoop:
+                            var innerException = exc.InnerException;
+                            var innerExceptionMessage = innerException.Message;
+                            exceptionMessage += innerExceptionMessage.Replace("\nInner Exception\n", Environment.NewLine);
+                            exceptionMessage += innerExceptionMessage.Replace("\t", "    ");
+                            if (innerException.InnerException != null)
+                            {
+                                var tempInner = innerException.InnerException;
+                                innerException = tempInner;
+                                goto innerExcLoop;
+                            }
+                        }
+                        File.WriteAllText(filePath, exceptionMessage, Encoding.UTF8);
                     }
                 }
             }

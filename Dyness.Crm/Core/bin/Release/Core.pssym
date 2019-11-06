@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="783" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+<Symbols LinesOfCode="784" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Core]Core.Aspects.Postsharp.LogAspects.LogAspect">
-    <Instance Declaration="#2=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Add(TEntity)" Id="76e125f45017a2e9">
+    <Instance Declaration="#2=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Add(TEntity)" Id="76e125f46009e24e">
       <Target>
         <JoinPoint Description="#3=Wrapped by advice(s) OnEntry, OnSuccess, OnException, OnExit" Ordinal="0" />
       </Target>
     </Instance>
-    <Instance Declaration="#4=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::AddOrUpdate(TEntity)" Id="76e125f4e2cd290f">
+    <Instance Declaration="#4=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::AddOrUpdate(TEntity)" Id="76e125f4ccb8a13b">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Update(TEntity)" Id="76e125f4eda02363">
+    <Instance Declaration="#5=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Update(TEntity)" Id="76e125f4f0026804">
       <Target>
         <JoinPoint Description="#3" Ordinal="2" />
       </Target>
     </Instance>
-    <Instance Declaration="#6=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Delete(TEntity)" Id="76e125f411ceb8f4">
+    <Instance Declaration="#6=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Delete(TEntity)" Id="76e125f40e82a766">
       <Target>
         <JoinPoint Description="#3" Ordinal="3" />
       </Target>
     </Instance>
-    <Instance Declaration="#7=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::DeleteById(System.Int32)" Id="76e125f49d5b44a4">
+    <Instance Declaration="#7=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::DeleteById(System.Int32)" Id="76e125f4ef7f3e34">
       <Target>
         <JoinPoint Description="#3" Ordinal="4" />
       </Target>

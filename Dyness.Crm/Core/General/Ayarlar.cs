@@ -81,7 +81,7 @@ namespace Core.General
 
     public static class AyarlarService
     {
-        static readonly string defaultPath = ConfigurationManager.AppSettings["AyarlarYol"];
+        static string defaultPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\WebUI\\TumAyarlar\\Ayarlar"));
 
         static Ayarlar _ayarlar;
 
@@ -89,6 +89,8 @@ namespace Core.General
         {
             try
             {
+        
+
                 string ayarlarString;
 
                 using (TextReader reader = File.OpenText(defaultPath))
@@ -100,7 +102,7 @@ namespace Core.General
 
                 return _ayarlar;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new Ayarlar();
             }
@@ -140,7 +142,7 @@ namespace Core.General
 
     public static class PersonelSubeYetkiService
     {
-        static readonly string DefaultPath = ConfigurationManager.AppSettings["PersonelSubeYetkiYol"];
+        static  string DefaultPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\WebUI\\TumAyarlar\\PersonelSubeYetki"));
 
         static List<PersonelSubeYetkiDto> _personelSubeYetkiler;
 

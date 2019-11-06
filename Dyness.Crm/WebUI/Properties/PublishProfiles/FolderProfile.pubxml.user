@@ -6,14 +6,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\DELL\Source\Repos\dynessProject\Dyness.Crm\WebUI\bin\Release\Publish</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\DELL\source\repos\dynessProject\Dyness.Crm\WebUI\bin\Release\Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_GlobalResources/LangResources.resx">
       <publishTime>10/14/2019 10:40:01</publishTime>
     </File>
     <File Include="assets/css/bootstrap.css">
-      <publishTime>10/02/2019 10:30:04</publishTime>
+      <publishTime>02/10/2019 10:30:04</publishTime>
     </File>
     <File Include="assets/css/bootstrap_limitless.css">
       <publishTime>08/21/2019 12:21:34</publishTime>
@@ -34,10 +34,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:21:35</publishTime>
     </File>
     <File Include="assets/css/layout.css">
-      <publishTime>10/04/2019 09:34:19</publishTime>
+      <publishTime>04/10/2019 09:34:19</publishTime>
     </File>
     <File Include="assets/css/OgrenciSinavKontrol.css">
-      <publishTime>09/20/2019 09:26:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/css/Puantaj.css">
       <publishTime>09/20/2019 09:27:38</publishTime>
@@ -1543,334 +1543,334 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:21:59</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_ca.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_cs.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_da.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_de.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_el.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_es.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_es_AR.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_es_PE.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_et.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_eu.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_fa.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_fi.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_fr.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_ge.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_gl.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_he.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_hr.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_hu.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_hy_AM.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_id.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_is.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_it.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_ja.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_ka.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_kk.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_ko.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_lt.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_lv.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_mk.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_my.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_nl.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_no.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_pl.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_pt_BR.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_pt_PT.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_ro.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_ru.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_sd.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_si.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_sk.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_sl.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_sr.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_sr_lat.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_sv.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_th.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_tj.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_tr.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_uk.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_ur.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_vi.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_zh.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/messages_zh_TW.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/methods_de.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/methods_es_CL.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/methods_fi.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/methods_nl.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/localization/methods_pt.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/validation/validate.min.js">
       <publishTime>08/21/2019 12:21:59</publishTime>
     </File>
     <File Include="assets/global/js/plugins/forms/wizards/steps.min.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/jquery mask/jquery.mask.min.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/loaders/blockui.min.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/loaders/pace.min.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/loaders/progressbar.min.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/anytime.min.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker.css">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker.css.map">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css.map">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker.standalone.min.css">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker3.css">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker3.css.map">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css.map">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/js/bootstrap-datepicker.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/js/bootstrap-datepicker.min.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/bootstrap-datepicker/locales/bootstrap-datepicker.tr.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-de.js">
       <publishTime>08/21/2019 12:22:01</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-dk.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-es.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-fa.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-fi.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-fr.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-he.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-it.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-ja.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-nl.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-pt-br.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-ru.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-sv.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-tr.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/i18n/jquery.spectrum-zh-cn.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/color/spectrum.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/daterangepicker.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/location/autocomplete_addresspicker.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/location/location.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/location/typeahead_addresspicker.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/legacy.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/picker.date.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/picker.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/picker.time.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/translations/ar.js">
       <publishTime>08/21/2019 12:22:01</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/translations/bg_BG.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/translations/bs_BA.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/translations/ca_ES.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/translations/cs_CZ.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/translations/da_DK.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/translations/de_DE.js">
-      <publishTime>08/21/2019 12:22:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="assets/global/js/plugins/pickers/pickadate/translations/el_GR.js">
       <publishTime>08/21/2019 12:22:01</publishTime>
@@ -2389,7 +2389,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:22:05</publishTime>
     </File>
     <File Include="assets/js/HesapHareketDuzenle.js">
-      <publishTime>10/01/2019 14:47:17</publishTime>
+      <publishTime>01/10/2019 14:47:17</publishTime>
     </File>
     <File Include="assets/js/HesapHareketListele.js">
       <publishTime>10/11/2019 15:22:48</publishTime>
@@ -2398,19 +2398,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/13/2019 08:53:37</publishTime>
     </File>
     <File Include="assets/js/local-dataTable.js">
-      <publishTime>10/04/2019 09:25:26</publishTime>
+      <publishTime>04/10/2019 09:25:26</publishTime>
     </File>
     <File Include="assets/js/OgrenciDetay.js">
-      <publishTime>09/05/2019 17:42:23</publishTime>
+      <publishTime>05/09/2019 17:42:23</publishTime>
     </File>
     <File Include="assets/js/OgrenciSozlesmeDuzenle.js">
-      <publishTime>09/05/2019 16:18:12</publishTime>
+      <publishTime>05/09/2019 16:18:12</publishTime>
     </File>
     <File Include="assets/js/PersonelDuzenle.js">
       <publishTime>08/21/2019 12:22:05</publishTime>
     </File>
     <File Include="assets/js/SinavDetay.js">
-      <publishTime>09/08/2019 11:08:24</publishTime>
+      <publishTime>08/09/2019 11:08:24</publishTime>
     </File>
     <File Include="assets/js/SmsDuzenle.js">
       <publishTime>09/24/2019 17:02:18</publishTime>
@@ -2431,10 +2431,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:22:05</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>09/10/2013 16:29:20</publishTime>
+      <publishTime>10/09/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>09/10/2013 16:29:20</publishTime>
+      <publishTime>10/09/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/Castle.Core.dll">
       <publishTime>08/21/2019 12:21:01</publishTime>
@@ -2446,37 +2446,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/18/2018 08:56:38</publishTime>
     </File>
     <File Include="bin/Core.dll">
-      <publishTime>11/05/2019 19:11:02</publishTime>
+      <publishTime>11/06/2019 18:41:11</publishTime>
     </File>
     <File Include="bin/Core.dll.config">
-      <publishTime>08/21/2019 12:20:46</publishTime>
+      <publishTime>06/11/2019 14:53:53</publishTime>
     </File>
     <File Include="bin/Core.pdb">
-      <publishTime>11/05/2019 19:11:02</publishTime>
+      <publishTime>11/06/2019 18:41:11</publishTime>
     </File>
     <File Include="bin/Dapper.dll">
       <publishTime>08/21/2019 12:21:02</publishTime>
     </File>
     <File Include="bin/Data.dll">
-      <publishTime>11/05/2019 19:11:04</publishTime>
+      <publishTime>11/06/2019 18:41:13</publishTime>
     </File>
     <File Include="bin/Data.dll.config">
-      <publishTime>08/21/2019 12:20:47</publishTime>
+      <publishTime>06/11/2019 14:54:10</publishTime>
     </File>
     <File Include="bin/Data.pdb">
-      <publishTime>11/05/2019 19:11:04</publishTime>
+      <publishTime>11/06/2019 18:41:13</publishTime>
     </File>
     <File Include="bin/DocumentFormat.OpenXml.dll">
-      <publishTime>03/12/2019 23:55:14</publishTime>
+      <publishTime>12/03/2019 23:55:14</publishTime>
     </File>
     <File Include="bin/Entities.dll">
-      <publishTime>11/05/2019 19:11:02</publishTime>
+      <publishTime>11/06/2019 18:41:12</publishTime>
     </File>
     <File Include="bin/Entities.dll.config">
-      <publishTime>08/21/2019 12:20:51</publishTime>
+      <publishTime>06/11/2019 14:54:01</publishTime>
     </File>
     <File Include="bin/Entities.pdb">
-      <publishTime>11/05/2019 19:11:02</publishTime>
+      <publishTime>11/06/2019 18:41:12</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>08/21/2019 12:21:03</publishTime>
@@ -2488,7 +2488,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/18/2019 11:49:26</publishTime>
     </File>
     <File Include="bin/FastMember.dll">
-      <publishTime>05/24/2019 13:38:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/GenericParsing.dll">
       <publishTime>07/15/2018 12:43:54</publishTime>
@@ -2518,7 +2518,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:21:27</publishTime>
     </File>
     <File Include="bin/Payu.Core.dll">
-      <publishTime>09/03/2018 10:46:33</publishTime>
+      <publishTime>03/09/2018 10:46:33</publishTime>
     </File>
     <File Include="bin/payulib.dll">
       <publishTime>08/23/2017 11:34:50</publishTime>
@@ -2680,19 +2680,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:21:24</publishTime>
     </File>
     <File Include="bin/Services.dll">
-      <publishTime>11/05/2019 19:11:05</publishTime>
+      <publishTime>11/06/2019 18:41:14</publishTime>
     </File>
     <File Include="bin/Services.dll.config">
-      <publishTime>10/11/2019 10:17:32</publishTime>
+      <publishTime>06/11/2019 14:54:17</publishTime>
     </File>
     <File Include="bin/Services.pdb">
-      <publishTime>11/05/2019 19:11:05</publishTime>
+      <publishTime>11/06/2019 18:41:14</publishTime>
     </File>
     <File Include="bin/Services.XmlSerializers.dll">
-      <publishTime>11/05/2019 19:11:05</publishTime>
+      <publishTime>11/06/2019 18:41:15</publishTime>
     </File>
     <File Include="bin/System.IO.FileSystem.Primitives.dll">
-      <publishTime>11/05/2016 04:56:08</publishTime>
+      <publishTime>05/11/2016 04:56:08</publishTime>
     </File>
     <File Include="bin/System.IO.Packaging.dll">
       <publishTime>05/15/2018 13:29:38</publishTime>
@@ -2722,94 +2722,94 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:21:35</publishTime>
     </File>
     <File Include="bin/WebUI.dll">
-      <publishTime>11/05/2019 19:37:22</publishTime>
+      <publishTime>11/06/2019 19:35:53</publishTime>
     </File>
     <File Include="bin/WebUI.pdb">
-      <publishTime>11/05/2019 19:37:22</publishTime>
+      <publishTime>11/06/2019 19:35:53</publishTime>
     </File>
     <File Include="Dosya/Makbuz/MakbuzKontrol.txt">
-      <publishTime>10/02/2019 10:29:15</publishTime>
+      <publishTime>06/11/2019 15:04:38</publishTime>
     </File>
     <File Include="Dosya/OgrenciSozlesmeDosya/dosya23-2.09.2019.xlsx">
-      <publishTime>09/02/2019 16:04:10</publishTime>
+      <publishTime>06/11/2019 15:04:38</publishTime>
     </File>
     <File Include="Dosya/Sinav/Kitapçık Cevap Anahtarı Şablonu.txt">
-      <publishTime>09/19/2019 13:28:40</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sinav/Konu dağılım şablonu.xlsx">
-      <publishTime>09/19/2019 13:47:31</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sinav/Örnek Kitapçık Cevap Anahtarı.txt">
-      <publishTime>09/19/2019 13:28:14</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sinav/Örnek Kitapçık Konu Dağılımı.xlsx">
-      <publishTime>09/12/2019 16:12:40</publishTime>
+      <publishTime>11/06/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019123144381.txt">
-      <publishTime>09/11/2019 12:31:44</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019123144388.pdf">
-      <publishTime>09/11/2019 12:31:44</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019123149277.pdf">
-      <publishTime>09/11/2019 12:31:49</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019134254167.txt">
-      <publishTime>09/11/2019 13:43:07</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019134307601.pdf">
-      <publishTime>09/11/2019 13:43:08</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019135533208.txt">
-      <publishTime>09/11/2019 13:55:34</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019135534764.csv">
-      <publishTime>09/11/2019 13:55:36</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019135911259.txt">
-      <publishTime>09/11/2019 13:59:11</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019135911267.pdf">
-      <publishTime>09/11/2019 13:59:11</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019140021985.txt">
-      <publishTime>09/11/2019 14:00:21</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/122/11092019140022003.pdf">
-      <publishTime>09/11/2019 14:00:22</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/858/11092019114247124.csv">
-      <publishTime>09/11/2019 11:42:47</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/858/11092019114247140.jpeg">
-      <publishTime>09/11/2019 11:42:47</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/858/11092019114247144.jpeg">
-      <publishTime>09/11/2019 11:42:47</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/858/11092019122854732.txt">
-      <publishTime>09/11/2019 12:28:54</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/858/11092019122854734.pdf">
-      <publishTime>09/11/2019 12:28:54</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/858/11092019122913027.jpeg">
-      <publishTime>09/11/2019 12:29:13</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/899/11092019114155343.jpeg">
-      <publishTime>09/11/2019 11:41:55</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/899/11092019114155352.jpeg">
-      <publishTime>09/11/2019 11:41:55</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/899/11092019132654740.txt">
-      <publishTime>09/11/2019 13:27:02</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/899/11092019132851658.pdf">
-      <publishTime>09/11/2019 13:28:56</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Dosya/Sms/899/11092019132909541.txt">
-      <publishTime>09/11/2019 13:29:12</publishTime>
+      <publishTime>06/11/2019 15:04:39</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>08/21/2019 12:21:34</publishTime>
@@ -2817,11 +2817,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Index.html">
       <publishTime>10/14/2019 18:04:35</publishTime>
     </File>
+    <File Include="Sinav/45/A/cevapAnahtar.txt">
+      <publishTime>06/11/2019 15:04:54</publishTime>
+    </File>
+    <File Include="Sinav/45/B/cevapAnahtar.txt">
+      <publishTime>06/11/2019 15:04:54</publishTime>
+    </File>
     <File Include="TumAyarlar/Ayarlar">
-      <publishTime>09/26/2019 17:33:16</publishTime>
+      <publishTime>06/11/2019 15:04:54</publishTime>
     </File>
     <File Include="VeriGuncelle/Örnek Veri Aktarım.xlsx">
-      <publishTime>09/02/2019 17:47:48</publishTime>
+      <publishTime>06/11/2019 15:04:55</publishTime>
     </File>
     <File Include="Views/Banka/Duzenle.cshtml">
       <publishTime>08/21/2019 12:22:11</publishTime>
@@ -2845,7 +2851,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:22:11</publishTime>
     </File>
     <File Include="Views/Derslik/Duzenle.cshtml">
-      <publishTime>10/03/2019 11:46:04</publishTime>
+      <publishTime>03/10/2019 11:46:04</publishTime>
     </File>
     <File Include="Views/Error/Hata.cshtml">
       <publishTime>08/21/2019 12:22:11</publishTime>
@@ -2857,16 +2863,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:22:11</publishTime>
     </File>
     <File Include="Views/EskiKayit/Detay.cshtml">
-      <publishTime>09/04/2019 15:23:57</publishTime>
+      <publishTime>04/09/2019 15:23:57</publishTime>
     </File>
     <File Include="Views/EskiKayit/Duzenle.cshtml">
-      <publishTime>09/04/2019 15:43:48</publishTime>
+      <publishTime>04/09/2019 15:43:48</publishTime>
     </File>
     <File Include="Views/EskiKayit/EskiKayitVeriGuncelle.cshtml">
-      <publishTime>09/04/2019 15:54:58</publishTime>
+      <publishTime>04/09/2019 15:54:58</publishTime>
     </File>
     <File Include="Views/EskiKayit/Listele.cshtml">
-      <publishTime>09/05/2019 12:22:03</publishTime>
+      <publishTime>05/09/2019 12:22:03</publishTime>
     </File>
     <File Include="Views/Etkinlik/Duzenle.cshtml">
       <publishTime>08/21/2019 12:22:11</publishTime>
@@ -2878,10 +2884,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/30/2019 10:30:31</publishTime>
     </File>
     <File Include="Views/Hesap/GelirHesapListele.cshtml">
-      <publishTime>10/01/2019 15:09:02</publishTime>
+      <publishTime>01/10/2019 15:09:02</publishTime>
     </File>
     <File Include="Views/Hesap/GiderHesapListele.cshtml">
-      <publishTime>10/01/2019 14:59:56</publishTime>
+      <publishTime>01/10/2019 14:59:56</publishTime>
     </File>
     <File Include="Views/Hesap/HesapListele.cshtml">
       <publishTime>09/30/2019 09:56:46</publishTime>
@@ -2890,16 +2896,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/30/2019 11:08:26</publishTime>
     </File>
     <File Include="Views/Hesap/OgrenciHesapListele.cshtml">
-      <publishTime>10/02/2019 10:43:00</publishTime>
+      <publishTime>02/10/2019 10:43:00</publishTime>
     </File>
     <File Include="Views/Hesap/PersonelHesapListele.cshtml">
-      <publishTime>10/01/2019 15:43:30</publishTime>
+      <publishTime>01/10/2019 15:43:30</publishTime>
     </File>
     <File Include="Views/Hesap/SubeHesapListele.cshtml">
-      <publishTime>10/01/2019 11:49:35</publishTime>
+      <publishTime>01/10/2019 11:49:35</publishTime>
     </File>
     <File Include="Views/HesapHareket/Duzenle.cshtml">
-      <publishTime>10/23/2019 17:28:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/HesapHareket/Listele.cshtml">
       <publishTime>10/23/2019 17:30:04</publishTime>
@@ -2950,22 +2956,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/16/2019 13:34:15</publishTime>
     </File>
     <File Include="Views/Ogrenci/MakbuzYazdir.cshtml">
-      <publishTime>09/03/2019 18:25:06</publishTime>
+      <publishTime>03/09/2019 18:25:06</publishTime>
     </File>
     <File Include="Views/OgrenciBilgi/EgitimListele.cshtml">
       <publishTime>10/10/2019 13:32:17</publishTime>
     </File>
     <File Include="Views/OgrenciBilgi/Giris.cshtml">
-      <publishTime>10/09/2019 09:17:15</publishTime>
+      <publishTime>09/10/2019 09:17:15</publishTime>
     </File>
     <File Include="Views/OgrenciBilgi/Index.cshtml">
-      <publishTime>10/09/2019 11:33:12</publishTime>
+      <publishTime>09/10/2019 11:33:12</publishTime>
     </File>
     <File Include="Views/OgrenciBilgi/OgrenciDetay.cshtml">
-      <publishTime>10/09/2019 13:42:38</publishTime>
+      <publishTime>09/10/2019 13:42:38</publishTime>
     </File>
     <File Include="Views/OgrenciBilgi/SifreDegistir.cshtml">
-      <publishTime>10/09/2019 10:40:20</publishTime>
+      <publishTime>09/10/2019 10:40:20</publishTime>
     </File>
     <File Include="Views/OgrenciSinavKontrol/Detay.cshtml">
       <publishTime>09/23/2019 12:10:41</publishTime>
@@ -2983,10 +2989,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/28/2019 15:41:54</publishTime>
     </File>
     <File Include="Views/OgrenciSozlesme/OgrenciSozlesmeVeriGuncelle.cshtml">
-      <publishTime>09/04/2019 13:44:25</publishTime>
+      <publishTime>04/09/2019 13:44:25</publishTime>
     </File>
     <File Include="Views/OgrenciSozlesme/SozlesmeYazdir.cshtml">
-      <publishTime>09/03/2019 17:05:03</publishTime>
+      <publishTime>03/09/2019 17:05:03</publishTime>
     </File>
     <File Include="Views/OptikForm/Duzenle.cshtml">
       <publishTime>09/19/2019 15:30:50</publishTime>
@@ -2998,7 +3004,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:22:12</publishTime>
     </File>
     <File Include="Views/Personel/Listele.cshtml">
-      <publishTime>10/09/2019 13:44:17</publishTime>
+      <publishTime>09/10/2019 13:44:17</publishTime>
     </File>
     <File Include="Views/PersonelGrup/Duzenle.cshtml">
       <publishTime>08/21/2019 12:22:12</publishTime>
@@ -3034,10 +3040,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2019 20:43:45</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutOgrenciBilgi.cshtml">
-      <publishTime>10/09/2019 13:18:24</publishTime>
+      <publishTime>09/10/2019 13:18:24</publishTime>
     </File>
     <File Include="Views/Shared/_OgrenciHesapHareketDetayView.cshtml">
-      <publishTime>10/09/2019 13:34:49</publishTime>
+      <publishTime>09/10/2019 13:34:49</publishTime>
     </File>
     <File Include="Views/Shared/_OgrenciSozlesmeGuncelleView.cshtml">
       <publishTime>09/20/2019 09:17:36</publishTime>
@@ -3070,13 +3076,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/10/2019 16:35:14</publishTime>
     </File>
     <File Include="Views/Sinav/Duzenle.cshtml">
-      <publishTime>10/03/2019 09:40:14</publishTime>
+      <publishTime>03/10/2019 09:40:14</publishTime>
     </File>
     <File Include="Views/Sinav/Listele.cshtml">
-      <publishTime>09/05/2019 12:22:53</publishTime>
+      <publishTime>05/09/2019 12:22:53</publishTime>
     </File>
     <File Include="Views/Sinav/SinavKitapcikDuzenle.cshtml">
-      <publishTime>10/02/2019 16:08:16</publishTime>
+      <publishTime>02/10/2019 16:08:16</publishTime>
     </File>
     <File Include="Views/SinavTur/Duzenle.cshtml">
       <publishTime>09/19/2019 14:11:24</publishTime>
@@ -3127,13 +3133,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/10/2019 13:44:35</publishTime>
     </File>
     <File Include="Views/Video/Listele.cshtml">
-      <publishTime>10/08/2019 15:17:39</publishTime>
+      <publishTime>08/10/2019 15:17:39</publishTime>
     </File>
     <File Include="Views/VideoKategori/Duzenle.cshtml">
-      <publishTime>10/04/2019 13:38:51</publishTime>
+      <publishTime>04/10/2019 13:38:51</publishTime>
     </File>
     <File Include="Views/VideoKategori/Listele.cshtml">
-      <publishTime>10/04/2019 13:48:28</publishTime>
+      <publishTime>04/10/2019 13:48:28</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>08/21/2019 12:22:11</publishTime>
@@ -3148,7 +3154,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2019 12:22:10</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/05/2019 19:37:24</publishTime>
+      <publishTime>11/06/2019 18:41:17</publishTime>
     </File>
   </ItemGroup>
 </Project>

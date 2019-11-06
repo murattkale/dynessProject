@@ -25,7 +25,9 @@ namespace Core.CrossCuttingConcerns.Logging.Log4net.Layouts
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
 
-            string logPath = $"{ConfigurationManager.AppSettings["LogYol"]}{(json.IndexOf("EFEntityRepository") != -1 ? "context" : "global")}\\{loggingEvent.Level}\\{DateTime.Now.ToString("dd-MM-yyyy")}\\";
+            string DefaultPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\WebUI\\logs"));
+
+            string logPath = $"{DefaultPath}{(json.IndexOf("EFEntityRepository") != -1 ? "context" : "global")}\\{loggingEvent.Level}\\{DateTime.Now.ToString("dd-MM-yyyy")}\\";
 
             if (!Directory.Exists(logPath))
                 Directory.CreateDirectory(logPath);
@@ -35,7 +37,7 @@ namespace Core.CrossCuttingConcerns.Logging.Log4net.Layouts
             var serializableLogEvents = new List<SerializableLogEvent>();
             var allJsonString = string.Empty;
 
-            if(File.Exists(file))
+            if (File.Exists(file))
             {
                 using (TextReader reader = File.OpenText(file))
                 {

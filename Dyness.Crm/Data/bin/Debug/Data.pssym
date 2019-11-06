@@ -1,127 +1,127 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="3452" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Core]Core.Aspects.Postsharp.LogAspects.LogAspect">
-    <Instance Declaration="#2=M:[Data]Data.Concrete.EntityFramework.EfBankaHesapData::UpdateWithNested(Entities.Concrete.BankaHesap)" Id="1f39bf1ab25290b2">
+    <Instance Declaration="#2=M:[Data]Data.Concrete.EntityFramework.EfBankaHesapData::UpdateWithNested(Entities.Concrete.BankaHesap)" Id="1f39bf1ae9ffb24a">
       <Target>
         <JoinPoint Advising="#1" Description="#3=Wrapped by advice(s) OnEntry, OnSuccess, OnException, OnExit" Ordinal="0" />
       </Target>
     </Instance>
-    <Instance Declaration="#4=M:[Data]Data.Concrete.EntityFramework.EfDersData::AddWithNestedLists(Entities.Concrete.Ders, System.Collections.Generic.List{[Entities]Entities.Concrete.BransDers})" Id="1f39bf1ae8bdaf9e">
+    <Instance Declaration="#4=M:[Data]Data.Concrete.EntityFramework.EfDersData::AddWithNestedLists(Entities.Concrete.Ders, System.Collections.Generic.List{[Entities]Entities.Concrete.BransDers})" Id="1f39bf1a13dd000b">
       <Target>
         <JoinPoint Advising="#1" Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=M:[Data]Data.Concrete.EntityFramework.EfDersData::UpdateWithNestedLists(Entities.Concrete.Ders, System.Collections.Generic.List{[Entities]Entities.Concrete.BransDers})" Id="1f39bf1a8ec79ad4">
+    <Instance Declaration="#5=M:[Data]Data.Concrete.EntityFramework.EfDersData::UpdateWithNestedLists(Entities.Concrete.Ders, System.Collections.Generic.List{[Entities]Entities.Concrete.BransDers})" Id="1f39bf1af3fb3f38">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="2" />
       </Target>
     </Instance>
-    <Instance Declaration="#6=M:[Data]Data.Concrete.EntityFramework.EfHesapHareketData::AddUpdateLists(Entities.Concrete.OgrenciSozlesme, System.Collections.Generic.List{[Entities]Entities.Concrete.HesapHareket}, System.Collections.Generic.List{[Entities]Entities.Concrete.HesapHareket})" Id="1f39bf1a213be5dd">
+    <Instance Declaration="#6=M:[Data]Data.Concrete.EntityFramework.EfHesapHareketData::AddUpdateLists(Entities.Concrete.OgrenciSozlesme, System.Collections.Generic.List{[Entities]Entities.Concrete.HesapHareket}, System.Collections.Generic.List{[Entities]Entities.Concrete.HesapHareket})" Id="1f39bf1ab5e96315">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="3" />
       </Target>
     </Instance>
-    <Instance Declaration="#7=M:[Data]Data.Concrete.EntityFramework.EfHesapHareketData::UpdateWithOgrenciSozlesme(Entities.Concrete.HesapHareket, Entities.Concrete.OgrenciSozlesme)" Id="1f39bf1a638d5f5c">
+    <Instance Declaration="#7=M:[Data]Data.Concrete.EntityFramework.EfHesapHareketData::UpdateWithOgrenciSozlesme(Entities.Concrete.HesapHareket, Entities.Concrete.OgrenciSozlesme)" Id="1f39bf1a03c9f9e4">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="4" />
       </Target>
     </Instance>
-    <Instance Declaration="#8=M:[Data]Data.Concrete.EntityFramework.EfOgrenciData::UpdateWithNested(Entities.Concrete.Ogrenci)" Id="1f39bf1a21b03f23">
+    <Instance Declaration="#8=M:[Data]Data.Concrete.EntityFramework.EfOgrenciData::UpdateWithNested(Entities.Concrete.Ogrenci)" Id="1f39bf1aadab45bd">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#9=M:[Data]Data.Concrete.EntityFramework.EfOgrenciSinavKontrolData::UpdateWithNested(Entities.Concrete.OgrenciSinavKontrol)" Id="1f39bf1afd3fc537">
+    <Instance Declaration="#9=M:[Data]Data.Concrete.EntityFramework.EfOgrenciSinavKontrolData::UpdateWithNested(Entities.Concrete.OgrenciSinavKontrol)" Id="1f39bf1ae90f03a1">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="6" />
       </Target>
     </Instance>
-    <Instance Declaration="#10=M:[Data]Data.Concrete.EntityFramework.EfOgrenciSozlesmeData::AddWithNestedLists(Entities.Concrete.OgrenciSozlesme, Entities.Concrete.Hesap)" Id="1f39bf1a2a49cedf">
+    <Instance Declaration="#10=M:[Data]Data.Concrete.EntityFramework.EfOgrenciSozlesmeData::AddWithNestedLists(Entities.Concrete.OgrenciSozlesme, Entities.Concrete.Hesap)" Id="1f39bf1a16c4cc6a">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="7" />
       </Target>
     </Instance>
-    <Instance Declaration="#11=M:[Data]Data.Concrete.EntityFramework.EfOgrenciSozlesmeData::UpdatedWithNestedLists(Entities.Concrete.OgrenciSozlesme, System.Collections.Generic.List{[Entities]Entities.Concrete.OgrenciSozlesmeHesapHareket}, System.Collections.Generic.List{[Entities]Entities.Concrete.OgrenciSozlesmeHesapHareket})" Id="1f39bf1a50e96e9d">
+    <Instance Declaration="#11=M:[Data]Data.Concrete.EntityFramework.EfOgrenciSozlesmeData::UpdatedWithNestedLists(Entities.Concrete.OgrenciSozlesme, System.Collections.Generic.List{[Entities]Entities.Concrete.OgrenciSozlesmeHesapHareket}, System.Collections.Generic.List{[Entities]Entities.Concrete.OgrenciSozlesmeHesapHareket})" Id="1f39bf1aaf9fdceb">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="8" />
       </Target>
     </Instance>
-    <Instance Declaration="#12=M:[Data]Data.Concrete.EntityFramework.EfOgrenciSozlesmeData::UpdateList(System.Collections.Generic.List{[Entities]Entities.Concrete.OgrenciSozlesme})" Id="1f39bf1a283ab54f">
+    <Instance Declaration="#12=M:[Data]Data.Concrete.EntityFramework.EfOgrenciSozlesmeData::UpdateList(System.Collections.Generic.List{[Entities]Entities.Concrete.OgrenciSozlesme})" Id="1f39bf1a7124f3fb">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="9" />
       </Target>
     </Instance>
-    <Instance Declaration="#13=M:[Data]Data.Concrete.EntityFramework.EfOptikFormData::AddWithNestedLists(Entities.Concrete.OptikForm)" Id="1f39bf1a36c75964">
+    <Instance Declaration="#13=M:[Data]Data.Concrete.EntityFramework.EfOptikFormData::AddWithNestedLists(Entities.Concrete.OptikForm)" Id="1f39bf1a502752d4">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="10" />
       </Target>
     </Instance>
-    <Instance Declaration="#14=M:[Data]Data.Concrete.EntityFramework.EfOptikFormData::UpdateWithNestedLists(Entities.Concrete.OptikForm)" Id="1f39bf1aacc77819">
+    <Instance Declaration="#14=M:[Data]Data.Concrete.EntityFramework.EfOptikFormData::UpdateWithNestedLists(Entities.Concrete.OptikForm)" Id="1f39bf1a5b42e995">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="11" />
       </Target>
     </Instance>
-    <Instance Declaration="#15=M:[Data]Data.Concrete.EntityFramework.EfPersonelData::UpdateWithNestedLists(Entities.Concrete.Personel)" Id="1f39bf1a1a2bbd88">
+    <Instance Declaration="#15=M:[Data]Data.Concrete.EntityFramework.EfPersonelData::UpdateWithNestedLists(Entities.Concrete.Personel)" Id="1f39bf1a55910707">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="12" />
       </Target>
     </Instance>
-    <Instance Declaration="#16=M:[Data]Data.Concrete.EntityFramework.EfPersonelPuantajData::UpdateWithNestedLists(Entities.Concrete.PersonelPuantaj)" Id="1f39bf1aa4290e31">
+    <Instance Declaration="#16=M:[Data]Data.Concrete.EntityFramework.EfPersonelPuantajData::UpdateWithNestedLists(Entities.Concrete.PersonelPuantaj)" Id="1f39bf1a4038a973">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="13" />
       </Target>
     </Instance>
-    <Instance Declaration="#17=M:[Data]Data.Concrete.EntityFramework.EfSinavData::AddWithNestedLists(Entities.Concrete.Sinav)" Id="1f39bf1af98372d3">
+    <Instance Declaration="#17=M:[Data]Data.Concrete.EntityFramework.EfSinavData::AddWithNestedLists(Entities.Concrete.Sinav)" Id="1f39bf1a85e4b6d5">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="14" />
       </Target>
     </Instance>
-    <Instance Declaration="#18=M:[Data]Data.Concrete.EntityFramework.EfSinavData::UpdateWithNestedLists(Entities.Concrete.Sinav)" Id="1f39bf1a4ecc38c8">
+    <Instance Declaration="#18=M:[Data]Data.Concrete.EntityFramework.EfSinavData::UpdateWithNestedLists(Entities.Concrete.Sinav)" Id="1f39bf1a23d1a9cb">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="15" />
       </Target>
     </Instance>
-    <Instance Declaration="#19=M:[Data]Data.Concrete.EntityFramework.EfSinavKitapcikData::UpdateWithNested(Entities.Concrete.SinavKitapcik)" Id="1f39bf1a270cac36">
+    <Instance Declaration="#19=M:[Data]Data.Concrete.EntityFramework.EfSinavKitapcikData::UpdateWithNested(Entities.Concrete.SinavKitapcik)" Id="1f39bf1a1f225c7a">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="16" />
       </Target>
     </Instance>
-    <Instance Declaration="#20=M:[Data]Data.Concrete.EntityFramework.EfSinavTurData::AddWithNestedLists(Entities.Concrete.SinavTur)" Id="1f39bf1a3a7808e4">
+    <Instance Declaration="#20=M:[Data]Data.Concrete.EntityFramework.EfSinavTurData::AddWithNestedLists(Entities.Concrete.SinavTur)" Id="1f39bf1a12a456b2">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="17" />
       </Target>
     </Instance>
-    <Instance Declaration="#21=M:[Data]Data.Concrete.EntityFramework.EfSinavTurData::UpdateWithNestedLists(Entities.Concrete.SinavTur)" Id="1f39bf1ad17d7a78">
+    <Instance Declaration="#21=M:[Data]Data.Concrete.EntityFramework.EfSinavTurData::UpdateWithNestedLists(Entities.Concrete.SinavTur)" Id="1f39bf1a656e4522">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="18" />
       </Target>
     </Instance>
-    <Instance Declaration="#22=M:[Data]Data.Concrete.EntityFramework.EfSmsData::AddWithSmsHesapHareket(Entities.Concrete.Sms)" Id="1f39bf1adc2e14f0">
+    <Instance Declaration="#22=M:[Data]Data.Concrete.EntityFramework.EfSmsData::AddWithSmsHesapHareket(Entities.Concrete.Sms)" Id="1f39bf1a9844bb1d">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="19" />
       </Target>
     </Instance>
-    <Instance Declaration="#23=M:[Data]Data.Concrete.EntityFramework.EfSmsHesapData::UpdateWithNestedLists(Entities.Concrete.SmsHesap)" Id="1f39bf1ad933bfed">
+    <Instance Declaration="#23=M:[Data]Data.Concrete.EntityFramework.EfSmsHesapData::UpdateWithNestedLists(Entities.Concrete.SmsHesap)" Id="1f39bf1afb123fce">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="20" />
       </Target>
     </Instance>
-    <Instance Declaration="#24=M:[Data]Data.Concrete.EntityFramework.EfSubeData::UpdateWithNested(Entities.Concrete.Sube)" Id="1f39bf1a8e746dcd">
+    <Instance Declaration="#24=M:[Data]Data.Concrete.EntityFramework.EfSubeData::UpdateWithNested(Entities.Concrete.Sube)" Id="1f39bf1a99b6e74d">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="21" />
       </Target>
     </Instance>
-    <Instance Declaration="#25=M:[Data]Data.Concrete.EntityFramework.EfSubeData::DeleteWithNested(Entities.Concrete.Sube)" Id="1f39bf1adf8f7c4c">
+    <Instance Declaration="#25=M:[Data]Data.Concrete.EntityFramework.EfSubeData::DeleteWithNested(Entities.Concrete.Sube)" Id="1f39bf1aedf872fd">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="22" />
       </Target>
     </Instance>
-    <Instance Declaration="#26=M:[Data]Data.Concrete.EntityFramework.EfVideoData::AddWithNested(Entities.Concrete.Video)" Id="1f39bf1a27b17ea5">
+    <Instance Declaration="#26=M:[Data]Data.Concrete.EntityFramework.EfVideoData::AddWithNested(Entities.Concrete.Video)" Id="1f39bf1af79f537d">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="23" />
       </Target>
     </Instance>
-    <Instance Declaration="#27=M:[Data]Data.Concrete.EntityFramework.EfVideoData::UpdateWithNested(Entities.Concrete.Video)" Id="1f39bf1a31744ec5">
+    <Instance Declaration="#27=M:[Data]Data.Concrete.EntityFramework.EfVideoData::UpdateWithNested(Entities.Concrete.Video)" Id="1f39bf1a57c309a9">
       <Target>
         <JoinPoint Advising="#1" Description="#3" Ordinal="24" />
       </Target>

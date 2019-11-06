@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Core</RootNamespace>
     <AssemblyName>Core</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <SccProjectName>SAK</SccProjectName>
@@ -17,6 +17,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <DontImportPostSharp>True</DontImportPostSharp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -153,6 +154,69 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="General\TumAyarlar\Ayarlar" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki-2" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki1031" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki1090" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki1105" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki1209" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki1304" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki1349" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki1641" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki1664" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki1694" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki1696" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki18" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki180" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki184" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki186" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki191" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki194" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki198" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki2" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki210" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki213" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki222" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki227" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki232" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki25" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki26" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki27" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki310" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki323" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki33" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki375" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki38" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki395" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki41" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki415" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki432" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki4397" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki44" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki484" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki51" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki541" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki56" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki578" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki60" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki636" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki668" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki738" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki750" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki760" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki763" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki765" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki850" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki873" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki879" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki880" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki881" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki892" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki907" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki920" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki939" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki966" />
+    <None Include="General\TumAyarlar\PersonelSubeYetki\PersonelSubeYetki967" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
