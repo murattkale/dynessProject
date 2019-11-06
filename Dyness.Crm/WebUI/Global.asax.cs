@@ -111,7 +111,7 @@ namespace WebUI
 
                         HttpContext.Current.User = identity;
                         Thread.CurrentPrincipal = identity;
-                    }
+                    } 
                     catch (Exception exc)
                     {
                         string logPath = Server.MapPath(string.Format("~/logs/kysLoginLogs/{0}/", DateTime.Now.ToString("dd-MM-yyyy")));
