@@ -81,7 +81,7 @@ namespace Core.General
 
     public static class AyarlarService
     {
-        static string defaultPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\WebUI\\TumAyarlar\\Ayarlar"));
+        static string defaultPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TumAyarlar\\Ayarlar"));
 
         static Ayarlar _ayarlar;
 
@@ -142,7 +142,7 @@ namespace Core.General
 
     public static class PersonelSubeYetkiService
     {
-        static  string DefaultPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\WebUI\\TumAyarlar\\PersonelSubeYetki"));
+        static  string DefaultPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TumAyarlar\\PersonelSubeYetki"));
 
         static List<PersonelSubeYetkiDto> _personelSubeYetkiler;
 
