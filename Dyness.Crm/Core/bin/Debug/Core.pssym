@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="1066" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Core]Core.Aspects.Postsharp.LogAspects.LogAspect">
-    <Instance Declaration="#2=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Add(TEntity)" Id="76e125f4a8f3c397">
+    <Instance Declaration="#2=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Add(TEntity)" Id="76e125f42e12f2cc">
       <Target>
         <JoinPoint Description="#3=Wrapped by advice(s) OnEntry, OnSuccess, OnException, OnExit" Ordinal="0" />
       </Target>
     </Instance>
-    <Instance Declaration="#4=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::AddOrUpdate(TEntity)" Id="76e125f4d188ed9d">
+    <Instance Declaration="#4=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::AddOrUpdate(TEntity)" Id="76e125f4edd707dc">
       <Target>
         <JoinPoint Description="#3" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Update(TEntity)" Id="76e125f4d3b021f8">
+    <Instance Declaration="#5=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Update(TEntity)" Id="76e125f47b07fa1d">
       <Target>
         <JoinPoint Description="#3" Ordinal="2" />
       </Target>
     </Instance>
-    <Instance Declaration="#6=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Delete(TEntity)" Id="76e125f45131a12f">
+    <Instance Declaration="#6=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::Delete(TEntity)" Id="76e125f49bc07a26">
       <Target>
         <JoinPoint Description="#3" Ordinal="3" />
       </Target>
     </Instance>
-    <Instance Declaration="#7=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::DeleteById(System.Int32)" Id="76e125f449af7aae">
+    <Instance Declaration="#7=M:[Core]Core.Data.EntityFramework.EFEntityRepository{TEntity,TContext}::DeleteById(System.Int32)" Id="76e125f460049186">
       <Target>
         <JoinPoint Description="#3" Ordinal="4" />
       </Target>

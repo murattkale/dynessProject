@@ -13,7 +13,9 @@ namespace WebUI.Models
 
         public List<SelectListItem> KurumSelectList { get; set; }
 
+        public List<SelectListItem> UlkeSelectList { get; set; }
         public List<SelectListItem> SehirSelectList { get; set; }
+        public List<SelectListItem> IlceSelectList { get; set; }
 
         public List<SelectListItem> ParaBirimSelectList { get; set; }
 

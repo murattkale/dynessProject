@@ -1785,4 +1785,7 @@
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
+  <data name="Ulke" xml:space="preserve">
+    <value>Ülke</value>
+  </data>
 </root>

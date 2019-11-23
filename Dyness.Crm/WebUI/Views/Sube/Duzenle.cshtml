@@ -19,6 +19,9 @@
 
 @section Page{@title}
 
+
+
+
 @using (Html.BeginForm("Duzenle", "Sube", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -31,7 +34,11 @@
     }
 
     @Html.FormDropDownListFor(x => x.Model.KurumId, Model.KurumSelectList)
-    @Html.FormDropDownListFor(x => x.Model.SehirId, Model.SehirSelectList)
+
+    @Html.FormDropDownListFor(x => x.Model.UlkeId, Model.UlkeSelectList)
+    @Html.FormDropDownListFor(x => x.Model.SehirId, selectListItems: null)
+    @Html.FormDropDownListFor(x => x.Model.IlceId, selectListItems: null)
+
     @Html.FormTextBoxFor(x => x.Model.SubeAd)
     @Html.FormTextBoxFor(x => x.Model.SenetDuzenlemeYerBilgisi)
     @Html.FormTextBoxFor(x => x.Model.Kod)
@@ -58,3 +65,27 @@
     @Html.Hidden("id", Model.Model.SubeId)
     @Html.FormDeletePopupMessageFor("divModalDelete", Resources.LangResources.BuIslemBilgilerinSilinmesineNedenOlacaktir, Resources.LangResources.IslemiOnayliyormusunuz)
 }
+
+
+
+<script>
+    $(function () {
+        var selectedUlkeId = @Html.Raw(Json.Encode(Model.Model?.UlkeId));
+        var selectedSehirId = @Html.Raw(Json.Encode(Model.Model?.SehirId));
+        var selectedIlceId = @Html.Raw(Json.Encode(Model.Model?.IlceId));
+
+   
+
+        UlkeSehirIlce(
+            $("#Model_UlkeId"),
+            $("#Model_SehirId"),
+            selectedSehirId,
+            $("#Model_IlceId"),
+            selectedIlceId);
+
+
+
+    });
+
+
+</script>

@@ -23,7 +23,9 @@ namespace WebUI.Controllers
         private void GetLists(SubeDuzenleViewModel viewModel)
         {
             viewModel.KurumSelectList = selectListHelper.KurumSelectList();
-            viewModel.SehirSelectList = selectListHelper.SehirSelectList(1);
+            viewModel.UlkeSelectList = selectListHelper.UlkeSelectList();
+            //viewModel.SehirSelectList = selectListHelper.SehirSelectList();
+            //viewModel.UlkeSelectList = selectListHelper.IlceSelectList();
             viewModel.ParaBirimSelectList = selectListHelper.ParaBirimSelectList();
         }
 

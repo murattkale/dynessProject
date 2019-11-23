@@ -359,7 +359,7 @@ var App = function () {
 
     // Mask 
     var _componentMask = function () {
-        $('.phone-number').attr("data-mask", "9999 999 99 99");
+        $('.phone-number').attr("data-mask", "(999) 999 99 99");
         $('.pickadate').attr("data-mask", "99.99.9999");
         $('.pickadatetime').attr("data-mask", "99.99.9999 99:99");
         $('.tcNo').attr("data-mask", "99999999999");
@@ -836,8 +836,8 @@ var decodeHTML = function (html) {
 
 function UlkeSehirIlce(selectUlke, selectSehir, selectedSehirId, selectIlce, selectedIlceId) {
 
-    function ilceListele(id, selected) {
 
+    function ilceListele(id, selected) {
         id = id == null || id === ""
             ? 0
             : id;

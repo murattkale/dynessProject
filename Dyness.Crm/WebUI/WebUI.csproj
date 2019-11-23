@@ -873,6 +873,7 @@
     <Content Include="assets\js\jquery-ui.min.js" />
     <Content Include="assets\js\local-dataTable.js" />
     <Content Include="assets\js\OgrenciDetay.js" />
+    <Content Include="assets\js\SubeDuzenle.js" />
     <Content Include="assets\js\OgrenciSozlesmeDuzenle.js" />
     <Content Include="assets\js\PersonelDuzenle.js" />
     <Content Include="assets\js\SinavDetay.js" />

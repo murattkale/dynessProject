@@ -55,29 +55,4 @@ Global
 		RESX_NeutralResourcesLanguage = tr-TR
 		SolutionGuid = {44E0F50C-5F63-4EE7-A67F-CFC161D13C13}
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://195.142.106.84:8080/tfs/crm%20projeleri
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = WebUI\\WebUI.csproj
-		SccProjectName1 = WebUI
-		SccLocalPath1 = WebUI
-		SccProjectUniqueName2 = Core\\Core.csproj
-		SccProjectTopLevelParentUniqueName2 = Dyness.Crm.sln
-		SccProjectName2 = Core
-		SccLocalPath2 = Core
-		SccProjectUniqueName3 = Data\\Data.csproj
-		SccProjectTopLevelParentUniqueName3 = Dyness.Crm.sln
-		SccProjectName3 = Data
-		SccLocalPath3 = Data
-		SccProjectUniqueName4 = Entities\\Entities.csproj
-		SccProjectTopLevelParentUniqueName4 = Dyness.Crm.sln
-		SccProjectName4 = Entities
-		SccLocalPath4 = Entities
-		SccProjectUniqueName5 = Services\\Services.csproj
-		SccProjectTopLevelParentUniqueName5 = Dyness.Crm.sln
-		SccProjectName5 = Services
-		SccLocalPath5 = Services
-	EndGlobalSection
 EndGlobal

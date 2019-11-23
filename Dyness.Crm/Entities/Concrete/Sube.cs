@@ -14,8 +14,14 @@ namespace Entities.Concrete
         [Required(ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "DataAnnotationsRequired")]
         public int KurumId { get; set; }
 
+        //[Display(ResourceType = typeof(FieldNameResources), Name = "Ulke")]
+        public int? UlkeId { get; set; }
+
         [Display(ResourceType = typeof(FieldNameResources), Name = "Sehir")]
         public int? SehirId { get; set; }
+
+        [Display(ResourceType = typeof(FieldNameResources), Name = "YasadigiIlce")]
+        public int? IlceId { get; set; }
 
         [Display(ResourceType = typeof(FieldNameResources), Name = "ParaBirim")]
         [Required(ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "DataAnnotationsRequired")]
@@ -91,11 +97,24 @@ namespace Entities.Concrete
 
         public virtual Kurum Kurum { get; set; }
 
+
+        [Display(ResourceType = typeof(FieldNameResources), Name = "Ulke")]
+        [NotMapped]
+        public string UlkeAd => Ulke != null ? Ulke.UlkeAd : string.Empty;
+
+
         [Display(ResourceType = typeof(FieldNameResources), Name = "Sehir")]
         [NotMapped]
         public string SehirAd => Sehir != null ? Sehir.SehirAd : string.Empty;
 
+        public virtual Ulke Ulke { get; set; }
         public virtual Sehir Sehir { get; set; }
+
+        public virtual Ilce Ilce { get; set; }
+
+        [Display(ResourceType = typeof(FieldNameResources), Name = "Ilce")]
+        [NotMapped]
+        public string IlceAd => Ilce != null ? Ilce.IlceAd : string.Empty;
 
         [Display(ResourceType = typeof(FieldNameResources), Name = "ParaBirim")]
         [NotMapped]

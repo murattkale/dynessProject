@@ -4651,6 +4651,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ülke.
+        /// </summary>
+        internal static string Ulke {
+            get {
+                return ResourceManager.GetString("Ulke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dosyanın uzantısı uygun değil..
         /// </summary>
         internal static string UzantiUygunDegil {
